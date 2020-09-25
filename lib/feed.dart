@@ -12,6 +12,7 @@ class _FeedState extends State<Feed> {
       body: ListView(
         children: [
           PetCard(),
+          InfoCard(),
         ],
       ),
     );
@@ -44,10 +45,11 @@ class PetCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(30.0),
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.zero),
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(30.0),
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.zero,
+                    ),
                   ),
                   child: Text(
                     'Golden Retreiver',
@@ -70,6 +72,74 @@ class PetCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class InfoCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SimpleDialog(
+      contentPadding: EdgeInsets.all(0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+      ),
+      children: [
+        Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.zero,
+            ),
+          ),
+          child: Text(
+            'Golden Retreiver',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        //TODO removed SizedBox placeholder
+        SizedBox(
+          height: 100.0,
+        ),
+        //TODO Implement image swiper here
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor   Lorem ipsum dolor sit amet, consectetur a '),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.lightGreen,
+                        borderRadius: BorderRadius.all(Radius.circular(24))),
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Adopt',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
