@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/model/tabicondata.dart';
+import 'package:petrescue/post_home.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
 
 void main() => runApp(PetApp());
@@ -36,9 +37,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AnimationController animationController;
-  Widget tabBody = Container(
-    color: Colors.white,
-  );
+  Widget tabBody = PostHome();
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +80,10 @@ class _HomeTabState extends State<HomeTab> {
                 if (!mounted) {
                   return;
                 }
-                // setState(() {
-                //   tabBody =
-                //       MyDiaryScreen(animationController: animationController);
-                // });
+                setState(() {
+                  tabBody =
+                      PostHome();
+                });
               });
             }
             else if (index == 1)
@@ -116,6 +115,18 @@ class _HomeTabState extends State<HomeTab> {
         ),
       ],
     );
+  }
+}
+
+class HexColor extends Color {
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF' + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
   }
 }
 
