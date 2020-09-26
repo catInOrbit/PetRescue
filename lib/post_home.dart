@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/widgets/feed.dart';
 import 'package:petrescue/widgets/post_card.dart';
 
 class PostHome extends StatefulWidget
