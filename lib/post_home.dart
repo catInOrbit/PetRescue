@@ -14,15 +14,28 @@ class _PostHomeState extends State<PostHome>
   @override
   Widget build(BuildContext context)
   {
+      // return Scaffold(
+      //   body: ListView.builder(
+      //     padding: EdgeInsets.symmetric(horizontal: 20),
+      //     itemCount: 5,
+      //     itemBuilder: (BuildContext buildContext, int index){
+      //       return PostCard();
+      //     },
+      //   ),
+      // );
+
       return Scaffold(
-        body: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          itemCount: 5,
-          itemBuilder: (BuildContext buildContext, int index){
-            return PostCard();
-          },
+        body: ListView.separated(
+            separatorBuilder: (BuildContext context, int index) => Divider(),
+            itemCount: 5,
+            itemBuilder: (BuildContext context, int index){
+              return PostBody();
+            }
         ),
       );
+
+
+
   }
 
 }

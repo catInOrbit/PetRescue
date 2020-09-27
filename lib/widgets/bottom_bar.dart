@@ -142,7 +142,7 @@ class _BottomBarViewState extends State<BottomBarView>
                       // alignment: Alignment.center,s
 
                       decoration: BoxDecoration(
-                        color: /*FintnessAppTheme.nearlyDarkBlue*/ Colors.amberAccent,
+                        color: HexColor("#FF8882"),
                         shape: BoxShape.circle,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
