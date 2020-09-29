@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:petrescue/model/tabicondata.dart';
+import 'package:petrescue/models/tabicondata.dart';
 
 import '../main.dart';
 
@@ -36,10 +36,7 @@ class _BottomBarViewState extends State<BottomBarView>
       alignment: AlignmentDirectional.bottomCenter,
       children: <Widget>[
 
-        AnimatedBuilder(
-          animation: animationController,
-          builder: (BuildContext context, Widget child) {
-            return Transform(
+            Transform(
               transform: Matrix4.translationValues(0.0, 0.0, 0.0),
               child:
               PhysicalShape(
@@ -115,9 +112,7 @@ class _BottomBarViewState extends State<BottomBarView>
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
         Padding(
           padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),

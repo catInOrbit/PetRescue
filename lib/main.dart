@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:petrescue/model/tabicondata.dart';
-import 'package:petrescue/post_home.dart';
+import 'package:petrescue/models/tabicondata.dart';
+import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
 
 void main() => runApp(PetApp());
