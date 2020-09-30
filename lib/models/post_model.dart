@@ -1,13 +1,18 @@
-enum PostType
-{
-  InfoPost, UpdatedPost,CriticalPost
-}
+import 'package:petrescue/models/status_data.dart';
 
-class Post
-{
-  String title, description;
+enum PostType { InfoPost, UpdatedPost, CriticalPost }
+
+class Post {
+  String title, description, location;
   DateTime timeCreated;
   PostType postType;
+  List<Statuses> statuses = [Statuses.Abandoned, Statuses.Injured];
 
-  Post(this.title, this.description, this.timeCreated, this.postType);
+  Post(title, description, location, timeCreated, postType) {
+    this.title = title;
+    this.description = description;
+    this.location = location;
+    this.timeCreated = timeCreated;
+    this.postType = postType;
+  }
 }

@@ -48,7 +48,6 @@ class PostBody extends StatelessWidget {
                 ],
               ),
             )
-
         ),
         Container(
           height: 600,
