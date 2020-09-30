@@ -3,12 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:petrescue/main.dart';
 
 class PostBody extends StatelessWidget {
-
   final image, content, name, date, time;
 
-  PostBody({
-    this.image, this.content, this.name, this.date, this.time
-  });
+  PostBody({this.image, this.content, this.name, this.date, this.time});
 
   @override
   Widget build(BuildContext context) {
@@ -16,49 +13,46 @@ class PostBody extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         ListTile(
-          leading: CircleAvatar(
-            radius: 20.0,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(image),
+            leading: CircleAvatar(
+              radius: 20.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(image),
+                  ),
                 ),
               ),
             ),
-          ),
-
-          title: new Text(
-            name,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          subtitle: new Row(
-            children: [
-              new Text("subtitle"),
-            ],
-          ),
+            title: new Text(
+              name,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: new Row(
+              children: [
+                new Text("subtitle"),
+              ],
+            ),
             trailing: Container(
               alignment: Alignment.centerRight,
               width: 150,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                    Expanded(child: DateTimeTitle(time)),
-                    Expanded(child: DateTimeTitle(date)),
+                  Expanded(child: DateTimeTitle(time)),
+                  Expanded(child: DateTimeTitle(date)),
                 ],
               ),
-            )
-        ),
+            )),
         Container(
           height: 600,
-          child:  Stack(
+          child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
               Positioned(
                 top: 10,
                 child: ImageSection(),
               ),
-
               Positioned(
                 child: BodyCard(),
               )
@@ -69,74 +63,60 @@ class PostBody extends StatelessWidget {
     );
   }
 
-  Widget StatusBarFull()
-  {
+  Widget StatusBarFull() {
     return Padding(
       padding: EdgeInsets.all(12),
       child: FittedBox(
         alignment: Alignment.center,
-        child:
-        Container(
+        child: Container(
           alignment: Alignment.center,
           width: 50,
           height: 20,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(20)),
-              color: Colors.redAccent
-          ),
+              color: Colors.redAccent),
           child: Text(
             "Status Bar",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 10
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 10),
           ),
         ),
       ),
     );
   }
 
-  Widget StatusBarMoreIndicator(int numOfStatus)
-  {
+  Widget StatusBarMoreIndicator(int numOfStatus) {
     return Padding(
       padding: EdgeInsets.all(12),
       child: FittedBox(
         alignment: Alignment.center,
-        child:
-        Container(
+        child: Container(
           alignment: Alignment.center,
           width: 50,
           height: 20,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.redAccent
-          ),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: Colors.redAccent),
           child: Text(
             "3+",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 10
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 10),
           ),
         ),
       ),
     );
   }
 
-  Widget ImageSection()
-  {
-    return  Container(
+  Widget ImageSection() {
+    return Container(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: Image.asset("lib/assets/template_cat.png",
+        child: Image.asset(
+          "lib/assets/template_cat.png",
           width: 350,
         ),
       ),
     );
   }
 
-  Widget BodyCard()
-  {
+  Widget BodyCard() {
     return Container(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -154,18 +134,16 @@ class PostBody extends StatelessWidget {
               ),
             ],
           ),
-
           child: InkWell(
-            onTap: (){},
+            onTap: () {},
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor   Lorem ipsum dolor sit amet, consectetur "),
+                  child: Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor   Lorem ipsum dolor sit amet, consectetur "),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,15 +153,11 @@ class PostBody extends StatelessWidget {
                         child: StatusBarFull(),
                       ),
                     ),
-
-
-
                     Expanded(
                       child: Container(
                         child: StatusBarFull(),
                       ),
                     ),
-
                     Expanded(
                       child: Container(
                         child: StatusBarMoreIndicator(5),
@@ -194,45 +168,33 @@ class PostBody extends StatelessWidget {
               ],
             ),
           ),
-
         ),
       ),
     );
   }
 
-
-  Widget DateTimeTitle(String textData)
-  {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    FittedBox(
-                      fit: BoxFit.cover,
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(26)),
-                            color: HexColor("#F6CC9F")
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            textData,
-                            style: TextStyle(
-                                color: Colors.white,
-                              fontSize: 20
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ]
-              )
+  Widget DateTimeTitle(String textData) {
+    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+      Expanded(
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+        FittedBox(
+          fit: BoxFit.cover,
+          child: Container(
+            height: 40,
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(26)),
+                color: HexColor("#F6CC9F")),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                textData,
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
           ),
-        ]);
+        ),
+      ])),
+    ]);
   }
 }
