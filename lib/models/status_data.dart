@@ -1,5 +1,1 @@
-enum Statuses {
-  Injured,
-  Abandoned,
-  LostOwner,
-}
+enum Statuses { Injured, Abandoned, LostOwner }

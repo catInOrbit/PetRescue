@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
@@ -11,17 +12,11 @@ class PetApp extends StatefulWidget {
   _PetAppState createState() => _PetAppState();
 }
 
-class _PetAppState extends State<PetApp> with TickerProviderStateMixin
-{
+class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
-  Widget build(BuildContext context)
-  {
-    return MaterialApp(
-      title: "AppTitle",
-      home: HomeTab()
-    );
+  Widget build(BuildContext context) {
+    return MaterialApp(title: "AppTitle", home: HomeTab());
   }
-
 }
 
 Future<bool> getData() async {
@@ -38,6 +33,7 @@ class _HomeTabState extends State<HomeTab> {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AnimationController animationController;
   Widget tabBody = PostHome();
+  final _bloc = PostBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +41,15 @@ class _HomeTabState extends State<HomeTab> {
       color: Colors.white,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: FutureBuilder<bool>(
-          future: getData(),
-          builder: (BuildContext buildContext, AsyncSnapshot<bool> snapshot){
-            if (!snapshot.hasData) {return const SizedBox();
-            } else {
-              return Stack(
-                children: <Widget>[
-                  tabBody,
-                  bottomBar()
-                ],
-              );
-            }
-          }
+        body: PostBlocProvider(
+          bloc: this._bloc,
+          child: Stack(
+            children: <Widget>[tabBody, bottomBar()],
+          ),
         ),
       ),
     );
   }
-
 
   Widget bottomBar() {
     return Column(
@@ -70,7 +57,6 @@ class _HomeTabState extends State<HomeTab> {
         const Expanded(
           child: SizedBox(),
         ),
-
         BottomBarView(
           tabIconsList: tabIconsList,
           addClick: () {},
@@ -81,13 +67,10 @@ class _HomeTabState extends State<HomeTab> {
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      PostHome();
+                  tabBody = PostHome();
                 });
               });
-            }
-            else if (index == 1)
-            {
+            } else if (index == 1) {
               animationController.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -97,9 +80,7 @@ class _HomeTabState extends State<HomeTab> {
                 //       TrainingScreen(animationController: animationController);
                 // });
               });
-            }
-
-            else if (index == 3) {
+            } else if (index == 3) {
               animationController.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -129,4 +110,3 @@ class HexColor extends Color {
     return int.parse(hexColor, radix: 16);
   }
 }
-

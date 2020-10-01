@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-
-import '../../authentication/domain/authentication_repository.dart';
-import '../../core/widgets/google_sign_in_button.dart';
-import '../bloc/login_cubit.dart';
+import 'package:petrescue/authentication/domain/authentication_repository.dart';
+import 'package:petrescue/bloc/post/login/bloc/login_cubit.dart';
+import 'package:petrescue/models/authentication/core/widgets/google_sign_in_button.dart';
 
 class LogInPage extends StatelessWidget {
   static Route route() {

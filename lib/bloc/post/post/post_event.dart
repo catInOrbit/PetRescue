@@ -1,6 +1,17 @@
 class PostEvent {
-  final bool isPrioritized, hasSortRquest;
-  final String selectedSort;
+  bool isPrioritized, hasSortRquest;
+  String selectedSort = "";
 
-  PostEvent(this.isPrioritized, this.hasSortRquest, this.selectedSort);
+  set setSortRequest(bool value) {
+    hasSortRquest = value;
+  }
+
+  set setSelectedSort(String value) {
+    selectedSort = value;
+  }
+
+  PostEvent(hasSortRquest, selectedSort) {
+    this.hasSortRquest = hasSortRquest;
+    this.selectedSort = selectedSort;
+  }
 }

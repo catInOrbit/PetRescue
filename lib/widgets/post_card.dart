@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:petrescue/main.dart';
+import 'package:petrescue/models/post_model.dart';
 
 class PostBody extends StatelessWidget {
-  final image, content, name, date, time;
+  final Post postModel;
 
-  PostBody({this.image, this.content, this.name, this.date, this.time});
+  const PostBody({Key key, this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,13 @@ class PostBody extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: NetworkImage(image),
+                    image: NetworkImage(postModel.imageString),
                   ),
                 ),
               ),
             ),
             title: new Text(
-              name,
+              postModel.title,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             subtitle: new Row(
@@ -39,8 +40,9 @@ class PostBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Expanded(child: DateTimeTitle(time)),
-                  Expanded(child: DateTimeTitle(date)),
+                  Expanded(
+                      child: DateTimeTitle(postModel.timeCreated.toString())),
+                  // Expanded(child: DateTimeTitle(date)),
                 ],
               ),
             )),

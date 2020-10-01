@@ -8,6 +8,8 @@ class PostState {
     visiblePostTree.add(post);
   }
 
+  List<Post> get getVisiblePostTree => visiblePostTree;
+
   int get numOfPost => visiblePostTree.length;
 
   PostState();
