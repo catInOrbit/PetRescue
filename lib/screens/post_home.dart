@@ -4,7 +4,7 @@ import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/bloc/post/post/post_state.dart';
 import 'package:petrescue/models/status_data.dart';
 import 'package:petrescue/repository/data/post_data.dart';
-import 'package:petrescue/widgets/post_card.dart';
+import 'package:petrescue/widgets/post_card_improved.dart';
 
 class PostHome extends StatefulWidget {
   @override
