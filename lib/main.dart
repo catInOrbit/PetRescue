@@ -41,11 +41,8 @@ class _HomeTabState extends State<HomeTab> {
       color: Colors.white,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: PostBlocProvider(
-          bloc: this._bloc,
-          child: Stack(
-            children: <Widget>[tabBody, bottomBar()],
-          ),
+        body: Stack(
+          children: <Widget>[tabBody, bottomBar()],
         ),
       ),
     );
@@ -75,21 +72,13 @@ class _HomeTabState extends State<HomeTab> {
                 if (!mounted) {
                   return;
                 }
-                // setState(() {
-                //   tabBody =
-                //       TrainingScreen(animationController: animationController);
-                // });
+
               });
             } else if (index == 3) {
               animationController.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
                 }
-                // setState(() {
-                //   tabBody =
-                //   // TrainingScreen(animationController: animationController);
-                //   TimeBudgettingScreen( );
-                // });
               });
             }
           },

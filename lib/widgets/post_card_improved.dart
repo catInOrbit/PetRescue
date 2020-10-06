@@ -6,19 +6,16 @@ import 'package:petrescue/models/post_model.dart';
 class PostBody extends StatelessWidget {
   final Post postModel;
 
-  const PostBody({Key key, this.postModel}) : super(key: key);
+  const PostBody({Key key, @required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
+    return Column(
+      mainAxisSize: MainAxisSize.max,
 
-        children: <Widget>[
-             ImageSection(),
-            BodyCard(),
-        ],
-      ),
+      children: <Widget>[
+        BodyCard(),
+      ],
     );
   }
 
@@ -64,18 +61,27 @@ class PostBody extends StatelessWidget {
   }
 
   Widget ImageSection() {
+
     return Container(
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        child: Image.asset(
-          "lib/assets/template_cat.png",
-          width: 350,
-        ),
+      child: Stack(
+        children: [
+          Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: Image.asset(
+                "lib/assets/template_cat.png",
+              ),
+            ),
+          ),
+
+          UserInfo(),
+        ],
       ),
     );
+
   }
 
   Widget BodyCard() {
@@ -99,6 +105,8 @@ class PostBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            ImageSection(),
+
             ListTile(
                 title: new Text(
                   postModel.title,
@@ -141,31 +149,34 @@ class PostBody extends StatelessWidget {
                           child: Wrap(
                             direction: Axis.horizontal,
                             children: [
-                              Container(
-                                height: 48,
-                                width: 3,
-                                decoration: BoxDecoration(
-                                  color: HexColor('#87A0E5').withOpacity(0.5),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0)),
-                                ),
-                              ), //Decoration border left
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Flexible(
-                                  child: Text(
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad ',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      letterSpacing: -0.1,
-                                      color: Colors.grey.withOpacity(0.5),
+                              Stack(
+                                children: [
+                                  Container(
+                                    width: 3,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      color: HexColor('#87A0E5').withOpacity(0.5),
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(4.0)),
+                                    ),
+                                  ), //Decoration border left
+
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad ',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                        letterSpacing: -0.1,
+                                        color: Colors.grey.withOpacity(0.5),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                ],
+                              )
                             ],
                           ),
                         ),
@@ -198,41 +209,44 @@ class PostBody extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start ,
-                    children: [
-                      FlatButton(
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        padding: EdgeInsets.all(8.0),
-                        splashColor: Colors.blueAccent,
-                        onPressed: () {
-                          /*...*/
-                        },
-                        child: Text(
-                          "Flat Button",
-                          style: TextStyle(fontSize: 20.0),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start ,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        FlatButton(
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                          disabledColor: Colors.grey,
+                          disabledTextColor: Colors.black,
+                          padding: EdgeInsets.all(8.0),
+                          splashColor: Colors.blueAccent,
+                          onPressed: () {
+                            /*...*/
+                          },
+                          child: Text(
+                            "Flat Button",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
                         ),
-                      ),
 
-                      FlatButton(
-                        color: Colors.blueGrey,
-                        textColor: Colors.black,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        padding: EdgeInsets.all(8.0),
-                        splashColor: Colors.grey,
-                        onPressed: () {
-                          /*...*/
-                        },
-                        child: Text(
-                          "Flat Button",
-                          style: TextStyle(fontSize: 20.0),
+                        FlatButton(
+                          color: Colors.blueGrey,
+                          textColor: Colors.black,
+                          disabledColor: Colors.grey,
+                          disabledTextColor: Colors.black,
+                          padding: EdgeInsets.all(8.0),
+                          splashColor: Colors.grey,
+                          onPressed: () {
+                            /*...*/
+                          },
+                          child: Text(
+                            "Flat Button",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -244,21 +258,48 @@ class PostBody extends StatelessWidget {
   }
 
 
+  Widget UserInfo()
+  {
+    return ListTile(
+      leading: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(blurRadius: 20, color: Colors.black, spreadRadius: 5)
+              ]
+          ),
+          child: CircleAvatar(backgroundImage: NetworkImage(postModel.imageString), radius: 25,
+          )),
+      title: Text("Placeholder", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+      subtitle: Row(
+        children: [
+          Text("Location", style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15)),
+          SizedBox(width: 10,),
+          Text("Miles away", style: TextStyle(color: Colors.white, fontStyle: FontStyle.normal, fontSize: 13)),
+        ],
+      ),
+    );
+  }
+
+
+
   Widget DateTimeTitle(String textData) {
-    return FittedBox(
-      fit: BoxFit.fitWidth,
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(26)),
-            color: HexColor("#F6CC9F")),
-        child: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Text(
-            textData,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+    return Wrap(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(26)),
+              color: HexColor("#F6CC9F")),
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text(
+              textData,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
