@@ -15,7 +15,8 @@ class PetApp extends StatefulWidget {
 class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "AppTitle", home: HomeTab());
+    return MaterialApp(
+        debugShowCheckedModeBanner: false, title: "AppTitle", home: HomeTab());
   }
 }
 
@@ -72,7 +73,6 @@ class _HomeTabState extends State<HomeTab> {
                 if (!mounted) {
                   return;
                 }
-
               });
             } else if (index == 3) {
               animationController.reverse().then<dynamic>((data) {
