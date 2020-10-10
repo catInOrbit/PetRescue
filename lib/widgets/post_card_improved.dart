@@ -68,8 +68,8 @@ class PostBody extends StatelessWidget {
                   colors: [Colors.transparent, Colors.grey[800].withAlpha(128)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter)),
-          child: Image.asset(
-            "assets/images/Cat2.jpeg",
+          child: Image.network(
+            "https://icatcare.org/app/uploads/2018/06/Layer-1704-1920x840.jpg",
             fit: BoxFit.fitWidth,
           ),
         ),

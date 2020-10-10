@@ -4,6 +4,7 @@ import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
+import 'package:petrescue/widgets/full.dart';
 
 void main() => runApp(PetApp());
 
@@ -33,7 +34,8 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AnimationController animationController;
-  Widget tabBody = PostHome();
+  Widget tabBody = Full();
+  // Widget tabBody = PostHomeG();
   final _bloc = PostBloc();
 
   @override
