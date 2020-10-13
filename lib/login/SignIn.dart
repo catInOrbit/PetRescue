@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:petrescue/Colors.dart';
+import 'package:petrescue/login/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:petrescue/FotgotPassword.dart';
-import 'package:petrescue/SignUp.dart';
+import 'package:petrescue/login/FotgotPassword.dart';
+import 'package:petrescue/login/SignUp.dart';
 import 'package:email_validator/email_validator.dart';
 class LoginPage extends StatefulWidget {
   @override
@@ -92,35 +92,6 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      // Container(
-                      //     padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      //     child: TextField(
-                      //       decoration: InputDecoration(
-                      //           //hintText: "Input yor Email",
-                      //           labelText: 'Email',
-                      //           border: OutlineInputBorder(),
-                      //       prefixIcon: Icon(Icons.account_circle)),
-                      //
-                      //     )),
-                      // Container(
-                      //     padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      //     child: TextField(
-                      //       obscureText: !this._showPassword,
-                      //       decoration: InputDecoration(
-                      //           border: OutlineInputBorder(),
-                      //           labelText: 'Password',
-                      //           prefixIcon: Icon(Icons.security),
-                      //           suffixIcon: IconButton(
-                      //             icon: Icon(
-                      //               Icons.remove_red_eye,
-                      //               color: this._showPassword ? Colors.blue : Colors.grey,
-                      //             ),
-                      //             onPressed: () {
-                      //               setState(() => this._showPassword = !this._showPassword);
-                      //             } ,
-                      //           )
-                      //       ),
-                      //     )),
                       ButtonTheme(
                         minWidth: 300,
                         child: RaisedButton(

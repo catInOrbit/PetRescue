@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:petrescue/Colors.dart';
-import 'package:petrescue/SignIn.dart';
+import 'package:petrescue/login/Colors.dart';
+import 'package:petrescue/login/SignIn.dart';
 import 'package:email_validator/email_validator.dart';
 class ForgotScreen extends StatefulWidget {
   @override
@@ -39,17 +39,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
         ),
         resizeToAvoidBottomPadding: false,
         backgroundColor: HexColor('#FFB9AC'),
-        // body: Center(
-        //   child: Container(
-        //     alignment: Alignment.center,
-        //     height: 256,
-        //     width: 387,
-        //     decoration: BoxDecoration(
-        //         image: DecorationImage(
-        //             image: AssetImage('assets/petfamily.png'),
-        //             fit: BoxFit.none)),
-        //   ),
-        // ),
+
         body: SingleChildScrollView(
           child: Center(
             child: Column(
