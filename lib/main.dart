@@ -4,7 +4,8 @@ import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
-import 'package:petrescue/widgets/full.dart';
+import 'package:petrescue/widgets/detail_card.dart';
+import 'package:petrescue/widgets/postFeed/postHomeG.dart';
 
 void main() => runApp(PetApp());
 
@@ -34,7 +35,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AnimationController animationController;
-  Widget tabBody = Full();
+  Widget tabBody = PostHomeG();
   // Widget tabBody = PostHomeG();
   final _bloc = PostBloc();
 
@@ -42,10 +43,12 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: <Widget>[tabBody, bottomBar()],
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: <Widget>[tabBody, bottomBar()],
+          ),
         ),
       ),
     );

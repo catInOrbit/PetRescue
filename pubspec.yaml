@@ -73,6 +73,9 @@ flutter:
     - lib/assets/landing_page_woman.png
     - lib/assets/paw.png
     - lib/assets/contact.png
+    - lib/assets/cat3.png
+    - lib/assets/cat4.png
+    - lib/assets/dog.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
