@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:petrescue/Colors.dart';
+import 'package:petrescue/SignIn.dart';
+import 'package:email_validator/email_validator.dart';
+
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -9,6 +12,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   bool _showPassword = false;
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -28,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'CREATE YOUR ACCOUNT',
+                  'CREATE YOUR ACCOUNT',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
                   style: TextStyle(fontSize: 30),
                 ),
                 Padding(
@@ -62,7 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Email name',
+                        labelText: 'Email',
                       ),
                     ),
                   ),
@@ -80,13 +84,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           suffixIcon: IconButton(
                             icon: Icon(
                               Icons.remove_red_eye,
-                              color: this._showPassword ? Colors.blue : Colors.grey,
+                              color: this._showPassword
+                                  ? Colors.blue
+                                  : Colors.grey,
                             ),
                             onPressed: () {
-                              setState(() => this._showPassword = !this._showPassword);
-                            } ,
-                          )
-                      ),
+                              setState(() =>
+                                  this._showPassword = !this._showPassword);
+                            },
+                          )),
                     ),
                   ),
                 ),
@@ -96,22 +102,103 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 45,
                     minWidth: 300,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SignUpComplete()),
+                        );
+                      },
                       child: Text('Sign me up!'),
                       color: Colors.red,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-                  child: Container(
-                    height: 45,
-                    child: Text(
-                        "Already have an account? Sign in"
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                //   child: Container(
+                //     height: 45,
+                //     child: Text("Already have an account? Sign in"),
+                //   ),
+                // ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class SignUpComplete extends StatefulWidget {
+  @override
+  _SignUpCompleteState createState() => _SignUpCompleteState();
+}
+
+class _SignUpCompleteState extends State<SignUpComplete> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        resizeToAvoidBottomPadding:false,
+        backgroundColor: HexColor('#FFB9AC'),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40.0),
+            child: Center(
+              child: Column(
+                  children: <Widget>[
+                    Text('CONFIRM YOUR EMAIL',
+                    style: TextStyle(fontSize: 30),),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      child: Form(
+                        autovalidate: true,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            border: OutlineInputBorder(),
+
+                          ),
+                            controller: TextEditingController()..text = 'Your initial value'
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "We'll send you an email with a magic link. When you click on"
+                    ),
+                    Text(
+                        "the link it  will send you back the app so you can continue"
+                    ),
+                    Text(
+                        "verifying your account."
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("You can resend the link if you don't receive the mail."),
+                    ),
+                    RaisedButton(
+                      child: Text('Resend link'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      child: RaisedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    LoginPage()),
+                          );
+                        },
+                        child: Text('Back to Login Page!'),color: Colors.indigoAccent,
+                      ),
+                    ),
+
+                  ],
+              ),
             ),
           ),
         ),
