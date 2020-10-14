@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/petrescue_theme.dart';
 class StatusTag extends StatelessWidget
 {
   final textData;
@@ -16,7 +17,7 @@ class StatusTag extends StatelessWidget
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(26)),
-                color: HexColor("#F6CC9F")),
+                color: PetRescueTheme.darkGreen),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
               child: Text(
@@ -30,6 +31,105 @@ class StatusTag extends StatelessWidget
     );;
   }
 }
+
+class UserInfoRibon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(0),
+            topRight: Radius.circular(27.50),
+            bottomLeft: Radius.circular(0),
+            bottomRight: Radius.circular(27.50)),
+        color: PetRescueTheme.darkGreen,
+      ),
+      padding: const EdgeInsets.all(4
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage('lib/assets/profile_icon.png'),
+          ),
+          SizedBox(width: 12),
+          SizedBox(
+            width: 81,
+            height: 24,
+            child: Text(
+              "tim.grover",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xffebf3fa),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          SizedBox(width: 12),
+          Opacity(
+            opacity: 0.50,
+            child: Container(
+              width: 16.11,
+              height: 16,
+              color: Color(0xffebf3fa),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ActionKeyword extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 38,
+      padding: const EdgeInsets.only(
+        left: 12,
+        right: 19,
+        top: 7,
+        bottom: 9,
+      ),
+
+      //TODO: Inkwell won't show ripple effeect
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 51,
+            child: InkWell(
+              onTap: () {
+                print("agag");
+              },
+              child: Container(
+                child: Text(
+                  "Adopt",
+                  style: TextStyle(
+                    color: PetRescueTheme.darkGreen,
+                    fontSize: 18,
+                    fontFamily: "Lato",
+                    fontWeight:
+                    FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 2),
+          Container(
+            width: 21,
+            height: 18,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class UserInfo extends StatelessWidget
 {
@@ -79,5 +179,39 @@ class UserInfo extends StatelessWidget
       ),
     );
   }
+
 }
+
+class DetailCardButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context)
+  {
+    return  Flexible(
+      child: Container(
+        height: 53,
+        decoration: BoxDecoration(
+          borderRadius:
+          BorderRadius.circular(26.50),
+          color: Color(0xffff8068),
+        ),
+        padding: const EdgeInsets.only(
+          left: 58,
+          right: 54,
+        ),
+        child: Center(
+          child: Text(
+            "Rescue",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontFamily: "Lato",
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:petrescue/login/Colors.dart';
-import 'package:petrescue/login/SignIn.dart';
 import 'package:email_validator/email_validator.dart';
 class ForgotScreen extends StatefulWidget {
   @override
