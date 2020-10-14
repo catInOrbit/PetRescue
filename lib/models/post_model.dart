@@ -1,6 +1,6 @@
 import 'package:petrescue/models/status_data.dart';
 
-enum PostType { InfoPost, UpdatedPost, CriticalPost }
+enum PostType { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost}
 
 class Post {
   String title, petType, gender, ages, description, location, imageString;

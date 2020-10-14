@@ -183,6 +183,7 @@ class UserInfo extends StatelessWidget
 }
 
 class DetailCardButton extends StatelessWidget {
+
   @override
   Widget build(BuildContext context)
   {
@@ -212,6 +213,19 @@ class DetailCardButton extends StatelessWidget {
       ),
     );
   }
+}
+
+class CommonTool
+{
+   Color ColorStatePicker(PostType postType)
+   {
+      switch(postType)
+      {
+        case PostType.RequestPost:
+          return PetRescueTheme.
+      }
+   }
+
 }
 
 

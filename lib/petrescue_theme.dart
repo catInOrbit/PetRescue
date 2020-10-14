@@ -7,4 +7,6 @@ class PetRescueTheme
    static final Color orange = Color.fromRGBO(249, 151, 70, 1);
    static final Color lime = Color.fromRGBO(204, 202, 152, 1);
    static final Color lightGrey = Color.fromRGBO(235, 243, 250, 1);
+
+   List<Color> AdoptPostTheme = [darkGreen, ]
 }
