@@ -5,6 +5,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:petrescue/login/FotgotPassword.dart';
 import 'package:petrescue/login/SignUp.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:petrescue/petrescue_theme.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -15,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
   Widget build(BuildContext context) {
     return Container(
+      color: PetRescueTheme.lightPink,
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -96,9 +98,9 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: (){},
                         child: Container(
                           decoration: BoxDecoration(
+                            color: Colors.white,
                               borderRadius: BorderRadius.all(Radius.circular(20))
                           ),
-                          color: Colors.white,
                           child: Text(
                             'Sign in',
                           ),

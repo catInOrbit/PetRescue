@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/login/SignIn.dart';
 import 'package:petrescue/models/tabicondata.dart';
+import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/post_home.dart';
+import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
-import 'package:petrescue/widgets/detail_card.dart';
-import 'package:petrescue/widgets/postFeed/postHomeG.dart';
-import 'package:petrescue/widgets/postFeed/test.dart';
+import 'package:petrescue/widgets/postFeed/post_home.dart';
 
 void main() => runApp(PetApp());
 
@@ -20,7 +20,7 @@ class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, title: "AppTitle", home: HomeTab());
+        debugShowCheckedModeBanner: false, title: "AppTitle", home: PostHomePage(listOfPost: listOfPosts,));
   }
 }
 
@@ -37,21 +37,17 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AnimationController animationController;
-  Widget tabBody = PostHomeG();
+  Widget tabBody = PostHomePage();
   // Widget tabBody = PostHomeG();
   final _bloc = PostBloc();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Stack(
-            children: <Widget>[tabBody, bottomBar()],
-          ),
-        ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: true,
+
       ),
     );
   }
@@ -72,7 +68,7 @@ class _HomeTabState extends State<HomeTab> {
                   return;
                 }
                 setState(() {
-                  tabBody = PostHome();
+                  tabBody = PostHomePage();
                 });
               });
             } else if (index == 1) {

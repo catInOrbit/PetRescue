@@ -33,6 +33,11 @@ class StatusTag extends StatelessWidget
 }
 
 class UserInfoRibon extends StatelessWidget {
+
+  final List<Color> colorScheme;
+
+  const UserInfoRibon({Key key, @required this.colorScheme}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +47,7 @@ class UserInfoRibon extends StatelessWidget {
             topRight: Radius.circular(27.50),
             bottomLeft: Radius.circular(0),
             bottomRight: Radius.circular(27.50)),
-        color: PetRescueTheme.darkGreen,
+        color: colorScheme[PetRescueThemeColorType.Accent.index],
       ),
       padding: const EdgeInsets.all(4
       ),
@@ -61,7 +66,7 @@ class UserInfoRibon extends StatelessWidget {
               "tim.grover",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xffebf3fa),
+                color: colorScheme[PetRescueThemeColorType.KeyWord.index],
                 fontSize: 16,
                 fontFamily: "Lato",
                 fontWeight: FontWeight.w900,
@@ -74,7 +79,7 @@ class UserInfoRibon extends StatelessWidget {
             child: Container(
               width: 16.11,
               height: 16,
-              color: Color(0xffebf3fa),
+              color: colorScheme[PetRescueThemeColorType.Accent.index],
             ),
           ),
         ],
@@ -84,6 +89,10 @@ class UserInfoRibon extends StatelessWidget {
 }
 
 class ActionKeyword extends StatelessWidget {
+  final List<Color> colorScheme;
+
+  const ActionKeyword({Key key, @required this.colorScheme}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -109,7 +118,7 @@ class ActionKeyword extends StatelessWidget {
                 child: Text(
                   "Adopt",
                   style: TextStyle(
-                    color: PetRescueTheme.darkGreen,
+                    color: colorScheme[PetRescueThemeColorType.Accent.index],
                     fontSize: 18,
                     fontFamily: "Lato",
                     fontWeight:
@@ -219,11 +228,11 @@ class CommonTool
 {
    Color ColorStatePicker(PostType postType)
    {
-      switch(postType)
-      {
-        case PostType.RequestPost:
-          return PetRescueTheme.
-      }
+      // switch(postType)
+      // {
+      //   case PostType.RequestPost:
+      //     return PetRescueTheme.
+      // }
    }
 
 }
