@@ -20,10 +20,12 @@ class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, title: "AppTitle", home: PostHomePage(listOfPost: listOfPosts,));
-  }
-}
+        debugShowCheckedModeBanner: false, title: "AppTitle", home: LoginPage());
+        // debugShowCheckedModeBanner: false, title: "AppTitle", home: PostHomePage());
 
+      }
+}
+  
 Future<bool> getData() async {
   await Future<dynamic>.delayed(const Duration(milliseconds: 200));
   return true;

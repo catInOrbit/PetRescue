@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/common.dart';
@@ -10,13 +11,72 @@ import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/bloc/app_general/global.dart' as global;
 import 'package:petrescue/widgets/detail_model_bottom.dart';
 
-class PostHomePage extends StatelessWidget {
+class PostHomePage extends StatefulWidget {
   final List<Post> listOfPost;
 
   const PostHomePage({Key key, @required this.listOfPost}) : super(key: key);
 
   @override
+  _PostHomePageState createState() => _PostHomePageState();
+}
+
+class _PostHomePageState extends State<PostHomePage> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    PostHomePage(listOfPost: listOfPosts,),
+    PostHomePage(listOfPost: listOfPosts,),
+    PostHomePage(listOfPost: listOfPosts,),
+    ProfileTab(),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    final bottomNavBar = BottomNavigationBar(
+      onTap: onTabTapped,
+      currentIndex: _currentIndex,
+      selectedItemColor: PetRescueTheme.orange,
+      unselectedItemColor: Colors.grey.withOpacity(0.6),
+      elevation: 0.0,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.rss_feed),
+          title: Text(
+            'Feed',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.people),
+          title: Text(
+            'Chats',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.beach_access),
+          title: Text(
+            'Notifications',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          title: Text(
+            'Profile',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
+    );
+
     return Scaffold(
         body: ListView.builder(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
@@ -403,163 +463,4 @@ class PostHomePage extends StatelessWidget {
         ),
     );
   }
-  //
-  // Widget UserInfo(Post postModel) {
-  //   return ListTile(
-  //     //visualDensity: VisualDensity.compact,
-  //     //contentPadding: EdgeInsets.only(top: 10),
-  //     leading: Container(
-  //         decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-  //           BoxShadow(
-  //               blurRadius: 2,
-  //               color: Colors.black.withAlpha(40),
-  //               spreadRadius: 1)
-  //         ]),
-  //         child: CircleAvatar(
-  //           backgroundImage: NetworkImage(postModel.imageString),
-  //           radius: 20,
-  //         )),
-  //     title: Text(
-  //       "user.name",
-  //       style: TextStyle(
-  //         color: Colors.white,
-  //         fontWeight: FontWeight.bold,
-  //         fontSize: 15,
-  //       ),
-  //     ),
-  //     subtitle: Row(
-  //       children: [
-  //         Text("location",
-  //             style: TextStyle(
-  //                 color: Colors.white,
-  //                 fontWeight: FontWeight.w500,
-  //                 fontSize: 15)),
-  //         SizedBox(
-  //           width: 5,
-  //         ),
-  //         Text("mi. away",
-  //             style: TextStyle(
-  //                 color: Colors.white,
-  //                 fontStyle: FontStyle.normal,
-  //                 fontSize: 13)),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget BodyCard() {
-  //   return Card(
-  //     borderOnForeground: true,
-  //     clipBehavior: Clip.hardEdge,
-  //     elevation: 5,
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.start,
-  //       children: <Widget>[
-  //         Padding(
-  //           padding: const EdgeInsets.only(bottom: 13),
-  //           child: Column(
-  //             children: [
-  //               ListTile(
-  //                 visualDensity: VisualDensity.compact,
-  //                 dense: true,
-  //                 title: Row(
-  //                   children: [
-  //                     new Text(
-  //                       postModel.title,
-  //                       style: TextStyle(
-  //                           fontWeight: FontWeight.bold, fontSize: 20),
-  //                     ),
-  //                     SizedBox(
-  //                       width: 50,
-  //                     ),
-  //                     Text(postModel.gender,
-  //                         style: TextStyle(
-  //                             fontWeight: FontWeight.normal, fontSize: 15)),
-  //                     SizedBox(
-  //                       width: 20,
-  //                     ),
-  //                     Text(postModel.ages,
-  //                         style: TextStyle(
-  //                             fontWeight: FontWeight.normal, fontSize: 15))
-  //                   ],
-  //                 ),
-  //                 subtitle: Text(postModel.petType,
-  //                     style: TextStyle(
-  //                         fontWeight: FontWeight.normal, fontSize: 14)),
-  //               ),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.start,
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 children: <Widget>[
-  //                   Expanded(
-  //                     flex: 2,
-  //                     child: Padding(
-  //                       padding: const EdgeInsets.symmetric(horizontal: 15),
-  //                       child: Column(
-  //                         crossAxisAlignment: CrossAxisAlignment.start,
-  //                         children: <Widget>[
-  //                           Wrap(
-  //                             direction: Axis.horizontal,
-  //                             children: <Widget>[
-  //                               DateTimeTitle("12dawdwa"),
-  //                               DateTimeTitle("12dawdwa"),
-  //                               DateTimeTitle("dead"),
-  //                               DateTimeTitle("12dawd"),
-  //                             ],
-  //                           )
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   ),
-  //                   Padding(
-  //                     padding: const EdgeInsets.only(right: 16),
-  //                     child: IntrinsicHeight(
-  //                       child: Column(
-  //                         mainAxisAlignment: MainAxisAlignment.start,
-  //                         mainAxisSize: MainAxisSize.min,
-  //                         children: [
-  //                           FlatButton(
-  //                             color: Colors.blue,
-  //                             textColor: Colors.white,
-  //                             disabledColor: Colors.grey,
-  //                             disabledTextColor: Colors.black,
-  //                             padding: EdgeInsets.all(8.0),
-  //                             splashColor: Colors.blueAccent,
-  //                             onPressed: () {
-  //                               /*...*/
-  //                             },
-  //                             child: Text(
-  //                               "Flat Button",
-  //                               style: TextStyle(fontSize: 20.0),
-  //                             ),
-  //                           ),
-  //                           FlatButton(
-  //                             color: Colors.blueGrey,
-  //                             textColor: Colors.black,
-  //                             disabledColor: Colors.grey,
-  //                             disabledTextColor: Colors.black,
-  //                             padding: EdgeInsets.all(8.0),
-  //                             splashColor: Colors.grey,
-  //                             onPressed: () {
-  //                               /*...*/
-  //                             },
-  //                             child: Text(
-  //                               "Flat Button",
-  //                               style: TextStyle(fontSize: 20.0),
-  //                             ),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   )
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
