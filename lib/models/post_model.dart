@@ -6,7 +6,7 @@ class Post {
   String title, petType, gender, ages, description, location, imageString;
   DateTime timeCreated;
   PostType postType;
-  List<Statuses> statuses = [Statuses.Abandoned, Statuses.Injured];
+  List<Statuses> statuses = [];
 
   Post(
     title,
@@ -18,6 +18,7 @@ class Post {
     imageString,
     gender,
     ages,
+      statuses
   ) {
     this.title = title;
     this.petType = petType;
@@ -28,5 +29,8 @@ class Post {
     this.imageString = imageString;
     this.gender = gender;
     this.ages = ages;
+    this.statuses = statuses;
   }
 }
+
+enum Statuses { Injured, Abandoned, LostOwner }

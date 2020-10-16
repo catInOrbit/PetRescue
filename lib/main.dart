@@ -25,7 +25,7 @@ class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
 
       }
 }
-  
+
 Future<bool> getData() async {
   await Future<dynamic>.delayed(const Duration(milliseconds: 200));
   return true;

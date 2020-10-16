@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/widgets/common.dart';
 
 class DetailCard extends StatelessWidget {
+  final Post postModel;
+
+  const DetailCard({Key key, @required this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     const double pictureContainersHeight = 272;
@@ -205,6 +210,7 @@ class DetailCard extends StatelessWidget {
                                     children: [
                                       StatusTag(
                                         textData: "Test",
+                                        postModel: postModel,
                                       ),
                                     ],
                                   )),
@@ -365,31 +371,7 @@ class DetailCard extends StatelessWidget {
                                     ),
                                     SizedBox(width: 3),
                                     //TODO: Find way to expand children
-                                    Flexible(
-                                      child: Container(
-                                        height: 53,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(26.50),
-                                          color: Color(0xffff8068),
-                                        ),
-                                        padding: const EdgeInsets.only(
-                                          left: 58,
-                                          right: 54,
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Rescue",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    DetailCardButton(postModel: postModel,)
                                   ],
                                 ),
                               ),

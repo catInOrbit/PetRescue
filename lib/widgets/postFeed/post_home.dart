@@ -21,83 +21,34 @@ class PostHomePage extends StatefulWidget {
 }
 
 class _PostHomePageState extends State<PostHomePage> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    PostHomePage(listOfPost: listOfPosts,),
-    PostHomePage(listOfPost: listOfPosts,),
-    PostHomePage(listOfPost: listOfPosts,),
-    ProfileTab(),
-  ];
-
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-
-    final bottomNavBar = BottomNavigationBar(
-      onTap: onTabTapped,
-      currentIndex: _currentIndex,
-      selectedItemColor: PetRescueTheme.orange,
-      unselectedItemColor: Colors.grey.withOpacity(0.6),
-      elevation: 0.0,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.rss_feed),
-          title: Text(
-            'Feed',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.people),
-          title: Text(
-            'Chats',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.beach_access),
-          title: Text(
-            'Notifications',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          title: Text(
-            'Profile',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        )
-      ],
-    );
-
     return Scaffold(
         body: ListView.builder(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
           itemCount: listOfPosts.length,
           itemBuilder: (BuildContext buildContext, int i) {
-            // return PostBody(
-            //   postModel: listOfPosts[i],
-            // );
             return buildCard(context, listOfPosts[i]);
           }),
     );
   }
 
   Widget buildCard(BuildContext context, Post postModel) {
+    List<Color> colorScheme;
+
+    if(postModel.postType == PostType.AdoptPost)
+      colorScheme = PetRescueTheme.adoptPostTheme;
+    else if(postModel.postType == PostType.RequestPost)
+      colorScheme = PetRescueTheme.requestRescuePostTheme;
+
     return Container( //TODO: Fix constraint
       height: 600,
       child: Center(
           child: InkWell(
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => DetailCard()));
+                  context, MaterialPageRoute(builder: (context) => DetailCard(postModel: postModel,)));
             },
             child: Container(
               width: 380,
@@ -172,7 +123,7 @@ class _PostHomePageState extends State<PostHomePage> {
                       //NOTE: Main Card BOdy
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: colorScheme[PetRescueThemeColorType.KeyWord.index],
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10),
@@ -197,7 +148,7 @@ class _PostHomePageState extends State<PostHomePage> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              UserInfoRibon(colorScheme: PetRescueTheme.adoptPostTheme),
+                              UserInfoRibon(postModel: postModel,),
                               SizedBox(
                                 height: 10,
                               ),
@@ -377,14 +328,18 @@ class _PostHomePageState extends State<PostHomePage> {
                                                 direction: Axis.horizontal,
                                                 alignment: WrapAlignment.start,
                                                 children: [
-                                                  StatusTag(
-                                                    textData: "12dawdwa",
-                                                  ),
-                                                  StatusTag(
-                                                    textData: "12dawd",
-                                                  ),
-                                                  StatusTag(
-                                                    textData: "12dawd",
+                                                  SizedBox(
+                                                    child: ListView.builder(
+                                                        scrollDirection: Axis.horizontal,
+                                                        itemCount: postModel.statuses.length,
+                                                        itemBuilder: (BuildContext buildContext, int i) {
+                                                          return StatusTag(
+                                                            textData: postModel.statuses[i].toString(),
+                                                            postModel: postModel,
+                                                          );
+                                                        }),
+
+                                                    height: 30,
                                                   ),
                                                 ],
                                               ),

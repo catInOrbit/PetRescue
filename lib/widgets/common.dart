@@ -5,11 +5,17 @@ import 'package:petrescue/petrescue_theme.dart';
 class StatusTag extends StatelessWidget
 {
   final textData;
-
-  const StatusTag({Key key, this.textData}) : super(key: key);
+  final Post postModel;
+  const StatusTag({Key key, @required this.textData, @required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Color> colorScheme;
+    if(postModel.postType == PostType.AdoptPost)
+      colorScheme = PetRescueTheme.adoptPostTheme;
+    else if(postModel.postType == PostType.RequestPost)
+      colorScheme = PetRescueTheme.revertRescuePostTheme;
+    
     return Wrap(
       children: [
         Padding(
@@ -17,7 +23,7 @@ class StatusTag extends StatelessWidget
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(26)),
-                color: PetRescueTheme.darkGreen),
+                color: colorScheme[PetRescueThemeColorType.Accent.index]),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
               child: Text(
@@ -34,12 +40,17 @@ class StatusTag extends StatelessWidget
 
 class UserInfoRibon extends StatelessWidget {
 
-  final List<Color> colorScheme;
+  final Post postModel;
 
-  const UserInfoRibon({Key key, @required this.colorScheme}) : super(key: key);
+  const UserInfoRibon({Key key, @required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Color> colorScheme;
+    if(postModel.postType == PostType.AdoptPost)
+      colorScheme = PetRescueTheme.adoptPostTheme;
+    else
+      colorScheme = PetRescueTheme.requestRescuePostTheme;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -192,17 +203,37 @@ class UserInfo extends StatelessWidget
 }
 
 class DetailCardButton extends StatelessWidget {
+  final Post postModel;
+
+  const DetailCardButton({Key key, this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context)
   {
+
+    String text;
+    List<Color> colorScheme;
+
+    if(postModel.postType == PostType.AdoptPost)
+    {
+      text = "Adopt";
+      colorScheme = PetRescueTheme.adoptPostTheme;
+    }
+
+    else if (postModel.postType == PostType.RequestPost)
+    {
+      text = "Rescue";
+      colorScheme = PetRescueTheme.revertRescuePostTheme;
+    }
+
+
     return  Flexible(
       child: Container(
         height: 53,
         decoration: BoxDecoration(
           borderRadius:
           BorderRadius.circular(26.50),
-          color: Color(0xffff8068),
+          color: colorScheme[PetRescueThemeColorType.Accent.index],
         ),
         padding: const EdgeInsets.only(
           left: 58,
@@ -210,7 +241,7 @@ class DetailCardButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "Rescue",
+            text,
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
