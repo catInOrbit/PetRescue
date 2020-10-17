@@ -381,7 +381,14 @@ class DetailCard extends StatelessWidget {
                         SizedBox(height: 20),
                         StoryDetail(),
                         SizedBox(height: 20),
-                        TimelineDetail()
+                        InkWell(
+                            onTap: (){
+                              // Navigator.push(context, MaterialPageRoute(
+                              //
+                              // ))
+                            },
+                            child: TimelineDetail()
+                        )
                       ],
                     ),
                   )

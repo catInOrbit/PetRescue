@@ -14,27 +14,33 @@ class StatusTag extends StatelessWidget
     if(postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
     else if(postModel.postType == PostType.RequestPost)
-      colorScheme = PetRescueTheme.revertRescuePostTheme;
-    
-    return Wrap(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 4, right: 4),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(26)),
-                color: colorScheme[PetRescueThemeColorType.Accent.index]),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
-              child: Text(
-                textData,
-                style: TextStyle(color: Colors.white, fontSize: 13),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );;
+      colorScheme = PetRescueTheme.statusTagsRescueTheme;
+
+    return Chip(
+      backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
+      label: Text(textData),
+      labelStyle: TextStyle(color: Colors.white, fontSize: 13),
+    );
+
+    // return Wrap(
+    //   children: [
+    //     Padding(
+    //       padding: const EdgeInsets.only(top: 4, right: 4),
+    //       child: Container(
+    //         decoration: BoxDecoration(
+    //             borderRadius: const BorderRadius.all(Radius.circular(26)),
+    //             color: colorScheme[PetRescueThemeColorType.Accent.index]),
+    //         child: Padding(
+    //           padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
+    //           child: Text(
+    //             textData,
+    //             style: TextStyle(color: Colors.white, fontSize: 13),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 }
 
@@ -52,11 +58,10 @@ class UserInfoRibon extends StatelessWidget {
     else
       colorScheme = PetRescueTheme.requestRescuePostTheme;
     return Container(
+      // margin: const EdgeInsets.only(left: 16.9),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(0),
             topRight: Radius.circular(27.50),
-            bottomLeft: Radius.circular(0),
             bottomRight: Radius.circular(27.50)),
         color: colorScheme[PetRescueThemeColorType.Accent.index],
       ),
@@ -100,12 +105,26 @@ class UserInfoRibon extends StatelessWidget {
 }
 
 class ActionKeyword extends StatelessWidget {
-  final List<Color> colorScheme;
+  final Post postModel;
 
-  const ActionKeyword({Key key, @required this.colorScheme}) : super(key: key);
+
+  const ActionKeyword({Key key, @required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Color> colorScheme;
+    String text;
+    if(postModel.postType == PostType.AdoptPost)
+      {
+         text = "Adopt";
+         colorScheme = PetRescueTheme.revertAdoptPostTheme;
+      }
+    else if(postModel.postType == PostType.RequestPost)
+      {
+        text = "Rescue";
+        colorScheme = PetRescueTheme.revertRescuePostTheme;
+      }
+
     return Container(
       height: 38,
       padding: const EdgeInsets.only(
@@ -120,16 +139,16 @@ class ActionKeyword extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 51,
+            width: 60,
             child: InkWell(
               onTap: () {
                 print("agag");
               },
               child: Container(
                 child: Text(
-                  "Adopt",
+                  text,
                   style: TextStyle(
-                    color: colorScheme[PetRescueThemeColorType.Accent.index],
+                    color: colorScheme[PetRescueThemeColorType.KeyWord.index],
                     fontSize: 18,
                     fontFamily: "Lato",
                     fontWeight:
@@ -267,5 +286,76 @@ class CommonTool
    }
 
 }
+
+class UserInfoTile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 37,
+          height: 37,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Color(0x3f000000),
+                blurRadius: 4,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(width: 5),
+        Container(
+          width: 97.17,
+          height: 32,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: SizedBox(
+                    height: 24,
+                    child: Text(
+                      "tim.grover",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: "Lato",
+                        fontWeight:
+                        FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    "Poster",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 11,
+                      fontStyle: FontStyle.italic,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
 
 
