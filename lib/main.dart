@@ -7,7 +7,7 @@ import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
-import 'package:petrescue/widgets/postFeed/post_home.dart';
+import 'package:petrescue/widgets/postFeed/request_page.dart';
 
 void main() => runApp(PetApp());
 
@@ -20,7 +20,7 @@ class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, title: "AppTitle", home: Timeline());
+        debugShowCheckedModeBanner: false, title: "AppTitle", home: LoginPage());
         // debugShowCheckedModeBanner: false, title: "AppTitle", home: PostHomePage());
 
       }
@@ -39,7 +39,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AnimationController animationController;
-  Widget tabBody = PostHomePage();
+  Widget tabBody = RequestPostPage();
   // Widget tabBody = PostHomeG();
   final _bloc = PostBloc();
 
@@ -70,7 +70,7 @@ class _HomeTabState extends State<HomeTab> {
                   return;
                 }
                 setState(() {
-                  tabBody = PostHomePage();
+                  tabBody = RequestPostPage();
                 });
               });
             } else if (index == 1) {

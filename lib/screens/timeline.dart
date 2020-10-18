@@ -265,7 +265,6 @@ class _TimelineState extends State<Timeline> {
                 SizedBox(height: 19.50),
                 PostEmpty(),
                 SizedBox(height: 19.50),
-
                 PostEmpty(),
 
               ],

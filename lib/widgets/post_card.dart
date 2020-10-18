@@ -1,48 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
-import 'package:petrescue/profile/SilverAppBar.dart';
-import 'package:petrescue/repository/data/post_data.dart';
-import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
-import 'package:petrescue/bloc/app_general/global.dart' as global;
 import 'package:petrescue/widgets/detail_model_bottom.dart';
 
-class PostHomePage extends StatefulWidget {
-  final List<Post> listOfPost;
+class PostCard extends StatelessWidget {
 
-  const PostHomePage({Key key, @required this.listOfPost}) : super(key: key);
+  final Post postModel;
 
-  @override
-  _PostHomePageState createState() => _PostHomePageState();
-}
-
-class _PostHomePageState extends State<PostHomePage> {
+  const PostCard({Key key, @required this.postModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
-          itemCount: listOfPosts.length,
-          itemBuilder: (BuildContext buildContext, int i) {
-            return buildCard(context, listOfPosts[i]);
-          }),
-    );
-  }
-
-  List<Widget> getAllStatuses(Post postModel) {
-    return List<Widget>.generate(postModel.statuses.length, (index) {
-      return StatusTag(
-        postModel: postModel,
-        textData: postModel.statuses[index].toString().split('.').last,
-      );
-    });
-  }
-
-  Widget buildCard(BuildContext context, Post postModel) {
     List<Color> colorScheme;
 
     if (postModel.postType == PostType.AdoptPost)
@@ -60,8 +29,8 @@ class _PostHomePageState extends State<PostHomePage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => DetailCard(
-                          postModel: postModel,
-                        )));
+                      postModel: postModel,
+                    )));
           },
           child: Container(
             width: 380,
@@ -130,14 +99,14 @@ class _PostHomePageState extends State<PostHomePage> {
                   ),
                 ),
                 Positioned.fill(
-                  top: 150,
+                  top: 160,
                   child: Align(
-                    alignment: Alignment.center,
+                    alignment: Alignment.topCenter,
                     //NOTE: Main Card BOdy
                     child: Container(
                       decoration: BoxDecoration(
                         color:
-                            colorScheme[PetRescueThemeColorType.KeyWord.index],
+                        colorScheme[PetRescueThemeColorType.KeyWord.index],
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
@@ -179,7 +148,7 @@ class _PostHomePageState extends State<PostHomePage> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -216,11 +185,11 @@ class _PostHomePageState extends State<PostHomePage> {
                                                       "Male",
                                                       style: TextStyle(
                                                         color:
-                                                            colorScheme[PetRescueThemeColorType.Accent.index],
+                                                        colorScheme[PetRescueThemeColorType.Accent.index],
                                                         fontSize: 14,
                                                         fontFamily: "Lato",
                                                         fontWeight:
-                                                            FontWeight.w400,
+                                                        FontWeight.w400,
                                                       ),
                                                     ),
                                                   ),
@@ -244,7 +213,7 @@ class _PostHomePageState extends State<PostHomePage> {
                                                         fontSize: 14,
                                                         fontFamily: "Lato",
                                                         fontWeight:
-                                                            FontWeight.w400,
+                                                        FontWeight.w400,
                                                       ),
                                                     ),
                                                   ),
@@ -275,13 +244,13 @@ class _PostHomePageState extends State<PostHomePage> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
                                           Container(
                                             height: 33,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                               color: Color(0xffebf3fa),
                                             ),
                                             padding: const EdgeInsets.only(
@@ -302,7 +271,7 @@ class _PostHomePageState extends State<PostHomePage> {
                                                       fontSize: 13,
                                                       fontFamily: "Lato",
                                                       fontWeight:
-                                                          FontWeight.w700,
+                                                      FontWeight.w700,
                                                     ),
                                                   ),
                                                 ),
@@ -316,7 +285,7 @@ class _PostHomePageState extends State<PostHomePage> {
                                           ),
                                           SizedBox(height: 7),
                                           ActionKeyword(
-                                              postModel: postModel,),
+                                            postModel: postModel,),
                                         ],
                                       ),
                                     ),
@@ -341,33 +310,11 @@ class _PostHomePageState extends State<PostHomePage> {
                                             ),
                                           ),
                                           SizedBox(height: 8),
-                                          //TODO: Row won't wrap
-                                          // Container(
-                                          //   width: 245,
-                                          //   child: Wrap(
-                                          //     spacing: 2,
-                                          //     direction: Axis.horizontal,
-                                          //     alignment: WrapAlignment.start,
-                                          //     children: getAllStatuses(postModel),
-                                          //   ),
-                                          // ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  // Positioned.fill(
-                                  //     child: Align(
-                                  //   alignment: Alignment.bottomLeft,
-                                  //   child: Container(
-                                  //     width: 245,
-                                  //     child: Wrap(
-                                  //       spacing: 2,
-                                  //       direction: Axis.horizontal,
-                                  //       alignment: WrapAlignment.start,
-                                  //       children: getAllStatuses(postModel),
-                                  //     ),
-                                  //   ),
-                                  // )),
+
                                 ],
                               ),
                             ),
@@ -398,48 +345,9 @@ class _PostHomePageState extends State<PostHomePage> {
                                   isScrollControlled: true);
                             },
                             child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Timeline(
-                                  shrinkWrap: true,
-                                  children: [
-                                    Container(
-                                      child: Wrap(
-                                        direction: Axis.horizontal,
-                                        children: [
-                                          Text(
-                                            "XYZRescued aw daw aw dwa  dwadw centre d dwdaw awdaw d ad wadwa wresponded",
-                                            style: TextStyle(
-                                              color: Color(0xff5e5d5d),
-                                              fontSize: 12,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 20,
-                                            child: Text(
-                                              "10min ago",
-                                              style: TextStyle(
-                                                color: Color(0xffc4c4c4),
-                                                fontSize: 10,
-                                                fontFamily: "Lato",
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 50),
-                                  ],
-                                  indicators: [
-                                    Icon(Icons.access_time),
-                                    Icon(Icons.access_time),
-                                  ],
-                                ),
-                              ],
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [postModel.timelineBuilder]
                             ),
                           ),
                         ],
@@ -454,4 +362,14 @@ class _PostHomePageState extends State<PostHomePage> {
       ),
     );
   }
+
+  List<Widget> getAllStatuses(Post postModel) {
+    return List<Widget>.generate(postModel.statuses.length, (index) {
+      return StatusTag(
+        postModel: postModel,
+        textData: postModel.statuses[index].toString().split('.').last,
+      );
+    });
+  }
 }
+

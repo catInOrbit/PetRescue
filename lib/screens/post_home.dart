@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
-import 'package:petrescue/widgets/postFeed/post_home.dart';
+import 'package:petrescue/widgets/bottom_bar.dart';
+import 'package:petrescue/widgets/postFeed/request_page.dart';
 
 class PostHome extends StatefulWidget {
   final List<Post> listOfPost;
@@ -16,9 +18,9 @@ class PostHome extends StatefulWidget {
 class _PostHomeState extends State<PostHome> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    PostHomePage(listOfPost: listOfPosts,),
-    PostHomePage(listOfPost: listOfPosts,),
-    PostHomePage(listOfPost: listOfPosts,),
+    RequestPostPage(listOfPost: listOfPosts,),
+    RequestPostPage(listOfPost: listOfPosts,),
+    RequestPostPage(listOfPost: listOfPosts,),
     ProfileTab(),
   ];
 
@@ -41,7 +43,7 @@ class _PostHomeState extends State<PostHome> {
         BottomNavigationBarItem(
           icon: Icon(Icons.rss_feed),
           title: Text(
-            'Feed',
+            'Request',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -68,6 +70,39 @@ class _PostHomeState extends State<PostHome> {
         )
       ],
     );
+
+  //   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+  //   AnimationController animationController;
+  //   final bottomNavBar =
+  // BottomBarView(
+  //         tabIconsList: tabIconsList,
+  //         addClick: () {},
+  //         changeIndex: (int index) {
+  //           if (index == 0 || index == 2) {
+  //             animationController.reverse().then<dynamic>((data) {
+  //               if (!mounted) {
+  //                 return;
+  //               }
+  //               // setState(() {
+  //               //   tabBody = RequestPostPage();
+  //               // });
+  //             });
+  //           } else if (index == 1) {
+  //             animationController.reverse().then<dynamic>((data) {
+  //               if (!mounted) {
+  //                 return;
+  //               }
+  //             });
+  //           } else if (index == 3) {
+  //             animationController.reverse().then<dynamic>((data) {
+  //               if (!mounted) {
+  //                 return;
+  //               }
+  //             });
+  //           }
+  //         },
+  //       );
+
 
     return Scaffold(
       body: _pages[_currentIndex],
