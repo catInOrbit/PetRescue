@@ -75,14 +75,16 @@ class _EditPostState extends State<EditPost> {
                       Center(
                         child: IconButton(
                           iconSize: 50,
-                          onPressed: (){},
+                          onPressed: () {},
                           icon: Icon(Icons.add),
                         ),
                       ),
-Text('Add Photos',
-style: TextStyle(
-  fontSize: 18,
-),)
+                      Text(
+                        'Add Photos',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -99,8 +101,8 @@ style: TextStyle(
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
                         'Details',
-                        style:
-                            TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -121,9 +123,9 @@ style: TextStyle(
                       color: HexColor('#EBF3FA'),
                       child: TextField(
                         decoration: InputDecoration(
-                            //labelText: 'Name',
-                            hintText: 'Stranded Kitten',
-                            border: InputBorder.none,
+                          //labelText: 'Name',
+                          hintText: 'Stranded Kitten',
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
@@ -145,8 +147,8 @@ style: TextStyle(
                       color: HexColor('#EBF3FA'),
                       child: TextField(
                         decoration: InputDecoration(
-                            //labelText: 'Name',
-                            hintText: 'House Cat',
+                          //labelText: 'Name',
+                          hintText: 'House Cat',
                           border: InputBorder.none,
                         ),
                       ),
@@ -195,13 +197,15 @@ style: TextStyle(
                                 style: TextStyle(fontSize: 18),
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Container(
-                              width: 90,
-                              height: 45,
-                              color: HexColor('#EBF3FA'),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
+                                width: 90,
+                                height: 45,
+                                color: HexColor('#EBF3FA'),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
                                     hint: Text('Choose'),
                                     value: strBtnSelectGender,
                                     onChanged: ((String newValue) {
@@ -211,8 +215,7 @@ style: TextStyle(
                                     }),
                                     items: _dropDownGenderItems,
                                   ),
-                                )
-                            )
+                                ))
                           ],
                         ),
                         SizedBox(
@@ -228,7 +231,9 @@ style: TextStyle(
                                 style: TextStyle(fontSize: 18),
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               children: <Widget>[
                                 Container(
@@ -238,7 +243,8 @@ style: TextStyle(
                                   child: TextField(
                                     keyboardType:
                                         TextInputType.numberWithOptions(),
-                                    decoration: InputDecoration.collapsed(hintText: '6-8'),
+                                    decoration: InputDecoration.collapsed(
+                                        hintText: '6-8'),
                                   ),
                                 ),
                                 SizedBox(
@@ -248,7 +254,7 @@ style: TextStyle(
                                   color: HexColor('E5E5E5'),
                                   width: 90,
                                   height: 45,
-                                  child: DropdownButtonHideUnderline (
+                                  child: DropdownButtonHideUnderline(
                                     child: DropdownButton(
                                       hint: Text('Months'),
                                       value: strBtnSelectMonthAge,
@@ -258,7 +264,6 @@ style: TextStyle(
                                         });
                                       }),
                                       items: _dropDownMonthAgeItems,
-
                                     ),
                                   ),
                                 ),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/EDITPOST.dart';
+import 'package:petrescue/Post2.dart';
 
 void main() {
   runApp( MaterialApp(
-    home: EditPost(),
+    home: PostSecond(),
   ));
 }
 
