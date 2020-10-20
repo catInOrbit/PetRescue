@@ -85,6 +85,7 @@ flutter:
     - lib/assets/google_light.png
     - lib/assets/tracking_page.png
     - lib/assets/truck.png
+    - lib/assets/noti_unread.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

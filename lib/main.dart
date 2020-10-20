@@ -4,6 +4,7 @@ import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/login/SignIn.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/notification_screen.dart';
 import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
@@ -20,7 +21,7 @@ class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, title: "AppTitle", home: LoginPage());
+        debugShowCheckedModeBanner: false, title: "AppTitle", home: NotificationScreen());
         // debugShowCheckedModeBanner: false, title: "AppTitle", home: PostHomePage());
 
       }
