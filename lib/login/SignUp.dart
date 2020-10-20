@@ -3,7 +3,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/login/SignIn.dart';
 import 'package:email_validator/email_validator.dart';
-
+import 'package:petrescue/bloc/app_general/global.dart' as globals;
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -103,6 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     minWidth: 300,
                     child: RaisedButton(
                       onPressed: () {
+                        saveUserAccount;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -128,6 +129,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  void saveUserAccount()
+  {
+
   }
 }
 

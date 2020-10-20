@@ -21,7 +21,7 @@ class _PetAppState extends State<PetApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, title: "AppTitle", home: NotificationScreen());
+        debugShowCheckedModeBanner: false, title: "AppTitle", home: LoginPage());
         // debugShowCheckedModeBanner: false, title: "AppTitle", home: PostHomePage());
 
       }

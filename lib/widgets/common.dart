@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/process_page.dart';
 class StatusTag extends StatelessWidget
@@ -22,26 +23,6 @@ class StatusTag extends StatelessWidget
       label: Text(textData),
       labelStyle: TextStyle(color: Colors.white, fontSize: 13),
     );
-
-    // return Wrap(
-    //   children: [
-    //     Padding(
-    //       padding: const EdgeInsets.only(top: 4, right: 4),
-    //       child: Container(
-    //         decoration: BoxDecoration(
-    //             borderRadius: const BorderRadius.all(Radius.circular(26)),
-    //             color: colorScheme[PetRescueThemeColorType.Accent.index]),
-    //         child: Padding(
-    //           padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
-    //           child: Text(
-    //             textData,
-    //             style: TextStyle(color: Colors.white, fontSize: 13),
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }
 
@@ -83,7 +64,7 @@ class UserInfoRibon extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 20,
-            backgroundImage: AssetImage('lib/assets/profile_icon.png'),
+            backgroundImage: NetworkImage(postModel.user.imageURL),
           ),
           SizedBox(width: 12),
           SizedBox(
@@ -308,6 +289,10 @@ class CommonTool
 }
 
 class UserInfoTile extends StatelessWidget {
+  final User user;
+
+  const UserInfoTile({Key key, @required this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -318,13 +303,9 @@ class UserInfoTile extends StatelessWidget {
           height: 37,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x3f000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-              ),
-            ],
+            image: DecorationImage(
+              image: NetworkImage(user.imageURL)
+            )
           ),
         ),
         SizedBox(width: 5),
@@ -339,7 +320,7 @@ class UserInfoTile extends StatelessWidget {
                   child: SizedBox(
                     height: 24,
                     child: Text(
-                      "tim.grover",
+                      user.fullNanme,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -356,7 +337,7 @@ class UserInfoTile extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    "Poster",
+                    user.job,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 11,

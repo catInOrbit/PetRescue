@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
@@ -8,8 +9,9 @@ import 'package:petrescue/widgets/detail_model_bottom.dart';
 class PostCard extends StatelessWidget {
 
   final Post postModel;
+  final User user;
 
-  const PostCard({Key key, @required this.postModel}) : super(key: key);
+  const PostCard({Key key, @required this.postModel, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

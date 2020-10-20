@@ -13,6 +13,11 @@ class DetailCard extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Detail", style: TextStyle(color: Colors.black),),
+          backgroundColor: Colors.white,
+
+        ),
         body: SingleChildScrollView(
           child: Container(
             height:
@@ -216,68 +221,7 @@ class DetailCard extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: 37,
-                                        height: 37,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Color(0x3f000000),
-                                              blurRadius: 4,
-                                              offset: Offset(0, 4),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(width: 5),
-                                      Container(
-                                        width: 97.17,
-                                        height: 32,
-                                        child: Stack(
-                                          children: [
-                                            Positioned.fill(
-                                              child: Align(
-                                                alignment: Alignment.topLeft,
-                                                child: SizedBox(
-                                                  height: 24,
-                                                  child: Text(
-                                                    "tim.grover",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 14,
-                                                      fontFamily: "Lato",
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned.fill(
-                                              child: Align(
-                                                alignment: Alignment.bottomLeft,
-                                                child: Text(
-                                                  "Poster",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 11,
-                                                    fontStyle: FontStyle.italic,
-                                                    fontFamily: "Lato",
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                 UserInfoTile(user: postModel.user,),
                                   SizedBox(height: 20),
                                   Row(
                                     mainAxisSize: MainAxisSize.min,

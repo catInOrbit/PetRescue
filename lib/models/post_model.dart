@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/models/status_data.dart';
+import 'package:petrescue/models/user.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/timeline_text.dart';
@@ -14,9 +15,10 @@ class Post {
   List<Statuses> statuses = [];
   List<TimeLineText> timelineText = [];
   Widget timelineBuilder;
+  User user;
 
   Post(title, description, petType, location, timeCreated, postType,
-      imageString, gender, ages, statuses, timeline) {
+      imageString, gender, ages, statuses, timeline, user) {
     this.title = title;
     this.petType = petType;
     this.description = description;
@@ -28,6 +30,7 @@ class Post {
     this.ages = ages;
     this.statuses = statuses;
     this.timelineText = timeline;
+    this.user = user;
 
     if(timelineText== null || timelineText.length > 0)
     timelineBuilder = new TimelineBuilder(

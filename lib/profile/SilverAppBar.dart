@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/profile/EditScreen.dart';
+import 'package:petrescue/screens/notification_screen.dart';
 
 class ProfileTab extends StatefulWidget {
   @override
@@ -65,7 +66,13 @@ class _ProfileTabState extends State<ProfileTab>
                   ),
                   IconButton(
                     icon: Icon(Icons.notifications),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationScreen()),
+                      );
+                    },
                   ),
                   IconButton(
                     icon: Icon(Icons.more_vert),
