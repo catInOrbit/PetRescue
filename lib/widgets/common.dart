@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/widgets/process_page.dart';
 class StatusTag extends StatelessWidget
 {
   final textData;
@@ -43,6 +44,16 @@ class StatusTag extends StatelessWidget
     // );
   }
 }
+
+List<Widget> getAllStatuses(Post postModel) {
+  return List<Widget>.generate(postModel.statuses.length, (index) {
+    return StatusTag(
+      postModel: postModel,
+      textData: postModel.statuses[index].toString().split('.').last,
+    );
+  });
+}
+
 
 class UserInfoRibon extends StatelessWidget {
 
@@ -247,25 +258,34 @@ class DetailCardButton extends StatelessWidget {
 
 
     return  Flexible(
-      child: Container(
-        height: 53,
-        decoration: BoxDecoration(
-          borderRadius:
-          BorderRadius.circular(26.50),
-          color: colorScheme[PetRescueThemeColorType.Accent.index],
-        ),
-        padding: const EdgeInsets.only(
-          left: 58,
-          right: 54,
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontFamily: "Lato",
-              fontWeight: FontWeight.w700,
+      child: InkWell(
+        onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      TrackingPage()));
+        },
+        child: Container(
+          height: 53,
+          decoration: BoxDecoration(
+            borderRadius:
+            BorderRadius.circular(26.50),
+            color: colorScheme[PetRescueThemeColorType.Accent.index],
+          ),
+          padding: const EdgeInsets.only(
+            left: 58,
+            right: 54,
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ),

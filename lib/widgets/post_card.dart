@@ -10,6 +10,7 @@ class PostCard extends StatelessWidget {
   final Post postModel;
 
   const PostCard({Key key, @required this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
@@ -21,16 +22,17 @@ class PostCard extends StatelessWidget {
 
     return Container(
       //TODO: Fix constraint
-      height: 600,
+      height: 650,
       child: Center(
         child: InkWell(
           onTap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DetailCard(
-                      postModel: postModel,
-                    )));
+                    builder: (context) =>
+                        DetailCard(
+                          postModel: postModel,
+                        )));
           },
           child: Container(
             width: 380,
@@ -159,7 +161,8 @@ class PostCard extends StatelessWidget {
                                                 child: Text(
                                                   "Rescued Kitten",
                                                   style: TextStyle(
-                                                    color: colorScheme[PetRescueThemeColorType.Accent.index],
+                                                    color: colorScheme[PetRescueThemeColorType
+                                                        .Accent.index],
                                                     fontSize: 20,
                                                     fontFamily: "Lato",
                                                     fontWeight: FontWeight.w900,
@@ -175,7 +178,8 @@ class PostCard extends StatelessWidget {
                                                     height: 4.80,
                                                     decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
-                                                      color: colorScheme[PetRescueThemeColorType.Accent.index],
+                                                      color: colorScheme[PetRescueThemeColorType
+                                                          .Accent.index],
                                                     ),
                                                   ),
                                                   SizedBox(width: 7),
@@ -185,7 +189,8 @@ class PostCard extends StatelessWidget {
                                                       "Male",
                                                       style: TextStyle(
                                                         color:
-                                                        colorScheme[PetRescueThemeColorType.Accent.index],
+                                                        colorScheme[PetRescueThemeColorType
+                                                            .Accent.index],
                                                         fontSize: 14,
                                                         fontFamily: "Lato",
                                                         fontWeight:
@@ -199,7 +204,8 @@ class PostCard extends StatelessWidget {
                                                     height: 4.80,
                                                     decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
-                                                      color: colorScheme[PetRescueThemeColorType.Accent.index],
+                                                      color: colorScheme[PetRescueThemeColorType
+                                                          .Accent.index],
                                                     ),
                                                   ),
                                                   SizedBox(width: 7),
@@ -209,7 +215,8 @@ class PostCard extends StatelessWidget {
                                                       "6-8  Months",
                                                       style: TextStyle(
                                                         color:
-                                                        colorScheme[PetRescueThemeColorType.Accent.index],
+                                                        colorScheme[PetRescueThemeColorType
+                                                            .Accent.index],
                                                         fontSize: 14,
                                                         fontFamily: "Lato",
                                                         fontWeight:
@@ -227,7 +234,8 @@ class PostCard extends StatelessWidget {
                                             child: Text(
                                               "House cat",
                                               style: TextStyle(
-                                                color: colorScheme[PetRescueThemeColorType.Accent.index],
+                                                color: colorScheme[PetRescueThemeColorType
+                                                    .Accent.index],
                                                 fontSize: 12,
                                                 fontFamily: "Lato",
                                                 fontWeight: FontWeight.w700,
@@ -302,7 +310,8 @@ class PostCard extends StatelessWidget {
                                             child: Text(
                                               "Kitten was found strad wa  daw awd  dwadnde wda wa d dwqdad d in a drain. I have brought it home and the kitten is being taken....",
                                               style: TextStyle(
-                                                color: colorScheme[PetRescueThemeColorType.Accent.index],
+                                                color: colorScheme[PetRescueThemeColorType
+                                                    .Accent.index],
                                                 fontSize: 16,
                                                 fontFamily: "Lato",
                                                 fontWeight: FontWeight.w400,
@@ -319,6 +328,28 @@ class PostCard extends StatelessWidget {
                               ),
                             ),
                           ),
+
+                          Divider(
+                            color: colorScheme[PetRescueThemeColorType.Accent
+                                .index],
+                            thickness: 2,
+                          ),
+
+                          Center(
+                            child: Text(postModel.location, style: TextStyle(
+                                color: colorScheme[PetRescueThemeColorType
+                                    .Accent.index],
+                                fontSize: 20
+                            ),),
+                          ),
+
+                          Divider(
+                            color: colorScheme[PetRescueThemeColorType.Accent
+                                .index],
+                            thickness: 2,
+                          ),
+
+
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
@@ -362,14 +393,4 @@ class PostCard extends StatelessWidget {
       ),
     );
   }
-
-  List<Widget> getAllStatuses(Post postModel) {
-    return List<Widget>.generate(postModel.statuses.length, (index) {
-      return StatusTag(
-        postModel: postModel,
-        textData: postModel.statuses[index].toString().split('.').last,
-      );
-    });
-  }
 }
-

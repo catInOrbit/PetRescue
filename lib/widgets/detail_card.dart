@@ -207,12 +207,9 @@ class DetailCard extends StatelessWidget {
                               SizedBox(height: 10),
                               Container(
                                   child: Row(
-                                    children: [
-                                      StatusTag(
-                                        textData: "Test",
-                                        postModel: postModel,
-                                      ),
-                                    ],
+                                    children:
+                                      getAllStatuses(postModel)
+
                                   )),
                               SizedBox(height: 22),
                               Column(
