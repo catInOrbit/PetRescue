@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:petrescue/Colors.dart';
+import 'package:petrescue/flutter_tagging.dart';
+
+//library flutter_tagging;
 
 class PostSecond extends StatefulWidget {
   @override
@@ -28,7 +32,41 @@ class _PostSecondState extends State<PostSecond> {
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
-          Text('Story'),
+          Container(
+            height: 160,
+            width: MediaQuery.of(context).size.width,
+            color: HexColor('EBF3FA'),
+            child: Center(
+              child: Container(
+                height: 100,
+                width: 100,
+                //color: Colors.red,
+                child: Column(
+                  children: <Widget>[
+                    Center(
+                      child: IconButton(
+                        iconSize: 50,
+                        onPressed: () {},
+                        icon: Icon(Icons.add),
+                      ),
+                    ),
+                    Text(
+                      'Add Photos',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 0, 0, 5),
+                child: Text('Story', style: TextStyle(fontSize: 18)),
+              )),
           Container(
             width: 365,
             height: 125,
@@ -39,7 +77,12 @@ class _PostSecondState extends State<PostSecond> {
                   border: InputBorder.none, hintText: 'I found the kitten...'),
             ),
           ),
-          Text('Tags'),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 0, 0, 5),
+                child: Text('Tags', style: TextStyle(fontSize: 18)),
+              )),
           Container(
             width: 365,
             height: 45,
@@ -79,11 +122,10 @@ class _PostSecondState extends State<PostSecond> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-
             ],
           ),
           Row(
-           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               RaisedButton(
                 //color: HexColor('#FF8088'),
@@ -93,8 +135,7 @@ class _PostSecondState extends State<PostSecond> {
                   children: <Widget>[
                     Text(
                       'Skip',
-                      style:
-                      TextStyle(color: Colors.black26, fontSize: 24),
+                      style: TextStyle(color: Colors.black26, fontSize: 24),
                     ),
                     SizedBox(
                       width: 12,
@@ -114,8 +155,7 @@ class _PostSecondState extends State<PostSecond> {
                   children: <Widget>[
                     Text(
                       'Proceed',
-                      style:
-                      TextStyle(color: Colors.white, fontSize: 24),
+                      style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
                     SizedBox(
                       width: 12,
@@ -127,8 +167,23 @@ class _PostSecondState extends State<PostSecond> {
                   ],
                 ),
               ),
-
+              //  FlutterTa
             ],
+          ),
+          FlutterTagging(
+            textFieldConfiguration: TextFieldConfiguration(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                filled: true,
+                fillColor: Colors.green.withAlpha(30),
+                hintText: 'Search Tags',
+                labelText: 'Select Tags',
+              ),
+            ),
+            findSuggestions: (String) {},
+            initialItems: <Taggable>[],
+            configureSuggestion: (Taggable) {},
+            configureChip: (Taggable) {},
           )
         ],
       ),
