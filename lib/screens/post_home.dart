@@ -38,12 +38,13 @@ class _PostHomeState extends State<PostHome> {
     final bottomNavBar = BottomNavigationBar(
       onTap: onTabTapped,
       currentIndex: _currentIndex,
-      selectedItemColor: Colors.redAccent,
+      selectedItemColor: Colors.white,
       backgroundColor: Colors.redAccent,
-      unselectedItemColor: Colors.grey.withOpacity(0.6),
+      unselectedItemColor: Colors.white,
       elevation: 0.0,
       items: [
         BottomNavigationBarItem(
+          backgroundColor: Colors.redAccent,
           icon: Icon(Icons.people),
           title: Text(
             'Request',

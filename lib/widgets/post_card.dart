@@ -44,61 +44,65 @@ class PostCard extends StatelessWidget {
                 Positioned.fill(
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 380,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg")),
-                        borderRadius: BorderRadius.circular(35),
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Color(0x00ffffff), Colors.black],
-                        ),
-                      ),
-                      padding: const EdgeInsets.only(
-                        top: 11,
-                        bottom: 42,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 181,
-                            height: 44,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  child: Container(
-                                    width: 37,
-                                    height: 37,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 380,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg")),
+                            borderRadius: BorderRadius.circular(35),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [Color(0x00ffffff), Colors.black],
+                            ),
+                          ),
+                          padding: const EdgeInsets.only(
+                            top: 11,
+                            bottom: 42,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Container(
+                                width: 181,
+                                height: 44,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      child: Container(
+                                        width: 37,
+                                        height: 37,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 92),
+                              SizedBox(
+                                width: 81,
+                                height: 24,
+                                child: Text(
+                                  "25min ago",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xffebf3fa),
+                                    fontSize: 12,
+                                    fontFamily: "Lato",
+                                    fontWeight: FontWeight.w900,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 92),
-                          SizedBox(
-                            width: 81,
-                            height: 24,
-                            child: Text(
-                              "25min ago",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xffebf3fa),
-                                fontSize: 11,
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.w900,
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

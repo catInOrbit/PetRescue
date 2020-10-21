@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
@@ -241,6 +242,7 @@ class DetailCardButton extends StatelessWidget {
     return  Flexible(
       child: InkWell(
         onTap: (){
+          postModel.acceptedRequestUser = currentUser;
           Navigator.push(
               context,
               MaterialPageRoute(

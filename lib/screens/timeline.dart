@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/widgets/postFeed/post_empty.dart';
+import 'package:petrescue/bloc/app_general/global.dart' as globals;
 
 class Timeline extends StatefulWidget {
   @override
@@ -79,6 +80,9 @@ class _TimelineState extends State<Timeline> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      // image: NetworkImage(globals.currentUser)
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Color(0x3f000000),
