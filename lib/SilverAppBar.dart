@@ -171,23 +171,23 @@ class _profildsabState extends State<profildsab>
                 ),
 
                 bottom: TabBar(
-                  isScrollable: true,
+                  //isScrollable: true,
                   tabs: <Widget>[
                     Tab(
                       text: "Home",
-                      icon: Icon(Icons.home),
+                     // icon: Icon(Icons.home),
                     ),
                     Tab(
                       text: "Example page",
-                      icon: Icon(Icons.help,size: 20,),
+                   //   icon: Icon(Icons.help,size: 20,),
                     ),
                     Tab(
                       text: "Home",
-                      icon: Icon(Icons.home),
+                   //   icon: Icon(Icons.home),
                     ),
                     Tab(
                       text: "Home",
-                      icon: Icon(Icons.home),
+                    //  icon: Icon(Icons.home),
                     ),
 
                   ],
@@ -277,3 +277,4 @@ class PageTwo extends StatelessWidget {
     );
   }
 }
+
