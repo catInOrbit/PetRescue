@@ -52,6 +52,8 @@ class _PostHomeState extends State<PostHome> {
           ),
         ),
         BottomNavigationBarItem(
+          backgroundColor: PetRescueTheme.darkGreen,
+
           icon: Icon(Icons.pets),
           title: Text(
             'Adopt',
@@ -59,6 +61,7 @@ class _PostHomeState extends State<PostHome> {
           ),
         ),
         BottomNavigationBarItem(
+          backgroundColor: PetRescueTheme.orange,
           icon: Icon(Icons.timeline),
           title: Text(
             'Timeline',
@@ -66,6 +69,7 @@ class _PostHomeState extends State<PostHome> {
           ),
         ),
         BottomNavigationBarItem(
+          backgroundColor: Colors.redAccent,
           icon: Icon(Icons.settings),
           title: Text(
             'Profile',
