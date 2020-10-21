@@ -64,7 +64,7 @@ class UserInfoRibon extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 20,
-            backgroundImage: NetworkImage(postModel.user.imageURL),
+            backgroundImage: NetworkImage(postModel.currentUser.imageURL),
           ),
           SizedBox(width: 12),
           SizedBox(
@@ -180,7 +180,7 @@ class UserInfo extends StatelessWidget
                 spreadRadius: 1)
           ]),
           child: CircleAvatar(
-            backgroundImage: NetworkImage(postModel.imageString),
+            backgroundImage: NetworkImage(postModel.imageThumbnail),
             radius: 20,
           )),
       title: Text(
@@ -287,6 +287,52 @@ class CommonTool
    }
 
 }
+
+class NoRequestWarning extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 36,
+      height: 36,
+      child: Stack(
+        children: [
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xffff8068),
+            ),
+          ),
+          Positioned(
+            left: 15,
+            top: 4,
+            child: Text(
+              "!",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          SizedBox(width: 13),
+          Text(
+            "Be the first to rescue!",
+            style: TextStyle(
+              color: Color(0xffffb9ac),
+              fontSize: 20,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class UserInfoTile extends StatelessWidget {
   final User user;

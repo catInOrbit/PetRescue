@@ -1,4 +1,5 @@
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/models/user.dart';
 import 'package:petrescue/repository/data/user_list.dart';
 import 'package:petrescue/widgets/timeline_text.dart';
 
@@ -15,7 +16,10 @@ List<Post> listOfPosts = [
     "6-8 months",
      [Statuses.Abandoned, Statuses.Injured],
     <TimeLineText>[],
-      userList[0]
+      userList[0],
+    <User>[],
+      userList[1],
+    <String>[]
   ),
 
   Post(
@@ -30,7 +34,10 @@ List<Post> listOfPosts = [
     "6-8 months",
     [Statuses.Abandoned, Statuses.Injured, Statuses.LostOwner],
     [TimeLineText(postTile:  "XYZ center rescued",timePosted: "10 mins ago",), TimeLineText(postTile:  "XYZ center rescued",timePosted: "10 mins ago",)],
-      userList[1]
+      userList[1],
+      <User>[userList[2]],
+    userList[2],
+    <String>[]
   ),
 
 ];

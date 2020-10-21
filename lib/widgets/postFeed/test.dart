@@ -221,7 +221,7 @@ class PostHomePage extends StatelessWidget {
                 spreadRadius: 1)
           ]),
           child: CircleAvatar(
-            backgroundImage: NetworkImage(postModel.imageString),
+            backgroundImage: NetworkImage(postModel.imageThumbnail),
             radius: 20,
           )),
       title: Text(

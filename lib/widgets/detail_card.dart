@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/widgets/common.dart';
@@ -221,50 +223,13 @@ class DetailCard extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                 UserInfoTile(user: postModel.user,),
+                                buildUserTiles(postModel),
                                   SizedBox(height: 20),
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Container(
-                                        width: 36,
-                                        height: 36,
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              width: 36,
-                                              height: 36,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Color(0xffff8068),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              left: 15,
-                                              top: 4,
-                                              child: Text(
-                                                "!",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 24,
-                                                  fontFamily: "Roboto",
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(width: 13),
-                                      Text(
-                                        "Be the first to rescue!",
-                                        style: TextStyle(
-                                          color: Color(0xffffb9ac),
-                                          fontSize: 20,
-                                          fontFamily: "Roboto",
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
+
+
                                     ],
                                   ),
                                 ],
@@ -340,6 +305,38 @@ class DetailCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+    Widget buildUserTiles(Post postModel)
+  {
+    final returnList = List<Widget>();
+      switch(postModel.postType)
+      {
+        case PostType.RequestPost:
+          return Column(
+              children: [
+                UserInfoTile(user: postModel.currentUser,),
+                UserInfoTile(user: postModel.acceptedRequestUser,),
+              ]
+          );
+          break;
+
+        case PostType.AdoptPost:
+          returnList.add(UserInfoTile(user: postModel.currentUser,));
+          returnList.add(SizedBox(height: 10,));
+          postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});
+          return Column(
+              children: returnList
+          );
+          break;
+        default:
+          return NoRequestWarning();
+          break;
+      }
+
+      // return Column(
+      //   children: postModel.adoptUserRequests.map((user) => UserInfoTile(user: user,)).toList()
+      // );
   }
 }
 
