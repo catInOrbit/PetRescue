@@ -33,86 +33,82 @@ class _BottomBarViewState extends State<BottomBarView>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 65,
       child: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
+        alignment: AlignmentDirectional.topCenter,
         children: <Widget>[
 
-              Transform(
-                transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                child:
-                PhysicalShape(
-                  color: Colors.redAccent,
-                  elevation: 16.0,
-                  clipper: TabClipper(
-                      radius: Tween<double>(begin: 0.0, end: 1)
-                          .animate(CurvedAnimation(
-                          parent: animationController,
-                          curve: Curves.bounceIn))
-                          .value *
-                          38.0),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 62,
-                        child: Padding(
-                          padding:
-                          const EdgeInsets.only(left: 8, right: 8, top: 4),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: TabIcons(
-                                    tabIconData: widget.tabIconsList[0],
-                                    removeAllSelect: () {
-                                      setRemoveAllSelection(
-                                          widget.tabIconsList[0]);
-                                      widget.changeIndex(0);
-                                    }),
-                              ),
-                              Expanded(
-                                child: TabIcons(
-                                    tabIconData: widget.tabIconsList[1],
-                                    removeAllSelect: () {
-                                      setRemoveAllSelection(
-                                          widget.tabIconsList[1]);
-                                      widget.changeIndex(1);
-                                    }),
-                              ),
-                              SizedBox(
-                                width: Tween<double>(begin: 0.0, end: 1.0)
-                                    .animate(CurvedAnimation(
-                                    parent: animationController,
-                                    curve: Curves.fastOutSlowIn))
-                                    .value *
-                                    64.0,
-                              ),
-                              Expanded(
-                                child: TabIcons(
-                                    tabIconData: widget.tabIconsList[2],
-                                    removeAllSelect: () {
-                                      setRemoveAllSelection(
-                                          widget.tabIconsList[2]);
-                                      widget.changeIndex(2);
-                                    }),
-                              ),
-                              Expanded(
-                                child: TabIcons(
-                                    tabIconData: widget.tabIconsList[3],
-                                    removeAllSelect: () {
-                                      setRemoveAllSelection(
-                                          widget.tabIconsList[3]);
-                                      widget.changeIndex(3);
-                                    }),
-                              ),
-                            ],
-                          ),
+              PhysicalShape(
+                color: Colors.redAccent,
+                elevation: 16.0,
+                clipper: TabClipper(
+                    radius: Tween<double>(begin: 0.0, end: 1)
+                        .animate(CurvedAnimation(
+                        parent: animationController,
+                        curve: Curves.bounceIn))
+                        .value *
+                        38.0),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 62,
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.only(left: 8, right: 8, top: 4),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: TabIcons(
+                                  tabIconData: widget.tabIconsList[0],
+                                  removeAllSelect: () {
+                                    setRemoveAllSelection(
+                                        widget.tabIconsList[0]);
+                                    widget.changeIndex(0);
+                                  }),
+                            ),
+                            Expanded(
+                              child: TabIcons(
+                                  tabIconData: widget.tabIconsList[1],
+                                  removeAllSelect: () {
+                                    setRemoveAllSelection(
+                                        widget.tabIconsList[1]);
+                                    widget.changeIndex(1);
+                                  }),
+                            ),
+                            SizedBox(
+                              width: Tween<double>(begin: 0.0, end: 1.0)
+                                  .animate(CurvedAnimation(
+                                  parent: animationController,
+                                  curve: Curves.fastOutSlowIn))
+                                  .value *
+                                  64.0,
+                            ),
+                            Expanded(
+                              child: TabIcons(
+                                  tabIconData: widget.tabIconsList[2],
+                                  removeAllSelect: () {
+                                    setRemoveAllSelection(
+                                        widget.tabIconsList[2]);
+                                    widget.changeIndex(2);
+                                  }),
+                            ),
+                            Expanded(
+                              child: TabIcons(
+                                  tabIconData: widget.tabIconsList[3],
+                                  removeAllSelect: () {
+                                    setRemoveAllSelection(
+                                        widget.tabIconsList[3]);
+                                    widget.changeIndex(3);
+                                  }),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).padding.bottom,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).padding.bottom,
+                    ),
+                  ],
                 ),
               ),
           Padding(
@@ -125,8 +121,8 @@ class _BottomBarViewState extends State<BottomBarView>
                 alignment: Alignment.topCenter,
                 color: Colors.transparent,
                 child: SizedBox(
-                  width: 38 * 2.0,
                   height: 38 * 2.0,
+                  width: 38 * 2.0,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ScaleTransition(

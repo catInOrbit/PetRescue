@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
 import 'package:petrescue/widgets/postFeed/request_page.dart';
 
@@ -18,9 +20,9 @@ class PostHome extends StatefulWidget {
 class _PostHomeState extends State<PostHome> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    RequestPostPage(listOfPost: listOfPosts,),
-    RequestPostPage(listOfPost: listOfPosts,),
-    RequestPostPage(listOfPost: listOfPosts,),
+    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last,),
+    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last),
+    Timeline(),
     ProfileTab(),
   ];
 
@@ -36,28 +38,29 @@ class _PostHomeState extends State<PostHome> {
     final bottomNavBar = BottomNavigationBar(
       onTap: onTabTapped,
       currentIndex: _currentIndex,
-      selectedItemColor: PetRescueTheme.orange,
+      selectedItemColor: Colors.redAccent,
+      backgroundColor: Colors.redAccent,
       unselectedItemColor: Colors.grey.withOpacity(0.6),
       elevation: 0.0,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.rss_feed),
+          icon: Icon(Icons.people),
           title: Text(
             'Request',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.people),
+          icon: Icon(Icons.pets),
           title: Text(
-            'Chats',
+            'Adopt',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.beach_access),
+          icon: Icon(Icons.timeline),
           title: Text(
-            'Notifications',
+            'Timeline',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -71,42 +74,31 @@ class _PostHomeState extends State<PostHome> {
       ],
     );
 
-  //   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
-  //   AnimationController animationController;
-  //   final bottomNavBar =
-  // BottomBarView(
-  //         tabIconsList: tabIconsList,
-  //         addClick: () {},
-  //         changeIndex: (int index) {
-  //           if (index == 0 || index == 2) {
-  //             animationController.reverse().then<dynamic>((data) {
-  //               if (!mounted) {
-  //                 return;
-  //               }
-  //               // setState(() {
-  //               //   tabBody = RequestPostPage();
-  //               // });
-  //             });
-  //           } else if (index == 1) {
-  //             animationController.reverse().then<dynamic>((data) {
-  //               if (!mounted) {
-  //                 return;
-  //               }
-  //             });
-  //           } else if (index == 3) {
-  //             animationController.reverse().then<dynamic>((data) {
-  //               if (!mounted) {
-  //                 return;
-  //               }
-  //             });
-  //           }
-  //         },
-  //       );
+    List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+    AnimationController animationController;
+    final bottomNavBarNew =
+    BottomBarView(
+      tabIconsList: tabIconsList,
+      addClick: () {},
+      changeIndex: (int index) {
+      },
+    );
 
 
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: bottomNavBar,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) {} ),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.redAccent,
+      ),
     );
   }
 }
