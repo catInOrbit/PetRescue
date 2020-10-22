@@ -4,7 +4,7 @@ import 'package:petrescue/Post2.dart';
 
 void main() {
   runApp( MaterialApp(
-    home: PostSecond(),
+    home: EditPost(),
   ));
 }
 
