@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/login/Colors.dart';
+import 'package:petrescue/notification/NotiScreen.dart';
 import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/screens/notification_screen.dart';
 
@@ -70,7 +71,7 @@ class _ProfileTabState extends State<ProfileTab>
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => NotificationScreen()),
+                            builder: (context) => NotiScreen()),
                       );
                     },
                   ),
