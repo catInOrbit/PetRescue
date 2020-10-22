@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/Colors.dart';
+import 'package:petrescue/chat_widget.dart';
+import 'package:petrescue/notification_widget.dart';
 
 class NotiScreen extends StatefulWidget {
   @override
@@ -29,6 +32,8 @@ class _NotiScreenState extends State<NotiScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: HexColor('FFB9AC'),
+        //  elevation: 0,
           title: Text("Messengers"),
           centerTitle: true,
           bottom: TabBar(
@@ -43,7 +48,26 @@ class _NotiScreenState extends State<NotiScreen> {
           ),
         ),
         body: TabBarView(
+          children: <Widget>[
+            Center(
+              child: Column(
+                children: [ChatWidget()],
+              ),
+            ),
+            Scaffold(
+       //       backgroundColor: HexColor('FFB9AC'),
+              body: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
 
+                    Center(
+                      child: NotifiSecond(),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
