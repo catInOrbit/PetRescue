@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_slidable/flutter_slidable.dart';
 // class NotificationWidget extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
@@ -209,55 +209,67 @@ class NotifiSecond extends StatefulWidget {
 class _NotifiSecondState extends State<NotifiSecond> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        print("Container clicked");
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 100,
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(width: 0.5)
-            )
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(15,5,10,0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Icon(Icons.email),
-                  SizedBox(width: 10,),
-                  Text('Requested Accepted', style: TextStyle(
-                    fontSize: 13
-                  ),),
-                  SizedBox(width: 20,),
-                  Text('11:15',style: TextStyle(
-                      fontSize: 12,
-                    color: Colors.black45
-                  ),)
-                ],
-              ),
-              SizedBox(height: 5,),
-              Row(
-                children: <Widget>[
-                  Text("We are processing your request", style: TextStyle(
-                    fontSize: 20
-                  ),)
-                ],
-              ),
-              SizedBox(height: 5,),
-              Row(
-                children: <Widget>[
-                  Text('User accepted your adoption request',
-                  style: TextStyle(fontSize: 15),)
-                ],
+    return Slidable(
+      child: GestureDetector(
+        onTap: (){
+          print("Container clicked");
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 100,
+          decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(width: 0.5)
               )
-            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(15,5,10,0),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.email),
+                    SizedBox(width: 10,),
+                    Text('Requested Accepted', style: TextStyle(
+                      fontSize: 13
+                    ),),
+                    SizedBox(width: 20,),
+                    Text('11:15',style: TextStyle(
+                        fontSize: 12,
+                      color: Colors.black45
+                    ),)
+                  ],
+                ),
+                SizedBox(height: 5,),
+                Row(
+                  children: <Widget>[
+                    Text("We are processing your request", style: TextStyle(
+                      fontSize: 20
+                    ),)
+                  ],
+                ),
+                SizedBox(height: 5,),
+                Row(
+                  children: <Widget>[
+                    Text('User accepted your adoption request',
+                    style: TextStyle(fontSize: 15),)
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
+      actionPane: SlidableDrawerActionPane(),
+      actionExtentRatio: 0.25,
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Delete',
+          color: Colors.red,
+          icon: Icons.delete,
+          //onTap: () => _showSnackBar('Delete'),
+        ),
+      ],
     );
   }
 }
