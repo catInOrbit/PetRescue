@@ -174,19 +174,19 @@ class _profildsabState extends State<profildsab>
                   //isScrollable: true,
                   tabs: <Widget>[
                     Tab(
-                      text: "Home",
+                      text: "Activities",
                      // icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Example page",
+                      text: "Rescused",
                    //   icon: Icon(Icons.help,size: 20,),
                     ),
                     Tab(
-                      text: "Home",
+                      text: "Adopted",
                    //   icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Home",
+                      text: "Timeline",
                     //  icon: Icon(Icons.home),
                     ),
 
