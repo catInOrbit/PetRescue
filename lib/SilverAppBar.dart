@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/Colors.dart';
 import 'package:petrescue/EditScreen.dart';
+import 'package:petrescue/TabAdoption.dart';
+import 'package:petrescue/TabRescued.dart';
 
 class profildsab extends StatefulWidget {
   @override
@@ -96,31 +98,31 @@ class _profildsabState extends State<profildsab>
                           SizedBox(
                             height: 5,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.business_center,
-                                size: 13,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("Job", style: TextStyle(fontSize: 13)),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("|"),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("ABC Center",
-                                  style: TextStyle(fontSize: 13)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Icon(
+                          //       Icons.business_center,
+                          //       size: 13,
+                          //     ),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("Job", style: TextStyle(fontSize: 13)),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("|"),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("ABC Center",
+                          //         style: TextStyle(fontSize: 13)),
+                          //   ],
+                          // ),
+                          // SizedBox(
+                          //   height: 5,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -164,6 +166,29 @@ class _profildsabState extends State<profildsab>
                             height: 5,
                           ),
                           Text("Websitesfsfd.com.vn", style: TextStyle(fontSize: 13)),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () {print("Hello");},
+                            child: Container(
+                              height: 20,
+                              width: 130,
+                              color: Colors.lightGreen,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.near_me, color: Colors.white, size: 12,),
+                                  SizedBox(width: 10,),
+                                  Text("Message",style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12
+                                  ),)
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -186,7 +211,7 @@ class _profildsabState extends State<profildsab>
                    //   icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Timeline",
+                      text: "Timelines",
                     //  icon: Icon(Icons.home),
                     ),
 
@@ -210,8 +235,9 @@ class _profildsabState extends State<profildsab>
           body: TabBarView(
             children: <Widget>[
               PageOne(),
-              PageTwo(),
-              PageOne(),
+              PageRescued(),
+              PageAdoption(),
+
               PageOne(),
 
             ],
