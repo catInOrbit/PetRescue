@@ -53,13 +53,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                           ),
                         ),
                       ),
-                      Text(
-                        "Konnichiwa, minasan, ana ta wa ikidesite, motte, itte ,ya, soresore, minato, hontto, taichohi, benkyo si te, madama",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.w300,
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Konnichiwa, minasan, ana ta wa ikidesite, motte, itte ,ya, soresore, minato, hontto, taichohi, benkyo si te, madama",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
                       ),
 
