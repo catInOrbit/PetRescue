@@ -3,6 +3,7 @@ import 'package:petrescue/Colors.dart';
 import 'package:petrescue/EditScreen.dart';
 import 'package:petrescue/TabAdoption.dart';
 import 'package:petrescue/TabRescued.dart';
+import 'package:petrescue/TabTimelines.dart';
 
 class profildsab extends StatefulWidget {
   @override
@@ -238,7 +239,7 @@ class _profildsabState extends State<profildsab>
               PageRescued(),
               PageAdoption(),
 
-              PageOne(),
+              PageTimelines(),
 
             ],
             controller: tabController,
