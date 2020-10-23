@@ -47,6 +47,10 @@ dev_dependencies:
   meta: ^1.1.8
   pedantic: ^1.9.0
   formz: ^0.2.0
+  flutter_typeahead: "^1.8.8"
+  collection: ">=1.14.11 <2.0.0"
+  image_picker: ^0.6.7+12
+  flutter_custom_dialog: ^1.0.20
 
   bloc: ^6.0.3
 # For information on the generic Dart part of this file, see the
@@ -83,6 +87,7 @@ flutter:
     - lib/assets/tracking_page.png
     - lib/assets/truck.png
     - lib/assets/noti_unread.png
+    - lib/assets/setting_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

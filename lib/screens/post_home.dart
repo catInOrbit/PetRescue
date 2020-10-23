@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/petrescue_theme.dart';
@@ -98,7 +99,9 @@ class _PostHomeState extends State<PostHome> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) {} ),
+                builder: (context) {
+                 return EditPost();
+                }),
           );
         },
         child: Icon(Icons.add),

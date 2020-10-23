@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/constants.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/widgets/detail_model_bottom.dart';
+import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
+
+import 'card_setting_dialog.dart';
 
 class PostCard extends StatelessWidget {
 
@@ -392,6 +396,26 @@ class PostCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                    child: InkWell(
+                      onTap: () {
+                        print("Tap");
+                        _showPopupMenu(context);
+                      },
+                      child: Ink(
+                        width: 50,
+                        height: 50,
+                        color: Colors.blue,
+                        child: Container(
+                          height: 50,
+                            width: 50,
+                            child: Image.asset("lib/assets/setting_icon.png")
+                        ),
+                      ),
+                    )
+                ),
               ],
             ),
           ),
@@ -399,4 +423,44 @@ class PostCard extends StatelessWidget {
       ),
     );
   }
+
+  _showPopupMenu(context){
+    showMenu<String>(
+      context: context,
+      position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),      //position where you want to show the menu on screen
+      items: [
+        PopupMenuItem<String>(
+            child: const Text('menu option 1'), value: '1'),
+        PopupMenuItem<String>(
+            child: const Text('menu option 2'), value: '2'),
+        PopupMenuItem<String>(
+            child: const Text('menu option 3'), value: '3'),
+      ],
+      elevation: 8.0,
+    )
+        .then<void>((String itemSelected) {
+
+      if (itemSelected == null) return;
+
+      if(itemSelected == "1"){
+        //code here
+      }else if(itemSelected == "2"){
+        //code here
+      }else{
+        //code here
+      }
+
+    });
+  }
+  void choiceAction(String choice){
+    if(choice == Constants.Settings){
+      print('Settings');
+    }else if(choice == Constants.Subscribe){
+      print('Subscribe');
+    }else if(choice == Constants.SignOut){
+      print('SignOut');
+    }
+  }
+
 }
+
