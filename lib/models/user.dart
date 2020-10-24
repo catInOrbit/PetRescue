@@ -3,11 +3,12 @@ import 'package:petrescue/models/post_model.dart';
 class User
 {
   final List<Post> timelinePosts;
-  final String fullNanme, job, centerName, phoneNumber, address, gmail, website, imageURL;
-  bool isVerifyRescueCenter;
+  final String id, fullNanme, job, centerName, phoneNumber, address, gmail, website, imageURL;
+  bool isVerifyRescueCenter, isOnline;
 
   User(
       this.timelinePosts,
+      this.id,
       this.fullNanme,
       this.job,
       this.centerName,
@@ -16,5 +17,6 @@ class User
       this.gmail,
       this.website,
       this.imageURL,
-      this.isVerifyRescueCenter);
+      this.isVerifyRescueCenter,
+      this.isOnline);
 }

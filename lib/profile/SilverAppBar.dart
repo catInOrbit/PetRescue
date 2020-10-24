@@ -5,6 +5,8 @@ import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/TabAdoption.dart';
 import 'package:petrescue/profile/TabRescued.dart';
 import 'package:petrescue/profile/TabTimelines.dart';
+import 'package:petrescue/profile/chat_screen.dart';
+import 'package:petrescue/models/message_model.dart';
 import 'package:petrescue/widgets/progress.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -17,6 +19,10 @@ class ProfileTab extends StatefulWidget {
 
 class _ProfileTabState extends State<ProfileTab>
     with SingleTickerProviderStateMixin{
+
+  //test data input
+  final Message chat = chats[0];
+
   TabController tabController;
   @override
   void initState() {
@@ -176,7 +182,13 @@ class _ProfileTabState extends State<ProfileTab>
                             height: 5,
                           ),
                           GestureDetector(
-                            onTap: () {print("Hello");},
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (_) => ChatScreen(
+                                    user: chat.sender,
+                                  )
+                              ));
+                              },
                             child: Container(
                               height: 20,
                               width: 130,
@@ -285,7 +297,6 @@ class ActivityPage extends StatelessWidget {
   final Post postModel;
 
   const ActivityPage({Key key, this.postModel}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Progress(postModel: postModel,);

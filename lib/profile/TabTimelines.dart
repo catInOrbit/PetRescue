@@ -26,8 +26,10 @@ class _PageTimelinesState extends State<PageTimelines> {
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Title is here'
-                    ,style: TextStyle(fontSize: 20),),
+                    child: Text('Title is here for you to type and make sure it is all right to align, is it k ?'
+                    ,style: TextStyle(fontSize: 20, color: Colors.black54, ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,),
                   ),
                 ),
                 SizedBox(height: 20,),
@@ -38,7 +40,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                   //  color: Colors.red,
                     child: FittedBox(
                       //child: Image.file(globals.file),
-                      child: Image.asset('lib/assets/cat3.png'),
+                      child: Image.asset('lib/assets/Cat2.png'),
                       fit: BoxFit.fill,
                     ),
                   ),
