@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/profile/EditScreen.dart';
@@ -97,6 +98,7 @@ class _ProfileTabState extends State<ProfileTab>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           CircleAvatar(
+                            backgroundImage: NetworkImage(currentUser.imageURL),
                             radius: 40,
                           ),
                           SizedBox(
@@ -190,9 +192,12 @@ class _ProfileTabState extends State<ProfileTab>
                               ));
                               },
                             child: Container(
-                              height: 20,
+                              height: 30,
                               width: 130,
-                              color: Colors.lightGreen,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(12)),
+                                color: Colors.lightGreen,
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -201,7 +206,7 @@ class _ProfileTabState extends State<ProfileTab>
                                   SizedBox(width: 10,),
                                   Text("Message",style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 12
+                                    fontSize: 18
                                   ),)
                                 ],
                               ),

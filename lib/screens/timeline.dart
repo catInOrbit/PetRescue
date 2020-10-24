@@ -85,7 +85,7 @@ class _TimelineState extends State<Timeline> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage(widget.postModel.imageThumbnail),
+                      image: NetworkImage(widget.postModel.imageThumbnail),
                       fit: BoxFit.cover
                     ),
                     boxShadow: [

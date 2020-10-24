@@ -23,7 +23,7 @@ class _PostHomeState extends State<PostHome> {
   final List<Widget> _pages = [
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last,),
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last),
-    Timeline(),
+    Timeline(postModel: listOfPosts[0],),
     ProfileTab(postModel: listOfPosts[0],),
   ];
 
