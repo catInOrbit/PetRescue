@@ -219,7 +219,7 @@ class _NotifiSecondState extends State<NotifiSecond> {
           height: 100,
           decoration: BoxDecoration(
               border: Border(
-                  bottom: BorderSide(width: 0.5)
+                  bottom: BorderSide(width: 0.1)
               )
           ),
           child: Padding(

@@ -117,102 +117,114 @@ class _ChatWidgetState extends State<ChatWidget> {
         itemCount: chats.length,
         itemBuilder: (BuildContext context, int index) {
           final Message chat = chats[index];
-          return GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (_) => ChatScreen(
-                    user: chat.sender,
-                  )
-              ));
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    decoration: chat.unread ? BoxDecoration(
-                      //  shape: BoxShape.circle,
-                        border: Border.all(
-                            width: 2, color: Theme.of(context).primaryColor),
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5),
-                        ])
-                        : BoxDecoration(
-                        shape: BoxShape.circle,
-                        // border: Border.all(
-                        //     width: 2, color: Theme.of(context).primaryColor),
-                        // borderRadius: BorderRadius.all(Radius.circular(40)),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5),
-                        ])
-                    ,
-                    child: CircleAvatar(
-                      radius: 35,
-                      //backgroundImage: Image.asset(''),
+          return Slidable(
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => ChatScreen(
+                      user: chat.sender,
+                    )
+                ));
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      decoration: chat.unread ? BoxDecoration(
+                        //  shape: BoxShape.circle,
+                          border: Border.all(
+                              width: 2, color: Theme.of(context).primaryColor),
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 5),
+                          ])
+                          : BoxDecoration(
+                          shape: BoxShape.circle,
+                          // border: Border.all(
+                          //     width: 2, color: Theme.of(context).primaryColor),
+                          // borderRadius: BorderRadius.all(Radius.circular(40)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 5),
+                          ])
+                      ,
+                      child: CircleAvatar(
+                        radius: 35,
+                        //backgroundImage: Image.asset(''),
+                      ),
                     ),
-                  ),
-                  Container(
-                      padding: EdgeInsets.only(left: 20),
-                      width: MediaQuery.of(context).size.width * 0.65,
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    chat.sender.name,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  chat.sender.isOnline ?
-                                  Container(
-                                    margin: const EdgeInsets.only(left:  5),
-                                    width: 7,
-                                    height: 7,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Theme.of(context).primaryColor),
-                                  )
-                                      : Container(child: null,)
-                                ],
-                              ),
+                    Container(
+                        padding: EdgeInsets.only(left: 20),
+                        width: MediaQuery.of(context).size.width * 0.65,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                      chat.sender.name,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    chat.sender.isOnline ?
+                                    Container(
+                                      margin: const EdgeInsets.only(left:  5),
+                                      width: 7,
+                                      height: 7,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context).primaryColor),
+                                    )
+                                        : Container(child: null,)
+                                  ],
+                                ),
 
-                              Text(
-                                chat.time,
-                                style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              chat.text,
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.black45),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
+                                Text(
+                                  chat.time,
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w300),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      )),
-                ],
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                chat.text,
+                                style: TextStyle(
+                                    fontSize: 13, color: Colors.black45),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              ),
+                            )
+                          ],
+                        )),
+                  ],
+                ),
               ),
             ),
+            actionPane: SlidableDrawerActionPane(),
+            actionExtentRatio: 0.25,
+            secondaryActions: <Widget>[
+              IconSlideAction(
+                caption: 'Delete',
+                color: Colors.red,
+                icon: Icons.delete,
+                //onTap: () => _showSnackBar('Delete'),
+              ),
+            ],
           );
         });
   }
