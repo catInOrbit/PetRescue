@@ -4,6 +4,8 @@ import 'package:petrescue/EditScreen.dart';
 import 'package:petrescue/TabAdoption.dart';
 import 'package:petrescue/TabRescued.dart';
 import 'package:petrescue/TabTimelines.dart';
+import 'package:petrescue/chat_screen.dart';
+import 'package:petrescue/models/message_model.dart';
 
 class profildsab extends StatefulWidget {
   @override
@@ -12,6 +14,10 @@ class profildsab extends StatefulWidget {
 
 class _profildsabState extends State<profildsab>
     with SingleTickerProviderStateMixin{
+
+  //test data input
+  final Message chat = chats[0];
+
   TabController tabController;
   @override
   void initState() {
@@ -171,7 +177,13 @@ class _profildsabState extends State<profildsab>
                             height: 5,
                           ),
                           GestureDetector(
-                            onTap: () {print("Hello");},
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (_) => ChatScreen(
+                                    user: chat.sender,
+                                  )
+                              ));
+                              },
                             child: Container(
                               height: 20,
                               width: 130,
