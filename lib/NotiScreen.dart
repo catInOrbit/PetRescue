@@ -49,11 +49,12 @@ class _NotiScreenState extends State<NotiScreen> {
         ),
         body: TabBarView(
           children: <Widget>[
-            Center(
-              child: Column(
-                children: [ChatWidget()],
-              ),
-            ),
+            // Center(
+            //   child: Column(
+            //     children: [ChatWidget()],
+            //   ),
+            // ),
+            ChatWidget(),
             Scaffold(
        //       backgroundColor: HexColor('FFB9AC'),
               body: SingleChildScrollView(

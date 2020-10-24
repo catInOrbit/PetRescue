@@ -245,14 +245,18 @@ class _NotifiSecondState extends State<NotifiSecond> {
                   children: <Widget>[
                     Text("We are processing your request", style: TextStyle(
                       fontSize: 20
-                    ),)
+                    ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,)
                   ],
                 ),
                 SizedBox(height: 5,),
                 Row(
                   children: <Widget>[
                     Text('User accepted your adoption request',
-                    style: TextStyle(fontSize: 15),)
+                    style: TextStyle(fontSize: 15),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,)
                   ],
                 )
               ],
