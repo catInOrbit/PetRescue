@@ -51,6 +51,7 @@ dev_dependencies:
   collection: ">=1.14.11 <2.0.0"
   image_picker: ^0.6.7+12
   flutter_custom_dialog: ^1.0.20
+  path_provider: ^1.6.21
 
   bloc: ^6.0.3
 # For information on the generic Dart part of this file, see the
@@ -88,6 +89,7 @@ flutter:
     - lib/assets/truck.png
     - lib/assets/noti_unread.png
     - lib/assets/setting_icon.png
+    - lib/assets/rescue_center_logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

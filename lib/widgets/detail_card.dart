@@ -277,7 +277,7 @@ class DetailCard extends StatelessWidget {
                                     ),
                                     SizedBox(width: 3),
                                     //TODO: Find way to expand children
-                                    DetailCardButton(postModel: postModel,)
+                                    DetailCardButton(postModel: postModel,isTimeline: false,)
                                   ],
                                 ),
                               ),
@@ -294,7 +294,10 @@ class DetailCard extends StatelessWidget {
                               // ))
                             },
                             child: TimelineDetail()
-                        )
+                        ),
+
+                        SizedBox(height: 20,),
+                        DetailCardButton(postModel: postModel, isTimeline: true,)
                       ],
                     ),
                   )
@@ -314,10 +317,15 @@ class DetailCard extends StatelessWidget {
       {
         case PostType.RequestPost:
           return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UserInfoTile(user: postModel.currentUser,),
-                UserInfoTile(user: postModel.acceptedRequestUser,),
-              ]
+                if(postModel.acceptedRequestUser != null)
+                  UserInfoTile(user: postModel.acceptedRequestUser,)
+                else
+                    NoRequestWarning()
+              ],
           );
           break;
 

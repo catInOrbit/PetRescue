@@ -24,7 +24,7 @@ class _PostHomeState extends State<PostHome> {
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last,),
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last),
     Timeline(),
-    ProfileTab(),
+    ProfileTab(postModel: listOfPosts[0],),
   ];
 
   void onTabTapped(int index) {

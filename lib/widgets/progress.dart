@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:petrescue/constants.dart';
 import 'package:petrescue/models/post_model.dart';
-import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/common.dart';
-import 'package:petrescue/widgets/detail_card.dart';
-import 'package:petrescue/widgets/detail_model_bottom.dart';
-import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 
-import 'card_setting_dialog.dart';
-
-class PostCard extends StatelessWidget {
-
+class Progress extends StatelessWidget {
   final Post postModel;
-  final User user;
 
-  const PostCard({Key key, @required this.postModel, @required this.user}) : super(key: key);
+  const Progress({Key key, this.postModel}) : super(key: key);
+
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     List<Color> colorScheme;
 
     if (postModel.postType == PostType.AdoptPost)
@@ -32,13 +25,6 @@ class PostCard extends StatelessWidget {
       child: Center(
         child: InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DetailCard(
-                          postModel: postModel,
-                        )));
           },
           child: Container(
             width: 380,
@@ -144,18 +130,9 @@ class PostCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              UserInfoRibon(
-                                postModel: postModel,
-                              ),
-
-                              showResponsibleUserRibon(postModel)
-                            ],
+                          UserInfoRibon(
+                            postModel: postModel,
                           ),
-
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -347,83 +324,10 @@ class PostCard extends StatelessWidget {
                               ),
                             ),
                           ),
-
-                          Divider(
-                            color: colorScheme[PetRescueThemeColorType.Accent
-                                .index],
-                            thickness: 2,
-                          ),
-
-                          Center(
-                            child: Text(postModel.location, style: TextStyle(
-                                color: colorScheme[PetRescueThemeColorType
-                                    .Accent.index],
-                                fontSize: 20
-                            ),),
-                          ),
-
-                          Divider(
-                            color: colorScheme[PetRescueThemeColorType.Accent
-                                .index],
-                            thickness: 2,
-                          ),
-
-
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 245,
-                                  child: Wrap(
-                                    spacing: 1,
-                                    direction: Axis.horizontal,
-                                    alignment: WrapAlignment.start,
-                                    children: getAllStatuses(postModel),
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 27),
-                          InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => TimelineBottomSheet(),
-                                  isScrollControlled: true);
-                            },
-                            child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [postModel.timelineBuilder]
-                            ),
-                          ),
                         ],
                       ),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                    child: InkWell(
-                      onTap: () {
-                        print("Tap");
-                        _showPopupMenu(context);
-                      },
-                      child: Ink(
-                        width: 50,
-                        height: 50,
-                        color: Colors.blue,
-                        child: Container(
-                          height: 50,
-                            width: 50,
-                            child: Image.asset("lib/assets/setting_icon.png")
-                        ),
-                      ),
-                    )
                 ),
               ],
             ),
@@ -431,55 +335,6 @@ class PostCard extends StatelessWidget {
         ),
       ),
     );
+
   }
-
-  _showPopupMenu(context){
-    showMenu<String>(
-      context: context,
-      position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),      //position where you want to show the menu on screen
-      items: [
-        PopupMenuItem<String>(
-            child: const Text('menu option 1'), value: '1'),
-        PopupMenuItem<String>(
-            child: const Text('menu option 2'), value: '2'),
-        PopupMenuItem<String>(
-            child: const Text('menu option 3'), value: '3'),
-      ],
-      elevation: 8.0,
-    )
-        .then<void>((String itemSelected) {
-
-      if (itemSelected == null) return;
-
-      if(itemSelected == "1"){
-        //code here
-      }else if(itemSelected == "2"){
-        //code here
-      }else{
-        //code here
-      }
-
-    });
-  }
-  void choiceAction(String choice){
-    if(choice == Constants.Settings){
-      print('Settings');
-    }else if(choice == Constants.Subscribe){
-      print('Subscribe');
-    }else if(choice == Constants.SignOut){
-      print('SignOut');
-    }
-  }
-
-  Widget showResponsibleUserRibon(Post postModel)
-  {
-    if(postModel.postType == PostType.AdoptPost)
-      return CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,);
-    else if((postModel.postType == PostType.RequestPost && postModel.acceptedRequestUser != null))
-      return OngoingRescuerRibbon(postModel: postModel,);
-    else
-      return Container();
-  }
-
 }
-

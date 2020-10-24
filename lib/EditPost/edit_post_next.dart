@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/EditPost/colors.dart';
-import 'package:petrescue/EditPost/globals.dart';
+import 'package:petrescue/bloc/app_general/global.dart' as globals;
+
 import 'package:petrescue/models/post_model.dart';
-import 'globals.dart' as globals;
+import 'package:petrescue/repository/data/post_data.dart';
 //library flutter_tagging;
 
 class PostSecond extends StatefulWidget {
@@ -31,7 +32,7 @@ class _PostSecondState extends State<PostSecond> {
             padding: const EdgeInsets.only(right: 10),
             child: Center(
               child: GestureDetector(
-                child: proceedButton(),
+                child: globals.proceedButton(),
                 onTap: () {
                   // Navigator.push(
                   //     context,

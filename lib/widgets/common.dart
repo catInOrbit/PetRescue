@@ -4,19 +4,21 @@ import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/process_page.dart';
-class StatusTag extends StatelessWidget
-{
+
+class StatusTag extends StatelessWidget {
   final textData;
   final Post postModel;
-  const StatusTag({Key key, @required this.textData, @required this.postModel}) : super(key: key);
+  const StatusTag({Key key, @required this.textData, @required this.postModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
-    if(postModel.postType == PostType.AdoptPost)
+    if (postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
-    else if(postModel.postType == PostType.RequestPost)
+    else if (postModel.postType == PostType.RequestPost)
       colorScheme = PetRescueTheme.statusTagsRescueTheme;
 
     return Chip(
@@ -36,9 +38,7 @@ List<Widget> getAllStatuses(Post postModel) {
   });
 }
 
-
 class UserInfoRibon extends StatelessWidget {
-
   final Post postModel;
 
   const UserInfoRibon({Key key, @required this.postModel}) : super(key: key);
@@ -46,7 +46,7 @@ class UserInfoRibon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
-    if(postModel.postType == PostType.AdoptPost)
+    if (postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
     else
       colorScheme = PetRescueTheme.requestRescuePostTheme;
@@ -58,8 +58,7 @@ class UserInfoRibon extends StatelessWidget {
             bottomRight: Radius.circular(27.50)),
         color: colorScheme[PetRescueThemeColorType.Accent.index],
       ),
-      padding: const EdgeInsets.all(4
-      ),
+      padding: const EdgeInsets.all(4),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -100,23 +99,19 @@ class UserInfoRibon extends StatelessWidget {
 class ActionKeyword extends StatelessWidget {
   final Post postModel;
 
-
   const ActionKeyword({Key key, @required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
     String text;
-    if(postModel.postType == PostType.AdoptPost)
-      {
-         text = "Adopt";
-         colorScheme = PetRescueTheme.revertAdoptPostTheme;
-      }
-    else if(postModel.postType == PostType.RequestPost)
-      {
-        text = "Rescue";
-        colorScheme = PetRescueTheme.revertRescuePostTheme;
-      }
+    if (postModel.postType == PostType.AdoptPost) {
+      text = "Adopt";
+      colorScheme = PetRescueTheme.revertAdoptPostTheme;
+    } else if (postModel.postType == PostType.RequestPost) {
+      text = "Rescue";
+      colorScheme = PetRescueTheme.revertRescuePostTheme;
+    }
 
     return Container(
       height: 38,
@@ -144,8 +139,7 @@ class ActionKeyword extends StatelessWidget {
                     color: colorScheme[PetRescueThemeColorType.KeyWord.index],
                     fontSize: 18,
                     fontFamily: "Lato",
-                    fontWeight:
-                    FontWeight.w700,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -162,9 +156,7 @@ class ActionKeyword extends StatelessWidget {
   }
 }
 
-
-class UserInfo extends StatelessWidget
-{
+class UserInfo extends StatelessWidget {
   final Post postModel;
 
   const UserInfo({Key key, this.postModel}) : super(key: key);
@@ -211,49 +203,46 @@ class UserInfo extends StatelessWidget
       ),
     );
   }
-
 }
 
 class DetailCardButton extends StatelessWidget {
   final Post postModel;
+  final bool isTimeline;
 
-  const DetailCardButton({Key key, this.postModel}) : super(key: key);
+  const DetailCardButton({Key key, this.postModel, this.isTimeline})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context)
-  {
-
+  Widget build(BuildContext context) {
     String text;
     List<Color> colorScheme;
 
-    if(postModel.postType == PostType.AdoptPost)
-    {
+    if (isTimeline) {
+      text = "View timeline";
+      colorScheme = [PetRescueTheme.orange, Colors.white];
+    } else if (postModel.postType == PostType.AdoptPost) {
       text = "Adopt";
       colorScheme = PetRescueTheme.adoptPostTheme;
-    }
-
-    else if (postModel.postType == PostType.RequestPost)
-    {
+    } else if (postModel.postType == PostType.RequestPost) {
       text = "Rescue";
       colorScheme = PetRescueTheme.revertRescuePostTheme;
     }
 
-
-    return  Flexible(
+    return Flexible(
       child: InkWell(
-        onTap: (){
+        onTap: () {
           postModel.acceptedRequestUser = currentUser;
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      TrackingPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            if (!isTimeline)
+              return TrackingPage();
+            else
+              return Timeline();
+          }));
         },
         child: Container(
           height: 53,
           decoration: BoxDecoration(
-            borderRadius:
-            BorderRadius.circular(26.50),
+            borderRadius: BorderRadius.circular(26.50),
             color: colorScheme[PetRescueThemeColorType.Accent.index],
           ),
           padding: const EdgeInsets.only(
@@ -277,56 +266,61 @@ class DetailCardButton extends StatelessWidget {
   }
 }
 
-class CommonTool
-{
-   Color ColorStatePicker(PostType postType)
-   {
-      // switch(postType)
-      // {
-      //   case PostType.RequestPost:
-      //     return PetRescueTheme.
-      // }
-   }
-
+class CommonTool {
+  Color ColorStatePicker(PostType postType) {
+    // switch(postType)
+    // {
+    //   case PostType.RequestPost:
+    //     return PetRescueTheme.
+    // }
+  }
 }
 
 class NoRequestWarning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 36,
-      height: 36,
-      child: Stack(
+      height: 50,
+      child: Row(
         children: [
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xffff8068),
-            ),
-          ),
-          Positioned(
-            left: 15,
-            top: 4,
-            child: Text(
-              "!",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w700,
+          Stack(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xffff8068),
+                ),
               ),
-            ),
+              Positioned(
+                left: 15,
+                top: 4,
+                child: Text(
+                  "!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              SizedBox(width: 13),
+            ],
           ),
-          SizedBox(width: 13),
-          Text(
-            "Be the first to rescue!",
-            style: TextStyle(
-              color: Color(0xffffb9ac),
-              fontSize: 20,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w400,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Be the first to rescue!",
+                style: TextStyle(
+                  color: Color(0xffffb9ac),
+                  fontSize: 20,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
             ),
           ),
         ],
@@ -334,7 +328,6 @@ class NoRequestWarning extends StatelessWidget {
     );
   }
 }
-
 
 class UserInfoTile extends StatelessWidget {
   final User user;
@@ -350,11 +343,8 @@ class UserInfoTile extends StatelessWidget {
           width: 37,
           height: 37,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: NetworkImage(user.imageURL)
-            )
-          ),
+              shape: BoxShape.circle,
+              image: DecorationImage(image: NetworkImage(user.imageURL))),
         ),
         SizedBox(width: 5),
         Container(
@@ -374,8 +364,7 @@ class UserInfoTile extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 14,
                         fontFamily: "Lato",
-                        fontWeight:
-                        FontWeight.w700,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
@@ -404,7 +393,72 @@ class UserInfoTile extends StatelessWidget {
   }
 }
 
+class OngoingRescuerRibbon extends StatelessWidget {
+  final Post postModel;
 
+  const OngoingRescuerRibbon({Key key, this.postModel}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(25)),
+        color: Color(0xff4b8669),
+      ),
+      padding: const EdgeInsets.only(
+        left: 7,
+        right: 28,
+        top: 6,
+        bottom: 8,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image:
+                        DecorationImage(image: NetworkImage(postModel.acceptedRequestUser.imageURL,)),
 
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Color(0x3f000000),
+                        //     blurRadius: 4,
+                        //     offset: Offset(0, 4),
+                        //   ),
+                        // ],
+                      ),
+                    ),
+                  ),
+                ),
 
-
+              ],
+            ),
+          ),
+          SizedBox(width: 16),
+          SizedBox(
+            width: 60,
+            child: Text(
+              "Rescue in progress! ",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

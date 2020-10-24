@@ -20,6 +20,11 @@ class Post {
   List<User> adoptUserRequests;
   List<String> imageStrings;
 
+  Post.empty()
+  {
+
+  }
+
   Post(title, description, petType, location, timeCreated, postType,
       imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings) {
     this.title = title;

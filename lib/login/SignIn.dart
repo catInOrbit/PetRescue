@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: PetRescueTheme.lightPink,
+      backgroundColor: HexColor("FFB9AC"),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
@@ -102,6 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     ButtonTheme(
                       minWidth: 300,
+
+
                       child: InkWell(
                         onTap: () {
                           Navigator.push(

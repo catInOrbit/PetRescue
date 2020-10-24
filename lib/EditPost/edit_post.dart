@@ -3,27 +3,35 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:petrescue/EditPost/colors.dart';
 import 'package:petrescue/EditPost/edit_post_next.dart';
-import 'package:petrescue/EditPost/globals.dart';
 import 'package:petrescue/models/post_model.dart';
-import 'globals.dart' as globals;
 import 'package:image_picker/image_picker.dart';
+import 'package:petrescue/bloc/app_general/global.dart' as globals;
+import 'package:path_provider/path_provider.dart';
+
 
 // File file;
 class EditPost extends StatefulWidget
 {
-  const EditPost({Key key, this.post}) : super(key: key);
-
   @override
   _EditPostState createState() => _EditPostState();
 
-  final Post post;
 }
 
 class _EditPostState extends State<EditPost> {
+  final Post post = Post.empty();
+  File _saveImage;
   void pickImage() async {
     PickedFile pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
-    globals.file = File(pickedFile.path);
+
+    String path;
+    await (getApplicationDocumentsDirectory()).then((value) => path = value.path);
+
+    final File file = File(pickedFile.path);
+
+    _saveImage = await file.copy('$path/'+ DateTime.now().toIso8601String());
+    post.imageThumbnail = _saveImage.path;
+
     setState(() {});
   }
 
@@ -66,7 +74,7 @@ class _EditPostState extends State<EditPost> {
             padding: const EdgeInsets.only(right: 10),
             child: Center(
               child: GestureDetector(
-                child: proceedButton(),
+                child: globals.proceedButton(),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -89,7 +97,10 @@ class _EditPostState extends State<EditPost> {
                 child: globals.file == null
                     ? Center(
                         child: InkWell(
-                          onTap: (){pickImage();},
+                          onTap: (){
+                            pickImage();
+
+                            },
                           child: Container(
                             height: 100,
                             width: 100,
@@ -155,7 +166,7 @@ class _EditPostState extends State<EditPost> {
                         color: HexColor('#EBF3FA'),
                         child: TextField(
                           onChanged: (text){
-                            widget.post.title = text;
+                            post.title = text;
                           },
                           decoration: InputDecoration(
                             //labelText: 'Name',
@@ -182,7 +193,7 @@ class _EditPostState extends State<EditPost> {
                         color: HexColor('#EBF3FA'),
                         child: TextField(
                           onChanged: (text){
-                            widget.post.petType = text;
+                            post.petType = text;
                           },
 
                           decoration: InputDecoration(
@@ -210,7 +221,7 @@ class _EditPostState extends State<EditPost> {
                         color: HexColor('#EBF3FA'),
                         child: TextField(
                           onChanged: (text){
-                            widget.post.location = text;
+                            post.location = text;
                           },
 
                           decoration: InputDecoration(
@@ -252,7 +263,7 @@ class _EditPostState extends State<EditPost> {
                                       hint: Text('Choose'),
                                       value: strBtnSelectGender,
                                       onChanged: ((String newValue) {
-                                          widget.post.gender = newValue;
+                                          post.gender = newValue;
                                         setState(() {
                                           strBtnSelectGender = newValue;
                                         });
@@ -286,7 +297,7 @@ class _EditPostState extends State<EditPost> {
                                     height: 40,
                                     child: TextField(
                                         onChanged: (text){
-                                          widget.post.ages = text;
+                                          post.ages = text;
                                         },
                                       keyboardType:
                                           TextInputType.numberWithOptions(),
@@ -306,7 +317,7 @@ class _EditPostState extends State<EditPost> {
                                         hint: Text('Months'),
                                         value: strBtnSelectMonthAge,
                                         onChanged: ((String newValue) {
-                                          widget.post.ages += " " + newValue;
+                                          post.ages += " " + newValue;
                                           setState(() {
 
                                             strBtnSelectMonthAge = newValue;
