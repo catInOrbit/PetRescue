@@ -1,17 +1,31 @@
+import 'package:petrescue/models/post_model.dart';
+
 class PostEvent {
-  bool isPrioritized, hasSortRquest;
+  bool _isPrioritized, _hasSortRquest, _hasDeleteRequest;
   String selectedSort = "";
+  Post _selectedPost;
 
-  set setSortRequest(bool value) {
-    hasSortRquest = value;
+  get selectedPost => _selectedPost;
+
+  set selectedPost(Post value) {
+    _selectedPost = value;
   }
 
-  set setSelectedSort(String value) {
-    selectedSort = value;
+  bool get isPrioritized => _isPrioritized;
+
+  set isPrioritized(bool value) {
+    _isPrioritized = value;
   }
 
-  PostEvent(hasSortRquest, selectedSort) {
-    this.hasSortRquest = hasSortRquest;
-    this.selectedSort = selectedSort;
+  get hasSortRquest => _hasSortRquest;
+
+  get hasDeleteRequest => _hasDeleteRequest;
+
+  set hasDeleteRequest(value) {
+    _hasDeleteRequest = value;
+  }
+
+  set hasSortRquest(value) {
+    _hasSortRquest = value;
   }
 }

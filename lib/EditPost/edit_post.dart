@@ -14,7 +14,6 @@ class EditPost extends StatefulWidget
 {
   @override
   _EditPostState createState() => _EditPostState();
-
 }
 
 class _EditPostState extends State<EditPost> {

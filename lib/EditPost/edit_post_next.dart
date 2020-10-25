@@ -150,67 +150,6 @@ class _PostSecondState extends State<PostSecond> {
                 ),
               ],
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: <Widget>[
-            //     RaisedButton(
-            //       //color: HexColor('#FF8088'),
-            //       onPressed: () {},
-            //       child: Row(
-            //         mainAxisSize: MainAxisSize.min,
-            //         children: <Widget>[
-            //           Text(
-            //             'Skip',
-            //             style: TextStyle(color: Colors.black26, fontSize: 24),
-            //           ),
-            //           SizedBox(
-            //             width: 12,
-            //           ),
-            //           Icon(
-            //             Icons.arrow_forward,
-            //             color: Colors.black26,
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //     RaisedButton(
-            //       color: HexColor('#FF8088'),
-            //       onPressed: () {},
-            //       child: Row(
-            //         mainAxisSize: MainAxisSize.min,
-            //         children: <Widget>[
-            //           Text(
-            //             'Proceed',
-            //             style: TextStyle(color: Colors.white, fontSize: 24),
-            //           ),
-            //           SizedBox(
-            //             width: 12,
-            //           ),
-            //           Icon(
-            //             Icons.arrow_forward,
-            //             color: Colors.white,
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //     //  FlutterTa
-            //   ],
-            // ),
-            // FlutterTagging(
-            //   textFieldConfiguration: TextFieldConfiguration(
-            //     decoration: InputDecoration(
-            //       border: InputBorder.none,
-            //       filled: true,
-            //       fillColor: Colors.green.withAlpha(30),
-            //       hintText: 'Search Tags',
-            //       labelText: 'Select Tags',
-            //     ),
-            //   ),
-            //   findSuggestions: (String) {},
-            //   initialItems: <Taggable>[],
-            //   configureSuggestion: (Taggable) {},
-            //   configureChip: (Taggable) {},
-            // )
           ],
         ),
       ),

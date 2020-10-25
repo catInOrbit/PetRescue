@@ -1,16 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/repository/data/post_data.dart';
 
 class PostState {
-  List<Post> visiblePostTree = [];
+  List<Post> _visiblePostTree = listOfPosts;
 
-  void addToVisibleTree(Post post) {
-    visiblePostTree.add(post);
+
+  List<Post> get visiblePostTree => _visiblePostTree;
+
+  set visiblePostTree(List<Post> value) {
+    _visiblePostTree = value;
   }
 
-  List<Post> get getVisiblePostTree => visiblePostTree;
-
-  int get numOfPost => visiblePostTree.length;
+  int get numOfPost => _visiblePostTree.length;
 
   PostState();
 }

@@ -50,7 +50,7 @@ class _PageRescuedState extends State<PageRescued> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "Mao Trach Dong",
+                                "Test Name",
                                 style: TextStyle(
                                   color: Color(0xff4b8669),
                                   fontSize: 20,

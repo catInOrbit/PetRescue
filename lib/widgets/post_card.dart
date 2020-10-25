@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/bloc/post/post/post_bloc.dart';
+import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/constants.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/widgets/detail_model_bottom.dart';
@@ -10,7 +13,7 @@ import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 
 import 'card_setting_dialog.dart';
 
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
 
   final Post postModel;
   final User user;
@@ -18,12 +21,17 @@ class PostCard extends StatelessWidget {
   const PostCard({Key key, @required this.postModel, @required this.user}) : super(key: key);
 
   @override
+  _PostCardState createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
 
-    if (postModel.postType == PostType.AdoptPost)
+    if (widget.postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
-    else if (postModel.postType == PostType.RequestPost)
+    else if (widget.postModel.postType == PostType.RequestPost)
       colorScheme = PetRescueTheme.requestRescuePostTheme;
 
     return Container(
@@ -37,7 +45,8 @@ class PostCard extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) =>
                         DetailCard(
-                          postModel: postModel,
+                          postModel: widget.postModel,
+                          isEditing: false,
                         )));
           },
           child: Container(
@@ -148,10 +157,10 @@ class PostCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               UserInfoRibon(
-                                postModel: postModel,
+                                postModel: widget.postModel,
                               ),
 
-                              showResponsibleUserRibon(postModel)
+                              showResponsibleUserRibon(widget.postModel)
                             ],
                           ),
 
@@ -312,7 +321,7 @@ class PostCard extends StatelessWidget {
                                           ),
                                           SizedBox(height: 7),
                                           ActionKeyword(
-                                            postModel: postModel,),
+                                            postModel: widget.postModel,),
                                         ],
                                       ),
                                     ),
@@ -355,7 +364,7 @@ class PostCard extends StatelessWidget {
                           ),
 
                           Center(
-                            child: Text(postModel.location, style: TextStyle(
+                            child: Text(widget.postModel.location, style: TextStyle(
                                 color: colorScheme[PetRescueThemeColorType
                                     .Accent.index],
                                 fontSize: 20
@@ -379,7 +388,7 @@ class PostCard extends StatelessWidget {
                                     spacing: 1,
                                     direction: Axis.horizontal,
                                     alignment: WrapAlignment.start,
-                                    children: getAllStatuses(postModel),
+                                    children: getAllStatuses(widget.postModel),
                                   ),
                                 ),
 
@@ -397,7 +406,7 @@ class PostCard extends StatelessWidget {
                             child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [postModel.timelineBuilder]
+                                children: [widget.postModel.timelineBuilder]
                             ),
                           ),
                         ],
@@ -439,11 +448,11 @@ class PostCard extends StatelessWidget {
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),      //position where you want to show the menu on screen
       items: [
         PopupMenuItem<String>(
-            child: const Text('menu option 1'), value: '1'),
+            child: const Text('Edit post'), value: '1'),
         PopupMenuItem<String>(
-            child: const Text('menu option 2'), value: '2'),
+            child: const Text('Delete Post'), value: '2'),
         PopupMenuItem<String>(
-            child: const Text('menu option 3'), value: '3'),
+            child: const Text('Follow Post'), value: '3'),
       ],
       elevation: 8.0,
     )
@@ -452,15 +461,23 @@ class PostCard extends StatelessWidget {
       if (itemSelected == null) return;
 
       if(itemSelected == "1"){
-        //code here
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, isEditing: true,),));
       }else if(itemSelected == "2"){
-        //code here
+        PostEvent postEvent = PostEvent();
+        postEvent.hasSortRquest = false;
+        postEvent.hasDeleteRequest = true;
+        postEvent.selectedPost = widget.postModel;
+        bloc.inputSink.add(postEvent);
+        setState(() {
+          listOfPosts.remove(widget.postModel);
+        });
       }else{
         //code here
       }
 
     });
   }
+
   void choiceAction(String choice){
     if(choice == Constants.Settings){
       print('Settings');
@@ -480,6 +497,5 @@ class PostCard extends StatelessWidget {
     else
       return Container();
   }
-
 }
 

@@ -44,7 +44,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "Mao Nguyen Trach Tam",
+                          "Test Name",
                           style: TextStyle(
                             color: Color(0xff4b8669),
                             fontSize: 20,

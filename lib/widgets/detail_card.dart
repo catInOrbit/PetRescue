@@ -6,8 +6,9 @@ import 'package:petrescue/widgets/common.dart';
 
 class DetailCard extends StatelessWidget {
   final Post postModel;
+  final bool isEditing;
 
-  const DetailCard({Key key, @required this.postModel}) : super(key: key);
+  const DetailCard({Key key, @required this.postModel, this.isEditing}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,10 @@ class DetailCard extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
+            onPressed: () => Navigator.pop(context, false),
+          ),
           title: Text("Detail", style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.white,
 

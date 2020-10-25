@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/EditPost/edit_post.dart';
+import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/petrescue_theme.dart';
@@ -13,6 +14,7 @@ import 'package:petrescue/widgets/postFeed/request_page.dart';
 class PostHome extends StatefulWidget {
   final List<Post> listOfPost;
 
+
   const PostHome({Key key, this.listOfPost}) : super(key: key);
   @override
   _PostHomeState createState() => _PostHomeState();
@@ -20,9 +22,10 @@ class PostHome extends StatefulWidget {
 
 class _PostHomeState extends State<PostHome> {
   int _currentIndex = 0;
+
   final List<Widget> _pages = [
-    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last,),
-    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last),
+    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last, postBloc: bloc,),
+    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last, postBloc: bloc),
     Timeline(postModel: listOfPosts[0],),
     ProfileTab(postModel: listOfPosts[0],),
   ];

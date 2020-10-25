@@ -16,8 +16,9 @@ class PostBloc {
   Stream<PostState> get outputStream => _outputStateStreamController.stream;
 
   PostBloc() {
-    void onSortOptionChanged(PostEvent _event) {
+    void onOptionDetected(PostEvent _event) {
       String statusTag = _event.selectedSort;
+
       if (_event.hasSortRquest) {
         List<Post> newList = [];
         listOfPosts.forEach((element) {
@@ -26,10 +27,16 @@ class PostBloc {
           }
         });
       }
+
+      else if(_event.hasDeleteRequest)
+      {
+        _state.visiblePostTree.remove(_event.selectedPost);
+      }
+
       _outputStateStreamController.sink.add(_state);
     }
 
-    _inputEventStreamController.stream.listen(onSortOptionChanged);
+    _inputEventStreamController.stream.listen(onOptionDetected);
   }
 
   void dispose() {
@@ -53,3 +60,4 @@ class PostBlocProvider extends InheritedWidget {
     throw UnimplementedError();
   }
 }
+final bloc = PostBloc();

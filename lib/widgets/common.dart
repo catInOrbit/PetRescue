@@ -236,7 +236,7 @@ class DetailCardButton extends StatelessWidget {
             if (!isTimeline)
               return TrackingPage();
             else
-              return Timeline();
+              return Timeline(postModel: postModel,);
           }));
         },
         child: Container(
