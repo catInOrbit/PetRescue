@@ -3,10 +3,12 @@ import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/tabicondata.dart';
+import 'package:petrescue/notification/NotiScreen.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/notification_screen.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
 import 'package:petrescue/widgets/postFeed/request_page.dart';
@@ -27,6 +29,7 @@ class _PostHomeState extends State<PostHome> {
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last, postBloc: bloc,),
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last, postBloc: bloc),
     Timeline(postModel: listOfPosts[0],),
+    NotificationScreen(),
     ProfileTab(postModel: listOfPosts[0],),
   ];
 
@@ -72,6 +75,16 @@ class _PostHomeState extends State<PostHome> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
+
+        BottomNavigationBarItem(
+          backgroundColor: PetRescueTheme.darkGreen,
+          icon: Icon(Icons.add_alert),
+          title: Text(
+            'Notification',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+
         BottomNavigationBarItem(
           backgroundColor: Colors.redAccent,
           icon: Icon(Icons.settings),
@@ -97,19 +110,6 @@ class _PostHomeState extends State<PostHome> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: bottomNavBar,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) {
-                 return EditPost();
-                }),
-          );
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.redAccent,
-      ),
     );
   }
 }

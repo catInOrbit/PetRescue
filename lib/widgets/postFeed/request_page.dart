@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_state.dart';
 import 'package:petrescue/models/post_model.dart';
@@ -24,16 +25,16 @@ class _RequestPostPageState extends State<RequestPostPage> {
     PostState state = PostState();
     return Scaffold(
       appBar: AppBar(
-        leading: Container(),
+        leading:  IconButton(
+          icon: const Icon(Icons.add_circle_outline, color: Colors.redAccent,),
+          tooltip: "View notification",
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => EditPost(),));
+          },
+        ),
         backgroundColor: Colors.white,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.add_alert, color: Colors.black,),
-            tooltip: "View notification",
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen(),));
-            },
-          )
+
         ],
       ),
       body: StreamBuilder(
