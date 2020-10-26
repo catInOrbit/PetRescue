@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
+import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/tabicondata.dart';
 import 'package:petrescue/notification/NotiScreen.dart';
@@ -29,7 +30,7 @@ class _PostHomeState extends State<PostHome> {
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last, postBloc: bloc,),
     RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last, postBloc: bloc),
     Timeline(postModel: listOfPosts[0],),
-    NotificationScreen(),
+    NotiScreen(),
     ProfileTab(postModel: listOfPosts[0],),
   ];
 
@@ -87,7 +88,7 @@ class _PostHomeState extends State<PostHome> {
 
         BottomNavigationBarItem(
           backgroundColor: Colors.redAccent,
-          icon: Icon(Icons.settings),
+          icon: Icon(Icons.account_circle),
           title: Text(
             'Profile',
             style: TextStyle(fontWeight: FontWeight.bold),

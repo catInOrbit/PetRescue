@@ -27,49 +27,48 @@ class _NotiScreenState extends State<NotiScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: HexColor('FFB9AC'),
-          //  elevation: 0,
-            title: Text("Messengers"),
-            centerTitle: true,
-            bottom: TabBar(
-              // isScrollable: true,
-              //controller: tabController,
-              tabs: <Widget>[
-                Tab(text: "Chats"),
-                Tab(
-                  text: 'Notifications',
-                ),
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: <Widget>[
-              Center(
-                child: Column(
-                  children: [ChatWidget()],
-                ),
-              ),
-              Scaffold(
-         //       backgroundColor: HexColor('FFB9AC'),
-                body: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-
-                      Center(
-                        child: NotifiSecond(),
-                      ),
-                    ],
-                  ),
-                ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: HexColor('FFB9AC'),
+        //  elevation: 0,
+          title: Text("Messengers"),
+          centerTitle: true,
+          bottom: TabBar(
+            // isScrollable: true,
+            //controller: tabController,
+            tabs: <Widget>[
+              Tab(text: "Chats"),
+              Tab(
+                text: 'Notifications',
               ),
             ],
           ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            // Center(
+            //   child: Column(
+            //     children: [ChatWidget()],
+            //   ),
+            // ),
+            ChatWidget(),
+            Scaffold(
+       //       backgroundColor: HexColor('FFB9AC'),
+              body: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+
+                    Center(
+                      child: NotifiSecond(),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

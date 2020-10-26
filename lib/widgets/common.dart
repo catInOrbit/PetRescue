@@ -114,7 +114,7 @@ class ActionKeyword extends StatelessWidget {
     }
 
     return Container(
-      height: 38,
+      height: 50,
       padding: const EdgeInsets.only(
         left: 12,
         right: 19,
@@ -127,17 +127,21 @@ class ActionKeyword extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 60,
+            width: 80,
             child: InkWell(
               onTap: () {
                 print("agag");
               },
               child: Container(
+
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
                 child: Text(
                   text,
                   style: TextStyle(
                     color: colorScheme[PetRescueThemeColorType.KeyWord.index],
-                    fontSize: 18,
+                    fontSize: 20,
                     fontFamily: "Lato",
                     fontWeight: FontWeight.w700,
                   ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/notification/Colors.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
-import 'package:petrescue/models/user.dart';
-import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/models/message_model.dart';
-import 'package:petrescue/Profile/models/user_model.dart';
+import 'package:petrescue/models/user.dart';
 
 
 class ChatScreen extends StatefulWidget {
@@ -74,7 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundImage: NetworkImage(message.sender.imageURL),
+                  backgroundImage: AssetImage(message.sender.imageURL),
                 ),
               ),
             ],
@@ -130,7 +129,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundImage: NetworkImage(message.sender.imageURL),
+                  backgroundImage: AssetImage(message.sender.imageURL),
                 ),
               ),
               SizedBox(
@@ -199,7 +198,7 @@ class _ChatScreenState extends State<ChatScreen> {
           text: TextSpan(
             children: [
               TextSpan(
-                  text: widget.user.fullNanme,
+                  text: widget.user.imageURL,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
@@ -242,7 +241,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 final Message message = messages[index];
                 final bool isMe = message.sender.id == currentUser.id;
                 final bool isSameUser = prevUserId == message.sender.id;
-                prevUserId = message.sender.id;
+                prevUserId = message.sender.id as int;
                 return _chatBubble(message, isMe, isSameUser);
               },
             ),

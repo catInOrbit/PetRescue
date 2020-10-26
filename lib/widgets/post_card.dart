@@ -280,13 +280,13 @@ class _PostCardState extends State<PostCard> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                        CrossAxisAlignment.end,
                                         children: [
                                           Container(
-                                            height: 33,
+                                            height: 45,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(5),
+                                              BorderRadius.circular(20),
                                               color: Color(0xffebf3fa),
                                             ),
                                             padding: const EdgeInsets.only(
@@ -297,6 +297,7 @@ class _PostCardState extends State<PostCard> {
                                             ),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 SizedBox(
                                                   width: 47,
@@ -304,7 +305,7 @@ class _PostCardState extends State<PostCard> {
                                                     "Contact",
                                                     style: TextStyle(
                                                       color: Colors.black,
-                                                      fontSize: 13,
+                                                      fontSize: 15,
                                                       fontFamily: "Lato",
                                                       fontWeight:
                                                       FontWeight.w700,
@@ -423,8 +424,8 @@ class _PostCardState extends State<PostCard> {
                         _showPopupMenu(context);
                       },
                       child: Ink(
-                        width: 50,
-                        height: 50,
+                        width: 30,
+                        height: 30,
                         color: Colors.blue,
                         child: Container(
                           height: 50,

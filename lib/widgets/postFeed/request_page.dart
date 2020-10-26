@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_state.dart';
+import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/notification_screen.dart';
 import 'package:petrescue/widgets/post_card.dart';
@@ -24,17 +26,26 @@ class _RequestPostPageState extends State<RequestPostPage> {
   Widget build(BuildContext context) {
     PostState state = PostState();
     return Scaffold(
+      backgroundColor: HexColor('FFB9AC'),
       appBar: AppBar(
+        elevation: 0,
+        title: Text("Homepage", style: TextStyle(color: Colors.white),),
         leading:  IconButton(
-          icon: const Icon(Icons.add_circle_outline, color: Colors.redAccent,),
+          icon: const Icon(Icons.add_circle_outline, color: Colors.white,),
           tooltip: "View notification",
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => EditPost(),));
           },
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: HexColor('FFB9AC'),
         actions: [
-
+          IconButton(
+            icon: const Icon(Icons.menu, color: Colors.white,),
+            tooltip: "View notification",
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileTab(postModel: listOfPosts[0],),));
+            },
+          ),
         ],
       ),
       body: StreamBuilder(
