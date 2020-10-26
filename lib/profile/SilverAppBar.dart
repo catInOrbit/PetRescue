@@ -298,26 +298,29 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 class ActivityPage extends StatelessWidget {
   final Post postModel;
 
-  const ActivityPage({Key key, this.postModel}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
+    const ActivityPage({Key key, this.postModel}) : super(key: key);
+    @override
+    Widget build(BuildContext context) {
     return SingleChildScrollView(child: Progress(postModel: postModel,));
+    }
   }
-}
 
-class PageTwo extends StatelessWidget {
+  class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemExtent: 250.0,
-      itemBuilder: (context, index) => Container(
-        padding: EdgeInsets.all(10.0),
-        child: Material(
-          elevation: 4.0,
-          borderRadius: BorderRadius.circular(5.0),
-          color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
-          child: Center(
-            child: Text(index.toString()),
+  return Container(
+  padding: EdgeInsets.only(top: 10),
+  child: ListView.builder(
+  itemExtent: 250.0,
+  itemBuilder: (context, index) => Container(
+  padding: EdgeInsets.all(10.0),
+  child: Material(
+  elevation: 4.0,
+            borderRadius: BorderRadius.circular(5.0),
+            color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
+            child: Center(
+              child: Text(index.toString()),
+            ),
           ),
         ),
       ),

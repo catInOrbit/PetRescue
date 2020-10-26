@@ -100,25 +100,26 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    ButtonTheme(
-                      minWidth: 300,
-
-
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PostHome(listOfPost: listOfPosts,)),
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PostHome(listOfPost: listOfPosts,)),
+                        );
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8))),
+                        child: Center(
                           child: Text(
-                            'Sign in',
+                            'Sign in', style: TextStyle(
+                            fontSize: 20
+                          ),
                           ),
                         ),
                       ),
