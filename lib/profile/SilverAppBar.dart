@@ -78,10 +78,7 @@ class _ProfileTabState extends State<ProfileTab>
                       },
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.notifications),
-                    onPressed: () {},
-                  ),
+
                   IconButton(
                     icon: Icon(Icons.menu),
                     onPressed: () {},

@@ -11,6 +11,7 @@ class NotificationScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: PetRescueTheme.lightPink,
           appBar: AppBar(
+            backgroundColor: PetRescueTheme.darkGreen,
             title: Text("Messengers"),
             centerTitle: true,
             bottom: TabBar(

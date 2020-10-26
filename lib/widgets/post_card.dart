@@ -33,6 +33,9 @@ class _PostCardState extends State<PostCard> {
       colorScheme = PetRescueTheme.adoptPostTheme;
     else if (widget.postModel.postType == PostType.RequestPost)
       colorScheme = PetRescueTheme.requestRescuePostTheme;
+    else if (widget.postModel.postType == PostType.InRescuePost)
+      colorScheme = PetRescueTheme.inRescuedPostTheme;
+
 
     return Container(
       //TODO: Fix constraint
@@ -274,6 +277,15 @@ class _PostCardState extends State<PostCard> {
                                       ),
                                     ),
                                   ),
+
+
+                                  Positioned(
+                                    left: 245,
+                                    top: 35,
+                                    child: ActionKeyword(
+                                      postModel: widget.postModel,),
+                                  ),
+
                                   Positioned.fill(
                                     child: Align(
                                       alignment: Alignment.bottomRight,
@@ -300,12 +312,12 @@ class _PostCardState extends State<PostCard> {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 SizedBox(
-                                                  width: 47,
+                                                  width: 70,
                                                   child: Text(
                                                     "Contact",
                                                     style: TextStyle(
                                                       color: Colors.black,
-                                                      fontSize: 15,
+                                                      fontSize: 18,
                                                       fontFamily: "Lato",
                                                       fontWeight:
                                                       FontWeight.w700,
@@ -316,13 +328,15 @@ class _PostCardState extends State<PostCard> {
                                                 Container(
                                                   width: 22,
                                                   height: 20,
+                                                  child: Icon(
+                                                    Icons.call
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
                                           SizedBox(height: 7),
-                                          ActionKeyword(
-                                            postModel: widget.postModel,),
+
                                         ],
                                       ),
                                     ),
@@ -334,7 +348,7 @@ class _PostCardState extends State<PostCard> {
                                         direction: Axis.vertical,
                                         children: [
                                           SizedBox(
-                                            width: 250,
+                                            width: 240,
                                             height: 80,
                                             child: Text(
                                               "Kitten was found strad wa  daw awd  dwadnde wda wa d dwqdad d in a drain. I have brought it home and the kitten is being taken....",

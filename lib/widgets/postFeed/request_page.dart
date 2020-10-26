@@ -5,6 +5,7 @@ import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_state.dart';
 import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/notification_screen.dart';
@@ -22,11 +23,17 @@ class RequestPostPage extends StatefulWidget {
 }
 
 class _RequestPostPageState extends State<RequestPostPage> {
+
   @override
   Widget build(BuildContext context) {
+    Color appBarColor;
+    if(widget.sortType == PostType.RequestPost.toString().split('.').last)
+      appBarColor = Colors.redAccent;
+    else if(widget.sortType == PostType.AdoptPost.toString().split('.').last)
+      appBarColor = PetRescueTheme.darkGreen;
+
     PostState state = PostState();
     return Scaffold(
-      backgroundColor: HexColor('FFB9AC'),
       appBar: AppBar(
         elevation: 0,
         title: Text("Homepage", style: TextStyle(color: Colors.white),),
@@ -37,7 +44,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => EditPost(),));
           },
         ),
-        backgroundColor: HexColor('FFB9AC'),
+        backgroundColor: appBarColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.menu, color: Colors.white,),
@@ -65,9 +72,10 @@ class _RequestPostPageState extends State<RequestPostPage> {
     );
   }
 
+
   List<Post> sortedList(List<Post> listOfPost)
   {
-    if(widget.sortType == PostType.RequestPost.toString().split('.').last)
+    if(widget.sortType == PostType.RequestPost.toString().split('.').last || widget.sortType == PostType.InRescuePost.toString().split('.').last)
       return listOfPost.where((element) => element.postType.toString().split('.').last == widget.sortType).toList();
 
     else if(widget.sortType == PostType.AdoptPost.toString().split('.').last)

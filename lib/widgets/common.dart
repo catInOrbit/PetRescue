@@ -107,43 +107,41 @@ class ActionKeyword extends StatelessWidget {
     String text;
     if (postModel.postType == PostType.AdoptPost) {
       text = "Adopt";
-      colorScheme = PetRescueTheme.revertAdoptPostTheme;
+      colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
     } else if (postModel.postType == PostType.RequestPost) {
       text = "Rescue";
-      colorScheme = PetRescueTheme.revertRescuePostTheme;
+      colorScheme = PetRescueTheme.actionWordRescuePostTheme;
     }
 
     return Container(
       height: 50,
-      padding: const EdgeInsets.only(
-        left: 12,
-        right: 19,
-        top: 7,
-        bottom: 9,
-      ),
 
       //TODO: Inkwell won't show ripple effeect
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 80,
+            width: 120,
             child: InkWell(
               onTap: () {
                 print("agag");
               },
               child: Container(
-
+                height: 45,
+                width: 60,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: colorScheme[PetRescueThemeColorType.Accent.index]
                 ),
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: colorScheme[PetRescueThemeColorType.KeyWord.index],
-                    fontSize: 20,
-                    fontFamily: "Lato",
-                    fontWeight: FontWeight.w700,
+                child: Center(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                      fontSize: 20,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),

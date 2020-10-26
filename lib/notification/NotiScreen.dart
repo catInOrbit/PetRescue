@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:petrescue/notification/Colors.dart';
 import 'package:petrescue/notification/chat_widget.dart';
 import 'package:petrescue/notification/notification_widget.dart';
+import 'package:petrescue/petrescue_theme.dart';
 
 class NotiScreen extends StatefulWidget {
   @override
@@ -32,8 +33,8 @@ class _NotiScreenState extends State<NotiScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: HexColor('FFB9AC'),
-        //  elevation: 0,
+          backgroundColor: PetRescueTheme.darkGreen,
+          //  elevation: 0,
           title: Text("Messengers"),
           centerTitle: true,
           bottom: TabBar(
@@ -56,7 +57,6 @@ class _NotiScreenState extends State<NotiScreen> {
             // ),
             ChatWidget(),
             Scaffold(
-       //       backgroundColor: HexColor('FFB9AC'),
               body: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[

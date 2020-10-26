@@ -53,9 +53,9 @@ class _PostHomeState extends State<PostHome> {
       items: [
         BottomNavigationBarItem(
           backgroundColor: Colors.redAccent,
-          icon: Icon(Icons.people),
+          icon: Icon(Icons.local_hospital),
           title: Text(
-            'Request',
+            'Rescue',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -70,9 +70,9 @@ class _PostHomeState extends State<PostHome> {
         ),
         BottomNavigationBarItem(
           backgroundColor: PetRescueTheme.orange,
-          icon: Icon(Icons.timeline),
+          icon: Icon(Icons.home),
           title: Text(
-            'Timeline',
+            'Home',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
