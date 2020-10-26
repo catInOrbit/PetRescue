@@ -278,13 +278,13 @@ class _PostCardState extends State<PostCard> {
                                     ),
                                   ),
 
-
-                                  Positioned(
-                                    left: 245,
-                                    top: 35,
-                                    child: ActionKeyword(
-                                      postModel: widget.postModel,),
-                                  ),
+                                  if(widget.postModel.postType != PostType.InRescuePost)
+                                    Positioned(
+                                      left: 245,
+                                      top: 35,
+                                      child: ActionKeyword(
+                                        postModel: widget.postModel,),
+                                    ),
 
                                   Positioned.fill(
                                     child: Align(
@@ -329,7 +329,7 @@ class _PostCardState extends State<PostCard> {
                                                   width: 22,
                                                   height: 20,
                                                   child: Icon(
-                                                    Icons.call
+                                                      Icons.call
                                                   ),
                                                 ),
                                               ],
@@ -410,7 +410,6 @@ class _PostCardState extends State<PostCard> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 27),
                           InkWell(
                             onTap: () {
                               showModalBottomSheet(
@@ -430,8 +429,8 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
                 Positioned(
-                  top: 10,
-                  right: 10,
+                    top: 10,
+                    right: 10,
                     child: InkWell(
                       onTap: () {
                         print("Tap");
@@ -442,7 +441,7 @@ class _PostCardState extends State<PostCard> {
                         height: 30,
                         color: Colors.blue,
                         child: Container(
-                          height: 50,
+                            height: 50,
                             width: 50,
                             child: Image.asset("lib/assets/setting_icon.png")
                         ),
@@ -506,7 +505,10 @@ class _PostCardState extends State<PostCard> {
   Widget showResponsibleUserRibon(Post postModel)
   {
     if(postModel.postType == PostType.AdoptPost)
-      return CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,);
+      return Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,),
+      );
     else if((postModel.postType == PostType.RequestPost && postModel.acceptedRequestUser != null))
       return OngoingRescuerRibbon(postModel: postModel,);
     else

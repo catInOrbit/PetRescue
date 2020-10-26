@@ -59,7 +59,8 @@ class TimelineBuilder extends StatelessWidget {
       controller: controller,
       reverse: reverse,
       primary: primary,
-      itemBuilder: (context, index) {
+      itemBuilder: (context, index)
+      {
         final child = children[index];
 
         Widget indicator;
@@ -98,6 +99,7 @@ class TimelineBuilder extends StatelessWidget {
 
         return IntrinsicHeight(
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:
             isLeftAligned ? timelineTile : timelineTile.reversed.toList(),

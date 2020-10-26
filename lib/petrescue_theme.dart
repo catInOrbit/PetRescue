@@ -9,7 +9,7 @@ class PetRescueTheme
    static final Color lightGrey = Color.fromRGBO(235, 243, 250, 1);
 
    static List<Color> adoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
-   static List<Color> inRescuedPostTheme = [lime, Colors.white]; //accent, keyword
+   static List<Color> inRescuedPostTheme = [Colors.white, lime]; //accent, keyword
 
    static List<Color> requestRescuePostTheme = [Colors.white, lightPink];
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];

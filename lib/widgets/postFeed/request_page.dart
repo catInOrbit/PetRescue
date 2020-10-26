@@ -13,7 +13,7 @@ import 'package:petrescue/widgets/post_card.dart';
 
 class RequestPostPage extends StatefulWidget {
   final List<Post> listOfPost;
-  final String sortType;
+  final List<String> sortType;
   final PostBloc postBloc;
 
   const RequestPostPage({Key key, @required this.listOfPost, this.sortType, this.postBloc}) : super(key: key);
@@ -27,9 +27,9 @@ class _RequestPostPageState extends State<RequestPostPage> {
   @override
   Widget build(BuildContext context) {
     Color appBarColor;
-    if(widget.sortType == PostType.RequestPost.toString().split('.').last)
+    if(widget.sortType.contains(PostType.RequestPost.toString().split('.').last))
       appBarColor = Colors.redAccent;
-    else if(widget.sortType == PostType.AdoptPost.toString().split('.').last)
+    else if(widget.sortType.contains(PostType.AdoptPost.toString().split('.').last))
       appBarColor = PetRescueTheme.darkGreen;
 
     PostState state = PostState();
@@ -75,10 +75,13 @@ class _RequestPostPageState extends State<RequestPostPage> {
 
   List<Post> sortedList(List<Post> listOfPost)
   {
-    if(widget.sortType == PostType.RequestPost.toString().split('.').last || widget.sortType == PostType.InRescuePost.toString().split('.').last)
-      return listOfPost.where((element) => element.postType.toString().split('.').last == widget.sortType).toList();
 
-    else if(widget.sortType == PostType.AdoptPost.toString().split('.').last)
-      return listOfPost.where((element) => element.postType.toString().split('.').last == widget.sortType).toList();
+    return listOfPost.where((element) =>  widget.sortType.contains(element.postType.toString().split('.').last)).toList();
+
+    // if(widget.sortType.contains(PostType.RequestPost.toString().split('.').last) || widget.sortType .contains(PostType.InRescuePost.toString().split('.').last))
+    //   return listOfPost.where((element) =>  widget.sortType.contains(element.postType.toString().split('.').last)).toList();
+    //
+    // else if(widget.sortType.contains(PostType.AdoptPost.toString().split('.').last))
+    //   return listOfPost.where((element) => element.postType.toString().split('.').last widget.sortType).toList();
   }
 }

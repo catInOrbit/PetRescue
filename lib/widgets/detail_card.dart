@@ -130,7 +130,7 @@ class DetailCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    height: 29,
+                                    height: 35,
                                     width: MediaQuery.of(context).size.width,
                                     padding: const EdgeInsets.only(
                                       right: 40,
@@ -186,7 +186,8 @@ class DetailCard extends StatelessWidget {
                                         SizedBox(width: 6),
                                         Expanded(
                                           child: SizedBox(
-                                            width: 77,
+                                            width: 120,
+                                            height: 50,
                                             child: Text(
                                               "6-8 Months",
                                               style: TextStyle(
@@ -282,6 +283,8 @@ class DetailCard extends StatelessWidget {
                                     ),
                                     SizedBox(width: 3),
                                     //TODO: Find way to expand children
+
+                                    if(postModel.postType != PostType.InRescuePost)
                                     DetailCardButton(postModel: postModel,isTimeline: false,)
                                   ],
                                 ),
@@ -302,7 +305,7 @@ class DetailCard extends StatelessWidget {
                         ),
 
                         SizedBox(height: 20,),
-                        DetailCardButton(postModel: postModel, isTimeline: true,)
+                          DetailCardButton(postModel: postModel, isTimeline: true,)
                       ],
                     ),
                   )
@@ -335,6 +338,14 @@ class DetailCard extends StatelessWidget {
           break;
 
         case PostType.AdoptPost:
+          returnList.add(UserInfoTile(user: postModel.currentUser,));
+          returnList.add(SizedBox(height: 10,));
+          postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});
+          return Column(
+              children: returnList
+          );
+
+        case PostType.InRescuePost:
           returnList.add(UserInfoTile(user: postModel.currentUser,));
           returnList.add(SizedBox(height: 10,));
           postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});

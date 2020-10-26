@@ -9,6 +9,7 @@ import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/homepage.dart';
 import 'package:petrescue/screens/notification_screen.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
@@ -27,9 +28,9 @@ class _PostHomeState extends State<PostHome> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.RequestPost.toString().split('.').last, postBloc: bloc,),
-    RequestPostPage(listOfPost: listOfPosts, sortType: PostType.AdoptPost.toString().split('.').last, postBloc: bloc),
-    Timeline(postModel: listOfPosts[0],),
+    RequestPostPage(listOfPost: listOfPosts, sortType: ["InRescuePost", "RequestPost"], postBloc: bloc,),
+    RequestPostPage(listOfPost: listOfPosts, sortType: ["AdoptPost"], postBloc: bloc),
+    HomePage(),
     NotiScreen(),
     ProfileTab(postModel: listOfPosts[0],),
   ];
