@@ -10,6 +10,7 @@ class PetRescueTheme
 
    static List<Color> adoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
    static List<Color> inRescuedPostTheme = [Colors.white, lime]; //accent, keyword
+   static List<Color> revertInRescuedPostTheme = [lime, Colors.white]; //accent, keyword
 
    static List<Color> requestRescuePostTheme = [Colors.white, lightPink];
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];

@@ -53,7 +53,6 @@ dev_dependencies:
   image_picker: ^0.6.7+12
   flutter_custom_dialog: ^1.0.20
   path_provider: ^1.6.21
-
   bloc: ^6.0.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

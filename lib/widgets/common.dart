@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/main.dart';
@@ -487,42 +488,65 @@ class OngoingRescuerRibbon extends StatelessWidget {
   }
 }
 
-class HomePagePost extends StatelessWidget {
+class HomePagePost extends StatefulWidget {
   final Post postModel;
-  List<Color> colorScheme;
 
   HomePagePost({Key key, this.postModel}) : super(key: key);
 
+  @override
+  _HomePagePostState createState() => _HomePagePostState();
+}
+
+
+
+class _HomePagePostState extends State<HomePagePost> {
+  List<Color> colorScheme;
+
   List<Widget> postList = [];
 
-  @override
-  Widget build(BuildContext context) {
-    if(postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.adoptPostTheme;
-    else if (postModel.postType == PostType.RequestPost)
-      colorScheme = PetRescueTheme.requestRescuePostTheme;
-    else if (postModel.postType == PostType.InRescuePost)
-      colorScheme = PetRescueTheme.inRescuedPostTheme;
+  Widget statusTitle(Post postModel)
+  {
+    List<Color> colorScheme;
+    String label = "";
 
-    return TimelineBuilder(
-      isLeftAligned: true,
-      children: buildTimelinePost(context, listOfPosts),
-      indicators: buildIndicators(postList),
+    switch(postModel.postType)
+    {
+      case PostType.InRescuePost:
+        colorScheme = PetRescueTheme.revertInRescuedPostTheme;
+        label = "Rescue In Progress";
+        break;
+      case PostType.AdoptPost:
+        colorScheme = PetRescueTheme.adoptPostTheme;
+        label = "Rescued pet";
+
+        break;
+      case PostType.RequestPost:
+        colorScheme = PetRescueTheme.revertRescuePostTheme;
+        label = "Request Rescue";
+        break;
+    }
+
+    return Row(
+      children: [
+        Chip(
+          label: Text(label),
+          backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
+          labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 18),
+        ),
+      ],
     );
   }
 
-  Widget createTimelinePost(BuildContext context, Post postModel)
-  {
+  Widget createTimelinePost(BuildContext context, Post postModel) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+
       children: [
-        ListTile(
-          leading: CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 30,),
-          title: Text("06/06/12") ,
-        ),
+
         Container(
           //TODO: Fix constraint
-          height: 400,
+          height: 350,
           child: Center(
             child: InkWell(
               onTap: () {
@@ -550,8 +574,8 @@ class HomePagePost extends StatelessWidget {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg")),
-                                borderRadius: BorderRadius.circular(35),
+                                        postModel.imageThumbnail), fit: BoxFit.cover),
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                                 gradient: LinearGradient(
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
@@ -624,7 +648,8 @@ class HomePagePost extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 5,
                                 blurRadius: 7,
-                                offset: Offset(0, 3), // changes position of shadow
+                                offset: Offset(
+                                    0, 3), // changes position of shadow
                               ),
                             ],
                           ),
@@ -704,7 +729,7 @@ class HomePagePost extends StatelessWidget {
                                             ),
                                             SizedBox(width: 7),
                                             SizedBox(
-                                              width: 99,
+                                              width: 70,
                                               child: Text(
                                                 "6-8  Months",
                                                 style: TextStyle(
@@ -772,22 +797,110 @@ class HomePagePost extends StatelessWidget {
     );
   }
 
-  List<Widget> buildTimelinePost(BuildContext context, List<Post> listOfPost)
-  {
-    listOfPost.forEach((post) {
-      if(post.acceptedRequestUser != null)
-        postList.add(createTimelinePost(context, post));
-    });
+  @override
+  Widget build(BuildContext context) {
+    if (widget.postModel.postType == PostType.AdoptPost)
+      colorScheme = PetRescueTheme.adoptPostTheme;
+    else if (widget.postModel.postType == PostType.RequestPost)
+      colorScheme = PetRescueTheme.requestRescuePostTheme;
+    else if (widget.postModel.postType == PostType.InRescuePost)
+      colorScheme = PetRescueTheme.inRescuedPostTheme;
 
-    return postList;
-  }
+    return  Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+              decoration:
+              BoxDecoration(
+
+                image: DecorationImage(
+                    image: AssetImage("lib/assets/tracking_page.png"),
+                ),
+              ),
+
+              child: LayoutBuilder(
+                builder: (_, constraints) =>
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight: constraints.maxHeight - 48,),
+                            child: Theme(
+                              data:
+                              ThemeData(primaryColor: PetRescueTheme.lightPink,
+                                  fontFamily: 'Montserrat'),
+                              child: Stepper(
+                           physics: NeverScrollableScrollPhysics(),
+                                steps: [
+                                  ...listOfPosts.where((element) => element.acceptedRequestUser != null)
+                                      .map(
+                                        (post) =>
+                                        Step(
+                                          // isActive: location.isHere || location.passed,
+                                          title:
+                                             Row(
+                                               children: [
+                                                 CircleAvatar(
+                                                  backgroundImage: NetworkImage(
+                                                      post.acceptedRequestUser.imageURL), maxRadius: 30,),
+                                                  SizedBox(width: 20,),
+                                                 statusTitle(post)
+                                               ],
+                                             ),
+
+                                          subtitle: Text(post.timeCreated.toString(), style: TextStyle(fontSize: 15),),
+
+                                          // content: Align(
+                                          //   child: Image.asset(
+                                          //       'lib/assets/truck.png'),
+                                          //   alignment: Alignment.centerLeft,
+                                          // ),
+
+                                          content: createTimelinePost(context, post),
+                                          // state: location.passed
+                                          //     ? StepState.complete
+                                          //     : location.isHere
+                                          //     ? StepState.editing
+                                          //     : StepState.indexed,
+                                        ),
+                                  )
+                                      .toList()
+                                ],
+                                currentStep: 0,
+                                controlsBuilder: (BuildContext context,
+                                    {VoidCallback onStepContinue,
+                                      VoidCallback onStepCancel}) {
+                                  return Container();
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+              )
+      ),
+    );
 
 
-  List<Widget> buildIndicators(List<Widget> listOfPost)
-  {
-    List<Widget> list = [];
-    listOfPost.forEach((element) {list.add(Icon(Icons.timer));});
-    return list;
+    // List<Widget> buildTimelinePost(BuildContext context,
+    //     List<Post> listOfPost) {
+    //   listOfPost.forEach((post) {
+    //     if (post.acceptedRequestUser != null)
+    //       postList.add(createTimelinePost(context, post));
+    //   });
+    //
+    //   return postList;
+    // }
+    //
+    // List<Widget> buildIndicators(List<Widget> listOfPost) {
+    //   List<Widget> list = [];
+    //   listOfPost.forEach((element) {
+    //     list.add(Icon(Icons.timer));
+    //   });
+    //   return list;
+    // }
   }
 }
-

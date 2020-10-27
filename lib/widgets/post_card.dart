@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/constants.dart';
@@ -67,8 +68,8 @@ class _PostCardState extends State<PostCard> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg")),
-                            borderRadius: BorderRadius.circular(35),
+                                    widget.postModel.imageThumbnail), fit: BoxFit.cover),
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
@@ -378,12 +379,20 @@ class _PostCardState extends State<PostCard> {
                             thickness: 2,
                           ),
 
-                          Center(
-                            child: Text(widget.postModel.location, style: TextStyle(
-                                color: colorScheme[PetRescueThemeColorType
-                                    .Accent.index],
-                                fontSize: 20
-                            ),),
+                          Row(
+
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.location_on, color: Colors.white,),
+                              SizedBox(width: 20,),
+                              Center(
+                                child: Text(widget.postModel.location, style: TextStyle(
+                                    color: colorScheme[PetRescueThemeColorType
+                                        .Accent.index],
+                                    fontSize: 20
+                                ),),
+                              ),
+                            ],
                           ),
 
                           Divider(
