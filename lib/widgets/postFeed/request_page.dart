@@ -32,10 +32,18 @@ class _RequestPostPageState extends State<RequestPostPage> {
   @override
   Widget build(BuildContext context) {
     Color appBarColor;
+    String appbarText;
     if(widget.sortType.contains(PostType.RequestPost.toString().split('.').last))
-      appBarColor = Colors.redAccent;
+      {
+        appbarText = "Rescue";
+        appBarColor = Colors.redAccent;
+
+      }
     else if(widget.sortType.contains(PostType.AdoptPost.toString().split('.').last))
-      appBarColor = PetRescueTheme.darkGreen;
+      {
+        appbarText = "Adopt";
+        appBarColor = PetRescueTheme.darkGreen;
+      }
     final _scaffoldKey = GlobalKey<ScaffoldState>();
 
     PostState state = PostState();
@@ -103,7 +111,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
       ),
       appBar: AppBar(
         elevation: 0,
-        title: Text("Homepage", style: TextStyle(color: Colors.white),),
+        title: Text(appbarText, style: TextStyle(color: Colors.white),),
         leading:  IconButton(
           icon: const Icon(Icons.add_circle_outline, color: Colors.white,),
           tooltip: "View notification",

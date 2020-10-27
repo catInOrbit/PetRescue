@@ -36,7 +36,7 @@ class _NotiScreenState extends State<NotiScreen> {
           backgroundColor: PetRescueTheme.darkGreen,
           //  elevation: 0,
           title: Text("Messengers"),
-          centerTitle: true,
+          centerTitle: false,
           bottom: TabBar(
             // isScrollable: true,
             //controller: tabController,

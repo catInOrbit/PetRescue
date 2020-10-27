@@ -6,6 +6,7 @@ import 'package:petrescue/constants.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
@@ -295,45 +296,52 @@ class _PostCardState extends State<PostCard> {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.end,
                                         children: [
-                                          Container(
-                                            height: 45,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(20),
-                                              color: Color(0xffebf3fa),
-                                            ),
-                                            padding: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 14,
-                                              top: 9,
-                                              bottom: 4,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  width: 70,
-                                                  child: Text(
-                                                    "Contact",
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 18,
-                                                      fontFamily: "Lato",
-                                                      fontWeight:
-                                                      FontWeight.w700,
+                                          InkWell(
+                                            onTap: (){
+                                              Navigator.push(context, MaterialPageRoute(
+                                                builder: (context) => ProfileTab(postModel: listOfPosts[0],),
+                                              ));
+                                            },
+                                            child: Container(
+                                              height: 45,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(20),
+                                                color: Color(0xffebf3fa),
+                                              ),
+                                              padding: const EdgeInsets.only(
+                                                left: 8,
+                                                right: 14,
+                                                top: 9,
+                                                bottom: 4,
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 70,
+                                                    child: Text(
+                                                      "Contact",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 18,
+                                                        fontFamily: "Lato",
+                                                        fontWeight:
+                                                        FontWeight.w700,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(width: 4),
-                                                Container(
-                                                  width: 22,
-                                                  height: 20,
-                                                  child: Icon(
-                                                      Icons.call
+                                                  SizedBox(width: 4),
+                                                  Container(
+                                                    width: 22,
+                                                    height: 20,
+                                                    child: Icon(
+                                                        Icons.call
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                           SizedBox(height: 7),

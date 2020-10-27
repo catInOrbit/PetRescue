@@ -147,7 +147,9 @@ class ActionKeyword extends StatelessWidget {
             width: 120,
             child: InkWell(
               onTap: () {
-                print("agag");
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => DetailCard(postModel: postModel,),
+                ));
               },
               child: Container(
                 height: 45,

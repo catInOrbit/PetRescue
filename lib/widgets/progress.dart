@@ -246,59 +246,7 @@ class Progress extends StatelessWidget {
                                   ),
                                   Positioned.fill(
                                     child: Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 33,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                              color: Color(0xffebf3fa),
-                                            ),
-                                            padding: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 14,
-                                              top: 9,
-                                              bottom: 4,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                SizedBox(
-                                                  width: 47,
-                                                  child: Text(
-                                                    "Contact",
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 13,
-                                                      fontFamily: "Lato",
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(width: 4),
-                                                Container(
-                                                  width: 22,
-                                                  height: 20,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(height: 7),
-                                          ActionKeyword(
-                                            postModel: postModel,),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: Align(
-                                      alignment: Alignment.bottomLeft,
+                                      alignment: Alignment.bottomCenter,
                                       child: Wrap(
                                         direction: Axis.vertical,
                                         children: [
