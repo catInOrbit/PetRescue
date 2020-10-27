@@ -8,16 +8,22 @@ class PetRescueTheme
    static final Color lime = Color.fromRGBO(204, 202, 152, 1);
    static final Color lightGrey = Color.fromRGBO(235, 243, 250, 1);
 
-   static List<Color> adoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
+   static List<Color> adoptPostTheme = [Colors.black, Colors.white]; //accent, keyword
    static List<Color> inRescuedPostTheme = [Colors.white, lime]; //accent, keyword
    static List<Color> revertInRescuedPostTheme = [lime, Colors.white]; //accent, keyword
 
-   static List<Color> requestRescuePostTheme = [Colors.white, lightPink];
+   static List<Color> requestRescuePostTheme = [Colors.black, Colors.white];
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];
    static List<Color> statusTagsRescueTheme = [orange, Colors.white];
    static List<Color> revertAdoptPostTheme = [Colors.white, darkGreen]; //accent, keyword
    static List<Color> actionWordAdoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
    static List<Color> actionWordRescuePostTheme = [Colors.orange, Colors.white]; //accent, keyword
+
+   static List<Color> userRibbonRescuePostTheme = [Colors.white, Colors.black];
+   static List<Color> adoptPostStatusTheme = [Colors.white, Colors.black]; //accent, keyword
+
+
+
 
 }
 

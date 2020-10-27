@@ -106,90 +106,67 @@ class DetailCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    color: Colors.white,
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 390.30,
-                          padding: const EdgeInsets.only(
-                            right: 9,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 35,
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: const EdgeInsets.only(
-                                      right: 40,
-                                      bottom: 4,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        SizedBox(
-                                          width: 166,
-                                          height: 29,
-                                          child: Text(
-                                            "Stranded Kitten",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 32),
-                                        Container(
-                                          width: 5,
-                                          height: 4.80,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(width: 6),
-                                        SizedBox(
-                                          width: 31,
-                                          child: Text(
-                                            "Male",
-                                            style: TextStyle(
-                                              color: Color(0xff5e5d5d),
-                                              fontSize: 14,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 6),
-                                        Container(
-                                          width: 5,
-                                          height: 4.80,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(width: 6),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 120,
-                                            height: 50,
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 390.30,
+                            padding: const EdgeInsets.only(
+                              right: 9,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: 35,
+                                      width: MediaQuery.of(context).size.width,
+                                      padding: const EdgeInsets.only(
+                                        right: 40,
+                                        bottom: 4,
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          SizedBox(
+                                            width: 166,
+                                            height: 29,
                                             child: Text(
-                                              "6-8 Months",
+                                              "Stranded Kitten",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 32),
+                                          Container(
+                                            width: 5,
+                                            height: 4.80,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          SizedBox(width: 6),
+                                          SizedBox(
+                                            width: 31,
+                                            child: Text(
+                                              "Male",
                                               style: TextStyle(
                                                 color: Color(0xff5e5d5d),
                                                 fontSize: 14,
@@ -198,115 +175,140 @@ class DetailCard extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 57,
-                                    height: 15,
-                                    child: Text(
-                                      "House cat",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                        fontFamily: "Lato",
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                  child: Row(
-                                    children:
-                                      getAllStatuses(postModel)
-
-                                  )),
-                              SizedBox(height: 22),
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                buildUserTiles(postModel),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-
-
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 22),
-                              IntrinsicHeight(
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Container(
-                                      height: 53,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(26.50),
-                                        color: Color(0xffebf3fa),
-                                      ),
-                                      padding: const EdgeInsets.only(
-                                        left: 23,
-                                        right: 31,
-                                        top: 11,
-                                        bottom: 13,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Flexible(
-                                            child: InkWell(
-                                              child: Container(
-                                                height: 53,
-                                                child: Text(
-                                                  "Contact",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 24,
-                                                    fontFamily: "Lato",
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
+                                          SizedBox(width: 6),
+                                          Container(
+                                            width: 5,
+                                            height: 4.80,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          SizedBox(width: 6),
+                                          Expanded(
+                                            child: SizedBox(
+                                              width: 120,
+                                              height: 50,
+                                              child: Text(
+                                                "6-8 Months",
+                                                style: TextStyle(
+                                                  color: Color(0xff5e5d5d),
+                                                  fontSize: 14,
+                                                  fontFamily: "Lato",
+                                                  fontWeight: FontWeight.w400,
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          SizedBox(width: 25.07),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(width: 3),
-                                    //TODO: Find way to expand children
-
-                                    if(postModel.postType != PostType.InRescuePost)
-                                    DetailCardButton(postModel: postModel,isTimeline: false,)
+                                    SizedBox(
+                                      width: 57,
+                                      height: 15,
+                                      child: Text(
+                                        "House cat",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontFamily: "Lato",
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        StoryDetail(),
-                        SizedBox(height: 20),
-                        InkWell(
-                            onTap: (){
-                              // Navigator.push(context, MaterialPageRoute(
-                              //
-                              // ))
-                            },
-                            child: TimelineDetail()
-                        ),
+                                SizedBox(height: 10),
+                                Container(
+                                    child: Row(
+                                      children:
+                                        getAllStatuses(postModel)
 
-                        SizedBox(height: 20,),
-                          DetailCardButton(postModel: postModel, isTimeline: true,)
-                      ],
+                                    )),
+                                SizedBox(height: 22),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                  buildUserTiles(postModel),
+                                    SizedBox(height: 20),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+
+
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 22),
+                                IntrinsicHeight(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        height: 53,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(26.50),
+                                          color: Color(0xffebf3fa),
+                                        ),
+                                        padding: const EdgeInsets.only(
+                                          left: 23,
+                                          right: 31,
+                                          top: 11,
+                                          bottom: 13,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Flexible(
+                                              child: InkWell(
+                                                child: Container(
+                                                  height: 53,
+                                                  child: Text(
+                                                    "Contact",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 24,
+                                                      fontFamily: "Lato",
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: 25.07),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(width: 3),
+                                      //TODO: Find way to expand children
+
+                                      if(postModel.postType != PostType.InRescuePost)
+                                      DetailCardButton(postModel: postModel,isTimeline: false,)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          StoryDetail(),
+                          SizedBox(height: 20),
+                          InkWell(
+                              onTap: (){
+                                // Navigator.push(context, MaterialPageRoute(
+                                //
+                                // ))
+                              },
+                              child: TimelineDetail()
+                          ),
+
+                          SizedBox(height: 20,),
+                            DetailCardButton(postModel: postModel, isTimeline: true,)
+                        ],
+                      ),
                     ),
                   )
                 ],

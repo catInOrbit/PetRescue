@@ -24,7 +24,7 @@ class StatusTag extends StatelessWidget {
     switch(postModel.postType)
     {
       case PostType.AdoptPost:
-        colorScheme = PetRescueTheme.adoptPostTheme;
+        colorScheme = PetRescueTheme.adoptPostStatusTheme;
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
@@ -39,7 +39,7 @@ class StatusTag extends StatelessWidget {
     return Chip(
       backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
       label: Text(textData),
-      labelStyle: TextStyle(color: Colors.white, fontSize: 13),
+      labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 13),
     );
   }
 }
@@ -62,9 +62,9 @@ class UserInfoRibon extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Color> colorScheme;
     if (postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.adoptPostTheme;
+      colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
     else
-      colorScheme = PetRescueTheme.requestRescuePostTheme;
+      colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
     return Container(
       // margin: const EdgeInsets.only(left: 16.9),
       decoration: BoxDecoration(
@@ -374,46 +374,36 @@ class UserInfoTile extends StatelessWidget {
               image: DecorationImage(image: NetworkImage(user.imageURL))),
         ),
         SizedBox(width: 5),
-        Container(
-          width: 97.17,
-          height: 32,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
-                    height: 24,
-                    child: Text(
-                      user.fullNanme,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontFamily: "Lato",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
+        Column(
+          children: [
+            SizedBox(
+              height: 24,
+              width: 100,
+              child: Text(
+                user.fullNanme,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    user.job,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 11,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: "Lato",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+            ),
+            SizedBox(
+              height: 24,
+              width: 100,
+              child: Text(
+                user.job,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w400,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );
@@ -455,14 +445,6 @@ class OngoingRescuerRibbon extends StatelessWidget {
                         shape: BoxShape.circle,
                         image:
                         DecorationImage(image: NetworkImage(postModel.acceptedRequestUser.imageURL,)),
-
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Color(0x3f000000),
-                        //     blurRadius: 4,
-                        //     offset: Offset(0, 4),
-                        //   ),
-                        // ],
                       ),
                     ),
                   ),
@@ -511,7 +493,7 @@ class PostHeaderRibbon extends StatelessWidget {
     switch(postModel.postType)
     {
       case PostType.RequestPost:
-        ribbonColor = PetRescueTheme.darkGreen;
+        ribbonColor = PetRescueTheme.lightPink;
         break;
       case PostType.AdoptPost:
         ribbonColor = PetRescueTheme.darkGreen;
@@ -523,7 +505,7 @@ class PostHeaderRibbon extends StatelessWidget {
 
     return Container(
       width: 500,
-      height: 50,
+      height: 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
         color: ribbonColor
@@ -938,5 +920,33 @@ class _HomePagePostState extends State<HomePagePost> {
     //   });
     //   return list;
     // }
+  }
+}
+
+class CustomAvatars extends StatelessWidget {
+  final Post postModel;
+
+  const CustomAvatars({Key key, this.postModel}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+
+    List<Widget> list = postModel.adoptUserRequests.map((e) =>
+        Align(
+              alignment: Alignment.center,
+              child: CircleAvatar(
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(e.imageURL) , // Provide your custom image
+                ),
+              ),
+            ),
+    ).toList();
+    return Container(
+      width: 80,
+      height: 40,
+      child: Stack(
+        children: list
+      ),
+    );
   }
 }

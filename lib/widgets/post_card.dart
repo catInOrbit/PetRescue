@@ -33,7 +33,7 @@ class _PostCardState extends State<PostCard> {
     List<Color> colorScheme;
 
     if (widget.postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.adoptPostTheme;
+      colorScheme = PetRescueTheme.revertAdoptPostTheme;
     else if (widget.postModel.postType == PostType.RequestPost)
       colorScheme = PetRescueTheme.requestRescuePostTheme;
     else if (widget.postModel.postType == PostType.InRescuePost)
@@ -145,130 +145,180 @@ class _PostCardState extends State<PostCard> {
                         ),
                       ],
                     ),
-                    padding: const EdgeInsets.only(
-                      top: 6,
-                      bottom: 12,
-                    ),
-
 
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-
                         Stack(
                           children: [
+
                             PostHeaderRibbon(postModel: widget.postModel,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                UserInfoRibon(
-                                  postModel: widget.postModel,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: UserInfoRibon(
+                                    postModel: widget.postModel,
+                                  ),
                                 ),
-
-                                showResponsibleUserRibon(widget.postModel)
+                                  showResponsibleUserRibon(widget.postModel),
                               ],
                             ),
                           ]
                         ),
 
-                        Text(
-                          widget.postModel.title,
-                          style: TextStyle(
-                            color: colorScheme[PetRescueThemeColorType
-                                .Accent.index],
-                            fontSize: 20,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w900,
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Text(
+                            widget.postModel.title,
+                            style: TextStyle(
+                              color: colorScheme[PetRescueThemeColorType
+                                  .Accent.index],
+                              fontSize: 20,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Type:",
+                                style: TextStyle(
+                                  color: colorScheme[PetRescueThemeColorType
+                                      .Accent.index],
+                                  fontSize: 20,
+                                  fontFamily: "Lato",
+                                  fontStyle:  FontStyle.normal,
+                                ),
+                              ),
+
+                              SizedBox(width: 20,),
+
+                              Text(
+                                widget.postModel.petType,
+                                style: TextStyle(
+                                  color: colorScheme[PetRescueThemeColorType
+                                      .Accent.index],
+                                  fontSize: 20,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ],
                           ),
                         ),
 
 
                         //Contact button and action keyword
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => ProfileTab(postModel: listOfPosts[0],),
-                                ));
-                              },
-                              child: Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(20),
-                                  color: Color(0xffebf3fa),
-                                ),
-                                padding: const EdgeInsets.only(
-                                  left: 8,
-                                  right: 14,
-                                  top: 9,
-                                  bottom: 4,
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 70,
-                                      child: Text(
-                                        "Contact",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: "Lato",
-                                          fontWeight:
-                                          FontWeight.w700,
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => ProfileTab(postModel: listOfPosts[0],),
+                                  ));
+                                },
+                                child: Container(
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(20),
+                                    color: Color(0xffebf3fa),
+                                  ),
+                                  padding: const EdgeInsets.only(
+                                    left: 8,
+                                    right: 14,
+                                    top: 9,
+                                    bottom: 4,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 70,
+                                        child: Text(
+                                          "Contact",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontFamily: "Lato",
+                                            fontWeight:
+                                            FontWeight.w700,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width: 4),
-                                    Container(
-                                      width: 22,
-                                      height: 20,
-                                      child: Icon(
-                                          Icons.call
+                                      SizedBox(width: 4),
+                                      Container(
+                                        width: 22,
+                                        height: 20,
+                                        child: Icon(
+                                            Icons.call
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 7),
+                              SizedBox(height: 7),
 
-                            if(widget.postModel.postType != PostType.InRescuePost)
-                              Positioned(
-                                left: 245,
-                                top: 35,
-                                child: ActionKeyword(
+                              if(widget.postModel.postType != PostType.InRescuePost)
+                                ActionKeyword(
                                   postModel: widget.postModel,),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
+
+                        if(widget.postModel.adoptUserRequests.length > 0)
+                           Padding(
+                             padding: const EdgeInsets.all(8.0),
+                             child: Row(
+                               children: [
+                                 Text("Requesterd Adopter:", style: TextStyle(
+                                     fontWeight: FontWeight.w800,
+                                   color: colorScheme[PetRescueThemeColorType.Accent.index]
+
+                                 ),),
+                                 CustomAvatars(postModel: widget.postModel,),
+                               ],
+                             ),
+                           ),
+
+
 
                         Divider(
                           color: colorScheme[PetRescueThemeColorType.Accent
                               .index],
-                          thickness: 1,
+                          thickness: 0.5,
                         ),
 
                         Row(
 
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.location_on, color: Colors.white,),
+                            Icon(Icons.location_on, color: colorScheme[PetRescueThemeColorType.Accent.index],),
                             SizedBox(width: 20,),
                             Text("Distance from you: 2.7km", style: TextStyle(
-                              color: colorScheme[PetRescueThemeColorType.Accent.index],fontSize: 18
+                              color: colorScheme[PetRescueThemeColorType.Accent.index],fontSize: 18,
+                              fontWeight: FontWeight.w300
                             )),
 
                             SizedBox(width: 10,),
 
                             Text("View on map ", style: TextStyle(
-                                color: Colors.cyanAccent,fontSize: 16,
+                                color: Colors.cyan,fontSize: 16,
                               decoration: TextDecoration.underline,
-
                             )),
                           ],
                         ),
@@ -276,14 +326,14 @@ class _PostCardState extends State<PostCard> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
                           child: Text("17/10, Nguyễn Phúc Chu, P. 15, Q. Tân Bình, Phường 15, Tân Bình, Thành phố Hồ Chí Minh, Vietnam",
-                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: colorScheme[PetRescueThemeColorType.Accent.index], fontSize: 18, fontStyle: FontStyle.normal),
                           ),
                         ),
 
                         Divider(
                           color: colorScheme[PetRescueThemeColorType.Accent
                               .index],
-                          thickness: 1,
+                          thickness: 0.5,
                         ),
 
 
