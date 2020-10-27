@@ -500,6 +500,40 @@ class HomePagePost extends StatefulWidget {
 }
 
 
+class PostHeaderRibbon extends StatelessWidget {
+  final Post postModel;
+
+  const PostHeaderRibbon({Key key, this.postModel}) : super(key: key);
+  @override
+  Widget build(BuildContext context)
+  {
+    Color ribbonColor;
+    switch(postModel.postType)
+    {
+      case PostType.RequestPost:
+        ribbonColor = PetRescueTheme.darkGreen;
+        break;
+      case PostType.AdoptPost:
+        ribbonColor = PetRescueTheme.darkGreen;
+        break;
+      case PostType.InRescuePost:
+        ribbonColor = PetRescueTheme.lime;
+        break;
+    }
+
+    return Container(
+      width: 500,
+      height: 50,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+        color: ribbonColor
+      ),
+    );
+  }
+}
+
+
+
 
 class _HomePagePostState extends State<HomePagePost> {
   List<Color> colorScheme;

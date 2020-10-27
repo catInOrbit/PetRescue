@@ -25,6 +25,7 @@ class PostHome extends StatefulWidget {
 }
 
 class _PostHomeState extends State<PostHome> {
+
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
@@ -43,7 +44,6 @@ class _PostHomeState extends State<PostHome> {
 
   @override
   Widget build(BuildContext context) {
-
     final bottomNavBar = BottomNavigationBar(
       onTap: onTabTapped,
       currentIndex: _currentIndex,
@@ -88,9 +88,10 @@ class _PostHomeState extends State<PostHome> {
         ),
 
         BottomNavigationBarItem(
-          backgroundColor: Colors.redAccent,
+          backgroundColor: HexColor('#FFB9AC'),
           icon: Icon(Icons.account_circle),
           title: Text(
+
             'Profile',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),

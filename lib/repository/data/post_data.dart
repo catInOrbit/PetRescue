@@ -5,7 +5,7 @@ import 'package:petrescue/widgets/timeline_text.dart';
 
 List<Post> listOfPosts = [
   Post(
-    "Title 1",
+    "Cần giải cứu mèo bị thương chân",
     "description",
     "House cat",
     "2426  Breezewood Court",

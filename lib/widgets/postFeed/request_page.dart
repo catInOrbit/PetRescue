@@ -14,7 +14,9 @@ import 'package:petrescue/profile/profile_screens/center_screen.dart';
 import 'package:petrescue/profile/profile_screens/help_screen.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/notification_screen.dart';
+import 'package:petrescue/utils/flappy_search_bar.dart';
 import 'package:petrescue/widgets/post_card.dart';
+import 'package:flappy_search_bar/scaled_tile.dart';
 
 class RequestPostPage extends StatefulWidget {
   final List<Post> listOfPost;
@@ -118,12 +120,11 @@ class _RequestPostPageState extends State<RequestPostPage> {
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => EditPost(),));
           },
-
         ),
-
 
         backgroundColor: appBarColor,
         actions: [
+
           IconButton(
             icon: const Icon(Icons.menu, color: Colors.white,),
             tooltip: "View notification",
@@ -131,7 +132,10 @@ class _RequestPostPageState extends State<RequestPostPage> {
               _scaffoldKey.currentState.openEndDrawer();
             },
           ),
+
+
         ],
+
       ),
       body: StreamBuilder(
         initialData: state,
@@ -142,7 +146,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
               padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
               itemCount: sortedList(state.visiblePostTree).length,
               itemBuilder: (BuildContext buildContext, int i) {
-                return PostCard( postModel: sortedList(state.visiblePostTree)[i]);
+                  return PostCard( postModel: sortedList(state.visiblePostTree)[i]);
               });
         },
 

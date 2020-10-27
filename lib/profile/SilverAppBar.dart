@@ -48,7 +48,6 @@ class _ProfileTabState extends State<ProfileTab>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#FFB9AC'),
       endDrawerEnableOpenDragGesture: false,
       endDrawer: Drawer(
         child: ListView(
@@ -145,12 +144,6 @@ class _ProfileTabState extends State<ProfileTab>
                   IconButton(
                     icon: Icon(Icons.notifications),
                     onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.more_vert),
-                    onPressed: () {
-                      _scaffoldKey.currentState.openEndDrawer();
-                    },
                   ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(
