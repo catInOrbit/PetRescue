@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: PetRescueTheme.orange,
           elevation: 0,
-          title: Text("HomePage", style: TextStyle(color: Colors.white),),
+          title: Text("Hoạt động", style: TextStyle(color: Colors.white),),
           leading:  IconButton(
             icon: const Icon(Icons.add_circle_outline, color: Colors.white,),
             tooltip: "View notification",

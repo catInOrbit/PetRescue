@@ -1,4 +1,5 @@
 library petrescue.global;
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -24,10 +25,10 @@ Widget proceedButton() {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          width: 70.51,
+          width: 80,
           height: 22.72,
           child: Text(
-            "Tiep theo",
+            "Tiếp theo",
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,

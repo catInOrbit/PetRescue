@@ -18,22 +18,27 @@ import 'package:petrescue/widgets/postFeed/request_page.dart';
 class PostHome extends StatefulWidget {
   final List<Post> listOfPost;
 
-
   const PostHome({Key key, this.listOfPost}) : super(key: key);
   @override
   _PostHomeState createState() => _PostHomeState();
 }
 
 class _PostHomeState extends State<PostHome> {
-
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    RequestPostPage(listOfPost: listOfPosts, sortType: ["InRescuePost", "RequestPost"], postBloc: bloc,),
-    RequestPostPage(listOfPost: listOfPosts, sortType: ["AdoptPost"], postBloc: bloc),
+    RequestPostPage(
+      listOfPost: listOfPosts,
+      sortType: ["InRescuePost", "RequestPost"],
+      postBloc: bloc,
+    ),
+    RequestPostPage(
+        listOfPost: listOfPosts, sortType: ["AdoptPost"], postBloc: bloc),
     HomePage(),
     NotiScreen(),
-    ProfileTab(postModel: listOfPosts[0],),
+    ProfileTab(
+      postModel: listOfPosts[0],
+    ),
   ];
 
   void onTabTapped(int index) {
@@ -56,16 +61,15 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: Colors.redAccent,
           icon: Icon(Icons.local_hospital),
           title: Text(
-            'Cấp cứu',
+            'Cứu hộ',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         BottomNavigationBarItem(
           backgroundColor: PetRescueTheme.darkGreen,
-
           icon: Icon(Icons.pets),
           title: Text(
-            'Nhận nuôi',
+            'Nuôi nhận',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -77,16 +81,14 @@ class _PostHomeState extends State<PostHome> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-
         BottomNavigationBarItem(
           backgroundColor: PetRescueTheme.darkGreen,
           icon: Icon(Icons.add_alert),
           title: Text(
-            'Thông báo',
+            'Tin nhắn',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-
         BottomNavigationBarItem(
           backgroundColor: HexColor('#FFB9AC'),
           icon: Icon(Icons.account_circle),
@@ -100,14 +102,11 @@ class _PostHomeState extends State<PostHome> {
 
     List<TabIconData> tabIconsList = TabIconData.tabIconsList;
     AnimationController animationController;
-    final bottomNavBarNew =
-    BottomBarView(
+    final bottomNavBarNew = BottomBarView(
       tabIconsList: tabIconsList,
       addClick: () {},
-      changeIndex: (int index) {
-      },
+      changeIndex: (int index) {},
     );
-
 
     return Scaffold(
       body: _pages[_currentIndex],

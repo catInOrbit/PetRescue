@@ -32,8 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'CREATE YOUR ACCOUNT',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                  style: TextStyle(fontSize: 30),
+                  'ĐĂNG KÍ TÀI KHOẢN',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
@@ -42,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'First name',
+                        labelText: 'Họ',
                       ),
                     ),
                   ),
@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Last name',
+                        labelText: 'Tên',
                       ),
                     ),
                   ),
@@ -79,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: !this._showPassword,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Password',
+                          labelText: 'Mật khẩu',
                           prefixIcon: Icon(Icons.security),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   SignUpComplete()),
                         );
                       },
-                      child: Text('Sign me up!'),
+                      child: Text('Đăng kí!'),
                       color: Colors.red,
                     ),
                   ),
@@ -156,8 +156,8 @@ class _SignUpCompleteState extends State<SignUpComplete> {
             child: Center(
               child: Column(
                   children: <Widget>[
-                    Text('CONFIRM YOUR EMAIL',
-                    style: TextStyle(fontSize: 30),),
+                    Text('XÁC NHẬN TÀI KHOẢN',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                       child: Form(
@@ -168,25 +168,25 @@ class _SignUpCompleteState extends State<SignUpComplete> {
                             border: OutlineInputBorder(),
 
                           ),
-                            controller: TextEditingController()..text = 'Your initial value'
+                            controller: TextEditingController()..text = 'Email của bạn...'
                         ),
                       ),
                     ),
                     Text(
-                      "We'll send you an email with a magic link. When you click on"
+                      "Chúng tôi sẽ gửi cho bạn đường liên kết xác nhận. "
                     ),
                     Text(
-                        "the link it  will send you back the app so you can continue"
+                        "Khi bạn click vào đường link sẽ gửi trả lại đến app để "
                     ),
                     Text(
-                        "verifying your account."
+                        "xác nhận tài khoản."
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("You can resend the link if you don't receive the mail."),
+                      child: Text("Bạn có thể bấm gửi lại nếu không nhận được mail."),
                     ),
                     RaisedButton(
-                      child: Text('Resend link'),
+                      child: Text('Gửi lại liên kết'),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
@@ -199,7 +199,7 @@ class _SignUpCompleteState extends State<SignUpComplete> {
                                     LoginPage()),
                           );
                         },
-                        child: Text('Back to Login Page!'),color: Colors.indigoAccent,
+                        child: Text('Trở về Đăng nhập!'),color: Colors.indigoAccent,
                       ),
                     ),
 

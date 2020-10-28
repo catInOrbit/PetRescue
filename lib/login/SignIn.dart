@@ -38,8 +38,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Center(
               child: Text(
-                'PET EMERGENCY RESCUE',
-                style: TextStyle(color: Colors.indigoAccent, fontSize: 26),
+                'CỨU HỘ CHÓ MÈO',
+                style: TextStyle(color: Colors.indigoAccent, fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -66,21 +66,21 @@ class _LoginPageState extends State<LoginPage> {
                                   validator: (value) =>
                                       EmailValidator.validate(value)
                                           ? null
-                                          : "Please enter a valid email"),
+                                          : "Hãy nhập email hợp lệ"),
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                               child: TextFormField(
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'Pleas input your password';
+                                    return 'Hẫy nhập mật khẩu hợp lệ';
                                   }
                                   return null;
                                 },
                                 obscureText: !this._showPassword,
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Password',
+                                    labelText: 'Mật khẩu',
                                     prefixIcon: Icon(Icons.security),
                                     suffixIcon: IconButton(
                                       icon: Icon(
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                 BorderRadius.all(Radius.circular(8))),
                         child: Center(
                           child: Text(
-                            'Sign in', style: TextStyle(
+                            'Đăng nhập', style: TextStyle(
                             fontSize: 20
                           ),
                           ),
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                 );
               },
               child: Text(
-                "Forgot Password?",
+                "Quên mật khẩu?",
                 style: TextStyle(color: Colors.indigoAccent),
               ),
             ),
@@ -145,18 +145,18 @@ class _LoginPageState extends State<LoginPage> {
               height: 10,
             ),
             Text(
-              "OR",
+              "HOẶC",
             ),
             SignInButton(
               Buttons.Google,
-              text: "Sign in with Google",
+              text: "Đăng nhập bằng Google",
               onPressed: () {},
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "New to App? ",
+                  "Thành viên mới? ",
                 ),
                 InkWell(
                   onTap: () {
@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    'Sign Up',
+                    'Đăng kí',
                     style: TextStyle(color: Colors.indigoAccent),
                   ),
                 )

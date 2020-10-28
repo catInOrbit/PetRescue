@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
-import 'package:petrescue/main.dart';
-import 'package:petrescue/models/message_model.dart';
 import 'package:petrescue/models/post_model.dart';
-import 'package:petrescue/notification/chat_screen.dart';
+import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/profile/CustomListSlideMenuBar.dart';
 import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/TabAdoption.dart';
 import 'package:petrescue/profile/TabRescued.dart';
 import 'package:petrescue/profile/TabTimelines.dart';
+import 'package:petrescue/profile/chat_screen.dart';
+import 'package:petrescue/models/message_model.dart';
 import 'package:petrescue/profile/profile_screens/about_screen.dart';
 import 'package:petrescue/profile/profile_screens/center_screen.dart';
 import 'package:petrescue/profile/profile_screens/help_screen.dart';
@@ -28,7 +28,6 @@ class _ProfileTabState extends State<ProfileTab>
   final Message chat = chats[0];
 
   TabController tabController;
-
   @override
   void initState() {
     super.initState();
@@ -43,10 +42,9 @@ class _ProfileTabState extends State<ProfileTab>
     super.dispose();
   }
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
       endDrawer: Drawer(
@@ -77,32 +75,37 @@ class _ProfileTabState extends State<ProfileTab>
                   )),
             ),
             //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
-            CustomListSideMenuBar(Icons.group, 'Centers', ()=>{
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => CentersScreen()))
-            }),
-            CustomListSideMenuBar(Icons.settings, 'Settings', ()=>{}),
-            CustomListSideMenuBar(Icons.settings, 'About', () {
-              //close drawer
-              Navigator.pop(context,false);
-              //open another screen
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => AboutScreen()));
-            },),
-            CustomListSideMenuBar(Icons.settings, 'Give feedback', ()=>{
-
-            }),
+            CustomListSideMenuBar(
+                Icons.group,
+                'Centers',
+                () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => CentersScreen()))
+                    }),
+            CustomListSideMenuBar(Icons.settings, 'Settings', () => {}),
+            CustomListSideMenuBar(
+              Icons.settings,
+              'About',
+              () {
+                //close drawer
+                Navigator.pop(context, false);
+                //open another screen
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => AboutScreen()));
+              },
+            ),
+            CustomListSideMenuBar(Icons.settings, 'Give feedback', () => {}),
             CustomListSideMenuBar(Icons.help_outline, 'Help', () {
               //close drawer
-              Navigator.pop(context,false);
+              Navigator.pop(context, false);
 
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => HelpScreen()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => HelpScreen()));
             }),
 
             CustomListSideMenuBar(Icons.settings, 'Sign out', () {
               //close drawer
-              Navigator.pop(context,false);
+              Navigator.pop(context, false);
             })
           ],
         ),
@@ -122,7 +125,7 @@ class _ProfileTabState extends State<ProfileTab>
                 backgroundColor: HexColor('#FFB9AC'),
                 leading: Container(),
                 title: Text(
-                  "My Profile",
+                  "Tài khoản",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 actions: <Widget>[
@@ -138,12 +141,10 @@ class _ProfileTabState extends State<ProfileTab>
                       },
                     ),
                   ),
-
                   IconButton(
                     icon: Icon(Icons.settings),
                     onPressed: () {},
                   ),
-
                   IconButton(
                     icon: Icon(Icons.notifications),
                     onPressed: () {},
@@ -164,8 +165,8 @@ class _ProfileTabState extends State<ProfileTab>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           CircleAvatar(
-                            radius: 40,
                             backgroundImage: NetworkImage(currentUser.imageURL),
+                            radius: 40,
                           ),
                           SizedBox(
                             height: 10,
@@ -178,6 +179,31 @@ class _ProfileTabState extends State<ProfileTab>
                           SizedBox(
                             height: 5,
                           ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Icon(
+                          //       Icons.business_center,
+                          //       size: 13,
+                          //     ),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("Job", style: TextStyle(fontSize: 13)),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("|"),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("ABC Center",
+                          //         style: TextStyle(fontSize: 13)),
+                          //   ],
+                          // ),
+                          // SizedBox(
+                          //   height: 5,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -231,13 +257,17 @@ class _ProfileTabState extends State<ProfileTab>
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) => ChatScreen(
-                                        user: chat.sender,
-                                      )));
+                                            user: chat.sender,
+                                          )));
                             },
                             child: Container(
-                              height: 20,
+                              height: 30,
                               width: 130,
-                              color: Colors.lightGreen,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                color: Colors.lightGreen,
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -251,9 +281,9 @@ class _ProfileTabState extends State<ProfileTab>
                                     width: 10,
                                   ),
                                   Text(
-                                    "Message",
+                                    "Nhắn tin",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 12),
+                                        color: Colors.white, fontSize: 18),
                                   )
                                 ],
                               ),
@@ -268,19 +298,19 @@ class _ProfileTabState extends State<ProfileTab>
                   //isScrollable: true,
                   tabs: <Widget>[
                     Tab(
-                      text: "Activities",
+                      text: "Hoạt động",
                       // icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Rescused",
+                      text: "Cứu hộ",
                       //   icon: Icon(Icons.help,size: 20,),
                     ),
                     Tab(
-                      text: "Adopted",
+                      text: "Nuôi nhận",
                       //   icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Timelines",
+                      text: "Nhật kí",
                       //  icon: Icon(Icons.home),
                     ),
                   ],
@@ -302,7 +332,9 @@ class _ProfileTabState extends State<ProfileTab>
           },
           body: TabBarView(
             children: <Widget>[
-              ActivityPage(postModel: widget.postModel,),
+              ActivityPage(
+                postModel: widget.postModel,
+              ),
               PageRescued(),
               PageAdoption(),
               PageTimelines(),
@@ -347,23 +379,29 @@ class ActivityPage extends StatelessWidget {
   const ActivityPage({Key key, this.postModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Progress(postModel: postModel, ));
+    return SingleChildScrollView(
+        child: Progress(
+      postModel: postModel,
+    ));
   }
 }
 
 class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemExtent: 250.0,
-      itemBuilder: (context, index) => Container(
-        padding: EdgeInsets.all(10.0),
-        child: Material(
-          elevation: 4.0,
-          borderRadius: BorderRadius.circular(5.0),
-          color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
-          child: Center(
-            child: Text(index.toString()),
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: ListView.builder(
+        itemExtent: 250.0,
+        itemBuilder: (context, index) => Container(
+          padding: EdgeInsets.all(10.0),
+          child: Material(
+            elevation: 4.0,
+            borderRadius: BorderRadius.circular(5.0),
+            color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
+            child: Center(
+              child: Text(index.toString()),
+            ),
           ),
         ),
       ),

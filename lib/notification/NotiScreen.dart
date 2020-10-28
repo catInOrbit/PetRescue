@@ -41,9 +41,9 @@ class _NotiScreenState extends State<NotiScreen> {
             // isScrollable: true,
             //controller: tabController,
             tabs: <Widget>[
-              Tab(text: "Chats"),
+              Tab(text: "Trò chuyện"),
               Tab(
-                text: 'Notifications',
+                text: 'Thông báo',
               ),
             ],
           ),

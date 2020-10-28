@@ -169,7 +169,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: TextField(
               decoration: InputDecoration.collapsed(
-                hintText: 'Send a message..',
+                hintText: 'Tin nhắn..',
               ),
               textCapitalization: TextCapitalization.sentences,
             ),
