@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
-import 'package:petrescue/main.dart';
-import 'package:petrescue/models/message_model.dart';
 import 'package:petrescue/models/post_model.dart';
-import 'package:petrescue/notification/chat_screen.dart';
-import 'package:petrescue/profile/CustomListSlideMenuBar.dart';
+import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/TabAdoption.dart';
 import 'package:petrescue/profile/TabRescued.dart';
 import 'package:petrescue/profile/TabTimelines.dart';
-import 'package:petrescue/profile/profile_screens/about_screen.dart';
-import 'package:petrescue/profile/profile_screens/center_screen.dart';
-import 'package:petrescue/profile/profile_screens/help_screen.dart';
+import 'package:petrescue/profile/chat_screen.dart';
+import 'package:petrescue/models/message_model.dart';
 import 'package:petrescue/widgets/progress.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -23,12 +19,12 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin{
+
   //test data input
   final Message chat = chats[0];
 
   TabController tabController;
-
   @override
   void initState() {
     super.initState();
@@ -43,72 +39,10 @@ class _ProfileTabState extends State<ProfileTab>
     super.dispose();
   }
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#FFB9AC'),
-      endDrawerEnableOpenDragGesture: false,
-      endDrawer: Drawer(
-        child: ListView(
-          children: [
-            Container(
-              height: 120,
-              child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: HexColor('#FFB9AC'),
-                  ),
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Full Name',
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        )
-                      ],
-                    ),
-                  )),
-            ),
-            //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
-            CustomListSideMenuBar(Icons.group, 'Centers', ()=>{
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => CentersScreen()))
-            }),
-            CustomListSideMenuBar(Icons.settings, 'Settings', ()=>{}),
-            CustomListSideMenuBar(Icons.settings, 'About', () {
-              //close drawer
-              Navigator.pop(context,false);
-              //open another screen
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => AboutScreen()));
-            },),
-            CustomListSideMenuBar(Icons.settings, 'Give feedback', ()=>{
-
-            }),
-            CustomListSideMenuBar(Icons.help_outline, 'Help', () {
-              //close drawer
-              Navigator.pop(context,false);
-
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => HelpScreen()));
-            }),
-
-            CustomListSideMenuBar(Icons.settings, 'Sign out', () {
-              //close drawer
-              Navigator.pop(context,false);
-            })
-          ],
-        ),
-      ),
-      key: _scaffoldKey,
       body: DefaultTabController(
         length: 4,
         child: NestedScrollView(
@@ -126,7 +60,7 @@ class _ProfileTabState extends State<ProfileTab>
                   onPressed: () => Navigator.pop(context, false),
                 ),
                 title: Text(
-                  "My Profile",
+                  "Tài khoản",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 actions: <Widget>[
@@ -137,29 +71,22 @@ class _ProfileTabState extends State<ProfileTab>
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => EditScreen()),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  EditScreen()),
                         );
                       },
                     ),
                   ),
+
                   IconButton(
-                    icon: Icon(Icons.notifications),
+                    icon: Icon(Icons.menu),
                     onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.more_vert),
-                    onPressed: () {
-                      _scaffoldKey.currentState.openEndDrawer();
-                    },
                   ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(
                   background: Container(
-                    padding: EdgeInsets.fromLTRB(
-                        0,
-                        MediaQuery.of(context).padding.top,
-                        0,
-                        MediaQuery.of(context).padding.bottom),
+                    padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).padding.top,0,MediaQuery.of(context).padding.bottom),
                     height: 230,
                     //color: Colors.white,
                     child: Center(
@@ -168,8 +95,8 @@ class _ProfileTabState extends State<ProfileTab>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           CircleAvatar(
-                            radius: 40,
                             backgroundImage: NetworkImage(currentUser.imageURL),
+                            radius: 40,
                           ),
                           SizedBox(
                             height: 10,
@@ -182,6 +109,31 @@ class _ProfileTabState extends State<ProfileTab>
                           SizedBox(
                             height: 5,
                           ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Icon(
+                          //       Icons.business_center,
+                          //       size: 13,
+                          //     ),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("Job", style: TextStyle(fontSize: 13)),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("|"),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Text("ABC Center",
+                          //         style: TextStyle(fontSize: 13)),
+                          //   ],
+                          // ),
+                          // SizedBox(
+                          //   height: 5,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -224,41 +176,35 @@ class _ProfileTabState extends State<ProfileTab>
                           SizedBox(
                             height: 5,
                           ),
-                          Text("Websitesfsfd.com.vn",
-                              style: TextStyle(fontSize: 13)),
+                          Text("Websitesfsfd.com.vn", style: TextStyle(fontSize: 13)),
                           SizedBox(
                             height: 5,
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => ChatScreen(
-                                        user: chat.sender,
-                                      )));
-                            },
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (_) => ChatScreen(
+                                    user: chat.sender,
+                                  )
+                              ));
+                              },
                             child: Container(
-                              height: 20,
+                              height: 30,
                               width: 130,
-                              color: Colors.lightGreen,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(12)),
+                                color: Colors.lightGreen,
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(
-                                    Icons.near_me,
+                                  Icon(Icons.near_me, color: Colors.white, size: 12,),
+                                  SizedBox(width: 10,),
+                                  Text("Nhắn tin",style: TextStyle(
                                     color: Colors.white,
-                                    size: 12,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Message",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 12),
-                                  )
+                                    fontSize: 18
+                                  ),)
                                 ],
                               ),
                             ),
@@ -268,25 +214,27 @@ class _ProfileTabState extends State<ProfileTab>
                     ),
                   ),
                 ),
+
                 bottom: TabBar(
                   //isScrollable: true,
                   tabs: <Widget>[
                     Tab(
-                      text: "Activities",
-                      // icon: Icon(Icons.home),
+                      text: "Hoạt động",
+                     // icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Rescused",
-                      //   icon: Icon(Icons.help,size: 20,),
+                      text: "Cứu hộ",
+                   //   icon: Icon(Icons.help,size: 20,),
                     ),
                     Tab(
-                      text: "Adopted",
-                      //   icon: Icon(Icons.home),
+                      text: "Nuôi nhận",
+                   //   icon: Icon(Icons.home),
                     ),
                     Tab(
-                      text: "Timelines",
-                      //  icon: Icon(Icons.home),
+                      text: "Nhật kí",
+                    //  icon: Icon(Icons.home),
                     ),
+
                   ],
                   controller: tabController,
                 ),
@@ -309,7 +257,9 @@ class _ProfileTabState extends State<ProfileTab>
               ActivityPage(postModel: widget.postModel,),
               PageRescued(),
               PageAdoption(),
+
               PageTimelines(),
+
             ],
             controller: tabController,
           ),
@@ -348,29 +298,33 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 class ActivityPage extends StatelessWidget {
   final Post postModel;
 
-  const ActivityPage({Key key, this.postModel}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
+    const ActivityPage({Key key, this.postModel}) : super(key: key);
+    @override
+    Widget build(BuildContext context) {
     return SingleChildScrollView(child: Progress(postModel: postModel,));
+    }
   }
-}
 
-class PageTwo extends StatelessWidget {
+  class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemExtent: 250.0,
-      itemBuilder: (context, index) => Container(
-        padding: EdgeInsets.all(10.0),
-        child: Material(
-          elevation: 4.0,
-          borderRadius: BorderRadius.circular(5.0),
-          color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
-          child: Center(
-            child: Text(index.toString()),
+  return Container(
+  padding: EdgeInsets.only(top: 10),
+  child: ListView.builder(
+  itemExtent: 250.0,
+  itemBuilder: (context, index) => Container(
+  padding: EdgeInsets.all(10.0),
+  child: Material(
+  elevation: 4.0,
+            borderRadius: BorderRadius.circular(5.0),
+            color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
+            child: Center(
+              child: Text(index.toString()),
+            ),
           ),
         ),
       ),
     );
   }
 }
+

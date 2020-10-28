@@ -50,19 +50,19 @@ class _ForgotScreenState extends State<ForgotScreen> {
                         height: 10.0,
                       ),
                       Text(
-                        'Forgot your',
+                        'QUÊN MẬT KHẨU?',
                         style: TextStyle(fontSize: 40,),
                       ),
-                      Text(
-                        'password?',
-                        style: TextStyle(fontSize: 40),
-                      ),
+                      // Text(
+                      //   'password?',
+                      //   style: TextStyle(fontSize: 40),
+                      // ),
                       SizedBox(
                         height: 10.0,
                       ),
                       Text(
-                          "No problem! Just fill in the email below and we'll"),
-                      Text("send you pasword reset instructions!")
+                          "Không sao! Hãy điền email vào bên dưới và chúng tôi"),
+                      Text("sẽ gửi bạn hướng dẫn lấy lại mật khẩu!")
                     ],
                   ),
                 ),
@@ -80,10 +80,10 @@ class _ForgotScreenState extends State<ForgotScreen> {
                             autovalidate: true,
                             child: TextFormField(
                               decoration: InputDecoration(
-                                labelText: 'Your Email',
+                                labelText: 'Email của bạn...',
                                 border: OutlineInputBorder(),
                               ),
-                                validator: (value) => EmailValidator.validate(value) ? null : "Please enter a valid email"
+                                validator: (value) => EmailValidator.validate(value) ? null : "Hãy nhập email hợp lệ"
                             ),
                           ),
                           SizedBox(
@@ -93,7 +93,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                             alignment: Alignment.centerLeft,
                             child: RaisedButton(
                               child: Text(
-                                'Reset Password',
+                                'Tạo lại mật khẩu',
                               ),
                               onPressed: () {
                                   showWidget();
@@ -113,7 +113,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                        "We've just sent you an email with instructions on how to reset password."
+                                        "Chúng tôi đã gửi đến email của bạn hướng dẫn khởi tạo lại mật khẩu."
 
                                     ),
                                     // Container(

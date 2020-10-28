@@ -35,15 +35,15 @@ class _NotiScreenState extends State<NotiScreen> {
         appBar: AppBar(
           backgroundColor: PetRescueTheme.darkGreen,
           //  elevation: 0,
-          title: Text("Messengers"),
+          title: Text("Tin nhắn"),
           centerTitle: false,
           bottom: TabBar(
             // isScrollable: true,
             //controller: tabController,
             tabs: <Widget>[
-              Tab(text: "Chats"),
+              Tab(text: "Trò chuyện"),
               Tab(
-                text: 'Notifications',
+                text: 'Thông báo',
               ),
             ],
           ),
