@@ -32,6 +32,8 @@ class PetRescueTheme
    static List<Color> userRibbonRescuePostTheme = [Colors.white, Colors.black];
    static List<Color> adoptPostStatusTheme = [Colors.white, Colors.black]; //accent, keyword
 
+   static List<Color> userRibbonDetailAdoptPostTheme = [darkGreen, Colors.white];
+   static List<Color> userRibbonDetailRescuePostTheme = [lightPink, Colors.white];
 
 
 

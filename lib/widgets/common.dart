@@ -54,16 +54,30 @@ List<Widget> getAllStatuses(Post postModel) {
 
 class UserInfoRibon extends StatelessWidget {
   final Post postModel;
-
-  const UserInfoRibon({Key key, @required this.postModel}) : super(key: key);
+  final bool isDetailRibbon;
+  const UserInfoRibon({Key key, @required this.postModel, this.isDetailRibbon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
-    if (postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
+    if(!isDetailRibbon)
+      {
+        if (postModel.postType == PostType.AdoptPost)
+           colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
+        else
+          colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
+      }
+
     else
-      colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
+      {
+
+        if (postModel.postType == PostType.AdoptPost)
+          colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
+        else
+          colorScheme = PetRescueTheme.userRibbonDetailRescuePostTheme;
+
+      }
+
     return Container(
       // margin: const EdgeInsets.only(left: 16.9),
       decoration: BoxDecoration(
@@ -415,10 +429,12 @@ class PriorityRibbon extends StatelessWidget {
   const PriorityRibbon({Key key, this.postModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    String text;
+    postModel.priority == Priority.Normal ? text = "Thấp" : text = "Cao" ;
     return Padding(
       padding: const EdgeInsets.only(right: 20),
       child: Chip(
-        label: Text("Ưu tiên: " + postModel.priority.toString().split('.').last, style: TextStyle(color: Colors.black, fontSize: 20),) ,
+        label: Text("Ưu tiên: " + text, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),) ,
         backgroundColor: Colors.white70,
         padding: EdgeInsets.all(8),
       ),
@@ -970,4 +986,17 @@ class CustomAvatars extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget showResponsibleUserRibon(Post postModel)
+{
+  if(postModel.postType == PostType.AdoptPost)
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,),
+    );
+  else if((postModel.postType == PostType.InRescuePost && postModel.acceptedRequestUser != null))
+    return OngoingRescuerRibbon(postModel: postModel,);
+  else
+    return PriorityRibbon(postModel: postModel,);
 }

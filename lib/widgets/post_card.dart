@@ -163,6 +163,7 @@ class _PostCardState extends State<PostCard> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
                                   child: UserInfoRibon(
+                                    isDetailRibbon: false,
                                     postModel: widget.postModel,
                                   ),
                                 ),
@@ -504,17 +505,6 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
-  Widget showResponsibleUserRibon(Post postModel)
-  {
-    if(postModel.postType == PostType.AdoptPost)
-      return Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,),
-      );
-    else if((postModel.postType == PostType.InRescuePost && postModel.acceptedRequestUser != null))
-      return OngoingRescuerRibbon(postModel: postModel,);
-    else
-      return PriorityRibbon(postModel: postModel,);
-  }
+
 }
 

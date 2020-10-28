@@ -34,77 +34,87 @@ class DetailCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 300,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                // width: 230,
-                                height: pictureContainersHeight,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image:
-                                        AssetImage("lib/assets/cat3.png"),
-                                        fit: BoxFit.fill)),
-                              ),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 147,
-                                  height: 132,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  // width: 230,
+                                  height: pictureContainersHeight,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image:
-                                          AssetImage("lib/assets/cat4.png"),
+                                          AssetImage("lib/assets/cat3.png"),
                                           fit: BoxFit.fill)),
                                 ),
-                                Container(
-                                  width: 147,
-                                  height: 140,
-                                  color: Colors.blueGrey,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 61,
-                                        top: 64,
-                                        child: SizedBox(
-                                          width: 21,
-                                          child: Text(
-                                            "+3 ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w700,
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 147,
+                                    height: 132,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image:
+                                            AssetImage("lib/assets/cat4.png"),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                  Container(
+                                    width: 147,
+                                    height: 140,
+                                    color: Colors.blueGrey,
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                          left: 61,
+                                          top: 64,
+                                          child: SizedBox(
+                                            width: 21,
+                                            child: Text(
+                                              "+3 ",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontFamily: "Lato",
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Opacity(
-                                        opacity: 0.50,
-                                        child: Container(
-                                          width: 147,
-                                          height: 140,
+                                        Opacity(
+                                          opacity: 0.50,
+                                          child: Container(
+                                            width: 147,
+                                            height: 140,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    children: [
+                      UserInfoRibon(postModel: postModel, isDetailRibbon: true,),
+                      showResponsibleUserRibon(postModel),
+                    ],
                   ),
                   Expanded(
                     child: Container(
@@ -134,7 +144,6 @@ class DetailCard extends StatelessWidget {
                                       height: 35,
                                       width: MediaQuery.of(context).size.width,
                                       padding: const EdgeInsets.only(
-                                        right: 40,
                                         bottom: 4,
                                       ),
                                       child: Row(
@@ -187,15 +196,17 @@ class DetailCard extends StatelessWidget {
                                           SizedBox(width: 6),
                                           Expanded(
                                             child: SizedBox(
-                                              width: 120,
+                                              width: 150,
                                               height: 50,
-                                              child: Text(
-                                                "6-8 Months",
-                                                style: TextStyle(
-                                                  color: Color(0xff5e5d5d),
-                                                  fontSize: 14,
-                                                  fontFamily: "Lato",
-                                                  fontWeight: FontWeight.w400,
+                                              child: Center(
+                                                child: Text(
+                                                  "6-8 Months",
+                                                  style: TextStyle(
+                                                    color: Color(0xff5e5d5d),
+                                                    fontSize: 14,
+                                                    fontFamily: "Lato",
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -221,16 +232,20 @@ class DetailCard extends StatelessWidget {
                                 SizedBox(height: 10),
                                 Container(
                                     child: Row(
-                                      children:
+                                        children:
                                         getAllStatuses(postModel)
 
                                     )),
                                 SizedBox(height: 22),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
+                                ),
                                 Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                  buildUserTiles(postModel),
+                                    buildUserTiles(postModel),
                                     SizedBox(height: 20),
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -286,7 +301,7 @@ class DetailCard extends StatelessWidget {
                                       //TODO: Find way to expand children
 
                                       if(postModel.postType != PostType.InRescuePost)
-                                      DetailCardButton(postModel: postModel,isTimeline: false,)
+                                        DetailCardButton(postModel: postModel,isTimeline: false,)
                                     ],
                                   ),
                                 ),
@@ -306,7 +321,7 @@ class DetailCard extends StatelessWidget {
                           ),
 
                           SizedBox(height: 20,),
-                            DetailCardButton(postModel: postModel, isTimeline: true,)
+                          DetailCardButton(postModel: postModel, isTimeline: true,),
                         ],
                       ),
                     ),
@@ -320,49 +335,49 @@ class DetailCard extends StatelessWidget {
     );
   }
 
-    Widget buildUserTiles(Post postModel)
+  Widget buildUserTiles(Post postModel)
   {
     final returnList = List<Widget>();
-      switch(postModel.postType)
-      {
-        case PostType.RequestPost:
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UserInfoTile(user: postModel.currentUser,),
-                if(postModel.acceptedRequestUser != null)
-                  UserInfoTile(user: postModel.acceptedRequestUser,)
-                else
-                    NoRequestWarning()
-              ],
-          );
-          break;
+    switch(postModel.postType)
+    {
+      case PostType.RequestPost:
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            UserInfoTile(user: postModel.currentUser,),
+            if(postModel.acceptedRequestUser != null)
+              UserInfoTile(user: postModel.acceptedRequestUser,)
+            else
+              NoRequestWarning()
+          ],
+        );
+        break;
 
-        case PostType.AdoptPost:
-          returnList.add(UserInfoTile(user: postModel.currentUser,));
-          returnList.add(SizedBox(height: 10,));
-          postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});
-          return Column(
-              children: returnList
-          );
+      case PostType.AdoptPost:
+        returnList.add(UserInfoTile(user: postModel.currentUser,));
+        returnList.add(SizedBox(height: 10,));
+        postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});
+        return Column(
+            children: returnList
+        );
 
-        case PostType.InRescuePost:
-          returnList.add(UserInfoTile(user: postModel.currentUser,));
-          returnList.add(SizedBox(height: 10,));
-          postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});
-          return Column(
-              children: returnList
-          );
-          break;
-        default:
-          return NoRequestWarning();
-          break;
-      }
+      case PostType.InRescuePost:
+        returnList.add(UserInfoTile(user: postModel.currentUser,));
+        returnList.add(SizedBox(height: 10,));
+        postModel.adoptUserRequests.forEach((element) {returnList.add(UserInfoTile(user: element,));});
+        return Column(
+            children: returnList
+        );
+        break;
+      default:
+        return NoRequestWarning();
+        break;
+    }
 
-      // return Column(
-      //   children: postModel.adoptUserRequests.map((user) => UserInfoTile(user: user,)).toList()
-      // );
+    // return Column(
+    //   children: postModel.adoptUserRequests.map((user) => UserInfoTile(user: user,)).toList()
+    // );
   }
 }
 
