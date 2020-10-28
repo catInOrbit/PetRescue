@@ -73,7 +73,7 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: PetRescueTheme.orange,
           icon: Icon(Icons.home),
           title: Text(
-            'Trang chủ',
+            'Hoạt động',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
