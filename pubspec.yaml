@@ -55,6 +55,8 @@ dev_dependencies:
   path_provider: ^1.6.21
   bloc: ^6.0.3
   flappy_search_bar: 1.4.1
+  flutter_icons: ^1.1.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -96,6 +98,8 @@ flutter:
     - lib/assets/Cat3.png
     - lib/assets/someone1.png
     - lib/assets/rescueCenterLogo.png
+    - lib/assets/female_gender_icon.jpeg
+    - lib/assets/male_gender_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

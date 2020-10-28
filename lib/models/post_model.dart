@@ -19,6 +19,7 @@ class Post {
   User currentUser, acceptedRequestUser;
   List<User> adoptUserRequests;
   List<String> imageStrings;
+  Priority priority;
 
   Post.empty()
   {
@@ -26,7 +27,7 @@ class Post {
   }
 
   Post(title, description, petType, location, timeCreated, postType,
-      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed) {
+      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed, priority) {
     this.title = title;
     this.petType = petType;
     this.description = description;
@@ -43,6 +44,7 @@ class Post {
     this.acceptedRequestUser = acceptedRequestUser;
     this.imageStrings = imageStrings;
     this.breed = breed;
+    this.priority = priority;
 
     if(timelineText== null || timelineText.length > 0)
     timelineBuilder = new TimelineBuilder(
@@ -63,3 +65,5 @@ class Post {
 }
 
 enum Statuses { Injured, Abandoned, LostOwner }
+enum Priority {Normal, High}
+

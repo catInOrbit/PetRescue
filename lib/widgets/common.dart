@@ -24,12 +24,11 @@ class StatusTag extends StatelessWidget {
     switch(postModel.postType)
     {
       case PostType.AdoptPost:
-        colorScheme = PetRescueTheme.adoptPostTheme;
+        colorScheme = PetRescueTheme.statusTagsAdoptPostTheme;
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
-
       default:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
@@ -125,7 +124,7 @@ class ActionKeyword extends StatelessWidget {
     {
       case PostType.AdoptPost:
         text = "Adopt";
-        colorScheme = PetRescueTheme.adoptPostTheme;
+        colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
         break;
       case PostType.RequestPost:
         text = "Rescue";
@@ -133,7 +132,7 @@ class ActionKeyword extends StatelessWidget {
         break;
       case PostType.InRescuePost:
         text = "In Rescue Progress";
-        colorScheme = PetRescueTheme.actionWordRescuePostTheme;
+        colorScheme = PetRescueTheme.actionWordInRescuePostTheme;
     }
 
     return Container(
@@ -410,6 +409,25 @@ class UserInfoTile extends StatelessWidget {
   }
 }
 
+class PriorityRibbon extends StatelessWidget {
+  final Post postModel;
+
+  const PriorityRibbon({Key key, this.postModel}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Chip(
+        label: Text("Ưu tiên: " + postModel.priority.toString().split('.').last, style: TextStyle(color: Colors.black, fontSize: 20),) ,
+        backgroundColor: Colors.white70,
+        padding: EdgeInsets.all(8),
+      ),
+    );
+
+  }
+}
+
+
 class OngoingRescuerRibbon extends StatelessWidget {
   final Post postModel;
 
@@ -533,11 +551,11 @@ class _HomePagePostState extends State<HomePagePost> {
     switch(postModel.postType)
     {
       case PostType.InRescuePost:
-        colorScheme = PetRescueTheme.revertInRescuedPostTheme;
+        colorScheme = PetRescueTheme.homePageInRescue;
         label = "Rescue In Progress";
         break;
       case PostType.AdoptPost:
-        colorScheme = PetRescueTheme.adoptPostTheme;
+        colorScheme = PetRescueTheme.homePageAdoptPost;
         label = "Rescued pet";
 
         break;
@@ -658,7 +676,7 @@ class _HomePagePostState extends State<HomePagePost> {
                         child: Container(
                           decoration: BoxDecoration(
                             color:
-                            colorScheme[PetRescueThemeColorType.KeyWord.index],
+                            colorScheme[PetRescueThemeColorType.Accent.index],
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
@@ -702,7 +720,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                             "Rescued Kitten",
                                             style: TextStyle(
                                               color: colorScheme[PetRescueThemeColorType
-                                                  .Accent.index],
+                                                  .KeyWord.index],
                                               fontSize: 20,
                                               fontFamily: "Lato",
                                               fontWeight: FontWeight.w900,
@@ -719,7 +737,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 color: colorScheme[PetRescueThemeColorType
-                                                    .Accent.index],
+                                                    .KeyWord.index],
                                               ),
                                             ),
                                             SizedBox(width: 7),
@@ -730,7 +748,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                                 style: TextStyle(
                                                   color:
                                                   colorScheme[PetRescueThemeColorType
-                                                      .Accent.index],
+                                                      .KeyWord.index],
                                                   fontSize: 14,
                                                   fontFamily: "Lato",
                                                   fontWeight:
@@ -745,7 +763,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 color: colorScheme[PetRescueThemeColorType
-                                                    .Accent.index],
+                                                    .KeyWord.index],
                                               ),
                                             ),
                                             SizedBox(width: 7),
@@ -756,7 +774,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                                 style: TextStyle(
                                                   color:
                                                   colorScheme[PetRescueThemeColorType
-                                                      .Accent.index],
+                                                      .KeyWord.index],
                                                   fontSize: 14,
                                                   fontFamily: "Lato",
                                                   fontWeight:
@@ -775,7 +793,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                         "House cat",
                                         style: TextStyle(
                                           color: colorScheme[PetRescueThemeColorType
-                                              .Accent.index],
+                                              .KeyWord.index],
                                           fontSize: 12,
                                           fontFamily: "Lato",
                                           fontWeight: FontWeight.w700,

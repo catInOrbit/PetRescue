@@ -13,7 +13,7 @@ import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/widgets/detail_model_bottom.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
-
+import 'package:flutter_icons/flutter_icons.dart';
 import 'card_setting_dialog.dart';
 
 class PostCard extends StatefulWidget {
@@ -33,11 +33,13 @@ class _PostCardState extends State<PostCard> {
     List<Color> colorScheme;
 
     if (widget.postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.adoptPostTheme;
+       colorScheme = PetRescueTheme.adoptPostTheme;
     else if (widget.postModel.postType == PostType.RequestPost)
-      colorScheme = PetRescueTheme.rescuePostTheme;
+      widget.postModel.priority == Priority.Normal
+          ? colorScheme = PetRescueTheme.rescuePostTheme : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme ;
     else if (widget.postModel.postType == PostType.InRescuePost)
       colorScheme = PetRescueTheme.inRescuePostTheme;
+
 
 
     return Padding(
@@ -130,7 +132,7 @@ class _PostCardState extends State<PostCard> {
                   Container(
                     decoration: BoxDecoration(
                       color:
-                      colorScheme[PetRescueThemeColorType.KeyWord.index],
+                      colorScheme[PetRescueThemeColorType.Accent.index],
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
@@ -194,7 +196,7 @@ class _PostCardState extends State<PostCard> {
                                 Row(
                                   children: [
                                     Text(
-                                      "Type:",
+                                      "Động vật:",
                                       style: TextStyle(
                                         color: colorScheme[PetRescueThemeColorType
                                             .Text.index],
@@ -226,69 +228,66 @@ class _PostCardState extends State<PostCard> {
 
                                 SizedBox(height: 10,),
 
-                                Row(
-                                  children: [
+                                if(widget.postModel.postType == PostType.AdoptPost)
+                                  Column(
+                                    children: [
+                                      Row(
 
-                                    Text(
-                                      "Breed:",
-                                      style: TextStyle(
-                                        color: colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                        fontSize: 20,
-                                        fontFamily: "Lato",
-                                        fontStyle:  FontStyle.normal,
+                                        children: [
+
+                                          Text(
+                                            "Giống:",
+                                            style: TextStyle(
+                                              color: colorScheme[PetRescueThemeColorType
+                                                  .Text.index],
+                                              fontSize: 20,
+                                              fontFamily: "Lato",
+                                              fontStyle:  FontStyle.normal,
+                                            ),
+                                          ),
+
+                                          SizedBox(width: 20,),
+
+                                          Text(
+                                            widget.postModel.breed,
+                                            style: TextStyle(
+                                                color: colorScheme[PetRescueThemeColorType
+                                                    .Text.index],
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          ),
+
+                                        ],
+
                                       ),
-                                    ),
+                                      SizedBox(height: 10,),
+                                      Row(
+                                        children: [
 
-                                    SizedBox(width: 20,),
+                                          Text(
+                                            "Giới tính:",
+                                            style: TextStyle(
+                                              color: colorScheme[PetRescueThemeColorType
+                                                  .Text.index],
+                                              fontSize: 20,
+                                              fontFamily: "Lato",
+                                              fontStyle:  FontStyle.normal,
+                                            ),
+                                          ),
 
-                                    Text(
-                                      widget.postModel.breed,
-                                      style: TextStyle(
-                                          color: colorScheme[PetRescueThemeColorType
-                                              .Text.index],
-                                          fontSize: 20,
-                                          fontFamily: "Lato",
-                                          fontWeight: FontWeight.bold
+                                          SizedBox(width: 20,),
+
+                                          if(widget.postModel.gender == "Female")
+                                            Image.asset("lib/assets/female_gender_icon.jpeg", height: 25,)
+                                          else
+                                            Image.asset("lib/assets/male_gender_icon.png", height: 25,)
+                                        ],
+
                                       ),
-                                    ),
-
                                   ],
-
-                                ),
-
-                                SizedBox(height: 10,),
-
-                                Row(
-                                  children: [
-
-                                    Text(
-                                      "Gender:",
-                                      style: TextStyle(
-                                        color: colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                        fontSize: 20,
-                                        fontFamily: "Lato",
-                                        fontStyle:  FontStyle.normal,
-                                      ),
-                                    ),
-
-                                    SizedBox(width: 20,),
-
-                                    Text(
-                                      widget.postModel.breed,
-                                      style: TextStyle(
-                                          color: colorScheme[PetRescueThemeColorType
-                                              .Text.index],
-                                          fontSize: 20,
-                                          fontFamily: "Lato",
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-
-                                  ],
-
-                                ),
+                                )
 
                               ],
                             ),
@@ -363,7 +362,7 @@ class _PostCardState extends State<PostCard> {
                              padding: const EdgeInsets.only(left: 20, top: 10),
                              child: Row(
                                children: [
-                                 Text("Requesterd Adopter:", style: TextStyle(
+                                 Text("Yêu cầu nhận nuôi:", style: TextStyle(
                                      fontWeight: FontWeight.w800,
                                    color: colorScheme[PetRescueThemeColorType.Text.index]
 
@@ -388,14 +387,14 @@ class _PostCardState extends State<PostCard> {
                             children: [
                               Icon(Icons.location_on, color: colorScheme[PetRescueThemeColorType.Icon.index],),
                               SizedBox(width: 20,),
-                              Text("2.7km toi ban", style: TextStyle(
+                              Text("Cách bạn 2.7km", style: TextStyle(
                                 color: colorScheme[PetRescueThemeColorType.Text.index],fontSize: 18,
                                 fontWeight: FontWeight.w300
                               )),
 
                               SizedBox(width: 10,),
 
-                              Text("View on map ", style: TextStyle(
+                              Text("Xem bản đồ", style: TextStyle(
                                   color: Colors.cyan,fontSize: 16,
                                 decoration: TextDecoration.underline,
                               )),
@@ -418,7 +417,7 @@ class _PostCardState extends State<PostCard> {
 
 
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                           child: Row(
                             children: [
                               Container(
@@ -515,7 +514,7 @@ class _PostCardState extends State<PostCard> {
     else if((postModel.postType == PostType.InRescuePost && postModel.acceptedRequestUser != null))
       return OngoingRescuerRibbon(postModel: postModel,);
     else
-      return Container();
+      return PriorityRibbon(postModel: postModel,);
   }
 }
 

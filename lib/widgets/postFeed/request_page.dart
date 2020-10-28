@@ -37,13 +37,13 @@ class _RequestPostPageState extends State<RequestPostPage> {
     String appbarText;
     if(widget.sortType.contains(PostType.RequestPost.toString().split('.').last))
       {
-        appbarText = "Rescue";
+        appbarText = "Giải cứu";
         appBarColor = Colors.redAccent;
 
       }
     else if(widget.sortType.contains(PostType.AdoptPost.toString().split('.').last))
       {
-        appbarText = "Adopt";
+        appbarText = "Nhận nuôi";
         appBarColor = PetRescueTheme.darkGreen;
       }
     final _scaffoldKey = GlobalKey<ScaffoldState>();

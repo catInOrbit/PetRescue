@@ -5,13 +5,13 @@ import 'package:petrescue/widgets/timeline_text.dart';
 
 List<Post> listOfPosts = [
   Post(
-    "Cần giải cứu mèo bị thương chân",
+    "Cần giải cứu mèo bị thương chân dnwoia jwaoi jdwaoi jwaoi jwaoi jwaoid jawoi jaowi jwoa id",
     "description",
     "House cat",
     "2426  Breezewood Court",
     DateTime.now(),
     PostType.RequestPost,
-      "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+      "https://sbly-web-prod-shareably.netdna-ssl.com/wp-content/uploads/2018/08/14083438/battle_cat_recovery_featured.jpg",
     "Male",
     "6-8 months",
      [Statuses.Abandoned, Statuses.Injured],
@@ -20,7 +20,28 @@ List<Post> listOfPosts = [
     <User>[],
       null,
     <String>[],
-    "Persian"
+    "Persian",
+    Priority.Normal
+  ),
+
+  Post(
+      "Cần giải cứu mèo bị thương chân dnwoia jwaoi jdwaoi jwaoi jwaoi jwaoid jawoi jaowi jwoa id",
+      "description",
+      "House cat",
+      "2426  Breezewood Court",
+      DateTime.now(),
+      PostType.RequestPost,
+      "https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-g70644hiocchitapae654vgia4-20161227061350.Medi.jpeg",
+      "Male",
+      "6-8 months",
+      [Statuses.Abandoned, Statuses.Injured],
+      <TimeLineText>[],
+      userList[0],
+      <User>[],
+      null,
+      <String>[],
+      "Persian",
+      Priority.High
   ),
 
   Post(
@@ -30,7 +51,7 @@ List<Post> listOfPosts = [
     "164 Ilbert Street, London,W10 4QD ",
     DateTime.now(),
     PostType.AdoptPost,
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
+      "https://img.huffingtonpost.com/asset/5c3544842600003e058624ff.jpeg?ops=scalefit_630_noupscale",
     "Male",
     "6-8 months",
     [Statuses.Abandoned, Statuses.Injured, Statuses.LostOwner],
@@ -39,7 +60,10 @@ List<Post> listOfPosts = [
       <User>[userList[2]],
     userList[2],
     <String>[],
-    "COco"
+    "COco",
+      Priority.Normal
+
+
   ),
 
   Post(
@@ -58,7 +82,8 @@ List<Post> listOfPosts = [
       <User>[userList[2]],
       userList[2],
       <String>[],
-    "Oxloot"
+    "Oxloot",
+      Priority.Normal
   ),
 
 

@@ -27,7 +27,7 @@ Widget proceedButton() {
           width: 70.51,
           height: 22.72,
           child: Text(
-            "Proceed",
+            "Tiep theo",
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,

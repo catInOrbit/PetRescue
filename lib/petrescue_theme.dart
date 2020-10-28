@@ -8,20 +8,26 @@ class PetRescueTheme
    static final Color lime = Color.fromRGBO(204, 202, 152, 1);
    static final Color lightGrey = Color.fromRGBO(235, 243, 250, 1);
 
-   static List<Color> rescuePostTheme = [lightPink, Colors.white, Colors.black, lightPink]; //accent, keyword, text, icon
-   static List<Color> adoptPostTheme = [darkGreen, Colors.white, Colors.black, darkGreen]; //accent, keyword
+   static List<Color> rescuePostTheme = [Colors.white, Colors.white, Colors.black, lightPink]; //accent, keyword, text, icon
+   static List<Color> rescuePostPrioritizedTheme = [lightPink, Colors.white, Colors.white, Colors.white]; //accent, keyword, text, icon
+   static List<Color> adoptPostTheme = [Colors.white, Colors.black, Colors.black, darkGreen]; //accent, keyword
    static List<Color> inRescuePostTheme = [lime, lime, Colors.white, Colors.white]; //accent, keyword
 
 
    static List<Color> inRescuedPostTheme = [Colors.white, lime]; //accent, keyword
-   static List<Color> revertInRescuedPostTheme = [lime, Colors.white]; //accent, keyword
+   static List<Color> homePageInRescue = [lime, Colors.white]; //accent, keyword
+   static List<Color> homePageAdoptPost = [darkGreen, Colors.white]; //accent, keyword
+
 
    static List<Color> requestRescuePostTheme = [Colors.black, Colors.white];
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];
    static List<Color> statusTagsRescueTheme = [orange, Colors.white];
-   static List<Color> revertAdoptPostTheme = [Colors.white, darkGreen]; //accent, keyword
-   static List<Color> actionWordAdoptPostTheme = [lime, Colors.white]; //accent, keyword
-   static List<Color> actionWordRescuePostTheme = [Colors.orange, Colors.white]; //accent, keyword
+   static List<Color> statusTagsAdoptPostTheme = [darkGreen, Colors.white];
+   static List<Color> revertAdoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
+
+   static List<Color> actionWordInRescuePostTheme = [lime, Colors.white]; //accent, keyword
+   static List<Color> actionWordRescuePostTheme = [lightPink, Colors.white]; //accent, keyword
+   static List<Color> actionWordAdoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
 
    static List<Color> userRibbonRescuePostTheme = [Colors.white, Colors.black];
    static List<Color> adoptPostStatusTheme = [Colors.white, Colors.black]; //accent, keyword
