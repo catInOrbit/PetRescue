@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/constants.dart';
@@ -327,7 +328,7 @@ class _PostCardState extends State<PostCard> {
                                       SizedBox(
                                         width: 70,
                                         child: Text(
-                                          "Contact",
+                                          "Liên hệ",
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -422,9 +423,8 @@ class _PostCardState extends State<PostCard> {
                           child: Row(
                             children: [
                               Container(
-                                width: 245,
                                 child: Wrap(
-                                  spacing: 1,
+                                  spacing: 2,
                                   direction: Axis.horizontal,
                                   alignment: WrapAlignment.start,
                                   children: getAllStatuses(widget.postModel),
@@ -465,9 +465,9 @@ class _PostCardState extends State<PostCard> {
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),      //position where you want to show the menu on screen
       items: [
         PopupMenuItem<String>(
-            child: const Text('Edit post'), value: '1'),
+            child: const Text('Điều chỉnh post'), value: '1'),
         PopupMenuItem<String>(
-            child: const Text('Delete Post'), value: '2'),
+            child: const Text('Ẩn Post'), value: '2'),
         PopupMenuItem<String>(
             child: const Text('Follow Post'), value: '3'),
       ],
@@ -478,7 +478,7 @@ class _PostCardState extends State<PostCard> {
       if (itemSelected == null) return;
 
       if(itemSelected == "1"){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, isEditing: true,),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditPost(),));
       }else if(itemSelected == "2"){
         PostEvent postEvent = PostEvent();
         postEvent.hasSortRquest = false;

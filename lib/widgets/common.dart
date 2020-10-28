@@ -37,7 +37,7 @@ class StatusTag extends StatelessWidget {
 
     return Chip(
       backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
-      label: Text(textData),
+      label: Text(textData, style: TextStyle(fontSize: 16),),
       labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 13),
     );
   }
@@ -47,7 +47,8 @@ List<Widget> getAllStatuses(Post postModel) {
   return List<Widget>.generate(postModel.statuses.length, (index) {
     return StatusTag(
       postModel: postModel,
-      textData: postModel.statuses[index].toString().split('.').last,
+      // textData: postModel.statuses[index].toString().split('.').last,
+      textData: postModel.statuses[index],
     );
   });
 }
@@ -137,11 +138,11 @@ class ActionKeyword extends StatelessWidget {
     switch(postModel.postType)
     {
       case PostType.AdoptPost:
-        text = "Adopt";
+        text = "Nhận nuôi";
         colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
         break;
       case PostType.RequestPost:
-        text = "Rescue";
+        text = "Giải cứu";
         postModel.priority == Priority.High ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
         break;
       case PostType.InRescuePost:
@@ -568,16 +569,16 @@ class _HomePagePostState extends State<HomePagePost> {
     {
       case PostType.InRescuePost:
         colorScheme = PetRescueTheme.homePageInRescue;
-        label = "Rescue In Progress";
+        label = "Đang giải cứu";
         break;
       case PostType.AdoptPost:
         colorScheme = PetRescueTheme.homePageAdoptPost;
-        label = "Rescued pet";
+        label = "Đã giải cứu";
 
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.revertRescuePostTheme;
-        label = "Request Rescue";
+        label = "Yêu cầu cứu hộ";
         break;
     }
 
@@ -733,7 +734,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                           width: 150,
                                           height: 29,
                                           child: Text(
-                                            "Rescued Kitten",
+                                            postModel.title,
                                             style: TextStyle(
                                               color: colorScheme[PetRescueThemeColorType
                                                   .KeyWord.index],
@@ -760,7 +761,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                             SizedBox(
                                               width: 31,
                                               child: Text(
-                                                "Male",
+                                                postModel.gender,
                                                 style: TextStyle(
                                                   color:
                                                   colorScheme[PetRescueThemeColorType
@@ -786,7 +787,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                             SizedBox(
                                               width: 70,
                                               child: Text(
-                                                "6-8  Months",
+                                                postModel.ages,
                                                 style: TextStyle(
                                                   color:
                                                   colorScheme[PetRescueThemeColorType
@@ -806,7 +807,7 @@ class _HomePagePostState extends State<HomePagePost> {
                                       width: 57,
                                       height: 15,
                                       child: Text(
-                                        "House cat",
+                                        postModel.petType,
                                         style: TextStyle(
                                           color: colorScheme[PetRescueThemeColorType
                                               .KeyWord.index],
@@ -906,18 +907,8 @@ class _HomePagePostState extends State<HomePagePost> {
 
                                           subtitle: Text(post.timeCreated.toString(), style: TextStyle(fontSize: 15),),
 
-                                          // content: Align(
-                                          //   child: Image.asset(
-                                          //       'lib/assets/truck.png'),
-                                          //   alignment: Alignment.centerLeft,
-                                          // ),
 
                                           content: createTimelinePost(context, post),
-                                          // state: location.passed
-                                          //     ? StepState.complete
-                                          //     : location.isHere
-                                          //     ? StepState.editing
-                                          //     : StepState.indexed,
                                         ),
                                   )
                                       .toList()
@@ -967,17 +958,61 @@ class CustomAvatars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List<Widget> list = postModel.adoptUserRequests.map((e) =>
+    // List<Widget> list = postModel.adoptUserRequests.map((e) =>
+    //     Align(
+    //           alignment: Alignment.center,
+    //           child: CircleAvatar(
+    //             child: CircleAvatar(
+    //               radius: 30,
+    //               backgroundImage: NetworkImage(e.imageURL) , // Provide your custom image
+    //             ),
+    //           ),
+    //         ),
+    // ).toList();
+
+    List<Widget> list = [
+      if(postModel.adoptUserRequests.length >= 1)
+      Align(
+        alignment: Alignment.centerRight,
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          child: CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.red,
+            backgroundImage:
+            NetworkImage(postModel.adoptUserRequests[postModel.adoptUserRequests.length-1].imageURL)
+
+            // Image.network(postModel.adoptUserRequests[0].imageURL), // Provide your custom image
+          ),
+        ),
+      ),
+
+      if(postModel.adoptUserRequests.length >= 2)
         Align(
-              alignment: Alignment.center,
-              child: CircleAvatar(
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage(e.imageURL) , // Provide your custom image
-                ),
-              ),
-            ),
-    ).toList();
+        alignment: Alignment.center,
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          child: CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.red,
+            backgroundImage: NetworkImage(postModel.adoptUserRequests[postModel.adoptUserRequests.length-2].imageURL)
+          ),
+        ),
+      ),
+      if(postModel.adoptUserRequests.length >= 3)
+
+        Align(
+        alignment: Alignment.centerLeft,
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          child: CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.red,
+              backgroundImage: NetworkImage(postModel.adoptUserRequests[postModel.adoptUserRequests.length-3].imageURL)
+          ),
+        ),
+      ),
+    ];
     return Container(
       width: 80,
       height: 40,

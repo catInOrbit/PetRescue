@@ -100,6 +100,7 @@ flutter:
     - lib/assets/rescueCenterLogo.png
     - lib/assets/female_gender_icon.jpeg
     - lib/assets/male_gender_icon.png
+    - lib/assets/baseline_filter_alt_white_24dp.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

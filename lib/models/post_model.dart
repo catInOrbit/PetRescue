@@ -13,7 +13,7 @@ class Post {
   String title, petType, gender, ages, description, location, imageThumbnail, breed;
   DateTime timeCreated;
   PostType postType;
-  List<Statuses> statuses = [];
+  List<String> statuses = [];
   List<TimeLineText> timelineText = [];
   Widget timelineBuilder;
   User currentUser, acceptedRequestUser;

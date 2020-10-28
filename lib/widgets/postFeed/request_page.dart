@@ -141,7 +141,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
         backgroundColor: appBarColor,
         actions: [
           IconButton(
-            icon: Icon(Icons.filter_list),
+            icon: Image.asset("lib/assets/baseline_filter_alt_white_24dp.png"),
             onPressed: () {
               if (widget.sortType
                   .contains(PostType.RequestPost.toString().split('.').last)) {
@@ -186,12 +186,6 @@ class _RequestPostPageState extends State<RequestPostPage> {
         .where((element) => widget.sortType
             .contains(element.postType.toString().split('.').last))
         .toList();
-
-    // if(widget.sortType.contains(PostType.RequestPost.toString().split('.').last) || widget.sortType .contains(PostType.InRescuePost.toString().split('.').last))
-    //   return listOfPost.where((element) =>  widget.sortType.contains(element.postType.toString().split('.').last)).toList();
-    //
-    // else if(widget.sortType.contains(PostType.AdoptPost.toString().split('.').last))
-    //   return listOfPost.where((element) => element.postType.toString().split('.').last widget.sortType).toList();
   }
 }
 
