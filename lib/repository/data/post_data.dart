@@ -19,7 +19,8 @@ List<Post> listOfPosts = [
       userList[0],
     <User>[],
       null,
-    <String>[]
+    <String>[],
+    "Persian"
   ),
 
   Post(
@@ -37,7 +38,8 @@ List<Post> listOfPosts = [
       userList[1],
       <User>[userList[2]],
     userList[2],
-    <String>[]
+    <String>[],
+    "COco"
   ),
 
   Post(
@@ -55,7 +57,8 @@ List<Post> listOfPosts = [
       userList[1],
       <User>[userList[2]],
       userList[2],
-      <String>[]
+      <String>[],
+    "Oxloot"
   ),
 
 

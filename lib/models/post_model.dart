@@ -10,7 +10,7 @@ enum PostType { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost, InR
 
 class Post {
   Key key;
-  String title, petType, gender, ages, description, location, imageThumbnail;
+  String title, petType, gender, ages, description, location, imageThumbnail, breed;
   DateTime timeCreated;
   PostType postType;
   List<Statuses> statuses = [];
@@ -26,7 +26,7 @@ class Post {
   }
 
   Post(title, description, petType, location, timeCreated, postType,
-      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings) {
+      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed) {
     this.title = title;
     this.petType = petType;
     this.description = description;
@@ -42,6 +42,7 @@ class Post {
     this.adoptUserRequests = adoptUserRequests;
     this.acceptedRequestUser = acceptedRequestUser;
     this.imageStrings = imageStrings;
+    this.breed = breed;
 
     if(timelineText== null || timelineText.length > 0)
     timelineBuilder = new TimelineBuilder(

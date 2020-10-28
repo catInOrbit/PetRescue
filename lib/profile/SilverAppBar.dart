@@ -120,10 +120,7 @@ class _ProfileTabState extends State<ProfileTab>
                 elevation: 0,
                 expandedHeight: 330,
                 backgroundColor: HexColor('#FFB9AC'),
-                leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () => Navigator.pop(context, false),
-                ),
+                leading: Container(),
                 title: Text(
                   "My Profile",
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -141,6 +138,12 @@ class _ProfileTabState extends State<ProfileTab>
                       },
                     ),
                   ),
+
+                  IconButton(
+                    icon: Icon(Icons.settings),
+                    onPressed: () {},
+                  ),
+
                   IconButton(
                     icon: Icon(Icons.notifications),
                     onPressed: () {},

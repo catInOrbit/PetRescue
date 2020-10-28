@@ -8,7 +8,11 @@ class PetRescueTheme
    static final Color lime = Color.fromRGBO(204, 202, 152, 1);
    static final Color lightGrey = Color.fromRGBO(235, 243, 250, 1);
 
-   static List<Color> adoptPostTheme = [Colors.black, Colors.white]; //accent, keyword
+   static List<Color> rescuePostTheme = [lightPink, Colors.white, Colors.black, lightPink]; //accent, keyword, text, icon
+   static List<Color> adoptPostTheme = [darkGreen, Colors.white, Colors.black, darkGreen]; //accent, keyword
+   static List<Color> inRescuePostTheme = [lime, lime, Colors.white, Colors.white]; //accent, keyword
+
+
    static List<Color> inRescuedPostTheme = [Colors.white, lime]; //accent, keyword
    static List<Color> revertInRescuedPostTheme = [lime, Colors.white]; //accent, keyword
 
@@ -16,7 +20,7 @@ class PetRescueTheme
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];
    static List<Color> statusTagsRescueTheme = [orange, Colors.white];
    static List<Color> revertAdoptPostTheme = [Colors.white, darkGreen]; //accent, keyword
-   static List<Color> actionWordAdoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
+   static List<Color> actionWordAdoptPostTheme = [lime, Colors.white]; //accent, keyword
    static List<Color> actionWordRescuePostTheme = [Colors.orange, Colors.white]; //accent, keyword
 
    static List<Color> userRibbonRescuePostTheme = [Colors.white, Colors.black];
@@ -29,5 +33,5 @@ class PetRescueTheme
 
 enum PetRescueThemeColorType
 {
-   Accent, KeyWord
+   Accent, KeyWord, Text, Icon
 }

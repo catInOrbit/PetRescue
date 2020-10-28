@@ -33,11 +33,11 @@ class _PostCardState extends State<PostCard> {
     List<Color> colorScheme;
 
     if (widget.postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.revertAdoptPostTheme;
+      colorScheme = PetRescueTheme.adoptPostTheme;
     else if (widget.postModel.postType == PostType.RequestPost)
-      colorScheme = PetRescueTheme.requestRescuePostTheme;
+      colorScheme = PetRescueTheme.rescuePostTheme;
     else if (widget.postModel.postType == PostType.InRescuePost)
-      colorScheme = PetRescueTheme.inRescuedPostTheme;
+      colorScheme = PetRescueTheme.inRescuePostTheme;
 
 
     return Padding(
@@ -176,7 +176,7 @@ class _PostCardState extends State<PostCard> {
                             widget.postModel.title,
                             style: TextStyle(
                               color: colorScheme[PetRescueThemeColorType
-                                  .Accent.index],
+                                  .Text.index],
                               fontSize: 20,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w900,
@@ -188,32 +188,110 @@ class _PostCardState extends State<PostCard> {
 
                         Padding(
                           padding: const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Type:",
-                                style: TextStyle(
-                                  color: colorScheme[PetRescueThemeColorType
-                                      .Accent.index],
-                                  fontSize: 20,
-                                  fontFamily: "Lato",
-                                  fontStyle:  FontStyle.normal,
-                                ),
-                              ),
+                          child: IntrinsicHeight(
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Type:",
+                                      style: TextStyle(
+                                        color: colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                        fontSize: 20,
+                                        fontFamily: "Lato",
+                                        fontStyle:  FontStyle.normal,
+                                      ),
+                                    ),
 
-                              SizedBox(width: 20,),
+                                    SizedBox(width: 20,),
 
-                              Text(
-                                widget.postModel.petType,
-                                style: TextStyle(
-                                  color: colorScheme[PetRescueThemeColorType
-                                      .Accent.index],
-                                  fontSize: 20,
-                                  fontFamily: "Lato",
-                                  fontWeight: FontWeight.bold
+                                    Text(
+                                      widget.postModel.petType,
+                                      style: TextStyle(
+                                        color: colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                        fontSize: 20,
+                                        fontFamily: "Lato",
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    SizedBox(width: 20,),
+
+                                    VerticalDivider(width: 1, thickness: 2, color: Colors.black,),
+
+                                  ],
+
                                 ),
-                              ),
-                            ],
+
+                                SizedBox(height: 10,),
+
+                                Row(
+                                  children: [
+
+                                    Text(
+                                      "Breed:",
+                                      style: TextStyle(
+                                        color: colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                        fontSize: 20,
+                                        fontFamily: "Lato",
+                                        fontStyle:  FontStyle.normal,
+                                      ),
+                                    ),
+
+                                    SizedBox(width: 20,),
+
+                                    Text(
+                                      widget.postModel.breed,
+                                      style: TextStyle(
+                                          color: colorScheme[PetRescueThemeColorType
+                                              .Text.index],
+                                          fontSize: 20,
+                                          fontFamily: "Lato",
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+
+                                  ],
+
+                                ),
+
+                                SizedBox(height: 10,),
+
+                                Row(
+                                  children: [
+
+                                    Text(
+                                      "Gender:",
+                                      style: TextStyle(
+                                        color: colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                        fontSize: 20,
+                                        fontFamily: "Lato",
+                                        fontStyle:  FontStyle.normal,
+                                      ),
+                                    ),
+
+                                    SizedBox(width: 20,),
+
+                                    Text(
+                                      widget.postModel.breed,
+                                      style: TextStyle(
+                                          color: colorScheme[PetRescueThemeColorType
+                                              .Text.index],
+                                          fontSize: 20,
+                                          fontFamily: "Lato",
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+
+                                  ],
+
+                                ),
+
+                              ],
+                            ),
                           ),
                         ),
 
@@ -271,7 +349,7 @@ class _PostCardState extends State<PostCard> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 7),
+                              SizedBox(width: 10),
 
                               if(widget.postModel.postType != PostType.InRescuePost)
                                 ActionKeyword(
@@ -280,14 +358,14 @@ class _PostCardState extends State<PostCard> {
                           ),
                         ),
 
-                        if(widget.postModel.adoptUserRequests.length > 0)
+                        if(widget.postModel.postType == PostType.AdoptPost )
                            Padding(
-                             padding: const EdgeInsets.all(8.0),
+                             padding: const EdgeInsets.only(left: 20, top: 10),
                              child: Row(
                                children: [
                                  Text("Requesterd Adopter:", style: TextStyle(
                                      fontWeight: FontWeight.w800,
-                                   color: colorScheme[PetRescueThemeColorType.Accent.index]
+                                   color: colorScheme[PetRescueThemeColorType.Text.index]
 
                                  ),),
                                  CustomAvatars(postModel: widget.postModel,),
@@ -298,40 +376,42 @@ class _PostCardState extends State<PostCard> {
 
 
                         Divider(
-                          color: colorScheme[PetRescueThemeColorType.Accent
+                          color: colorScheme[PetRescueThemeColorType.Icon
                               .index],
                           thickness: 0.5,
                         ),
 
-                        Row(
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(Icons.location_on, color: colorScheme[PetRescueThemeColorType.Icon.index],),
+                              SizedBox(width: 20,),
+                              Text("2.7km toi ban", style: TextStyle(
+                                color: colorScheme[PetRescueThemeColorType.Text.index],fontSize: 18,
+                                fontWeight: FontWeight.w300
+                              )),
 
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.location_on, color: colorScheme[PetRescueThemeColorType.Accent.index],),
-                            SizedBox(width: 20,),
-                            Text("Distance from you: 2.7km", style: TextStyle(
-                              color: colorScheme[PetRescueThemeColorType.Accent.index],fontSize: 18,
-                              fontWeight: FontWeight.w300
-                            )),
+                              SizedBox(width: 10,),
 
-                            SizedBox(width: 10,),
-
-                            Text("View on map ", style: TextStyle(
-                                color: Colors.cyan,fontSize: 16,
-                              decoration: TextDecoration.underline,
-                            )),
-                          ],
+                              Text("View on map ", style: TextStyle(
+                                  color: Colors.cyan,fontSize: 16,
+                                decoration: TextDecoration.underline,
+                              )),
+                            ],
+                          ),
                         ),
 
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
                           child: Text("17/10, Nguyễn Phúc Chu, P. 15, Q. Tân Bình, Phường 15, Tân Bình, Thành phố Hồ Chí Minh, Vietnam",
-                          style: TextStyle(color: colorScheme[PetRescueThemeColorType.Accent.index], fontSize: 18, fontStyle: FontStyle.normal),
+                          style: TextStyle(color: colorScheme[PetRescueThemeColorType.Text.index], fontSize: 18, fontStyle: FontStyle.normal),
                           ),
                         ),
 
                         Divider(
-                          color: colorScheme[PetRescueThemeColorType.Accent
+                          color: colorScheme[PetRescueThemeColorType.Icon
                               .index],
                           thickness: 0.5,
                         ),
@@ -432,7 +512,7 @@ class _PostCardState extends State<PostCard> {
         padding: const EdgeInsets.only(right: 10),
         child: CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,),
       );
-    else if((postModel.postType == PostType.RequestPost && postModel.acceptedRequestUser != null))
+    else if((postModel.postType == PostType.InRescuePost && postModel.acceptedRequestUser != null))
       return OngoingRescuerRibbon(postModel: postModel,);
     else
       return Container();

@@ -24,7 +24,7 @@ class StatusTag extends StatelessWidget {
     switch(postModel.postType)
     {
       case PostType.AdoptPost:
-        colorScheme = PetRescueTheme.adoptPostStatusTheme;
+        colorScheme = PetRescueTheme.adoptPostTheme;
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
@@ -125,7 +125,7 @@ class ActionKeyword extends StatelessWidget {
     {
       case PostType.AdoptPost:
         text = "Adopt";
-        colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
+        colorScheme = PetRescueTheme.adoptPostTheme;
         break;
       case PostType.RequestPost:
         text = "Rescue";
@@ -416,57 +416,60 @@ class OngoingRescuerRibbon extends StatelessWidget {
   const OngoingRescuerRibbon({Key key, this.postModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(25)),
-        color: Color(0xff4b8669),
-      ),
-      padding: const EdgeInsets.only(
-        left: 7,
-        right: 28,
-        top: 6,
-        bottom: 8,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image:
-                        DecorationImage(image: NetworkImage(postModel.acceptedRequestUser.imageURL,)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(40)),
+          color: Color(0xff4b8669),
+        ),
+        padding: const EdgeInsets.only(
+          left: 7,
+          right: 28,
+          top: 6,
+          bottom: 8,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image:
+                          DecorationImage(image: NetworkImage(postModel.acceptedRequestUser.imageURL,)),
+                        ),
                       ),
                     ),
                   ),
-                ),
 
-              ],
-            ),
-          ),
-          SizedBox(width: 16),
-          SizedBox(
-            width: 60,
-            child: Text(
-              "Rescue in progress! ",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w700,
+                ],
               ),
             ),
-          ),
-        ],
+            SizedBox(width: 16),
+            SizedBox(
+              width: 60,
+              child: Text(
+                "Rescue in progress! ",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
