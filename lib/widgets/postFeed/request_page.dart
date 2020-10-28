@@ -141,7 +141,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
         backgroundColor: appBarColor,
         actions: [
           IconButton(
-            icon: Icon(Icons.filter_alt),
+            icon: Icon(Icons.filter_list),
             onPressed: () {
               if (widget.sortType
                   .contains(PostType.RequestPost.toString().split('.').last)) {
