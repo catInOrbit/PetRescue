@@ -347,7 +347,7 @@ class ActivityPage extends StatelessWidget {
   const ActivityPage({Key key, this.postModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Progress(postModel: postModel,));
+    return SingleChildScrollView(child: Progress(postModel: postModel, ));
   }
 }
 

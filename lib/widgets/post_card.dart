@@ -33,7 +33,7 @@ class _PostCardState extends State<PostCard> {
     List<Color> colorScheme;
 
     if (widget.postModel.postType == PostType.AdoptPost)
-       colorScheme = PetRescueTheme.adoptPostTheme;
+      colorScheme = PetRescueTheme.adoptPostTheme;
     else if (widget.postModel.postType == PostType.RequestPost)
       widget.postModel.priority == Priority.Normal
           ? colorScheme = PetRescueTheme.rescuePostTheme : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme ;
@@ -154,23 +154,23 @@ class _PostCardState extends State<PostCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Stack(
-                          children: [
+                            children: [
 
-                            PostHeaderRibbon(postModel: widget.postModel,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: UserInfoRibon(
-                                    isDetailRibbon: false,
-                                    postModel: widget.postModel,
+                              PostHeaderRibbon(postModel: widget.postModel,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: UserInfoRibon(
+                                      isDetailRibbon: false,
+                                      postModel: widget.postModel,
+                                    ),
                                   ),
-                                ),
                                   showResponsibleUserRibon(widget.postModel),
-                              ],
-                            ),
-                          ]
+                                ],
+                              ),
+                            ]
                         ),
 
                         Padding(
@@ -212,11 +212,11 @@ class _PostCardState extends State<PostCard> {
                                     Text(
                                       widget.postModel.petType,
                                       style: TextStyle(
-                                        color: colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                        fontSize: 20,
-                                        fontFamily: "Lato",
-                                        fontWeight: FontWeight.bold
+                                          color: colorScheme[PetRescueThemeColorType
+                                              .Text.index],
+                                          fontSize: 20,
+                                          fontFamily: "Lato",
+                                          fontWeight: FontWeight.bold
                                       ),
                                     ),
                                     SizedBox(width: 20,),
@@ -287,8 +287,8 @@ class _PostCardState extends State<PostCard> {
                                         ],
 
                                       ),
-                                  ],
-                                )
+                                    ],
+                                  )
 
                               ],
                             ),
@@ -359,19 +359,19 @@ class _PostCardState extends State<PostCard> {
                         ),
 
                         if(widget.postModel.postType == PostType.AdoptPost )
-                           Padding(
-                             padding: const EdgeInsets.only(left: 20, top: 10),
-                             child: Row(
-                               children: [
-                                 Text("Yêu cầu nhận nuôi:", style: TextStyle(
-                                     fontWeight: FontWeight.w800,
-                                   color: colorScheme[PetRescueThemeColorType.Text.index]
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 10),
+                            child: Row(
+                              children: [
+                                Text("Yêu cầu nhận nuôi:", style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    color: colorScheme[PetRescueThemeColorType.Text.index]
 
-                                 ),),
-                                 CustomAvatars(postModel: widget.postModel,),
-                               ],
-                             ),
-                           ),
+                                ),),
+                                CustomAvatars(postModel: widget.postModel,),
+                              ],
+                            ),
+                          ),
 
 
 
@@ -389,14 +389,14 @@ class _PostCardState extends State<PostCard> {
                               Icon(Icons.location_on, color: colorScheme[PetRescueThemeColorType.Icon.index],),
                               SizedBox(width: 20,),
                               Text("Cách bạn 2.7km", style: TextStyle(
-                                color: colorScheme[PetRescueThemeColorType.Text.index],fontSize: 18,
-                                fontWeight: FontWeight.w300
+                                  color: colorScheme[PetRescueThemeColorType.Text.index],fontSize: 18,
+                                  fontWeight: FontWeight.w300
                               )),
 
                               SizedBox(width: 10,),
 
                               Text("Xem bản đồ", style: TextStyle(
-                                  color: Colors.cyan,fontSize: 16,
+                                color: Colors.cyan,fontSize: 16,
                                 decoration: TextDecoration.underline,
                               )),
                             ],
@@ -406,7 +406,7 @@ class _PostCardState extends State<PostCard> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
                           child: Text("17/10, Nguyễn Phúc Chu, P. 15, Q. Tân Bình, Phường 15, Tân Bình, Thành phố Hồ Chí Minh, Vietnam",
-                          style: TextStyle(color: colorScheme[PetRescueThemeColorType.Text.index], fontSize: 18, fontStyle: FontStyle.normal),
+                            style: TextStyle(color: colorScheme[PetRescueThemeColorType.Text.index], fontSize: 18, fontStyle: FontStyle.normal),
                           ),
                         ),
 

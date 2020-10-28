@@ -142,7 +142,7 @@ class ActionKeyword extends StatelessWidget {
         break;
       case PostType.RequestPost:
         text = "Rescue";
-        colorScheme = PetRescueTheme.actionWordRescuePostTheme;
+        postModel.priority == Priority.High ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
         break;
       case PostType.InRescuePost:
         text = "In Rescue Progress";

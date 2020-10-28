@@ -134,6 +134,7 @@ class Progress extends StatelessWidget {
 
                           UserInfoRibon(
                             postModel: postModel,
+                            isDetailRibbon: false,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

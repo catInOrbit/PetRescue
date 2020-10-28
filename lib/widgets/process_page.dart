@@ -9,18 +9,18 @@ class TrackingPage extends StatefulWidget {
 
 class _TrackingPageState extends State<TrackingPage> {
   final List<Location> locations = [
-    Location('Arrive at location XYZ', DateTime(2019, 6, 5, 5, 23, 4),
+    Location('Đã tới khu vực XYZ', DateTime(2019, 6, 5, 5, 23, 4),
         showHour: false, isHere: false, passed: true),
-    Location('Hyderabad Facility', DateTime(2019, 6, 6, 5, 23, 4),
+    Location('Tìm thấy thú ở XYZ', DateTime(2019, 6, 6, 5, 23, 4),
         showHour: false, isHere: false, passed: true),
     Location(
-      'Chennai Facility',
+      ' Trên đường về trạm',
       DateTime(2019, 6, 9, 5, 23, 4),
       showHour: false,
       isHere: true,
     ),
     Location(
-      'Kerala Facility',
+      'Đã về đến trạm',
       DateTime(2019, 6, 10, 5, 23, 4),
       showHour: true,
       isHere: false,
@@ -39,7 +39,7 @@ class _TrackingPageState extends State<TrackingPage> {
             brightness: Brightness.light,
             iconTheme: IconThemeData(color: Colors.grey),
             title: Text(
-              'Rescue Process',
+              'Quá trình giải cứu',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 22,
