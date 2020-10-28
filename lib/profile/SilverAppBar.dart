@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/profile/Colors.dart';
+import 'package:petrescue/profile/CustomListSlideMenuBar.dart';
 import 'package:petrescue/profile/EditScreen.dart';
 import 'package:petrescue/profile/TabAdoption.dart';
 import 'package:petrescue/profile/TabRescued.dart';
 import 'package:petrescue/profile/TabTimelines.dart';
 import 'package:petrescue/profile/chat_screen.dart';
 import 'package:petrescue/models/message_model.dart';
+import 'package:petrescue/profile/profile_screens/about_screen.dart';
+import 'package:petrescue/profile/profile_screens/center_screen.dart';
+import 'package:petrescue/profile/profile_screens/help_screen.dart';
 import 'package:petrescue/widgets/progress.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -40,6 +44,7 @@ class _ProfileTabState extends State<ProfileTab>
 
   @override
   Widget build(BuildContext context) {
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
       endDrawer: Drawer(
