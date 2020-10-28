@@ -68,7 +68,7 @@ class _PostSecondState extends State<PostSecond> {
                         ),
                       ),
                       Text(
-                        'Add Photos',
+                        '',
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -85,7 +85,7 @@ class _PostSecondState extends State<PostSecond> {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(15.0, 10, 0, 5),
-                  child: Text('Story', style: TextStyle(fontSize: 18)),
+                  child: Text('Nội dung', style: TextStyle(fontSize: 18)),
                 )),
             Container(
               width: 365,
@@ -99,7 +99,7 @@ class _PostSecondState extends State<PostSecond> {
                 maxLines: 10,
                 decoration: InputDecoration(
 
-                    border: InputBorder.none, hintText: 'I found the kitten...'),
+                    border: InputBorder.none, hintText: 'Tôi vừa thấy một con mèo...'),
               ),
             ),
             Align(
@@ -114,41 +114,44 @@ class _PostSecondState extends State<PostSecond> {
               color: HexColor('EBF3FA'),
               child: TextField(
                 decoration: InputDecoration(
-                    border: InputBorder.none, hintText: 'Start Typing'),
+                    border: InputBorder.none, hintText: 'Hãy nhập đặc điểm'),
               ),
             ),
             SizedBox(height: 10,),
-            Row(
-              children: <Widget>[
-                Text(''),
-                Container(
-                  color: HexColor('F99746'),
-                  child: Text(
-                    'Male',
-                    style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15.0, 0, 0, 5),
+              child: Row(
+                children: <Widget>[
+                 // Text(''),
+                  Container(
+                    color: HexColor('F99746'),
+                    child: Text(
+                      'Đực',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  color: HexColor('F99746'),
-                  child: Text(
-                    'Male',
-                    style: TextStyle(color: Colors.white),
+                  SizedBox(
+                    width: 10,
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  color: HexColor('F99746'),
-                  child: Text(
-                    'Male',
-                    style: TextStyle(color: Colors.white),
+                  Container(
+                    color: HexColor('F99746'),
+                    child: Text(
+                      'Lông trắng',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    color: HexColor('F99746'),
+                    child: Text(
+                      'Mắt xanh ',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

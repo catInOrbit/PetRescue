@@ -35,7 +35,7 @@ class _EditPostState extends State<EditPost> {
   }
 
   String strBtnSelectGender;
-  static const genderItems = <String>['Male', 'Female', 'Bê đê'];
+  static const genderItems = <String>['Đực', 'Cái'];
   final List<DropdownMenuItem<String>> _dropDownGenderItems = genderItems
       .map((String value) => DropdownMenuItem<String>(
             value: value,
@@ -45,7 +45,7 @@ class _EditPostState extends State<EditPost> {
 
   String strBtnSelectMonthAge;
   static const monthsItems = <String>[
-    "Months", "Years"
+    "Tháng", "Năm"
   ];
   final List<DropdownMenuItem<String>> _dropDownMonthAgeItems = monthsItems
       .map((String value) => DropdownMenuItem<String>(
@@ -113,7 +113,7 @@ class _EditPostState extends State<EditPost> {
                                   ),
                                 ),
                                 Text(
-                                  'Add Photos',
+                                  'Thêm Ảnh',
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -142,7 +142,7 @@ class _EditPostState extends State<EditPost> {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          'Details',
+                          'Chi tiết',
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold),
                         ),
@@ -153,7 +153,7 @@ class _EditPostState extends State<EditPost> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(15.0, 0, 0, 5),
                         child: Text(
-                          'Name',
+                          'Tên',
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
@@ -169,7 +169,7 @@ class _EditPostState extends State<EditPost> {
                           },
                           decoration: InputDecoration(
                             //labelText: 'Name',
-                            hintText: 'Stranded Kitten',
+                            hintText: 'Tên động vật',
                             border: InputBorder.none,
                           ),
                         ),
@@ -180,7 +180,7 @@ class _EditPostState extends State<EditPost> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                         child: Text(
-                          'Animal Type',
+                          'Loài vật',
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
@@ -197,7 +197,7 @@ class _EditPostState extends State<EditPost> {
 
                           decoration: InputDecoration(
                             //labelText: 'Name',
-                            hintText: 'House Cat',
+                            hintText: 'Mèo nhà',
                             border: InputBorder.none,
                           ),
                         ),
@@ -208,7 +208,7 @@ class _EditPostState extends State<EditPost> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                         child: Text(
-                          'Location',
+                          'Địa điểm',
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
@@ -225,7 +225,7 @@ class _EditPostState extends State<EditPost> {
 
                           decoration: InputDecoration(
                               //labelText: 'Name',
-                              hintText: 'Choose Location...',
+                              hintText: 'Chọn địa điểm...',
                               // border: OutlineInputBorder(
                               //     borderSide:
                               //         BorderSide(color: Colors.transparent)),
@@ -246,7 +246,7 @@ class _EditPostState extends State<EditPost> {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Gender',
+                                  'Giới tính',
                                   style: TextStyle(fontSize: 18),
                                 ),
                               ),
@@ -259,7 +259,7 @@ class _EditPostState extends State<EditPost> {
                                   color: HexColor('#EBF3FA'),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton(
-                                      hint: Text('Choose'),
+                                      hint: Text('Chọn'),
                                       value: strBtnSelectGender,
                                       onChanged: ((String newValue) {
                                           post.gender = newValue;
@@ -281,7 +281,7 @@ class _EditPostState extends State<EditPost> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Age',
+                                  'Tuổi',
                                   style: TextStyle(fontSize: 18),
                                 ),
                               ),
@@ -294,14 +294,16 @@ class _EditPostState extends State<EditPost> {
                                     color: HexColor('#EBF3FA'),
                                     width: 54,
                                     height: 40,
-                                    child: TextField(
-                                        onChanged: (text){
-                                          post.ages = text;
-                                        },
-                                      keyboardType:
-                                          TextInputType.numberWithOptions(),
-                                      decoration: InputDecoration.collapsed(
-                                          hintText: '6-8'),
+                                    child: Center(
+                                      child: TextField(
+                                          onChanged: (text){
+                                            post.ages = text;
+                                          },
+                                        keyboardType:
+                                            TextInputType.numberWithOptions(),
+                                        decoration: InputDecoration.collapsed(
+                                            hintText: '6-8'),
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -313,7 +315,7 @@ class _EditPostState extends State<EditPost> {
                                     height: 40,
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        hint: Text('Months'),
+                                        hint: Text('Tháng'),
                                         value: strBtnSelectMonthAge,
                                         onChanged: ((String newValue) {
                                           post.ages += " " + newValue;

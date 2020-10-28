@@ -37,13 +37,13 @@ class _RequestPostPageState extends State<RequestPostPage> {
     String appbarText;
     if(widget.sortType.contains(PostType.RequestPost.toString().split('.').last))
       {
-        appbarText = "Rescue";
+        appbarText = "Cứu hộ";
         appBarColor = Colors.redAccent;
 
       }
     else if(widget.sortType.contains(PostType.AdoptPost.toString().split('.').last))
       {
-        appbarText = "Adopt";
+        appbarText = "Nuôi nhận";
         appBarColor = PetRescueTheme.darkGreen;
       }
     final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -81,22 +81,22 @@ class _RequestPostPageState extends State<RequestPostPage> {
                   )),
             ),
             //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
-            CustomListSideMenuBar(Icons.group, 'Centers', ()=>{
+            CustomListSideMenuBar(Icons.group, 'Danh sách trung tâm', ()=>{
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => CentersScreen()))
             }),
-            CustomListSideMenuBar(Icons.settings, 'Settings', ()=>{}),
-            CustomListSideMenuBar(Icons.settings, 'About', () {
+            CustomListSideMenuBar(Icons.settings, 'Cài đặt', ()=>{}),
+            CustomListSideMenuBar(Icons.settings, 'Giới thiệu', () {
               //close drawer
               Navigator.pop(context,false);
               //open another screen
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => AboutScreen()));
             },),
-            CustomListSideMenuBar(Icons.settings, 'Give feedback', ()=>{
+            CustomListSideMenuBar(Icons.settings, 'Đánh giá', ()=>{
 
             }),
-            CustomListSideMenuBar(Icons.help_outline, 'Help', () {
+            CustomListSideMenuBar(Icons.help_outline, 'Trợ giúp', () {
               //close drawer
               Navigator.pop(context,false);
 
@@ -104,7 +104,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
                   MaterialPageRoute(builder: (_) => HelpScreen()));
             }),
 
-            CustomListSideMenuBar(Icons.remove_circle_outline, 'Sign out', () {
+            CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ', () {
               //close drawer
               Navigator.pop(context,false);
             })

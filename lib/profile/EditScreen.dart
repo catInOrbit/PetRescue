@@ -34,7 +34,7 @@ class _EditScreenState extends State<EditScreen> {
             onPressed: (){},
           )
         ],
-        title:Text(" Edit profile"),
+        title:Text(" Chính sửa tài khoản"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -85,25 +85,25 @@ class _EditScreenState extends State<EditScreen> {
                 padding: const EdgeInsets.fromLTRB(30,0,0,0),
                 child: Column(
                   children: <Widget>[
-                    Text("BASIC INFORMATION", style: TextStyle(
+                    Text("THÔNG TIN CÁ NHÂN", style: TextStyle(
                       fontSize: 15, fontWeight: FontWeight.bold
                     ),),
                     SizedBox(height: 5,),
                     TextField(
                       decoration: InputDecoration(
-                        hintText: "Your name",
+                        hintText: "Tên của bạn",
                       ),
                     ),
                     SizedBox(height: 5,),
                     TextField(
                       decoration: InputDecoration(
-                        hintText: "Your job",
+                        hintText: "Nghê nghiệp",
                       ),
                     ),
                     SizedBox(height: 5,),
                     TextField(
                       decoration: InputDecoration(
-                        hintText: "Your center",
+                        hintText: "Trung Tâm",
                       ),
                     ),
                   ],
@@ -117,7 +117,7 @@ class _EditScreenState extends State<EditScreen> {
 
               child: Column(
                 children: <Widget>[
-                  Text("CONTACT & SOCIAL MEDIA",style: TextStyle(
+                  Text("THÔNG TIN LIÊN HỆ",style: TextStyle(
                       fontSize: 15, fontWeight: FontWeight.bold
                   ),),
                   Row(children: <Widget>[
@@ -138,7 +138,7 @@ class _EditScreenState extends State<EditScreen> {
                     SizedBox(width: 15,),
                     Expanded(child: TextField(
                       decoration: InputDecoration(
-                        labelText: "your location"
+                        labelText: "Địa chỉ liên lạc"
                       ),
                     ))
                   ],),
@@ -147,7 +147,7 @@ class _EditScreenState extends State<EditScreen> {
                     SizedBox(width: 15,),
                     Expanded(child: TextField(
                       decoration: InputDecoration(
-                          labelText: "contact@hello.com"
+                          labelText: "lienhe@trangweb.com"
                       ),
                     ))
                   ],),
@@ -156,7 +156,7 @@ class _EditScreenState extends State<EditScreen> {
                     SizedBox(width: 15,),
                     Expanded(child: TextField(
                       decoration: InputDecoration(
-                        labelText: "https://www.yourwebsite.com"
+                        labelText: "https://www.trangwebcuaban.com"
                       ),
                     ))
                   ],),
