@@ -5,6 +5,7 @@ import 'package:petrescue/widgets/timeline_text.dart';
 
 List<Post> listOfPosts = [
   Post(
+    "P00",
     "Cần giải cứu mèo bị thương chân",
     "description",
     "Mèo nhà",
@@ -25,6 +26,7 @@ List<Post> listOfPosts = [
   ),
 
   Post(
+      "P01",
       "Cần giải cứu mèo bị thương chân",
       "description",
       "Mèo nhà",
@@ -45,7 +47,8 @@ List<Post> listOfPosts = [
   ),
 
   Post(
-    "Đã giải cứu mèo ở quận 2",
+      "P02",
+      "Đã giải cứu mèo ở quận 2",
     "description",
     "Mèo nhà",
     "164 Ilbert Street, London,W10 4QD ",
@@ -67,6 +70,7 @@ List<Post> listOfPosts = [
   ),
 
   Post(
+      "P03",
       "Title 1",
       "Mèo nhà",
       "House cat",

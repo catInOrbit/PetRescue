@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
+import 'package:petrescue/bloc/post/post/post_bloc.dart';
+import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
@@ -154,7 +156,6 @@ class ActionKeyword extends StatelessWidget {
 
     return Container(
       height: 50,
-
       //TODO: Inkwell won't show ripple effeect
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -162,10 +163,14 @@ class ActionKeyword extends StatelessWidget {
           SizedBox(
             width: 120,
             child: InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => TrackingPage(),
-                ));
+              onTap: ()
+               {
+                  PostEvent postEvent = PostEvent();
+                  postEvent.affectedPost =  postModel;
+                  postEvent.acceptedRequest = true;
+                  bloc.inputSink.add(postEvent);
+      // Navigator.push(context, MaterialPageRoute(
+      //   builder: (context) => TrackingPage(),
               },
               child: Container(
                 height: 45,
@@ -198,6 +203,61 @@ class ActionKeyword extends StatelessWidget {
     );
   }
 }
+class ActionKeywordAccepted extends StatelessWidget {
+
+  const ActionKeywordAccepted({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Color> colorScheme = [PetRescueTheme.lime, Colors.white];
+    String text = "Cập nhật tình trạng";
+
+    return Container(
+      height: 50,
+      //TODO: Inkwell won't show ripple effeect
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 180,
+            child: InkWell(
+              onTap: () {
+
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => TrackingPage(),
+                ));
+              },
+              child: Container(
+                height: 45,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: colorScheme[PetRescueThemeColorType.Accent.index]
+                ),
+                child: Center(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                      fontSize: 20,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 2),
+          Container(
+            width: 21,
+            height: 18,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class UserInfo extends StatelessWidget {
   final Post postModel;

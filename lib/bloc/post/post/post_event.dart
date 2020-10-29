@@ -1,7 +1,21 @@
 import 'package:petrescue/models/post_model.dart';
 
 class PostEvent {
-  bool _isPrioritized, _hasSortRquest, _hasDeleteRequest;
+  bool _isPrioritized = false, _hasSortRquest = false, _hasDeleteRequest = false, _acceptedRequest = false;
+  Post _affectedPost;
+
+  Post get affectedPost => _affectedPost;
+
+  set affectedPost(Post value) {
+    _affectedPost = value;
+  }
+
+  get acceptedRequest => _acceptedRequest;
+
+  set acceptedRequest(value) {
+    _acceptedRequest = value;
+  }
+
   String selectedSort = "";
   Post _selectedPost;
 

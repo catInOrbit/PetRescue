@@ -33,6 +33,18 @@ class PostBloc {
         _state.visiblePostTree.remove(_event.selectedPost);
       }
 
+      else if(_event.acceptedRequest)
+        {
+          print("why the fuck are you null: " + _event.affectedPost.toString());
+          listOfPosts.forEach((element) {
+            if(element.id == _event.affectedPost.id)
+              {
+                element.acceptedRequest = true;
+                return;
+              }
+          });
+        }
+
       _outputStateStreamController.sink.add(_state);
     }
 

@@ -349,9 +349,12 @@ class _PostCardState extends State<PostCard> {
                               ),
                               SizedBox(width: 10),
 
-                              if(widget.postModel.postType != PostType.InRescuePost)
+                              if(widget.postModel.postType != PostType.InRescuePost && !widget.postModel.acceptedRequest)
                                 ActionKeyword(
                                   postModel: widget.postModel,),
+                              if(widget.postModel.postType != PostType.InRescuePost && widget.postModel.acceptedRequest)
+                                  ActionKeywordAccepted(),
+
                             ],
                           ),
                         ),

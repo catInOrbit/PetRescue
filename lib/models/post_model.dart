@@ -10,7 +10,9 @@ enum PostType { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost, InR
 
 class Post {
   Key key;
-  String title, petType, gender, ages, description, location, imageThumbnail, breed;
+  String title, petType, gender, ages, description, location, imageThumbnail, breed, id;
+
+
   DateTime timeCreated;
   PostType postType;
   List<String> statuses = [];
@@ -20,14 +22,17 @@ class Post {
   List<User> adoptUserRequests;
   List<String> imageStrings;
   Priority priority;
+  bool _acceptedRequest = false;
+
 
   Post.empty()
   {
 
   }
 
-  Post(title, description, petType, location, timeCreated, postType,
+  Post(id, title, description, petType, location, timeCreated, postType,
       imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed, priority) {
+    this.id = id;
     this.title = title;
     this.petType = petType;
     this.description = description;
@@ -54,6 +59,13 @@ class Post {
 
     else
       timelineBuilder = new Container();
+  }
+
+
+  bool get acceptedRequest => _acceptedRequest;
+
+  set acceptedRequest(bool value) {
+    _acceptedRequest = value;
   }
 
   List<Widget> generateIconTimeline(int amount)
