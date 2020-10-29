@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/EditPost/colors.dart';
+import 'package:petrescue/repository/data/user_list.dart';
 
 class CentersScreen extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _CentersScreenState extends State<CentersScreen> {
         backgroundColor: HexColor('#FFB9AC'),
         elevation: 0,
         title: Text(
-          'Centers',
+          'Trung tâm',
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -43,7 +44,7 @@ class _CentersScreenState extends State<CentersScreen> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                "List of centers",
+                "Danh sách",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -61,6 +62,7 @@ class _CentersScreenState extends State<CentersScreen> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: CircleAvatar(
+                        backgroundImage: NetworkImage(userList[5].imageURL) ,
                         radius: 20,
                       ),
                     ),
@@ -76,7 +78,7 @@ class _CentersScreenState extends State<CentersScreen> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'FPT Pet Center',
+                                userList[5].centerName,
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
@@ -118,6 +120,7 @@ class _CentersScreenState extends State<CentersScreen> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: CircleAvatar(
+                        backgroundImage: NetworkImage(userList[4].imageURL) ,
                         radius: 20,
                       ),
                     ),
@@ -133,7 +136,7 @@ class _CentersScreenState extends State<CentersScreen> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'FPT Pet Center',
+                                userList[4].centerName,
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
@@ -161,6 +164,7 @@ class _CentersScreenState extends State<CentersScreen> {
                 ),
               ),
             ),
+
             SizedBox(
               height: 10,
             ),
@@ -175,6 +179,7 @@ class _CentersScreenState extends State<CentersScreen> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: CircleAvatar(
+                        backgroundImage: NetworkImage(userList[3].imageURL) ,
                         radius: 20,
                       ),
                     ),
@@ -190,7 +195,7 @@ class _CentersScreenState extends State<CentersScreen> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'FPT Pet Center',
+                                userList[3].centerName,
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
@@ -218,6 +223,7 @@ class _CentersScreenState extends State<CentersScreen> {
                 ),
               ),
             ),
+
           ],
         ),
       ),

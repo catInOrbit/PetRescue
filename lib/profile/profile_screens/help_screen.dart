@@ -35,7 +35,7 @@ class _HelpScreenState extends State<HelpScreen> {
         backgroundColor: HexColor('#FFB9AC'),
         elevation: 0,
         title: Text(
-          'Help',
+          'Trợ giúp',
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -55,7 +55,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 onTap: () {
                   createAlertDialog(context);
                 },
-                child: Text('Send', style: TextStyle(fontSize: 18),),
+                child: Text('Gửi', style: TextStyle(fontSize: 18),),
               ),
             ),
           )
@@ -75,25 +75,25 @@ class _HelpScreenState extends State<HelpScreen> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'SUBJECT',
+                      'Tiêu đề',
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,10),
                     child: TextField(
-                      decoration: InputDecoration(hintText: 'Issue subject'),
+                      decoration: InputDecoration(hintText: 'Đặt tiêu đề'),
                     ),
                   ),
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'ISSUE DESCRIPTION',
+                      'Mô tả',
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,10),
                     child: TextField(
-                      decoration: InputDecoration(hintText: 'Add an issue description'),
+                      decoration: InputDecoration(hintText: 'Nội dung'),
                     ),
                   ),
                 ],

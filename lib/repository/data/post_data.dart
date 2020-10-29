@@ -7,7 +7,7 @@ List<Post> listOfPosts = [
   Post(
     "Cần giải cứu mèo bị thương chân",
     "description",
-    "House cat",
+    "Mèo nhà",
     "2426  Breezewood Court",
     DateTime.now(),
     PostType.RequestPost,
@@ -27,7 +27,7 @@ List<Post> listOfPosts = [
   Post(
       "Cần giải cứu mèo bị thương chân",
       "description",
-      "House cat",
+      "Mèo nhà",
       "2426  Breezewood Court",
       DateTime.now(),
       PostType.RequestPost,
@@ -47,7 +47,7 @@ List<Post> listOfPosts = [
   Post(
     "Đã giải cứu mèo ở quận 2",
     "description",
-    "House cat",
+    "Mèo nhà",
     "164 Ilbert Street, London,W10 4QD ",
     DateTime.now(),
     PostType.AdoptPost,
@@ -68,7 +68,7 @@ List<Post> listOfPosts = [
 
   Post(
       "Title 1",
-      "description",
+      "Mèo nhà",
       "House cat",
       "7 Croftlands Drive, Ravenglass",
       DateTime.now(),

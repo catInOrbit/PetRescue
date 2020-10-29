@@ -91,7 +91,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
                     }),
             CustomListSideMenuBar(Icons.settings, 'Cài đặt', () => {}),
             CustomListSideMenuBar(
-              Icons.settings,
+              Icons.info,
               'Giới thiệu',
               () {
                 //close drawer
@@ -101,7 +101,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
                     context, MaterialPageRoute(builder: (_) => AboutScreen()));
               },
             ),
-            CustomListSideMenuBar(Icons.settings, 'Đánh giá', () => {}),
+            CustomListSideMenuBar(Icons.phone_android, 'Đánh giá', () => {}),
             CustomListSideMenuBar(Icons.help_outline, 'Trợ giúp', () {
               //close drawer
               Navigator.pop(context, false);

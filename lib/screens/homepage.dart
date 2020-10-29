@@ -86,36 +86,43 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
               //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
-              CustomListSideMenuBar(Icons.group, 'Centers', ()=>{
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => CentersScreen()))
-              }),
-              CustomListSideMenuBar(Icons.settings, 'Settings', ()=>{}),
-              CustomListSideMenuBar(Icons.settings, 'About', () {
+              CustomListSideMenuBar(
+                  Icons.group,
+                  'Danh sách trung tâm',
+                      () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => CentersScreen()))
+                  }),
+              CustomListSideMenuBar(Icons.settings, 'Cài đặt', () => {}),
+              CustomListSideMenuBar(
+                Icons.info,
+                'Giới thiệu',
+                    () {
+                  //close drawer
+                  Navigator.pop(context, false);
+                  //open another screen
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => AboutScreen()));
+                },
+              ),
+              CustomListSideMenuBar(Icons.phone_android, 'Đánh giá', () => {}),
+              CustomListSideMenuBar(Icons.help_outline, 'Trợ giúp', () {
                 //close drawer
-                Navigator.pop(context,false);
-                //open another screen
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => AboutScreen()));
-              },),
-              CustomListSideMenuBar(Icons.settings, 'Give feedback', ()=>{
+                Navigator.pop(context, false);
 
-              }),
-              CustomListSideMenuBar(Icons.help_outline, 'Help', () {
-                //close drawer
-                Navigator.pop(context,false);
-
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => HelpScreen()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => HelpScreen()));
               }),
 
-              CustomListSideMenuBar(Icons.remove_circle_outline, 'Sign out', () {
-                //close drawer
-                Navigator.pop(context,false);
-              })
+              CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
+                      () {
+                    //close drawer
+                    Navigator.pop(context, false);
+                  })
             ],
           ),
         ),
+
       ),
     );
   }

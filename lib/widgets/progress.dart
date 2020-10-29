@@ -158,7 +158,7 @@ class Progress extends StatelessWidget {
                                                 width: 150,
                                                 height: 29,
                                                 child: Text(
-                                                  "Rescued Kitten",
+                                                  "Mèo được giải cứu  ",
                                                   style: TextStyle(
                                                     color: colorScheme[PetRescueThemeColorType
                                                         .Accent.index],

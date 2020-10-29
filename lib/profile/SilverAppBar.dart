@@ -62,12 +62,13 @@ class _ProfileTabState extends State<ProfileTab>
                       children: [
                         CircleAvatar(
                           radius: 30,
+                          backgroundImage: NetworkImage(currentUser.imageURL),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          'Full Name',
+                          currentUser.fullNanme,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )
                       ],
@@ -77,16 +78,16 @@ class _ProfileTabState extends State<ProfileTab>
             //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
             CustomListSideMenuBar(
                 Icons.group,
-                'Centers',
-                () => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => CentersScreen()))
-                    }),
-            CustomListSideMenuBar(Icons.settings, 'Settings', () => {}),
+                'Danh sách trung tâm',
+                    () => {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => CentersScreen()))
+                }),
+            CustomListSideMenuBar(Icons.settings, 'Cài đặt', () => {}),
             CustomListSideMenuBar(
-              Icons.settings,
-              'About',
-              () {
+              Icons.info,
+              'Giới thiệu',
+                  () {
                 //close drawer
                 Navigator.pop(context, false);
                 //open another screen
@@ -94,8 +95,8 @@ class _ProfileTabState extends State<ProfileTab>
                     context, MaterialPageRoute(builder: (_) => AboutScreen()));
               },
             ),
-            CustomListSideMenuBar(Icons.settings, 'Give feedback', () => {}),
-            CustomListSideMenuBar(Icons.help_outline, 'Help', () {
+            CustomListSideMenuBar(Icons.phone_android, 'Đánh giá', () => {}),
+            CustomListSideMenuBar(Icons.help_outline, 'Trợ giúp', () {
               //close drawer
               Navigator.pop(context, false);
 
@@ -103,10 +104,11 @@ class _ProfileTabState extends State<ProfileTab>
                   context, MaterialPageRoute(builder: (_) => HelpScreen()));
             }),
 
-            CustomListSideMenuBar(Icons.settings, 'Sign out', () {
-              //close drawer
-              Navigator.pop(context, false);
-            })
+            CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
+                    () {
+                  //close drawer
+                  Navigator.pop(context, false);
+                })
           ],
         ),
       ),
@@ -141,13 +143,13 @@ class _ProfileTabState extends State<ProfileTab>
                       },
                     ),
                   ),
+
+
                   IconButton(
-                    icon: Icon(Icons.settings),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.notifications),
-                    onPressed: () {},
+                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      _scaffoldKey.currentState.openEndDrawer();
+                    },
                   ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
@@ -100,7 +102,7 @@ class UserInfoRibon extends StatelessWidget {
             width: 81,
             height: 24,
             child: Text(
-              "tim.grover",
+              postModel.currentUser.fullNanme,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: colorScheme[PetRescueThemeColorType.KeyWord.index],
@@ -162,7 +164,7 @@ class ActionKeyword extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => DetailCard(postModel: postModel,),
+                  builder: (context) => TrackingPage(),
                 ));
               },
               child: Container(
@@ -354,7 +356,7 @@ class NoRequestWarning extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Be the first to rescue!",
+                "Hãy là người giải cứu đầu tiên!",
                 style: TextStyle(
                   color: Color(0xffffb9ac),
                   fontSize: 20,

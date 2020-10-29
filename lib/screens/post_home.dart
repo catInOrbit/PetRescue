@@ -75,7 +75,7 @@ class _PostHomeState extends State<PostHome> {
         ),
         BottomNavigationBarItem(
           backgroundColor: PetRescueTheme.orange,
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.local_activity),
           title: Text(
             'Hoạt động',
             style: TextStyle(fontWeight: FontWeight.bold),
@@ -83,7 +83,7 @@ class _PostHomeState extends State<PostHome> {
         ),
         BottomNavigationBarItem(
           backgroundColor: PetRescueTheme.darkGreen,
-          icon: Icon(Icons.add_alert),
+          icon: Icon(Icons.message),
           title: Text(
             'Tin nhắn',
             style: TextStyle(fontWeight: FontWeight.bold),
