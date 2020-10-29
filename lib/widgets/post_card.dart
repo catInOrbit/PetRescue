@@ -84,24 +84,14 @@ class _PostCardState extends State<PostCard> {
                           bottom: 42,
                         ),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
-                              width: 181,
+                              width: 700,
                               height: 44,
                               child: Stack(
                                 children: [
-                                  Positioned(
-                                    child: Container(
-                                      width: 37,
-                                      height: 37,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  ),
-
                                   Positioned(
                                       right: 10,
                                       child: InkWell(
@@ -120,6 +110,13 @@ class _PostCardState extends State<PostCard> {
                                           ),
                                         ),
                                       )
+                                  ),
+
+
+                                  Positioned(
+                                      left: 20,
+
+                                      child: Text("20 phút trước", style: TextStyle(color: Colors.white),)
                                   ),
                                 ],
                               ),

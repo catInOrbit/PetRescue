@@ -264,7 +264,7 @@ class DetailCard extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-
+                                  Text("20 phút trước", style: TextStyle(color: Colors.black),)
                                 ],
                               ),
                               SizedBox(height: 10),
