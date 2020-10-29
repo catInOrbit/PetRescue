@@ -262,10 +262,10 @@ class DetailCardButton extends StatelessWidget {
       text = "View timeline";
       colorScheme = [PetRescueTheme.orange, Colors.white];
     } else if (postModel.postType == PostType.AdoptPost) {
-      text = "Adopt";
-      colorScheme = PetRescueTheme.adoptPostTheme;
+      text = "Nhận nuôi";
+      colorScheme = [PetRescueTheme.darkGreen, Colors.white];
     } else if (postModel.postType == PostType.RequestPost) {
-      text = "Rescue";
+      text = "Giải cứu";
       colorScheme = PetRescueTheme.revertRescuePostTheme;
     }
 
@@ -288,14 +288,14 @@ class DetailCardButton extends StatelessWidget {
           ),
           padding: const EdgeInsets.only(
             left: 58,
-            right: 54,
+            right: 40,
           ),
           child: Center(
             child: Text(
               text,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: 22,
                 fontFamily: "Lato",
                 fontWeight: FontWeight.w700,
               ),

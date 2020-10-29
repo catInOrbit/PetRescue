@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/widgets/common.dart';
 
 class DetailCard extends StatelessWidget {
@@ -21,7 +23,7 @@ class DetailCard extends StatelessWidget {
             icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
             onPressed: () => Navigator.pop(context, false),
           ),
-          title: Text("Detail", style: TextStyle(color: Colors.black),),
+          title: Text("Chi tiết", style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.white,
 
         ),
@@ -146,11 +148,9 @@ class DetailCard extends StatelessWidget {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        SizedBox(
-                                          width: 166,
-                                          height: 29,
+                                        Expanded(
                                           child: Text(
-                                            "Stranded Kitten",
+                                            postModel.title,
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 20,
@@ -159,71 +159,112 @@ class DetailCard extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 32),
-                                        Container(
-                                          width: 5,
-                                          height: 4.80,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(width: 6),
-                                        SizedBox(
-                                          width: 31,
-                                          child: Text(
-                                            "Male",
-                                            style: TextStyle(
-                                              color: Color(0xff5e5d5d),
-                                              fontSize: 14,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 6),
-                                        Container(
-                                          width: 5,
-                                          height: 4.80,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(width: 6),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 150,
-                                            height: 50,
-                                            child: Center(
-                                              child: Text(
-                                                "6-8 Months",
-                                                style: TextStyle(
-                                                  color: Color(0xff5e5d5d),
-                                                  fontSize: 14,
-                                                  fontFamily: "Lato",
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 57,
-                                    height: 15,
-                                    child: Text(
-                                      "House cat",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                        fontFamily: "Lato",
-                                        fontWeight: FontWeight.w700,
-                                      ),
+
+                                  IntrinsicHeight(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Động vật:",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontStyle:  FontStyle.normal,
+                                              ),
+                                            ),
+
+                                            SizedBox(width: 20,),
+
+                                            Text(
+                                              postModel.petType,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+
+                                                  fontSize: 20,
+                                                  fontFamily: "Lato",
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            ),
+                                            SizedBox(width: 20,),
+
+                                            VerticalDivider(width: 1, thickness: 2, color: Colors.black,),
+
+                                          ],
+
+                                        ),
+
+                                        SizedBox(height: 10,),
+
+                                        if(postModel.postType == PostType.AdoptPost)
+                                          Column(
+                                            children: [
+                                              Row(
+
+                                                children: [
+
+                                                  Text(
+                                                    "Giống:",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+
+                                                      fontSize: 20,
+                                                      fontFamily: "Lato",
+                                                      fontStyle:  FontStyle.normal,
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(width: 20,),
+
+                                                  Text(
+                                                    postModel.breed,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 20,
+                                                        fontFamily: "Lato",
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+
+                                                ],
+
+                                              ),
+                                              SizedBox(height: 10,),
+                                              Row(
+                                                children: [
+
+                                                  Text(
+                                                    "Giới tính:",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+
+                                                      fontSize: 20,
+                                                      fontFamily: "Lato",
+                                                      fontStyle:  FontStyle.normal,
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(width: 20,),
+
+                                                  if(postModel.gender == "Female")
+                                                    Image.asset("lib/assets/female_gender_icon.jpeg", height: 25,)
+                                                  else
+                                                    Image.asset("lib/assets/male_gender_icon.png", height: 25,)
+                                                ],
+
+                                              ),
+                                            ],
+                                          )
+
+                                      ],
                                     ),
                                   ),
+
                                 ],
                               ),
                               SizedBox(height: 10),
@@ -258,40 +299,47 @@ class DetailCard extends StatelessWidget {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Container(
-                                      height: 53,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(26.50),
-                                        color: Color(0xffebf3fa),
-                                      ),
-                                      padding: const EdgeInsets.only(
-                                        left: 23,
-                                        right: 31,
-                                        top: 11,
-                                        bottom: 13,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Flexible(
-                                            child: InkWell(
-                                              child: Container(
-                                                height: 53,
-                                                child: Text(
-                                                  "Contact",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 24,
-                                                    fontFamily: "Lato",
-                                                    fontWeight: FontWeight.w700,
+                                    InkWell(
+                                      onTap: (){
+                                        Navigator.push(context, MaterialPageRoute(
+                                          builder: (context) => ProfileTab(postModel: postModel, ),
+                                        ));
+                                      },
+                                      child: Container(
+                                        height: 53,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(26.50),
+                                          color: Color(0xffebf3fa),
+                                        ),
+                                        padding: const EdgeInsets.only(
+                                          left: 23,
+                                          right: 31,
+                                          top: 11,
+                                          bottom: 13,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Flexible(
+                                              child: InkWell(
+                                                child: Container(
+                                                  height: 53,
+                                                  child: Text(
+                                                    "Liên hệ",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 24,
+                                                      fontFamily: "Lato",
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          SizedBox(width: 25.07),
-                                        ],
+                                            SizedBox(width: 25.07),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 3),
@@ -385,7 +433,7 @@ class StoryDetail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Story",
+          "Mô tả",
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -397,7 +445,7 @@ class StoryDetail extends StatelessWidget {
         SizedBox(
           width: 352,
           child: Text(
-            "Kitten was found stranded in a drain. I found it severly injured and it’s leg stuck in a hole. ",
+            "Tìm thấy mèo con bị thất lạc gần đường XYZ, mèo bị thương ở chân và cần cấp cứu gắp, nhờ trung tâm gần nhất mau đến cứu",
             style: TextStyle(
               color: Color(0xff555555),
               fontSize: 16,
@@ -419,14 +467,19 @@ class TimelineDetail extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Timeline",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontFamily: "Lato",
-              fontWeight: FontWeight.w700,
-            ),
+          Row(
+            children: [
+              Text(
+                "Timeline",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+
+            ],
           ),
           SizedBox(height: 8.50),
           Column(
@@ -437,7 +490,7 @@ class TimelineDetail extends StatelessWidget {
                 "Wednesday, 5th Oct ",
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 11,
+                  fontSize: 15,
                   fontFamily: "Lato",
                   fontWeight: FontWeight.w400,
                 ),
@@ -465,23 +518,14 @@ class TimelineDetail extends StatelessWidget {
                       ),
                       SizedBox(width: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "tim.grover reported at Church st.",
+                            "tim.grover thông báo ở đường XYZ",
                             style: TextStyle(
                               color: Color(0xff5e5d5d),
-                              fontSize: 12,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(width: 59),
-                          Text(
-                            "10min ago",
-                            style: TextStyle(
-                              color: Color(0xffc4c4c4),
-                              fontSize: 10,
+                              fontSize: 14,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
@@ -496,9 +540,9 @@ class TimelineDetail extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: 55,
-                        height: 14,
+                        height: 15,
                         child: Text(
-                          "1:05 p.m",
+                          "12:57 p.m",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 11,
@@ -507,25 +551,16 @@ class TimelineDetail extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 11),
+                      SizedBox(width: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "XYZ Rescue Centre responded",
+                            "tim.grover thông báo ở đường XYZ",
                             style: TextStyle(
                               color: Color(0xff5e5d5d),
-                              fontSize: 12,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(width: 70),
-                          Text(
-                            "10min ago",
-                            style: TextStyle(
-                              color: Color(0xffc4c4c4),
-                              fontSize: 10,
+                              fontSize: 14,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
@@ -534,6 +569,7 @@ class TimelineDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   SizedBox(height: 9.33),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -542,7 +578,7 @@ class TimelineDetail extends StatelessWidget {
                         width: 55,
                         height: 14,
                         child: Text(
-                          "1:25 p.m",
+                          "12:57 p.m",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 11,
@@ -551,25 +587,16 @@ class TimelineDetail extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 9),
+                      SizedBox(width: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "XYZ Rescue Centre  arrived at the scene",
+                            "tim.grover thông báo ở đường XYZ",
                             style: TextStyle(
                               color: Color(0xff5e5d5d),
-                              fontSize: 12,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(width: 23),
-                          Text(
-                            "10min ago",
-                            style: TextStyle(
-                              color: Color(0xffc4c4c4),
-                              fontSize: 10,
+                              fontSize: 14,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
@@ -578,6 +605,7 @@ class TimelineDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   SizedBox(height: 9.33),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -586,7 +614,7 @@ class TimelineDetail extends StatelessWidget {
                         width: 55,
                         height: 14,
                         child: Text(
-                          "1:35 p.m",
+                          "12:57 p.m",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 11,
@@ -595,28 +623,16 @@ class TimelineDetail extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 9),
+                      SizedBox(width: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
-                            width: 232,
-                            child: Text(
-                              "Stranded Kitten rescued and is housed at XYZRescue Home",
-                              style: TextStyle(
-                                color: Color(0xff5e5d5d),
-                                fontSize: 12,
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 1),
                           Text(
-                            "10min ago",
+                            "tim.grover thông báo ở đường XYZ",
                             style: TextStyle(
-                              color: Color(0xffc4c4c4),
-                              fontSize: 10,
+                              color: Color(0xff5e5d5d),
+                              fontSize: 14,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
@@ -625,6 +641,7 @@ class TimelineDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+
                 ],
               ),
             ],
