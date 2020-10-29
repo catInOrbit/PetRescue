@@ -14,12 +14,14 @@ class PetRescueTheme
    static List<Color> inRescuePostTheme = [lime, lime, Colors.white, Colors.white]; //accent, keyword
 
 
-   static List<Color> inRescuedPostTheme = [Colors.white, lime]; //accent, keyword
-   static List<Color> homePageInRescue = [lime, Colors.white]; //accent, keyword
-   static List<Color> homePageAdoptPost = [darkGreen, Colors.white]; //accent, keyword
+   static List<Color> inRescuedPostTheme = [lime, Colors.black, Colors.white]; //accent, keyword
+   static List<Color> homePageInRescue = [lime, Colors.white, Colors.white]; //accent, keyword
+   static List<Color> homePageAdoptPost = [darkGreen, Colors.white, Colors.white]; //accent, keyword
+   static List<Color> homePageRescuePost = [lightPink, Colors.white, Colors.white]; //accent, keyword
 
 
-   static List<Color> requestRescuePostTheme = [Colors.black, Colors.white];
+
+   static List<Color> requestRescuePostTheme = [lightPink, Colors.white, Colors.black];
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];
    static List<Color> statusTagsRescueTheme = [orange, Colors.white];
    static List<Color> statusTagsAdoptPostTheme = [darkGreen, Colors.white];

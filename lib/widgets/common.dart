@@ -574,10 +574,9 @@ class _HomePagePostState extends State<HomePagePost> {
       case PostType.AdoptPost:
         colorScheme = PetRescueTheme.homePageAdoptPost;
         label = "Đã giải cứu";
-
         break;
       case PostType.RequestPost:
-        colorScheme = PetRescueTheme.revertRescuePostTheme;
+        colorScheme = PetRescueTheme.homePageRescuePost;
         label = "Yêu cầu cứu hộ";
         break;
     }
@@ -730,88 +729,31 @@ class _HomePagePostState extends State<HomePagePost> {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        SizedBox(
-                                          width: 150,
-                                          height: 29,
+                                        Expanded(
                                           child: Text(
                                             postModel.title,
                                             style: TextStyle(
                                               color: colorScheme[PetRescueThemeColorType
-                                                  .KeyWord.index],
+                                                  .Text.index],
                                               fontSize: 20,
                                               fontFamily: "Lato",
                                               fontWeight: FontWeight.w900,
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 13),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Container(
-                                              width: 5,
-                                              height: 4.80,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: colorScheme[PetRescueThemeColorType
-                                                    .KeyWord.index],
-                                              ),
-                                            ),
-                                            SizedBox(width: 7),
-                                            SizedBox(
-                                              width: 31,
-                                              child: Text(
-                                                postModel.gender,
-                                                style: TextStyle(
-                                                  color:
-                                                  colorScheme[PetRescueThemeColorType
-                                                      .KeyWord.index],
-                                                  fontSize: 14,
-                                                  fontFamily: "Lato",
-                                                  fontWeight:
-                                                  FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 7),
-                                            Container(
-                                              width: 5,
-                                              height: 4.80,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: colorScheme[PetRescueThemeColorType
-                                                    .KeyWord.index],
-                                              ),
-                                            ),
-                                            SizedBox(width: 7),
-                                            SizedBox(
-                                              width: 70,
-                                              child: Text(
-                                                postModel.ages,
-                                                style: TextStyle(
-                                                  color:
-                                                  colorScheme[PetRescueThemeColorType
-                                                      .KeyWord.index],
-                                                  fontSize: 14,
-                                                  fontFamily: "Lato",
-                                                  fontWeight:
-                                                  FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+
+
                                       ],
                                     ),
                                     SizedBox(
-                                      width: 57,
+                                      width: 120,
                                       height: 15,
                                       child: Text(
                                         postModel.petType,
                                         style: TextStyle(
                                           color: colorScheme[PetRescueThemeColorType
-                                              .KeyWord.index],
-                                          fontSize: 12,
+                                              .Text.index],
+                                          fontSize: 15,
                                           fontFamily: "Lato",
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -820,6 +762,61 @@ class _HomePagePostState extends State<HomePagePost> {
                                   ],
                                 ),
                               ),
+
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(
+                                      width: 5,
+                                      height: 4.80,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                      ),
+                                    ),
+                                    SizedBox(width: 7),
+                                    Text(
+                                      postModel.gender,
+                                      style: TextStyle(
+                                        color:
+                                        colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                        fontSize: 14,
+                                        fontFamily: "Lato",
+                                        fontWeight:
+                                        FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(width: 7),
+                                    Container(
+                                      width: 5,
+                                      height: 4.80,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                      ),
+                                    ),
+                                    SizedBox(width: 7),
+                                    Text(
+                                      postModel.ages,
+                                      style: TextStyle(
+                                        color:
+                                        colorScheme[PetRescueThemeColorType
+                                            .Text.index],
+                                        fontSize: 14,
+                                        fontFamily: "Lato",
+                                        fontWeight:
+                                        FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
 
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -889,7 +886,7 @@ class _HomePagePostState extends State<HomePagePost> {
                               child: Stepper(
                            physics: NeverScrollableScrollPhysics(),
                                 steps: [
-                                  ...listOfPosts.where((element) => element.acceptedRequestUser != null)
+                                  ...listOfPosts
                                       .map(
                                         (post) =>
                                         Step(
@@ -899,15 +896,13 @@ class _HomePagePostState extends State<HomePagePost> {
                                                children: [
                                                  CircleAvatar(
                                                   backgroundImage: NetworkImage(
-                                                      post.acceptedRequestUser.imageURL), maxRadius: 30,),
+                                                      post.currentUser.imageURL), maxRadius: 30,),
                                                   SizedBox(width: 20,),
                                                  statusTitle(post)
                                                ],
                                              ),
 
                                           subtitle: Text(post.timeCreated.toString(), style: TextStyle(fontSize: 15),),
-
-
                                           content: createTimelinePost(context, post),
                                         ),
                                   )

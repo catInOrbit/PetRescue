@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:petrescue/notification/Colors.dart';
 import 'package:petrescue/notification/chat_screen.dart';
 import 'package:petrescue/models/message_model.dart';
+import 'package:petrescue/repository/data/user_list.dart';
 
 class ChatWidget extends StatefulWidget {
   @override
@@ -64,6 +65,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                         ,
                         child: CircleAvatar(
                           radius: 35,
+                          backgroundImage: NetworkImage(userList[3].imageURL),
                           //backgroundImage: Image.asset(''),
                         ),
                       ),
