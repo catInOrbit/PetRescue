@@ -406,7 +406,7 @@ class _PostCardState extends State<PostCard> {
 
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-                          child: Text("17/10, Nguyễn Phúc Chu, P. 15, Q. Tân Bình, Phường 15, Tân Bình, Thành phố Hồ Chí Minh, Vietnam",
+                          child: Text(widget.postModel.location,
                             style: TextStyle(color: colorScheme[PetRescueThemeColorType.Text.index], fontSize: 18, fontStyle: FontStyle.normal),
                           ),
                         ),

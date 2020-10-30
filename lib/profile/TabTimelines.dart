@@ -12,6 +12,6 @@ class PageTimelines extends StatefulWidget {
 class _PageTimelinesState extends State<PageTimelines> {
   @override
   Widget build(BuildContext context) {
-    return Timeline(postModel: listOfPosts[0],);
+    return TimelineBottomCard(postModel: listOfPosts[0],);
   }
 }

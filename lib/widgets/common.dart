@@ -9,11 +9,16 @@ import 'package:petrescue/main.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/widgets/process_page.dart';
+import 'package:timeline_list/timeline.dart';
+import 'package:timeline_list/timeline_model.dart';
+
+import 'detail_model_bottom.dart';
 
 class StatusTag extends StatelessWidget {
   final textData;
@@ -168,7 +173,20 @@ class ActionKeyword extends StatelessWidget {
                   PostEvent postEvent = PostEvent();
                   postEvent.affectedPost =  postModel;
                   postEvent.acceptedRequest = true;
+
                   bloc.inputSink.add(postEvent);
+
+                  final snackBar = SnackBar(
+                    content: Text('Yêu cầu của bạn đã được chấp nhận'),
+                    action: SnackBarAction(
+                      label: 'OK',
+                      onPressed: () {
+                        // Some code to undo the change.
+                      },
+                    ),
+                  );
+
+                  Scaffold.of(context).showSnackBar(snackBar);
       // Navigator.push(context, MaterialPageRoute(
       //   builder: (context) => TrackingPage(),
               },
@@ -209,8 +227,8 @@ class ActionKeywordAccepted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> colorScheme = [PetRescueTheme.lime, Colors.white];
-    String text = "Cập nhật tình trạng";
+    List<Color> colorScheme = [PetRescueTheme.darkGreen, Colors.white];
+    String text = "Theo dõi";
 
     return Container(
       height: 50,
@@ -219,7 +237,7 @@ class ActionKeywordAccepted extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 180,
+            width: 100,
             child: InkWell(
               onTap: () {
 
@@ -339,7 +357,7 @@ class DetailCardButton extends StatelessWidget {
             if (!isTimeline)
               return TrackingPage();
             else
-              return Timeline(postModel: postModel,);
+              return TimelineBottomCard(postModel: postModel,);
           }));
         },
         child: Container(
@@ -573,9 +591,8 @@ class OngoingRescuerRibbon extends StatelessWidget {
 }
 
 class HomePagePost extends StatefulWidget {
-  final Post postModel;
 
-  HomePagePost({Key key, this.postModel}) : super(key: key);
+  HomePagePost({Key key}) : super(key: key);
 
   @override
   _HomePagePostState createState() => _HomePagePostState();
@@ -655,356 +672,351 @@ class _HomePagePostState extends State<HomePagePost> {
   }
 
   Widget createTimelinePost(BuildContext context, Post postModel) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    if (postModel.postType == PostType.AdoptPost)
+      colorScheme = PetRescueTheme.adoptPostTheme;
+    else if (postModel.postType == PostType.RequestPost)
+      colorScheme = PetRescueTheme.requestRescuePostTheme;
+    else if (postModel.postType == PostType.InRescuePost)
+      colorScheme = PetRescueTheme.inRescuedPostTheme;
 
-      children: [
+    return Padding(
 
-        Container(
-          //TODO: Fix constraint
-          height: 350,
-          child: Center(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DetailCard(
-                              postModel: postModel,
-                              isEditing: false,
-                            )));
-              },
-              child: Container(
-                width: 380,
-                child: Stack(
-                  children: [
-                    Container(),
-                    Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.topLeft,
+
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        //TODO: Fix constraint
+        child: Center(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailCard(
+                            postModel: postModel,
+                            isEditing: false,
+                          )));
+            },
+            child: Container(
+              width: 380,
+              child: Column(
+                children: [
+                  Container(),
+                  Column(
+                    children: [
+                      Container(
+                        width: 380,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  postModel.imageThumbnail), fit: BoxFit.cover),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0x00ffffff), Colors.black],
+                          ),
+                        ),
+                        padding: const EdgeInsets.only(
+                          top: 11,
+                          bottom: 42,
+                        ),
                         child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
-                              width: 380,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        postModel.imageThumbnail), fit: BoxFit.cover),
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Color(0x00ffffff), Colors.black],
-                                ),
-                              ),
-                              padding: const EdgeInsets.only(
-                                top: 11,
-                                bottom: 42,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                              width: 700,
+                              height: 44,
+                              child: Stack(
                                 children: [
-                                  Container(
-                                    width: 181,
-                                    height: 44,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          child: Container(
-                                            width: 37,
-                                            height: 37,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 92),
-                                  SizedBox(
-                                    width: 81,
-                                    height: 24,
-                                    child: Text(
-                                      "25min ago",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xffebf3fa),
-                                        fontSize: 12,
-                                        fontFamily: "Lato",
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
+
+                                  Positioned(
+                                      left: 20,
+
+                                      child: Text("20 phút trước", style: TextStyle(color: Colors.white),)
                                   ),
                                 ],
                               ),
                             ),
+                            SizedBox(height: 92),
                           ],
                         ),
                       ),
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color:
+                      colorScheme[PetRescueThemeColorType.Accent.index],
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                     ),
-                    Positioned.fill(
-                      top: 160,
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        //NOTE: Main Card BOdy
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color:
-                            colorScheme[PetRescueThemeColorType.Accent.index],
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: Offset(
-                                    0, 3), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          padding: const EdgeInsets.only(
-                            top: 6,
-                            bottom: 12,
-                          ),
 
-
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Stack(
                             children: [
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            postModel.title,
-                                            style: TextStyle(
-                                              color: colorScheme[PetRescueThemeColorType
-                                                  .Text.index],
-                                              fontSize: 20,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w900,
-                                            ),
+                              PostHeaderRibbon(postModel: postModel,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: UserInfoRibon(
+                                      isDetailRibbon: false,
+                                      postModel: postModel,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ]
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Text(
+                            postModel.title,
+                            style: TextStyle(
+                              color: colorScheme[PetRescueThemeColorType
+                                  .Text.index],
+                              fontSize: 20,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 10,),
+
+
+                        //Contact button and action keyword
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => ProfileTab(postModel: listOfPosts[0],),
+                                  ));
+                                },
+                                child: Container(
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(20),
+                                    color: Color(0xffebf3fa),
+                                  ),
+                                  padding: const EdgeInsets.only(
+                                    left: 8,
+                                    right: 14,
+                                    top: 9,
+                                    bottom: 4,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 70,
+                                        child: Text(
+                                          "Liên hệ",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontFamily: "Lato",
+                                            fontWeight:
+                                            FontWeight.w700,
                                           ),
                                         ),
-
-
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 120,
-                                      height: 15,
-                                      child: Text(
-                                        postModel.petType,
-                                        style: TextStyle(
-                                          color: colorScheme[PetRescueThemeColorType
-                                              .Text.index],
-                                          fontSize: 15,
-                                          fontFamily: "Lato",
-                                          fontWeight: FontWeight.w700,
+                                      ),
+                                      SizedBox(width: 4),
+                                      Container(
+                                        width: 22,
+                                        height: 20,
+                                        child: Icon(
+                                            Icons.call
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
+                              SizedBox(width: 10),
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Container(
-                                      width: 5,
-                                      height: 4.80,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                      ),
-                                    ),
-                                    SizedBox(width: 7),
-                                    Text(
-                                      postModel.gender,
-                                      style: TextStyle(
-                                        color:
-                                        colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                        fontSize: 14,
-                                        fontFamily: "Lato",
-                                        fontWeight:
-                                        FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(width: 7),
-                                    Container(
-                                      width: 5,
-                                      height: 4.80,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                      ),
-                                    ),
-                                    SizedBox(width: 7),
-                                    Text(
-                                      postModel.ages,
-                                      style: TextStyle(
-                                        color:
-                                        colorScheme[PetRescueThemeColorType
-                                            .Text.index],
-                                        fontSize: 14,
-                                        fontFamily: "Lato",
-                                        fontWeight:
-                                        FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              if(postModel.postType != PostType.InRescuePost && !postModel.acceptedRequest)
+                                ActionKeyword(
+                                  postModel: postModel,),
+                              if(postModel.postType == PostType.InRescuePost && postModel.acceptedRequest)
+                                ActionKeywordAccepted(),
 
+                            ],
+                          ),
+                        ),
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 245,
-                                      child: Wrap(
-                                        spacing: 1,
-                                        direction: Axis.horizontal,
-                                        alignment: WrapAlignment.start,
-                                        children: getAllStatuses(postModel),
-                                      ),
-                                    ),
+                        if(postModel.postType == PostType.AdoptPost )
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 10),
+                            child: Row(
+                              children: [
+                                Text("Yêu cầu nhận nuôi:", style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    color: colorScheme[PetRescueThemeColorType.Text.index]
 
-                                  ],
+                                ),),
+                                CustomAvatars(postModel: postModel,),
+                              ],
+                            ),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, bottom: 30),
+                          child: Wrap(
+                            children: [
+                              Container(
+                                child: Wrap(
+                                  spacing: 10,
+                                  direction: Axis.horizontal,
+                                  alignment: WrapAlignment.start,
+                                  children: getAllStatuses(postModel),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+
+                ],
               ),
             ),
           ),
         ),
-      ],
+      ),
     );
+
   }
+
+  bool getIsActive(int currentIndex, int index){
+    if(currentIndex<=index){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    if (widget.postModel.postType == PostType.AdoptPost)
-      colorScheme = PetRescueTheme.adoptPostTheme;
-    else if (widget.postModel.postType == PostType.RequestPost)
-      colorScheme = PetRescueTheme.requestRescuePostTheme;
-    else if (widget.postModel.postType == PostType.InRescuePost)
-      colorScheme = PetRescueTheme.inRescuedPostTheme;
+
+    List<TimelineModel> items = [];
+
+    listOfPosts.forEach((e) =>
+      items.add(
+
+        TimelineModel(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        e.currentUser.imageURL), maxRadius: 30,),
+                  SizedBox(width: 20,),
+                  statusTitle(e)
+                ],
+              ),
+              createTimelinePost(context, e),
+            ],
+          ),
+          position: TimelineItemPosition.right,
+          icon: Icon(Icons.blur_circular, color: PetRescueTheme.lightPink,),iconBackground: Colors.white ), ),
+      );
 
     return  Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
               decoration:
               BoxDecoration(
-
                 image: DecorationImage(
                     image: AssetImage("lib/assets/tracking_page.png"),
                 ),
               ),
-
-              child: LayoutBuilder(
-                builder: (_, constraints) =>
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        SingleChildScrollView(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxHeight: constraints.maxHeight - 48,),
-                            child: Theme(
-                              data:
-                              ThemeData(primaryColor: PetRescueTheme.lightPink,
-                                  fontFamily: 'Montserrat'),
-                              child: Stepper(
-                           physics: NeverScrollableScrollPhysics(),
-                                steps: [
-                                  ...listOfPosts
-                                      .map(
-                                        (post) =>
-                                        Step(
-                                          // isActive: location.isHere || location.passed,
-                                          title:
-                                             Row(
-                                               children: [
-                                                 CircleAvatar(
-                                                  backgroundImage: NetworkImage(
-                                                      post.currentUser.imageURL), maxRadius: 30,),
-                                                  SizedBox(width: 20,),
-                                                 statusTitle(post)
-                                               ],
-                                             ),
-
-                                          subtitle: Text(post.timeCreated.toString(), style: TextStyle(fontSize: 15),),
-                                          content: createTimelinePost(context, post),
-                                        ),
-                                  )
-                                      .toList()
-                                ],
-                                currentStep: 0,
-                                controlsBuilder: (BuildContext context,
-                                    {VoidCallback onStepContinue,
-                                      VoidCallback onStepCancel}) {
-                                  return Container();
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-              )
+              child:
+          Timeline(children: items, position: TimelinePosition.Left)
+          //     LayoutBuilder(
+          //       builder: (_, constraints) =>
+          //           Column(
+          //             mainAxisSize: MainAxisSize.min,
+          //             children: <Widget>[
+          //               SingleChildScrollView(
+          //                 child: ConstrainedBox(
+          //                   constraints: BoxConstraints(
+          //                     maxHeight: constraints.maxHeight - 48,),
+          //                   child: Theme(
+          //                     data:
+          //                     ThemeData(primaryColor: PetRescueTheme.lightPink,
+          //                         fontFamily: 'Montserrat'),
+          //                     child: Stepper(
+          //                       steps: [
+          //                         ...listOfPosts
+          //                             .map(
+          //                               (post) =>
+          //                               Step(
+          //                                 isActive: true,
+          //                                 // isActive: location.isHere || location.passed,
+          //                                 title:
+          //                                    Row(
+          //                                      children: [
+          //                                        CircleAvatar(
+          //                                         backgroundImage: NetworkImage(
+          //                                             post.currentUser.imageURL), maxRadius: 30,),
+          //                                         SizedBox(width: 20,),
+          //                                        statusTitle(post)
+          //                                      ],
+          //                                    ),
+          //                                 subtitle: Text(post.timeCreated.toString(), style: TextStyle(fontSize: 15),),
+          //                                 content: createTimelinePost(context, post),
+          //                               ),
+          //                         ).toList()
+          //                       ],
+          //
+          //
+          //                       controlsBuilder: (BuildContext context,
+          //                           {VoidCallback onStepContinue,
+          //                             VoidCallback onStepCancel}) {
+          //                         return Container();
+          //                       },
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ),
+          //
+          //             ],
+          //           ),
+          //     )
       ),
     );
 
 
-    // List<Widget> buildTimelinePost(BuildContext context,
-    //     List<Post> listOfPost) {
-    //   listOfPost.forEach((post) {
-    //     if (post.acceptedRequestUser != null)
-    //       postList.add(createTimelinePost(context, post));
-    //   });
-    //
-    //   return postList;
-    // }
-    //
-    // List<Widget> buildIndicators(List<Widget> listOfPost) {
-    //   List<Widget> list = [];
-    //   listOfPost.forEach((element) {
-    //     list.add(Icon(Icons.timer));
-    //   });
-    //   return list;
-    // }
   }
 }
 
@@ -1015,17 +1027,6 @@ class CustomAvatars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // List<Widget> list = postModel.adoptUserRequests.map((e) =>
-    //     Align(
-    //           alignment: Alignment.center,
-    //           child: CircleAvatar(
-    //             child: CircleAvatar(
-    //               radius: 30,
-    //               backgroundImage: NetworkImage(e.imageURL) , // Provide your custom image
-    //             ),
-    //           ),
-    //         ),
-    // ).toList();
 
     List<Widget> list = [
       if(postModel.adoptUserRequests.length >= 1)

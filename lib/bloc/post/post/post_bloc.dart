@@ -40,6 +40,7 @@ class PostBloc {
             if(element.id == _event.affectedPost.id)
               {
                 element.acceptedRequest = true;
+                element.postType = PostType.InRescuePost;
                 return;
               }
           });

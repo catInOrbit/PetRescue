@@ -29,7 +29,7 @@ class _PostHomeState extends State<PostHome> {
   final List<Widget> _pages = [
     RequestPostPage(
       listOfPost: listOfPosts,
-      sortType: ["InRescuePost", "RequestPost"],
+      sortType: ["RequestPost"],
       postBloc: bloc,
     ),
     RequestPostPage(

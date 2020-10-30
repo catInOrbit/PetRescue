@@ -3,15 +3,15 @@ import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/widgets/postFeed/post_empty.dart';
 import 'package:petrescue/bloc/app_general/global.dart' as globals;
 
-class Timeline extends StatefulWidget {
+class TimelineBottomCard extends StatefulWidget {
   final Post postModel;
 
-  const Timeline({Key key, this.postModel}) : super(key: key);
+  const TimelineBottomCard({Key key, this.postModel}) : super(key: key);
   @override
-  _TimelineState createState() => _TimelineState();
+  _TimelineBottomCardState createState() => _TimelineBottomCardState();
 }
 
-class _TimelineState extends State<Timeline> {
+class _TimelineBottomCardState extends State<TimelineBottomCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,33 +4,13 @@ import 'package:petrescue/repository/data/user_list.dart';
 import 'package:petrescue/widgets/timeline_text.dart';
 
 List<Post> listOfPosts = [
-  Post(
-    "P00",
-    "Cần giải cứu mèo bị thương chân",
-    "description",
-    "Mèo nhà",
-    "2426  Breezewood Court",
-    DateTime.now(),
-    PostType.RequestPost,
-      "https://sbly-web-prod-shareably.netdna-ssl.com/wp-content/uploads/2018/08/14083438/battle_cat_recovery_featured.jpg",
-    "Male",
-    "6-8 months",
-      ["Bỏ hoang", "Chấn thương", "Mất chủ"],
-    <TimeLineText>[],
-      userList[0],
-    <User>[],
-      null,
-    <String>[],
-    "Persian",
-    Priority.Normal
-  ),
 
   Post(
       "P01",
-      "Cần giải cứu mèo bị thương chân",
+      "Chó bỏ rơi bị thương mắt cần giải cứu gắp",
       "description",
-      "Mèo nhà",
-      "2426  Breezewood Court",
+      "Chó ",
+      "17/10, Nguyễn Phúc Chu, P. 15, Q. Tân Bình, Phường 15, Tân Bình, Thành phố Hồ Chí Minh, Vietnam",
       DateTime.now(),
       PostType.RequestPost,
       "https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-g70644hiocchitapae654vgia4-20161227061350.Medi.jpeg",
@@ -47,11 +27,34 @@ List<Post> listOfPosts = [
   ),
 
   Post(
+    "P00",
+    "Cần giải cứu mèo bị thương chân",
+    "description",
+    "Mèo nhà",
+    "87-79 Trần Bình Trọng, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam",
+    DateTime.now(),
+    PostType.RequestPost,
+      "https://sbly-web-prod-shareably.netdna-ssl.com/wp-content/uploads/2018/08/14083438/battle_cat_recovery_featured.jpg",
+    "Male",
+    "6-8 months",
+      ["Bỏ hoang", "Chấn thương", "Mất chủ"],
+    <TimeLineText>[],
+      userList[0],
+    <User>[],
+      null,
+    <String>[],
+    "Persian",
+    Priority.Normal
+  ),
+
+
+
+  Post(
       "P02",
       "Đã giải cứu mèo ở quận 2",
     "description",
     "Mèo nhà",
-    "164 Ilbert Street, London,W10 4QD ",
+    "200 Hoàng Văn Thụ, Phường 9, Phú Nhuận, Thành phố Hồ Chí Minh, Vietnam",
     DateTime.now(),
     PostType.AdoptPost,
       "https://img.huffingtonpost.com/asset/5c3544842600003e058624ff.jpeg?ops=scalefit_630_noupscale",
@@ -71,10 +74,10 @@ List<Post> listOfPosts = [
 
   Post(
       "P03",
-      "Title 1",
+      "Mèo nhà bị lạc, lông vàng nhạt, xin gọi nếu tìm thấy",
       "Mèo nhà",
       "House cat",
-      "7 Croftlands Drive, Ravenglass",
+      "70-72 Nguyễn Văn Trỗi, Phường 8, Phú Nhuận, Thành phố Hồ Chí Minh, Vietnam",
       DateTime.now(),
       PostType.InRescuePost,
       "https://www.nationalgeographic.com/content/dam/news/2018/05/17/you-can-train-your-cat/02-cat-training-NationalGeographic_1484324.ngsversion.1526587209178.adapt.1900.1.jpg",
@@ -89,6 +92,4 @@ List<Post> listOfPosts = [
     "Oxloot",
       Priority.Normal
   ),
-
-
 ];
