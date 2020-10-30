@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:petrescue/Profile/UserProfile_Screen.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/constants.dart';
@@ -304,7 +305,7 @@ class _PostCardState extends State<PostCard> {
                               InkWell(
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => ProfileTab(postModel: listOfPosts[0],),
+                                    builder: (context) => UserProfileScreen(postModel: listOfPosts[0],),
                                   ));
                                 },
                                 child: Container(
