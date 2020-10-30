@@ -672,12 +672,14 @@ class _HomePagePostState extends State<HomePagePost> {
   }
 
   Widget createTimelinePost(BuildContext context, Post postModel) {
+
     if (postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
     else if (postModel.postType == PostType.RequestPost)
-      colorScheme = PetRescueTheme.requestRescuePostTheme;
+      postModel.priority == Priority.Normal
+          ? colorScheme = PetRescueTheme.rescuePostTheme : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme ;
     else if (postModel.postType == PostType.InRescuePost)
-      colorScheme = PetRescueTheme.inRescuedPostTheme;
+      colorScheme = PetRescueTheme.inRescuePostTheme;
 
     return Padding(
 
@@ -961,7 +963,7 @@ class _HomePagePostState extends State<HomePagePost> {
                 ),
               ),
               child:
-          Timeline(children: items, position: TimelinePosition.Left)
+          Timeline(children: items, position: TimelinePosition.Center)
           //     LayoutBuilder(
           //       builder: (_, constraints) =>
           //           Column(
