@@ -31,7 +31,7 @@ class Post {
   }
 
   Post(id, title, description, petType, location, timeCreated, postType,
-      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed, priority) {
+      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed, priority, acceptedRequest) {
     this.id = id;
     this.title = title;
     this.petType = petType;
@@ -50,6 +50,7 @@ class Post {
     this.imageStrings = imageStrings;
     this.breed = breed;
     this.priority = priority;
+    this._acceptedRequest = acceptedRequest;
 
     if(timelineText== null || timelineText.length > 0)
     timelineBuilder = new TimelineBuilder(

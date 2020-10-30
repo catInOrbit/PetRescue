@@ -23,7 +23,8 @@ List<Post> listOfPosts = [
       null,
       <String>[],
       "Persian",
-      Priority.High
+      Priority.High,
+    false
   ),
 
   Post(
@@ -44,7 +45,8 @@ List<Post> listOfPosts = [
       null,
     <String>[],
     "Persian",
-    Priority.Normal
+    Priority.Normal,
+    false
   ),
 
 
@@ -67,7 +69,8 @@ List<Post> listOfPosts = [
     userList[2],
     <String>[],
     "COco",
-      Priority.Normal
+      Priority.Normal,
+    false
 
 
   ),
@@ -90,6 +93,7 @@ List<Post> listOfPosts = [
       userList[2],
       <String>[],
     "Oxloot",
-      Priority.Normal
+      Priority.Normal,
+    true
   ),
 ];

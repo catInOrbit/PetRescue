@@ -179,8 +179,9 @@ class ActionKeyword extends StatelessWidget {
                   final snackBar = SnackBar(
                     content: Text('Yêu cầu của bạn đã được chấp nhận'),
                     action: SnackBarAction(
-                      label: 'OK',
+                      label: 'Theo dõi',
                       onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
                         // Some code to undo the change.
                       },
                     ),
@@ -865,7 +866,7 @@ class _HomePagePostState extends State<HomePagePost> {
                               if(postModel.postType != PostType.InRescuePost && !postModel.acceptedRequest)
                                 ActionKeyword(
                                   postModel: postModel,),
-                              if(postModel.postType == PostType.InRescuePost && postModel.acceptedRequest)
+                              if(postModel.acceptedRequest)
                                 ActionKeywordAccepted(),
 
                             ],
@@ -963,7 +964,7 @@ class _HomePagePostState extends State<HomePagePost> {
                 ),
               ),
               child:
-          Timeline(children: items, position: TimelinePosition.Center)
+          Timeline(children: items, position: TimelinePosition.Left)
           //     LayoutBuilder(
           //       builder: (_, constraints) =>
           //           Column(
