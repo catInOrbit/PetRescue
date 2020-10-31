@@ -12,7 +12,7 @@ List<Post> listOfPosts = [
       "Chó ",
       "17/10, Nguyễn Phúc Chu, P. 15, Q. Tân Bình, Phường 15, Tân Bình, Thành phố Hồ Chí Minh, Vietnam",
       DateTime.now(),
-      PostType.FinishedPost,
+      PostType.RequestPost,
       "https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-g70644hiocchitapae654vgia4-20161227061350.Medi.jpeg",
       "Male",
       "6-8 months",
@@ -48,6 +48,29 @@ List<Post> listOfPosts = [
     Priority.Normal,
     false
   ),
+
+  Post(
+      "P00",
+      "Cần giải cứu mèo bị thương chân",
+      "description",
+      "Mèo nhà",
+      "87-79 Trần Bình Trọng, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam",
+      DateTime.now(),
+      PostType.RequestPost,
+      "https://sbly-web-prod-shareably.netdna-ssl.com/wp-content/uploads/2018/08/14083438/battle_cat_recovery_featured.jpg",
+      "Male",
+      "6-8 months",
+      ["Bỏ hoang", "Chấn thương", "Mất chủ"],
+      <TimeLineText>[],
+      userList[1],
+      <User>[],
+      null,
+      <String>[],
+      "Persian",
+      Priority.Normal,
+      false
+  ),
+
 
 
 

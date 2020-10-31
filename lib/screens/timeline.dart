@@ -114,7 +114,7 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                 ),
                 SizedBox(height: 19.50),
                 Text(
-                  "Information",
+                  "Thông tin",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -149,7 +149,7 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                       Wrap(
                         children: [
                           Text(
-                            "Rescued:",
+                            " Đã giải cúu lúc:",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -230,7 +230,7 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                       ),
                       SizedBox(height: 11.17),
                       Text(
-                        "Located:",
+                        "Tại:",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,

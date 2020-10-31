@@ -139,6 +139,46 @@ class ActionKeyword extends StatelessWidget {
   final bool isHomepagePost;
   const ActionKeyword({Key key, @required this.postModel, this.isHomepagePost}) : super(key: key);
 
+  showAlertDialog(BuildContext context) {
+
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("Có"),
+      onPressed: () {
+
+      SnackBar snackBar = acceptRequest(context);
+
+      Scaffold.of(context).showSnackBar(snackBar);
+      Navigator.of(context).pop();
+      },
+    );
+
+    Widget cancelButton = FlatButton(
+      child: Text("Không"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Chấp nhận giải cứu ?"),
+      content: Text("Bạn có muốn thực hiện quá trình giải cứu"),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
@@ -178,26 +218,10 @@ class ActionKeyword extends StatelessWidget {
             child: InkWell(
               onTap: ()
                {
+
                  if(!isHomepagePost)
                    {
-                     PostEvent postEvent = PostEvent();
-                     postEvent.affectedPost =  postModel;
-                     postEvent.acceptedRequest = true;
-
-                     bloc.inputSink.add(postEvent);
-
-                     final snackBar = SnackBar(
-                       content: Text('Yêu cầu của bạn đã được chấp nhận'),
-                       action: SnackBarAction(
-                         label: 'Theo dõi',
-                         onPressed: () {
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
-                           // Some code to undo the change.
-                         },
-                       ),
-                     );
-
-                     Scaffold.of(context).showSnackBar(snackBar);
+                     showAlertDialog(context);
                    }
 
                  else
@@ -233,6 +257,26 @@ class ActionKeyword extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  SnackBar acceptRequest(BuildContext context) {
+      PostEvent postEvent = PostEvent();
+    postEvent.affectedPost =  postModel;
+    postEvent.acceptedRequest = true;
+    
+    bloc.inputSink.add(postEvent);
+    
+    final snackBar = SnackBar(
+      content: Text('Yêu cầu của bạn đã được chấp nhận'),
+      action: SnackBarAction(
+        label: 'Theo dõi',
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+          // Some code to undo the change.
+        },
+      ),
+    );
+    return snackBar;
   }
 }
 class ActionKeywordAccepted extends StatelessWidget {
@@ -349,6 +393,52 @@ class DetailCardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    showAlertDialog(BuildContext context) {
+
+      // set up the button
+      Widget okButton = FlatButton(
+        child: Text("Có"),
+        onPressed: () {
+
+          SnackBar snackBar = acceptRequest(context);
+
+          Scaffold.of(context).showSnackBar(snackBar);
+          Navigator.of(context).pop();
+
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return TrackingPage();
+          }));
+
+
+        },
+      );
+
+      Widget cancelButton = FlatButton(
+        child: Text("Không"),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      );
+
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Chấp nhận giải cứu ?"),
+        content: Text("Bạn có muốn thực hiện quá trình giải cứu"),
+        actions: [
+          cancelButton,
+          okButton,
+        ],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+
     String text;
     List<Color> colorScheme;
 
@@ -366,19 +456,22 @@ class DetailCardButton extends StatelessWidget {
     return Flexible(
       child: InkWell(
         onTap: () {
-          postModel.acceptedRequestUser = currentUser;
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            if (!isTimeline)
-              return TrackingPage();
-            else
-              return TimelineBottomCard(postModel: postModel,);
-          }));
+
+          if (!isTimeline)
+            {
+              showAlertDialog(context);
+            }
+          else
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
+
+
         },
         child: Container(
           height: 53,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(26.50),
             color: colorScheme[PetRescueThemeColorType.Accent.index],
+
           ),
 
           child: Center(
@@ -395,6 +488,28 @@ class DetailCardButton extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  SnackBar acceptRequest(BuildContext context) {
+     postModel.acceptedRequestUser = currentUser;
+    
+    PostEvent postEvent = PostEvent();
+    postEvent.affectedPost =  postModel;
+    postEvent.acceptedRequest = true;
+    
+    bloc.inputSink.add(postEvent);
+    
+    final snackBar = SnackBar(
+      content: Text('Yêu cầu của bạn đã được chấp nhận'),
+      action: SnackBarAction(
+        label: 'Theo dõi',
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+          // Some code to undo the change.
+        },
+      ),
+    );
+    return snackBar;
   }
 }
 

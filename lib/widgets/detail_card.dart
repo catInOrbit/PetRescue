@@ -35,78 +35,75 @@ class DetailCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Container(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                // width: 230,
-                                height: pictureContainersHeight,
+                Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              // width: 230,
+                              height: pictureContainersHeight,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage("lib/assets/cat3.png"),
+                                      fit: BoxFit.cover)),
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 147,
+                                height: 132,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image:
-                                        AssetImage("lib/assets/cat3.png"),
+                                        AssetImage("lib/assets/cat4.png"),
                                         fit: BoxFit.fill)),
                               ),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 147,
-                                  height: 132,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image:
-                                          AssetImage("lib/assets/cat4.png"),
-                                          fit: BoxFit.fill)),
-                                ),
-                                Container(
-                                  width: 147,
-                                  height: 140,
-                                  color: Colors.blueGrey,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 61,
-                                        top: 64,
-                                        child: SizedBox(
-                                          width: 21,
-                                          child: Text(
-                                            "+3 ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w700,
-                                            ),
+                              Container(
+                                width: 147,
+                                height: 140,
+                                color: Colors.blueGrey,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      left: 61,
+                                      top: 64,
+                                      child: SizedBox(
+                                        width: 21,
+                                        child: Text(
+                                          "+3 ",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontFamily: "Lato",
+                                            fontWeight: FontWeight.w700,
                                           ),
                                         ),
                                       ),
-                                      Opacity(
-                                        opacity: 0.50,
-                                        child: Container(
-                                          width: 147,
-                                          height: 140,
-                                        ),
+                                    ),
+                                    Opacity(
+                                      opacity: 0.50,
+                                      child: Container(
+                                        width: 147,
+                                        height: 140,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 Row(
@@ -153,7 +150,7 @@ class DetailCard extends StatelessWidget {
                                           postModel.title,
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20,
+                                            fontSize: 21,
                                             fontFamily: "Lato",
                                             fontWeight: FontWeight.w900,
                                           ),
@@ -163,6 +160,7 @@ class DetailCard extends StatelessWidget {
                                     ),
                                   ),
 
+                                  SizedBox(height: 20,),
                                   IntrinsicHeight(
                                     child: Column(
                                       children: [
@@ -361,18 +359,14 @@ class DetailCard extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20),
-                        SizedBox(height: 20),
-                        InkWell(
-                            onTap: (){
-                              // Navigator.push(context, MaterialPageRoute(
-                              //
-                              // ))
-                            },
-                            child: TimelineDetail()
-                        ),
-
+                        SizedBox(
+                          height: 200,
+                            child: TimelineDetail(postModel: postModel,)),
                         SizedBox(height: 20,),
-                        DetailCardButton(postModel: postModel, isTimeline: true,),
+                        Flexible(
+                          child: Container(height: 30,),
+                        )
+
                       ],
                     ),
                   ),
@@ -466,191 +460,194 @@ class StoryDetail extends StatelessWidget {
 }
 
 class TimelineDetail extends StatelessWidget {
+  final Post postModel;
+
+  const TimelineDetail({Key key, this.postModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return IntrinsicHeight(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                "Timeline",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+
+              DetailCardButton(postModel: postModel, isTimeline: true,),
+              Flexible(child: Container(width: 300,))
 
             ],
           ),
+
+
           SizedBox(height: 8.50),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Wednesday, 5th Oct ",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w400,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Wednesday, 5th Oct ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              SizedBox(height: 8),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 55,
-                        height: 14,
-                        child: Text(
-                          "12:57 p.m",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 11,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "tim.grover thông báo ở đường XYZ",
+                SizedBox(height: 8),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 55,
+                          height: 14,
+                          child: Text(
+                            "12:57 p.m",
                             style: TextStyle(
-                              color: Color(0xff5e5d5d),
-                              fontSize: 14,
+                              color: Colors.black,
+                              fontSize: 11,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 9.33),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 55,
-                        height: 15,
-                        child: Text(
-                          "12:57 p.m",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 11,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w400,
-                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "tim.grover thông báo ở đường XYZ",
+                        SizedBox(width: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "tim.grover thông báo ở đường XYZ",
+                              style: TextStyle(
+                                color: Color(0xff5e5d5d),
+                                fontSize: 14,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 9.33),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 55,
+                          height: 15,
+                          child: Text(
+                            "12:57 p.m",
                             style: TextStyle(
-                              color: Color(0xff5e5d5d),
-                              fontSize: 14,
+                              color: Colors.black,
+                              fontSize: 11,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        SizedBox(width: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "tim.grover thông báo ở đường XYZ",
+                              style: TextStyle(
+                                color: Color(0xff5e5d5d),
+                                fontSize: 14,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
 
-                  SizedBox(height: 9.33),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 55,
-                        height: 14,
-                        child: Text(
-                          "12:57 p.m",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 11,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "tim.grover thông báo ở đường XYZ",
+                    SizedBox(height: 9.33),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 55,
+                          height: 14,
+                          child: Text(
+                            "12:57 p.m",
                             style: TextStyle(
-                              color: Color(0xff5e5d5d),
-                              fontSize: 14,
+                              color: Colors.black,
+                              fontSize: 11,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: 9.33),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 55,
-                        height: 14,
-                        child: Text(
-                          "12:57 p.m",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 11,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w400,
-                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "tim.grover thông báo ở đường XYZ",
+                        SizedBox(width: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "tim.grover thông báo ở đường XYZ",
+                              style: TextStyle(
+                                color: Color(0xff5e5d5d),
+                                fontSize: 14,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 9.33),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 55,
+                          height: 14,
+                          child: Text(
+                            "12:57 p.m",
                             style: TextStyle(
-                              color: Color(0xff5e5d5d),
-                              fontSize: 14,
+                              color: Colors.black,
+                              fontSize: 11,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        SizedBox(width: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "tim.grover thông báo ở đường XYZ",
+                              style: TextStyle(
+                                color: Color(0xff5e5d5d),
+                                fontSize: 14,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
 
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
