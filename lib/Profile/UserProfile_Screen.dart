@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:petrescue/Profile/SilverAppBar.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/profile/CustomListSlideMenuBar.dart';
 import 'package:petrescue/profile/EditScreen.dart';
+import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/profile/TabAdoption.dart';
 import 'package:petrescue/profile/TabRescued.dart';
 import 'package:petrescue/profile/TabTimelines.dart';

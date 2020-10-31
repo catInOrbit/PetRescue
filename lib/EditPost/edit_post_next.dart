@@ -152,7 +152,7 @@ class _PostSecondState extends State<PostSecond> {
                               SizedBox(
                                 width: 5,
                               ),
-                              Icon(Icons.close_rounded,
+                              Icon(Icons.warning,
                                   color: Colors.white, size: 12)
                             ],
                           )),

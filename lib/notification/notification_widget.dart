@@ -110,7 +110,7 @@ class _NotifiSecondState extends State<NotifiSecond> {
                     Row(
                       children: <Widget>[
                         Icon(
-                          Icons.pets_outlined,
+                          Icons.pets,
                           color: PetRescueTheme.darkGreen,
                         ),
                         SizedBox(
