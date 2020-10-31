@@ -37,8 +37,38 @@ Widget proceedButton() {
             ),
           ),
         ),
-        SizedBox(width: 10.19),
-        Icon(Icons.arrow_forward_ios)
+      ],
+    ),
+  );
+}
+
+Widget PostButton() {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(26.50),
+      color: Color(0xffff8068),
+    ),
+    padding: const EdgeInsets.symmetric(
+      horizontal: 13,
+      vertical: 9,
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 45,
+          height: 22.72,
+          child: Text(
+            "Đăng",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
       ],
     ),
   );

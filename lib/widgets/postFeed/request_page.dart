@@ -131,11 +131,24 @@ class _RequestPostPageState extends State<RequestPostPage> {
           ),
           tooltip: "View notification",
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EditPost(),
-                ));
+            if (widget.sortType
+                .contains(PostType.RequestPost.toString().split('.').last)) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CreateEditPostCapCuu(),
+                  ));
+            } else if (widget.sortType
+                .contains(PostType.AdoptPost.toString().split('.').last)) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditPost(),
+                  ));
+            }
+
+
+
           },
         ),
         backgroundColor: appBarColor,
@@ -213,6 +226,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
   bool isTainan = false;
   bool isThatlac = false;
   bool isBoroi = false;
+  bool isKhac = false;
 
   @override
   Widget build(BuildContext context) {
@@ -290,9 +304,10 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isTainan = true;
                               isThatlac = false;
                               isBoroi = false;
+                              isKhac = false;
                             });
                           },
-                          child: Text('Tai nạn'),
+                          child: Text('Tai nạn', style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         RaisedButton(
                           textColor: isThatlac ? Colors.white : null,
@@ -302,22 +317,25 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isTainan = false;
                               isThatlac = true;
                               isBoroi = false;
+                              isKhac = false;
                             });
                           },
-                          child: Text('Thất lạc'),
+                          child: Text('Thất lạc', style: TextStyle(fontWeight: FontWeight.bold),),
                         ),
                         RaisedButton(
-                          textColor: isBoroi ? Colors.white : null,
-                          color: isBoroi ? PetRescueTheme.lightPink : null,
+                          textColor: isKhac ? Colors.white : null,
+                          color: isKhac ? PetRescueTheme.lightPink : null,
                           onPressed: () {
                             setState(() {
                               isTainan = false;
                               isThatlac = false;
-                              isBoroi = true;
+                              isBoroi = false;
+                              isKhac=true;
                             });
                           },
-                          child: Text('Bỏ rơi'),
+                          child: Text('Khác', style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
+
                       ],
                     ),
                     SizedBox(
