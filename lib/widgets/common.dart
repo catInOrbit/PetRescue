@@ -136,28 +136,36 @@ class UserInfoRibon extends StatelessWidget {
 
 class ActionKeyword extends StatelessWidget {
   final Post postModel;
-
-  const ActionKeyword({Key key, @required this.postModel}) : super(key: key);
+  final bool isHomepagePost;
+  const ActionKeyword({Key key, @required this.postModel, this.isHomepagePost}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
     String text;
 
-    switch(postModel.postType)
-    {
-      case PostType.AdoptPost:
-        text = "Nhận nuôi";
-        colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
-        break;
-      case PostType.RequestPost:
-        text = "Giải cứu";
-        postModel.priority == Priority.High ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
-        break;
-      case PostType.InRescuePost:
-        text = "In Rescue Progress";
-        colorScheme = PetRescueTheme.actionWordInRescuePostTheme;
-    }
+    if(!isHomepagePost)
+      switch(postModel.postType)
+      {
+        case PostType.AdoptPost:
+          text = "Nhận nuôi";
+          colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
+          break;
+        case PostType.RequestPost:
+          text = "Giải cứu";
+          postModel.priority == Priority.High ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
+          break;
+        case PostType.InRescuePost:
+          text = "Đang giải cứu";
+          colorScheme = PetRescueTheme.actionWordInRescuePostTheme;
+          break;
+      }
+
+    else
+      {
+        text = "Xem diễn biến";
+        colorScheme = PetRescueTheme.actionWordViewOnlyPostTheme;
+      }
 
     return Container(
       height: 50,
@@ -166,31 +174,36 @@ class ActionKeyword extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 120,
+            width: 130,
             child: InkWell(
               onTap: ()
                {
-                  PostEvent postEvent = PostEvent();
-                  postEvent.affectedPost =  postModel;
-                  postEvent.acceptedRequest = true;
+                 if(!isHomepagePost)
+                   {
+                     PostEvent postEvent = PostEvent();
+                     postEvent.affectedPost =  postModel;
+                     postEvent.acceptedRequest = true;
 
-                  bloc.inputSink.add(postEvent);
+                     bloc.inputSink.add(postEvent);
 
-                  final snackBar = SnackBar(
-                    content: Text('Yêu cầu của bạn đã được chấp nhận'),
-                    action: SnackBarAction(
-                      label: 'Theo dõi',
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
-                        // Some code to undo the change.
-                      },
-                    ),
-                  );
+                     final snackBar = SnackBar(
+                       content: Text('Yêu cầu của bạn đã được chấp nhận'),
+                       action: SnackBarAction(
+                         label: 'Theo dõi',
+                         onPressed: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+                           // Some code to undo the change.
+                         },
+                       ),
+                     );
 
-                  Scaffold.of(context).showSnackBar(snackBar);
-      // Navigator.push(context, MaterialPageRoute(
-      //   builder: (context) => TrackingPage(),
-              },
+                     Scaffold.of(context).showSnackBar(snackBar);
+                   }
+
+                 else
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+
+               },
               child: Container(
                 height: 45,
                 width: 60,
@@ -367,10 +380,7 @@ class DetailCardButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(26.50),
             color: colorScheme[PetRescueThemeColorType.Accent.index],
           ),
-          padding: const EdgeInsets.only(
-            left: 58,
-            right: 40,
-          ),
+
           child: Center(
             child: Text(
               text,
@@ -619,6 +629,9 @@ class PostHeaderRibbon extends StatelessWidget {
       case PostType.InRescuePost:
         ribbonColor = PetRescueTheme.lime;
         break;
+      case PostType.FinishedPost:
+        ribbonColor = PetRescueTheme.lightGrey;
+        break;
     }
 
     return Container(
@@ -653,11 +666,15 @@ class _HomePagePostState extends State<HomePagePost> {
         break;
       case PostType.AdoptPost:
         colorScheme = PetRescueTheme.homePageAdoptPost;
-        label = "Đã giải cứu";
+        label = "Đăng nhận nuôi";
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.homePageRescuePost;
         label = "Yêu cầu cứu hộ";
+        break;
+      case PostType.FinishedPost:
+        colorScheme = PetRescueTheme.rescuedPost;
+        label = "Đã giải cứu";
         break;
     }
 
@@ -668,6 +685,9 @@ class _HomePagePostState extends State<HomePagePost> {
           backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
           labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 18),
         ),
+
+        if(postModel.postType == PostType.FinishedPost)
+          Icon(Icons.verified_user, size: 30, color: Colors.green,)
       ],
     );
   }
@@ -681,13 +701,13 @@ class _HomePagePostState extends State<HomePagePost> {
           ? colorScheme = PetRescueTheme.rescuePostTheme : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme ;
     else if (postModel.postType == PostType.InRescuePost)
       colorScheme = PetRescueTheme.inRescuePostTheme;
-
+    else if (postModel.postType == PostType.FinishedPost)
+      colorScheme = PetRescueTheme.finishedPostTheme;
     return Padding(
 
 
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        //TODO: Fix constraint
         child: Center(
           child: InkWell(
             onTap: () {
@@ -701,6 +721,7 @@ class _HomePagePostState extends State<HomePagePost> {
                           )));
             },
             child: Container(
+
               width: 380,
               child: Column(
                 children: [
@@ -804,6 +825,34 @@ class _HomePagePostState extends State<HomePagePost> {
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Text(
+                            "Thời gian nhận: " + postModel.timeCreated.toString(),
+                            style: TextStyle(
+                              color: colorScheme[PetRescueThemeColorType
+                                  .Text.index],
+                              fontSize: 15,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+
+                        if(postModel.postType == PostType.FinishedPost)
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              "Thời gian xử lí thành công: 6/10/2020",
+                              style: TextStyle(
+                                color: colorScheme[PetRescueThemeColorType
+                                    .Text.index],
+                                fontSize: 15,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
 
                         SizedBox(height: 10,),
 
@@ -812,63 +861,59 @@ class _HomePagePostState extends State<HomePagePost> {
                         Padding(
                           padding: const EdgeInsets.all(12),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              InkWell(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => ProfileTab(postModel: listOfPosts[0],),
-                                  ));
-                                },
-                                child: Container(
-                                  height: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(20),
-                                    color: Color(0xffebf3fa),
-                                  ),
-                                  padding: const EdgeInsets.only(
-                                    left: 8,
-                                    right: 14,
-                                    top: 9,
-                                    bottom: 4,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 70,
-                                        child: Text(
-                                          "Liên hệ",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontFamily: "Lato",
-                                            fontWeight:
-                                            FontWeight.w700,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 4),
-                                      Container(
-                                        width: 22,
-                                        height: 20,
-                                        child: Icon(
-                                            Icons.call
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 10),
-
-                              if(postModel.postType != PostType.InRescuePost && !postModel.acceptedRequest)
+                              // InkWell(
+                              //   onTap: (){
+                              //     Navigator.push(context, MaterialPageRoute(
+                              //       builder: (context) => ProfileTab(postModel: listOfPosts[0],),
+                              //     ));
+                              //   },
+                              //   // child: Container(
+                              //   //   height: 45,
+                              //   //   decoration: BoxDecoration(
+                              //   //     borderRadius:
+                              //   //     BorderRadius.circular(20),
+                              //   //     color: Color(0xffebf3fa),
+                              //   //   ),
+                              //   //   padding: const EdgeInsets.only(
+                              //   //     left: 8,
+                              //   //     right: 14,
+                              //   //     top: 9,
+                              //   //     bottom: 4,
+                              //   //   ),
+                              //   //   child: Row(
+                              //   //     mainAxisSize: MainAxisSize.min,
+                              //   //     crossAxisAlignment: CrossAxisAlignment.center,
+                              //   //     children: [
+                              //   //       SizedBox(
+                              //   //         width: 70,
+                              //   //         child: Text(
+                              //   //           "Liên hệ",
+                              //   //           style: TextStyle(
+                              //   //             color: Colors.black,
+                              //   //             fontSize: 18,
+                              //   //             fontFamily: "Lato",
+                              //   //             fontWeight:
+                              //   //             FontWeight.w700,
+                              //   //           ),
+                              //   //         ),
+                              //   //       ),
+                              //   //       SizedBox(width: 4),
+                              //   //       Container(
+                              //   //         width: 22,
+                              //   //         height: 20,
+                              //   //         child: Icon(
+                              //   //             Icons.call
+                              //   //         ),
+                              //   //       ),
+                              //   //     ],
+                              //   //   ),
+                              //   // ),
+                              // ),
                                 ActionKeyword(
-                                  postModel: postModel,),
-                              if(postModel.acceptedRequest)
-                                ActionKeywordAccepted(),
-
+                                  postModel: postModel,
+                                isHomepagePost: true,),
                             ],
                           ),
                         ),
@@ -887,25 +932,24 @@ class _HomePagePostState extends State<HomePagePost> {
                               ],
                             ),
                           ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, bottom: 30),
-                          child: Wrap(
-                            children: [
-                              Container(
-                                child: Wrap(
-                                  spacing: 10,
-                                  direction: Axis.horizontal,
-                                  alignment: WrapAlignment.start,
-                                  children: getAllStatuses(postModel),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
+                        //   child: Wrap(
+                        //     children: [
+                        //       Container(
+                        //         child: Wrap(
+                        //           spacing: 10,
+                        //           direction: Axis.horizontal,
+                        //           alignment: WrapAlignment.start,
+                        //           children: getAllStatuses(postModel),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -930,9 +974,8 @@ class _HomePagePostState extends State<HomePagePost> {
 
     List<TimelineModel> items = [];
 
-    listOfPosts.forEach((e) =>
+    listOfPosts.where((element) => element.postType != PostType.RequestPost).forEach((e) =>
       items.add(
-
         TimelineModel(
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

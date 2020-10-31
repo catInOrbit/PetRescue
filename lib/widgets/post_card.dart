@@ -15,6 +15,7 @@ import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/widgets/detail_model_bottom.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:petrescue/widgets/map.dart';
 import 'card_setting_dialog.dart';
 
 class PostCard extends StatefulWidget {
@@ -351,7 +352,7 @@ class _PostCardState extends State<PostCard> {
 
                               if(widget.postModel.postType != PostType.InRescuePost && !widget.postModel.acceptedRequest)
                                 ActionKeyword(
-                                  postModel: widget.postModel,),
+                                  postModel: widget.postModel, isHomepagePost: false,),
                               if(widget.postModel.postType != PostType.InRescuePost && widget.postModel.acceptedRequest)
                                   ActionKeywordAccepted(),
 
@@ -396,10 +397,17 @@ class _PostCardState extends State<PostCard> {
 
                               SizedBox(width: 10,),
 
-                              Text("Xem bản đồ", style: TextStyle(
-                                color: Colors.cyan,fontSize: 16,
-                                decoration: TextDecoration.underline,
-                              )),
+                              InkWell(
+                               onTap: (){
+                                 Navigator.push(context, MaterialPageRoute(
+                                   builder: (context) => MapPage(),
+                                 ));
+                               },
+                                child: Text("Xem bản đồ", style: TextStyle(
+                                  color: Colors.cyan,fontSize: 16,
+                                  decoration: TextDecoration.underline,
+                                )),
+                              ),
                             ],
                           ),
                         ),

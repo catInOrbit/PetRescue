@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
@@ -140,23 +142,20 @@ class DetailCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    height: 35,
                                     width: MediaQuery.of(context).size.width,
                                     padding: const EdgeInsets.only(
                                       bottom: 4,
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
+                                    child: Wrap(
+                                      direction: Axis.horizontal,
                                       children: [
-                                        Expanded(
-                                          child: Text(
-                                            postModel.title,
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                              fontFamily: "Lato",
-                                              fontWeight: FontWeight.w900,
-                                            ),
+                                        Text(
+                                          postModel.title,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontFamily: "Lato",
+                                            fontWeight: FontWeight.w900,
                                           ),
                                         ),
 
@@ -268,6 +267,9 @@ class DetailCard extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 10),
+                              StoryDetail(),
+                              SizedBox(height: 10),
+
                               Container(
                                   child: Row(
                                       children:
@@ -275,15 +277,18 @@ class DetailCard extends StatelessWidget {
 
                                   )),
                               SizedBox(height: 22),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
-                              ),
+
+                              if(postModel.postType == PostType.AdoptPost && postModel.currentUser == currentUser)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
+                                ),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  buildUserTiles(postModel),
+                                  if(postModel.currentUser == currentUser)
+                                    buildUserTiles(postModel),
                                   SizedBox(height: 20),
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -299,7 +304,9 @@ class DetailCard extends StatelessWidget {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    InkWell(
+
+                                    if(postModel.postType != PostType.FinishedPost)
+                                      InkWell(
                                       onTap: (){
                                         Navigator.push(context, MaterialPageRoute(
                                           builder: (context) => ProfileTab(postModel: postModel, ),
@@ -345,7 +352,7 @@ class DetailCard extends StatelessWidget {
                                     SizedBox(width: 3),
                                     //TODO: Find way to expand children
 
-                                    if(postModel.postType != PostType.InRescuePost)
+                                    if(postModel.postType != PostType.InRescuePost && postModel.postType != PostType.FinishedPost)
                                       DetailCardButton(postModel: postModel,isTimeline: false,)
                                   ],
                                 ),
@@ -354,7 +361,6 @@ class DetailCard extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20),
-                        StoryDetail(),
                         SizedBox(height: 20),
                         InkWell(
                             onTap: (){

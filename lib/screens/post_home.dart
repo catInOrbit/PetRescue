@@ -37,7 +37,7 @@ class _PostHomeState extends State<PostHome> {
     HomePage(),
     NotiScreen(),
     ProfileTab(
-      postModel: listOfPosts[0],
+      postModel: listOfPosts[2],
     ),
   ];
 
