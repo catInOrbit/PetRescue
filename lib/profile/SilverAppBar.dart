@@ -172,38 +172,14 @@ class _ProfileTabState extends State<ProfileTab>
                             height: 10,
                           ),
                           Text(
-                            "Full Name",
+                            "Trung tâm cứu hộ chó mèo",
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 5,
                           ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: <Widget>[
-                          //     Icon(
-                          //       Icons.business_center,
-                          //       size: 13,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 5,
-                          //     ),
-                          //     Text("Job", style: TextStyle(fontSize: 13)),
-                          //     SizedBox(
-                          //       width: 5,
-                          //     ),
-                          //     Text("|"),
-                          //     SizedBox(
-                          //       width: 5,
-                          //     ),
-                          //     Text("ABC Center",
-                          //         style: TextStyle(fontSize: 13)),
-                          //   ],
-                          // ),
-                          // SizedBox(
-                          //   height: 5,
-                          // ),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -211,7 +187,7 @@ class _ProfileTabState extends State<ProfileTab>
                                 Icons.phone,
                                 size: 13,
                               ),
-                              Text("1234567890",
+                              Text("0123456789",
                                   style: TextStyle(fontSize: 13)),
                             ],
                           ),
@@ -225,10 +201,15 @@ class _ProfileTabState extends State<ProfileTab>
                                 Icons.location_on,
                                 size: 13,
                               ),
-                              Text("123 abc street",
+                              Text("123 Đường D1 Khu Công nghệ cao,",
                                   style: TextStyle(fontSize: 13)),
                             ],
                           ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(" P.Long Thạnh Mỹ, Q. 9, TP.HCM ",
+                              style: TextStyle(fontSize: 13)),
                           SizedBox(
                             height: 5,
                           ),
@@ -239,15 +220,25 @@ class _ProfileTabState extends State<ProfileTab>
                                 Icons.email,
                                 size: 13,
                               ),
-                              Text("asdfasfsadf@gmail.com",
+                              Text("trungtamcuuhochomeo@gmail.com",
                                   style: TextStyle(fontSize: 13)),
                             ],
                           ),
                           SizedBox(
                             height: 5,
                           ),
-                          Text("Websitesfsfd.com.vn",
-                              style: TextStyle(fontSize: 13)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.public,
+                                size: 13,
+                              ),
+                              Text("trungtamcuuhochomeo.com.vn",
+                                  style: TextStyle(fontSize: 13)),
+                            ],
+                          ),
+
                           SizedBox(
                             height: 5,
                           ),
@@ -317,17 +308,7 @@ class _ProfileTabState extends State<ProfileTab>
                   controller: tabController,
                 ),
               ),
-              // SliverPersistentHeader(
-              //   delegate: _SliverAppBarDelegate(TabBar(
-              //     labelColor: Colors.black87,
-              //     unselectedLabelColor: Colors.grey,
-              //     tabs: [
-              //       Tab(icon: Icon(Icons.info), text: "Tab 1"),
-              //       Tab(icon: Icon(Icons.lightbulb_outline), text: "Tab 2"),
-              //     ],
-              //   )),
-              //   pinned: true,
-              // ),
+
             ];
           },
           body: TabBarView(
@@ -386,25 +367,6 @@ class ActivityPage extends StatelessWidget {
   }
 }
 
-class PageTwo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-      child: ListView.builder(
-        itemExtent: 250.0,
-        itemBuilder: (context, index) => Container(
-          padding: EdgeInsets.all(10.0),
-          child: Material(
-            elevation: 4.0,
-            borderRadius: BorderRadius.circular(5.0),
-            color: index % 2 == 0 ? Colors.cyan : Colors.deepOrange,
-            child: Center(
-              child: Text(index.toString()),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+
+
