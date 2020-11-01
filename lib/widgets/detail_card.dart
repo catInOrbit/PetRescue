@@ -112,8 +112,11 @@ class DetailCard extends StatelessWidget {
                   children: [
                     UserInfoRibon(postModel: postModel, isDetailRibbon: true,),
                     showResponsibleUserRibon(postModel),
+
                   ],
                 ),
+
+
                 Expanded(
                   child: Container(
                     color: Colors.white,
@@ -125,6 +128,13 @@ class DetailCard extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Text("20 phút trước", style: TextStyle(color: Colors.black),),
+                        ),
+
+
                         Container(
                           width: 390.30,
                           padding: const EdgeInsets.only(
@@ -261,7 +271,6 @@ class DetailCard extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  Text("20 phút trước", style: TextStyle(color: Colors.black),)
                                 ],
                               ),
                               SizedBox(height: 10),
@@ -350,7 +359,7 @@ class DetailCard extends StatelessWidget {
                                     SizedBox(width: 3),
                                     //TODO: Find way to expand children
 
-                                    if(postModel.postType != PostType.InRescuePost && postModel.postType != PostType.FinishedPost)
+                                    if(postModel.postType != PostType.FinishedPost)
                                       DetailCardButton(postModel: postModel,isTimeline: false,)
                                   ],
                                 ),
@@ -489,7 +498,7 @@ class TimelineDetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Wednesday, 5th Oct ",
+                  "Thứ tư, 5 Tháng 10",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,

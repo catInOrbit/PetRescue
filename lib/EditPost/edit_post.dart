@@ -410,7 +410,7 @@ class _EditPostState extends State<EditPost> {
                                 color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold
                             ),),
                               SizedBox(width: 5,),
-                              Icon(Icons.warning, color: Colors.white, size:12)
+                              Icon(Icons.pets, color: Colors.white, size:12)
                             ],
                           )
                       ),
@@ -431,7 +431,7 @@ class _EditPostState extends State<EditPost> {
                                 color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold
                             ),),
                               SizedBox(width: 5,),
-                              Icon(Icons.warning, color: Colors.white, size:12)
+                              Icon(Icons.pets, color: Colors.white, size:12)
                             ],
                           )
                       ),

@@ -443,7 +443,7 @@ class DetailCardButton extends StatelessWidget {
     List<Color> colorScheme;
 
     if (isTimeline) {
-      text = "View timeline";
+      text = "Xem timeline";
       colorScheme = [PetRescueTheme.orange, Colors.white];
     } else if (postModel.postType == PostType.AdoptPost) {
       text = "Nhận nuôi";
@@ -452,15 +452,20 @@ class DetailCardButton extends StatelessWidget {
       text = "Giải cứu";
       colorScheme = PetRescueTheme.revertRescuePostTheme;
     }
+    else if (postModel.postType == PostType.InRescuePost) {
+      text = "Xem diễn biến";
+      colorScheme = [PetRescueTheme.lime, Colors.white];
+    }
 
     return Flexible(
       child: InkWell(
         onTap: () {
 
-          if (!isTimeline)
+          if (!isTimeline && postModel.postType != PostType.InRescuePost)
             {
               showAlertDialog(context);
             }
+
           else
             Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
 

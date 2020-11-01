@@ -56,7 +56,7 @@ List<Post> listOfPosts = [
       "Mèo nhà",
       "87-79 Trần Bình Trọng, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam",
       DateTime.now(),
-      PostType.RequestPost,
+      PostType.FinishedPost,
       "https://sbly-web-prod-shareably.netdna-ssl.com/wp-content/uploads/2018/08/14083438/battle_cat_recovery_featured.jpg",
       "Male",
       "6-8 months",
