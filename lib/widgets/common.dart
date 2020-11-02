@@ -466,6 +466,9 @@ class DetailCardButton extends StatelessWidget {
               showAlertDialog(context);
             }
 
+          else if(postModel.postType == PostType.InRescuePost)
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage()));
+
           else
             Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
 
