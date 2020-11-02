@@ -110,7 +110,7 @@ List<Post> listOfPosts = [
       ["2kg", "Đã được vaccine"],
       [TimeLineText(postTile:  "XYZ center rescued",timePosted: "10 mins ago",), TimeLineText(postTile:  "XYZ center rescued",timePosted: "10 mins ago",)],
       userList[0],
-      <User>[userList[2], userList[3]],
+      <User>[userList[3], userList[4]],
       userList[2],
       <String>[],
       "COco",

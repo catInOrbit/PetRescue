@@ -183,6 +183,7 @@ class ActionKeyword extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Color> colorScheme;
     String text;
+    Widget icon;
 
     if(!isHomepagePost)
       switch(postModel.postType)
@@ -190,14 +191,18 @@ class ActionKeyword extends StatelessWidget {
         case PostType.AdoptPost:
           text = "Nhận nuôi";
           colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
+          icon = Icon(Icons.home, color: Colors.white,);
           break;
         case PostType.RequestPost:
           text = "Giải cứu";
           postModel.priority == Priority.High ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
+          icon = Icon(Icons.local_hospital, color: Colors.white,);
+
           break;
         case PostType.InRescuePost:
           text = "Đang giải cứu";
           colorScheme = PetRescueTheme.actionWordInRescuePostTheme;
+          icon = Container();
           break;
       }
 
@@ -205,6 +210,7 @@ class ActionKeyword extends StatelessWidget {
       {
         text = "Xem diễn biến";
         colorScheme = PetRescueTheme.actionWordViewOnlyPostTheme;
+        icon = Container();
       }
 
     return Container(
@@ -235,25 +241,26 @@ class ActionKeyword extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   color: colorScheme[PetRescueThemeColorType.Accent.index]
                 ),
-                child: Center(
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      color: colorScheme[PetRescueThemeColorType.KeyWord.index],
-                      fontSize: 20,
-                      fontFamily: "Lato",
-                      fontWeight: FontWeight.w700,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      text,
+                      style: TextStyle(
+                        color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                        fontSize: 20,
+                        fontFamily: "Lato",
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
+
+                    icon
+                  ],
                 ),
               ),
             ),
           ),
           SizedBox(width: 2),
-          Container(
-            width: 21,
-            height: 18,
-          ),
         ],
       ),
     );
