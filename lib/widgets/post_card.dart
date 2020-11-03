@@ -475,7 +475,7 @@ class _PostCardState extends State<PostCard> {
                           onTap: () {
                             showModalBottomSheet(
                                 context: context,
-                                builder: (context) => TimelineBottomSheet(),
+                                builder: (context) => TimelineBottomSheet(postModel: widget.postModel,),
                                 isScrollControlled: true);
                           },
                           child: Column(

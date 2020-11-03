@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/models/status_data.dart';
 import 'package:petrescue/models/user.dart';
+import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/timeline_text.dart';
@@ -72,7 +73,7 @@ class Post {
   List<Widget> generateIconTimeline(int amount)
   {
     return List<Widget>.generate(amount, (index) => Icon(
-      Icons.timer,
+      Icons.timer, color: PetRescueTheme.darkGreen,
     ));
   }
 }

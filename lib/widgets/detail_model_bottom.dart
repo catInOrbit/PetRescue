@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:petrescue/models/post_model.dart';
 
 class TimelineBottomSheet extends StatefulWidget {
+  final Post postModel;
+
+  const TimelineBottomSheet({Key key, this.postModel}) : super(key: key);
   @override
   _TimelineBottomSheetState createState() => _TimelineBottomSheetState();
 }
@@ -38,7 +42,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
             children: [
               Flexible(
                 child: Text(
-                  "Timeline",
+                  " Lịch sử hành trình",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -53,7 +57,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Wednesday, 5th Oct ",
+                    " Thứ 4, ngày 5 tháng 10, 2020",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -84,7 +88,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "tim.grover reported at Church st.",
+                                "Nguyễn Văn A đăng post ở vị trí A",
                                 style: TextStyle(
                                   color: Color(0xff5e5d5d),
                                   fontSize: 14,
@@ -94,10 +98,10 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                               ),
                               SizedBox(width: 26),
                               SizedBox(
-                                width: 46,
+                                width: 60,
                                 height: 17.51,
                                 child: Text(
-                                  "10min ago",
+                                  "10 phút trước",
                                   style: TextStyle(
                                     color: Color(0xffc4c4c4),
                                     fontSize: 10,
@@ -131,7 +135,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                                 width: 201,
                                 height: 21,
                                 child: Text(
-                                  "XYZ Rescue Centre responded",
+                                  "Trung tâm ABC phản hồi",
                                   style: TextStyle(
                                     color: Color(0xff5e5d5d),
                                     fontSize: 14,
@@ -142,7 +146,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                               ),
                               SizedBox(width: 26),
                               SizedBox(
-                                width: 46,
+                                width: 60,
                                 height: 17.51,
                                 child: Text(
                                   "10min ago",
@@ -181,8 +185,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                             children: [
                               SizedBox(
                                 width: 228,
-                                child: Text(
-                                  "XYZ Rescue Centre  arrived at the scene",
+                                child: Text("Trung tâm ABC đang kiểm tra y tế",
                                   style: TextStyle(
                                     color: Color(0xff5e5d5d),
                                     fontSize: 14,
@@ -192,7 +195,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                                 ),
                               ),
                               SizedBox(
-                                width: 46,
+                                width: 60,
                                 height: 17.51,
                                 child: Text(
                                   "10min ago",
@@ -238,7 +241,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                                       width: 232,
                                       height: 40.85,
                                       child: Text(
-                                        "Stranded Kitten rescued and is housed at XYZRescue Home",
+                                        "Trung tâm ABC đang trên đường về trụ sở",
                                         style: TextStyle(
                                           color: Color(0xff5e5d5d),
                                           fontSize: 14,
@@ -290,6 +293,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                     height: 37,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
+                      image: DecorationImage(image: NetworkImage(widget.postModel.currentUser.imageURL)),
                       boxShadow: [
                         BoxShadow(
                           color: Color(0x3f000000),
@@ -312,7 +316,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                               width: 81,
                               height: 24,
                               child: Text(
-                                "tim.grover",
+                                "Nguyễn Văn A",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.black,
@@ -328,7 +332,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                           child: Align(
                             alignment: Alignment.bottomLeft,
                             child: Text(
-                              "Poster",
+                              " Người đăng",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 11,
@@ -352,6 +356,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                     width: 37,
                     height: 37,
                     decoration: BoxDecoration(
+                      image: DecorationImage(image: NetworkImage(widget.postModel.currentUser.imageURL)),
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
@@ -395,21 +400,7 @@ class _TimelineBottomSheetState extends State<TimelineBottomSheet> {
                             ),
                           ),
                         ),
-                        Positioned.fill(
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              "Responder",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 11,
-                                fontStyle: FontStyle.italic,
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
+
                       ],
                     ),
                   ),
