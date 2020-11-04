@@ -7,6 +7,7 @@ import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_state.dart';
 import 'package:petrescue/login/Colors.dart';
+import 'package:petrescue/login/SignIn.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/CustomListSlideMenuBar.dart';
@@ -68,13 +69,13 @@ class _RequestPostPageState extends State<RequestPostPage> {
                       children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage(currentUser.imageURL),
+                          backgroundImage: currentUser.isVerifyRescueCenter ? NetworkImage(currentUser.imageURL) : NetworkImage("https://avatars2.githubusercontent.com/u/1532252?s=400&v=4"),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          currentUser.fullNanme,
+                          currentUser.isVerifyRescueCenter ? currentUser.fullNanme : "Nguyễn Bùi Bảo Khanh",
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )
                       ],
@@ -113,7 +114,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
             CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
                 () {
               //close drawer
-              Navigator.pop(context, false);
+              Navigator.push(context, MaterialPageRoute( builder: (context) => LoginPage()));
             })
           ],
         ),
