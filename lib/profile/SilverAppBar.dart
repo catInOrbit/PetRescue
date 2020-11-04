@@ -18,6 +18,7 @@ class ProfileTab extends StatefulWidget {
   final Post postModel;
 
   const ProfileTab({Key key, this.postModel}) : super(key: key);
+
   @override
   _ProfileTabState createState() => _ProfileTabState();
 }
@@ -28,10 +29,14 @@ class _ProfileTabState extends State<ProfileTab>
   final Message chat = chats[0];
 
   TabController tabController;
+
   @override
   void initState() {
     super.initState();
-    tabController = TabController(vsync: this, length: 4);
+    if (currentUser.isVerifyRescueCenter == true)
+      tabController = TabController(vsync: this, length: 3);
+    else
+      tabController = TabController(vsync: this, length: 2);
     //_scrollViewController = ScrollController(initialScrollOffset: 0.0);
   }
 
@@ -112,7 +117,7 @@ class _ProfileTabState extends State<ProfileTab>
       ),
       key: _scaffoldKey,
       body: DefaultTabController(
-        length: 4,
+        length: currentUser.isVerifyRescueCenter == true ? 3 : 2,
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -160,168 +165,310 @@ class _ProfileTabState extends State<ProfileTab>
                     height: 230,
                     //color: Colors.white,
                     child: Center(
-                      child: Column(
-                        //crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(currentUser.imageURL),
-                            radius: 40,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Trung tâm cứu hộ chó mèo",
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.phone,
-                                size: 13,
-                              ),
-                              Text("0123456789",
-                                  style: TextStyle(fontSize: 13)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.location_on,
-                                size: 13,
-                              ),
-                              Text("123 Đường D1 Khu Công nghệ cao,",
-                                  style: TextStyle(fontSize: 13)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(" P.Long Thạnh Mỹ, Q. 9, TP.HCM ",
-                              style: TextStyle(fontSize: 13)),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.email,
-                                size: 13,
-                              ),
-                              Text("trungtamcuuhochomeo@gmail.com",
-                                  style: TextStyle(fontSize: 13)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.public,
-                                size: 13,
-                              ),
-                              Text("trungtamcuuhochomeo.com.vn",
-                                  style: TextStyle(fontSize: 13)),
-                            ],
-                          ),
-
-                          SizedBox(
-                            height: 5,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => ChatScreen(
-                                            user: chat.sender,
-                                          )));
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
-                                color: Colors.lightGreen,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.near_me,
-                                    color: Colors.white,
-                                    size: 12,
+                      child: currentUser.isVerifyRescueCenter == true
+                          ? Column(
+                              //crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                CircleAvatar(
+                                  backgroundImage:
+                                      NetworkImage(currentUser.imageURL),
+                                  radius: 40,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Trung tâm cứu hộ chó mèo",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.phone,
+                                      size: 13,
+                                    ),
+                                    Text("0123456789",
+                                        style: TextStyle(fontSize: 13)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.location_on,
+                                      size: 13,
+                                    ),
+                                    Text("123 Đường D1 Khu Công nghệ cao,",
+                                        style: TextStyle(fontSize: 13)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(" P.Long Thạnh Mỹ, Q. 9, TP.HCM ",
+                                    style: TextStyle(fontSize: 13)),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.email,
+                                      size: 13,
+                                    ),
+                                    Text("trungtamcuuhochomeo@gmail.com",
+                                        style: TextStyle(fontSize: 13)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.public,
+                                      size: 13,
+                                    ),
+                                    Text("trungtamcuuhochomeo.com.vn",
+                                        style: TextStyle(fontSize: 13)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => ChatScreen(
+                                                  user: chat.sender,
+                                                )));
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                      color: Colors.lightGreen,
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.near_me,
+                                          color: Colors.white,
+                                          size: 12,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Nhắn tin",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    width: 10,
+                                )
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      "https://avatars2.githubusercontent.com/u/1532252?s=400&v=4"),
+                                  radius: 40,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Nguyễn Bùi Bảo Khanh",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.phone,
+                                      size: 13,
+                                    ),
+                                    Text("0123456789",
+                                        style: TextStyle(fontSize: 13)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                // Row(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: <Widget>[
+                                //     Icon(
+                                //       Icons.location_on,
+                                //       size: 13,
+                                //     ),
+                                //     Text("123 Đường D1 Khu Công nghệ cao,",
+                                //         style: TextStyle(fontSize: 13)),
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 5,
+                                // ),
+                                // Text(" P.Long Thạnh Mỹ, Q. 9, TP.HCM ",
+                                //     style: TextStyle(fontSize: 13)),
+                                // SizedBox(
+                                //   height: 5,
+                                // ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.email,
+                                      size: 13,
+                                    ),
+                                    Text("khanhnbb@gmail.com",
+                                        style: TextStyle(fontSize: 13)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                // Row(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: [
+                                //     Icon(
+                                //       Icons.public,
+                                //       size: 13,
+                                //     ),
+                                //     Text("trungtamcuuhochomeo.com.vn",
+                                //         style: TextStyle(fontSize: 13)),
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 5,
+                                // ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => ChatScreen(
+                                                  user: chat.sender,
+                                                )));
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                      color: Colors.lightGreen,
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.near_me,
+                                          color: Colors.white,
+                                          size: 12,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Nhắn tin",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    "Nhắn tin",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
                     ),
                   ),
                 ),
                 bottom: TabBar(
                   //isScrollable: true,
-                  tabs: <Widget>[
-                    Tab(
-                      text: "Hoạt động",
-                      // icon: Icon(Icons.home),
-                    ),
-                    Tab(
-                      text: "Cứu hộ",
-                      //   icon: Icon(Icons.help,size: 20,),
-                    ),
-                    Tab(
-                      text: "Nuôi nhận",
-                      //   icon: Icon(Icons.home),
-                    ),
-                    Tab(
-                      text: "Nhật kí",
-                      //  icon: Icon(Icons.home),
-                    ),
-                  ],
+                  tabs: currentUser.isVerifyRescueCenter == true
+                      ? <Widget>[
+                          Tab(
+                            text: "Cứu hộ",
+                            //   icon: Icon(Icons.help,size: 20,),
+                          ),
+                          Tab(
+                            text: "Nuôi nhận",
+                            //   icon: Icon(Icons.home),
+                          ),
+                          Tab(
+                            child: Column(
+                              children: [
+                                Text("D.sách"),
+                                Text("người nhận nuôi")
+                              ],
+                            ),
+                            //  icon: Icon(Icons.home),
+                          ),
+                        ]
+                      : <Widget>[
+                          Tab(
+                            text: "Cứu hộ",
+                            //   icon: Icon(Icons.help,size: 20,),
+                          ),
+                          Tab(
+                            text: "Nuôi nhận",
+                            //   icon: Icon(Icons.home),
+                          ),
+                        ],
                   controller: tabController,
                 ),
               ),
-
             ];
           },
-          body: TabBarView(
-            children: <Widget>[
-              ActivityPage(
-                postModel: widget.postModel,
-              ),
-              PageRescued(),
-              PageAdoption(),
-              PageTimelines(),
-            ],
-            controller: tabController,
-          ),
+          body: currentUser.isVerifyRescueCenter == true
+              ? TabBarView(
+                  children: <Widget>[
+                    PageRescued(),
+                    PageAdoption(),
+                    PageTimelines()
+                  ],
+                  controller: tabController,
+                )
+              : TabBarView(
+                  children: <Widget>[
+                    PageRescued(),
+                    PageAdoption(),
+                  ],
+                  controller: tabController,
+                ),
         ),
       ),
     );
@@ -358,6 +505,7 @@ class ActivityPage extends StatelessWidget {
   final Post postModel;
 
   const ActivityPage({Key key, this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -366,7 +514,3 @@ class ActivityPage extends StatelessWidget {
     ));
   }
 }
-
-
-
-
