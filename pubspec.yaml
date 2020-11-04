@@ -58,6 +58,8 @@ dev_dependencies:
   flutter_icons: ^1.1.0
   google_maps_flutter: ^0.5.11
   timeline_list: ^0.0.3
+  introduction_screen: ^1.0.9
+  timeline_tile: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

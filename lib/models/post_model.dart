@@ -12,8 +12,6 @@ enum PostType { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost, InR
 class Post {
   Key key;
   String title, petType, gender, ages, description, location, imageThumbnail, breed, id;
-
-
   DateTime timeCreated;
   PostType postType;
   List<String> statuses = [];

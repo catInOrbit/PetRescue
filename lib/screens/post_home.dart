@@ -12,6 +12,7 @@ import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/homepage.dart';
 import 'package:petrescue/screens/notification_screen.dart';
 import 'package:petrescue/screens/timeline.dart';
+import 'package:petrescue/screens/timeline_improved.dart';
 import 'package:petrescue/widgets/bottom_bar.dart';
 import 'package:petrescue/widgets/postFeed/request_page.dart';
 
@@ -34,6 +35,7 @@ class _PostHomeState extends State<PostHome> {
     ),
     RequestPostPage(
         listOfPost: listOfPosts, sortType: ["AdoptPost"], postBloc: bloc),
+    // ActivityTimelineApp(),
     HomePage(),
     NotiScreen(),
     ProfileTab(

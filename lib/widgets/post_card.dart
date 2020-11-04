@@ -40,7 +40,7 @@ class _PostCardState extends State<PostCard> {
     else if (widget.postModel.postType == PostType.RequestPost)
       widget.postModel.priority == Priority.Normal
           ? colorScheme = PetRescueTheme.rescuePostTheme
-          : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme;
+          : colorScheme = PetRescueTheme.rescuePostTheme;
     else if (widget.postModel.postType == PostType.InRescuePost)
       colorScheme = PetRescueTheme.inRescuePostTheme;
 
@@ -295,7 +295,72 @@ class _PostCardState extends State<PostCard> {
                                         ],
                                       ),
                                     ],
-                                  )
+                                  ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Trang thai",
+                                        style: TextStyle(
+                                          color: colorScheme[
+                                              PetRescueThemeColorType
+                                                  .Text.index],
+                                          fontSize: 20,
+                                          fontFamily: "Lato",
+                                          fontStyle: FontStyle.normal,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      StatusTag(
+                                        postModel: widget.postModel,
+                                        textData: "Template",
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "Tinh trang",
+                                    style: TextStyle(
+                                      color: colorScheme[
+                                          PetRescueThemeColorType.Text.index],
+                                      fontSize: 20,
+                                      fontFamily: "Lato",
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "- Lorem ipsum dolor sit amet, consectetur adipiscing elit dwa wa dwa ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "- Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -456,26 +521,28 @@ class _PostCardState extends State<PostCard> {
                           thickness: 0.5,
                         ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, bottom: 30),
-                          child: Row(
-                            children: [
-                              Container(
-                                child: Wrap(
-                                  spacing: 2,
-                                  direction: Axis.horizontal,
-                                  alignment: WrapAlignment.start,
-                                  children: getAllStatuses(widget.postModel),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
+                        //   child: Row(
+                        //     children: [
+                        //       Container(
+                        //         child: Wrap(
+                        //           spacing: 2,
+                        //           direction: Axis.horizontal,
+                        //           alignment: WrapAlignment.start,
+                        //           children: getAllStatuses(widget.postModel),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         InkWell(
                           onTap: () {
                             showModalBottomSheet(
                                 context: context,
-                                builder: (context) => TimelineBottomSheet(postModel: widget.postModel,),
+                                builder: (context) => TimelineBottomSheet(
+                                      postModel: widget.postModel,
+                                    ),
                                 isScrollControlled: true);
                           },
                           child: Column(

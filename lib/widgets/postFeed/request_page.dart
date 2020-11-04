@@ -124,7 +124,8 @@ class _RequestPostPageState extends State<RequestPostPage> {
           appbarText,
           style: TextStyle(color: Colors.white),
         ),
-        leading: IconButton(
+        leading:
+        IconButton(
           icon: const Icon(
             Icons.add_circle_outline,
             color: Colors.white,
