@@ -186,6 +186,35 @@ class _PostCardState extends State<PostCard> {
                         SizedBox(
                           height: 10,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Phân loại",
+                                  style: TextStyle(
+                                    color: colorScheme[
+                                    PetRescueThemeColorType
+                                        .Text.index],
+                                    fontSize: 20,
+                                    fontFamily: "Lato",
+                                    fontStyle: FontStyle.normal,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                StatusTag(
+                                  postModel: widget.postModel,
+                                  textData: "Template",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
 
                         Padding(
                           padding: const EdgeInsets.all(12),
@@ -225,6 +254,8 @@ class _PostCardState extends State<PostCard> {
                                       thickness: 2,
                                       color: Colors.black,
                                     ),
+
+
                                   ],
                                 ),
                                 SizedBox(
@@ -298,34 +329,8 @@ class _PostCardState extends State<PostCard> {
                                   ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Trang thai",
-                                        style: TextStyle(
-                                          color: colorScheme[
-                                              PetRescueThemeColorType
-                                                  .Text.index],
-                                          fontSize: 20,
-                                          fontFamily: "Lato",
-                                          fontStyle: FontStyle.normal,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 15,
-                                      ),
-                                      StatusTag(
-                                        postModel: widget.postModel,
-                                        textData: "Template",
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "Tinh trang",
+                                    "Tình trạng",
                                     style: TextStyle(
                                       color: colorScheme[
                                           PetRescueThemeColorType.Text.index],
@@ -334,31 +339,24 @@ class _PostCardState extends State<PostCard> {
                                     ),
                                   ),
                                 ),
-                                Flexible(
+                                Align(
+                                  alignment: Alignment.centerLeft,
                                   child: Wrap(
-                                    direction: Axis.horizontal,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "- Lorem ipsum dolor sit amet, consectetur adipiscing elit dwa wa dwa ",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 16,
+                                    direction: Axis.vertical,
+                                    children: widget.postModel.statuses
+                                        .map(
+                                          (text) => Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "-" + text,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "- Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                        )
+                                        .toList(),
                                   ),
                                 )
                               ],

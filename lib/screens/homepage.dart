@@ -27,14 +27,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: PetRescueTheme.orange,
         elevation: 0,
         title: Text("Hoạt động", style: TextStyle(color: Colors.white),),
-        leading:  IconButton(
-          icon: const Icon(Icons.add_circle_outline, color: Colors.white,),
-          tooltip: "View notification",
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => EditPost(),));
-          },
-
-        ),
+        leading: Container(),
 
         actions: [
           IconButton(

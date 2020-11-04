@@ -30,15 +30,57 @@ class StatusTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
-
+    String textData;
     switch(postModel.postType)
     {
+      case PostType.InRescuePost:
+        colorScheme = PetRescueTheme.statusTagsInRescuePostTheme;
+        textData = "Đang cứu hộ";
+        break;
+      case PostType.RequestPost:
+        colorScheme = PetRescueTheme.revertRescuePostTheme;
+        textData = "Yêu cầu giải cứu";
+        break;
       case PostType.AdoptPost:
-        colorScheme = PetRescueTheme.statusTagsAdoptPostTheme;
+        colorScheme = PetRescueTheme.revertAdoptPostTheme;
+        textData = "Yêu cầu nhận nuôi";
+        break;
+
+      default:
+        colorScheme = PetRescueTheme.statusTagsRescueTheme;
+        break;
+
+    }
+
+    return Chip(
+      backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
+      label: Text(textData, style: TextStyle(fontSize: 16),),
+      labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 13),
+    );
+  }
+}
+
+class CategoryTag extends StatelessWidget {
+  final textData;
+  final Post postModel;
+  const CategoryTag({Key key, @required this.textData, @required this.postModel})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Color> colorScheme;
+    switch(postModel.postType)
+    {
+      case PostType.InRescuePost:
+        colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
+      case PostType.AdoptPost:
+        colorScheme = PetRescueTheme.statusTagsRescueTheme;
+        break;
+
       default:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
@@ -55,7 +97,7 @@ class StatusTag extends StatelessWidget {
 
 List<Widget> getAllStatuses(Post postModel) {
   return List<Widget>.generate(postModel.statuses.length, (index) {
-    return StatusTag(
+    return CategoryTag(
       postModel: postModel,
       // textData: postModel.statuses[index].toString().split('.').last,
       textData: postModel.statuses[index],
@@ -234,6 +276,7 @@ class ActionKeyword extends StatelessWidget {
 
                  else
                    Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+
 
                },
               child: Container(
@@ -466,40 +509,38 @@ class DetailCardButton extends StatelessWidget {
       colorScheme = [PetRescueTheme.lime, Colors.white];
     }
 
-    return Flexible(
-      child: InkWell(
-        onTap: () {
+    return InkWell(
+      onTap: () {
 
-          if (!isTimeline && postModel.postType != PostType.InRescuePost)
-            {
-              showAlertDialog(context);
-            }
+        if (!isTimeline && postModel.postType != PostType.InRescuePost)
+          {
+            showAlertDialog(context);
+          }
 
-          else if(postModel.postType == PostType.InRescuePost)
-            Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage()));
+        else if(postModel.postType == PostType.InRescuePost)
+          Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage()));
 
-          else
-            Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
+        else
+          Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
 
 
-        },
-        child: Container(
-          height: 53,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(26.50),
-            color: colorScheme[PetRescueThemeColorType.Accent.index],
+      },
+      child: Container(
+        height: 53,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(26.50),
+          color: colorScheme[PetRescueThemeColorType.Accent.index],
 
-          ),
+        ),
 
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w700,
-              ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontFamily: "Lato",
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),

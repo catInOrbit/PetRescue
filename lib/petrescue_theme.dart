@@ -27,6 +27,7 @@ class PetRescueTheme
    static List<Color> revertRescuePostTheme = [lightPink, Colors.white];
    static List<Color> statusTagsRescueTheme = [orange, Colors.white];
    static List<Color> statusTagsAdoptPostTheme = [darkGreen, Colors.white];
+   static List<Color> statusTagsInRescuePostTheme = [lime, Colors.white];
    static List<Color> revertAdoptPostTheme = [darkGreen, Colors.white]; //accent, keyword
 
    static List<Color> actionWordInRescuePostTheme = [Colors.grey, Colors.white]; //accent, keyword
