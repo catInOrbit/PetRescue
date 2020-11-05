@@ -18,29 +18,31 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
 
   List<PageViewModel> listPagesViewModel = [
     PageViewModel(
-      title: "Travel to pet's location",
-      bodyWidget: Container(
-        height: 200,
-        width: 400,
-        child: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 4,
+      titleWidget: SafeArea(
+        child: Container(
+          height: 350,
+          width: 400,
+          child: GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 4,
+            ),
+            mapType: MapType.normal,
+            tiltGesturesEnabled: true,
+            compassEnabled: true,
+            rotateGesturesEnabled: true,
+            myLocationEnabled: true,
           ),
-          mapType: MapType.normal,
-          tiltGesturesEnabled: true,
-          compassEnabled: true,
-          rotateGesturesEnabled: true,
-          myLocationEnabled: true,
         ),
       ),
       // titleWidget:
-      image:  Center(
-      child:
-        Image.asset("lib/assets/tracking_page.png"),
-
+      bodyWidget:  Container(
+        height: 200,
+        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/assets/tracking_page.png"), fit: BoxFit.cover)),
+         child: Text("Di chuyển đến địa điểm của thú", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
       ),
+
     ),
     PageViewModel(
       title: "Title of first page",
@@ -52,7 +54,10 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
           Text(" to edit a post"),
         ],
       ),
-      image: const Center(child: Icon(Icons.android)),
+      image:  Center(child: Container(
+        height: 300,
+        width: 300,
+        decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.fill,image: AssetImage("lib/assets/update_pic.png"))),)),
     )
   ];
   @override

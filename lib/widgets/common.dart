@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
@@ -35,15 +36,15 @@ class StatusTag extends StatelessWidget {
     {
       case PostType.InRescuePost:
         colorScheme = PetRescueTheme.statusTagsInRescuePostTheme;
-        textData = "Đang cứu hộ";
+        textData = "Tai nạn";
         break;
       case PostType.RequestPost:
         colorScheme = PetRescueTheme.revertRescuePostTheme;
-        textData = "Yêu cầu giải cứu";
+        textData = "Tai nạn";
         break;
       case PostType.AdoptPost:
         colorScheme = PetRescueTheme.revertAdoptPostTheme;
-        textData = "Yêu cầu nhận nuôi";
+        textData = "Mèo";
         break;
 
       default:
@@ -272,6 +273,14 @@ class ActionKeyword extends StatelessWidget {
                  if(!isHomepagePost)
                    {
                      showAlertDialog(context);
+
+                     postModel.acceptedRequestUser = currentUser;
+
+                     PostEvent postEvent = PostEvent();
+                     postEvent.affectedPost =  postModel;
+                     postEvent.acceptedRequest = true;
+
+                     bloc.inputSink.add(postEvent);
                    }
 
                  else
@@ -505,8 +514,8 @@ class DetailCardButton extends StatelessWidget {
       colorScheme = PetRescueTheme.revertRescuePostTheme;
     }
     else if (postModel.postType == PostType.InRescuePost) {
-      text = "Xem diễn biến";
-      colorScheme = [PetRescueTheme.lime, Colors.white];
+      text = "Hủy yêu cầu";
+      colorScheme = [Colors.grey, Colors.white];
     }
 
     return InkWell(
@@ -514,7 +523,15 @@ class DetailCardButton extends StatelessWidget {
 
         if (!isTimeline && postModel.postType != PostType.InRescuePost)
           {
-            showAlertDialog(context);
+              showAlertDialog(context);
+              postModel.acceptedRequestUser = currentUser;
+
+              PostEvent postEvent = PostEvent();
+              postEvent.affectedPost =  postModel;
+              postEvent.acceptedRequest = true;
+
+              bloc.inputSink.add(postEvent);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPageImproved(),));
           }
 
         else if(postModel.postType == PostType.InRescuePost)
@@ -807,7 +824,7 @@ class PostHeaderRibbon extends StatelessWidget {
         ribbonColor = PetRescueTheme.lime;
         break;
       case PostType.FinishedPost:
-        ribbonColor = PetRescueTheme.lightGrey;
+        ribbonColor = Colors.grey;
         break;
     }
 
@@ -1136,7 +1153,43 @@ class _HomePagePostState extends State<HomePagePost> {
   //   );
   //
   // }
+
+
   Widget createTimelinePost(BuildContext context, Post postModel) {
+
+    _showPopupMenu(context) {
+      showMenu<String>(
+        context: context,
+        position: RelativeRect.fromLTRB(25.0, 25.0, 0.0,
+            0.0), //position where you want to show the menu on screen
+        items: [
+          PopupMenuItem<String>(child: const Text('Điều chỉnh post'), value: '1'),
+          PopupMenuItem<String>(child: const Text('Ẩn Post'), value: '2'),
+          PopupMenuItem<String>(child: const Text('Follow Post'), value: '3'),
+        ],
+        elevation: 8.0,
+      ).then<void>((String itemSelected) {
+        if (itemSelected == null) return;
+
+        if (itemSelected == "1") {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => EditPost(),
+          ));
+        } else if (itemSelected == "2") {
+          PostEvent postEvent = PostEvent();
+          postEvent.hasSortRquest = false;
+          postEvent.hasDeleteRequest = true;
+          postEvent.selectedPost = postModel;
+          bloc.inputSink.add(postEvent);
+          setState(() {
+            listOfPosts.remove(postModel);
+          });
+        } else {
+          //code here
+        }
+      });
+    }
+
 
     if (postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
@@ -1248,6 +1301,22 @@ class _HomePagePostState extends State<HomePagePost> {
                                       postModel: postModel,
                                     ),
                                   ),
+                                      InkWell(
+                                        onTap: () {
+                                          print("Tap");
+                                          _showPopupMenu(context);
+                                        },
+                                        child: Ink(
+                                          width: 30,
+                                          height: 30,
+                                          color: Colors.blue,
+                                          child: Container(
+                                              height: 50,
+                                              width: 50,
+                                              child: Image.asset(
+                                                  "lib/assets/setting_icon.png")),
+                                        ),
+                                      )
                                 ],
                               ),
                             ]

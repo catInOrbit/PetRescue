@@ -11,7 +11,7 @@ class PetRescueTheme
    static List<Color> rescuePostTheme = [Colors.white, Colors.white, Colors.black, lightPink]; //accent, keyword, text, icon
    static List<Color> rescuePostPrioritizedTheme = [lightPink, Colors.white, Colors.white, Colors.white]; //accent, keyword, text, icon
    static List<Color> adoptPostTheme = [Colors.white, Colors.black, Colors.black, darkGreen]; //accent, keyword
-   static List<Color> inRescuePostTheme = [lime, lime, Colors.white, Colors.white]; //accent, keyword
+   static List<Color> inRescuePostTheme = [Colors.white, lime, Colors.black, Colors.white]; //accent, keyword
    static List<Color> finishedPostTheme = [Colors.white, lime, Colors.black, Colors.white]; //accent, keyword
 
 

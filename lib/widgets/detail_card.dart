@@ -30,11 +30,12 @@ class DetailCard extends StatelessWidget {
             bottom: TabBar(
               labelColor: PetRescueTheme.lightPink,
               indicatorColor: PetRescueTheme.lightPink,
+
               tabs: [
-                Tab(icon: Icon(Icons.directions)),
-                Tab(icon: Icon(Icons.settings_overscan)),
-                Tab(icon: Icon(Icons.check)),
-                Tab(icon: Icon(MaterialIcons.timeline)),
+                Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
+                Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
+                Tab(icon: Icon(Icons.check), text: "Xác nhận"),
+                Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật"),
 
               ],
             ),
@@ -417,7 +418,7 @@ class DetailCard extends StatelessWidget {
                   child: Align(
                     child: SizedBox(
                       width: 350,
-                      child: Text("Chap nhan yeu cau cuu ho de bat dau quy trinh giai cuu",textAlign: TextAlign.center, style: TextStyle(
+                      child: Text("Chấp nhận yêu cầu để bắt đầu quy trình giải cứu",textAlign: TextAlign.center, style: TextStyle(
                         fontFamily: "Lato",
                         fontSize: 24,
                         color: Colors.black.withOpacity(0.6)
