@@ -18,6 +18,8 @@ import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:petrescue/widgets/map.dart';
 import 'card_setting_dialog.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 class PostCard extends StatefulWidget {
   final Post postModel;
@@ -31,6 +33,13 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
+  GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(10.828056, 106.703324);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
@@ -366,6 +375,27 @@ class _PostCardState extends State<PostCard> {
                           ),
                         ),
 
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 200,
+                            width: 400,
+                            child: GoogleMap(
+                              onMapCreated: _onMapCreated,
+                              initialCameraPosition: CameraPosition(
+                                target: _center,
+                                zoom: 16,
+                              ),
+
+                              mapType: MapType.normal,
+                              tiltGesturesEnabled: true,
+                              compassEnabled: true,
+                              rotateGesturesEnabled: true,
+                              myLocationEnabled: true,
+                            ),
+                          ),
+                        ) ,
+
                         //Contact button and action keyword
                         Padding(
                           padding: const EdgeInsets.all(12),
@@ -536,20 +566,20 @@ class _PostCardState extends State<PostCard> {
                         //     ],
                         //   ),
                         // ),
-                        InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) => TimelineBottomSheet(
-                                      postModel: widget.postModel,
-                                    ),
-                                isScrollControlled: true);
-                          },
-                          child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [widget.postModel.timelineBuilder]),
-                        ),
+                        // InkWell(
+                        //   onTap: () {
+                        //     showModalBottomSheet(
+                        //         context: context,
+                        //         builder: (context) => TimelineBottomSheet(
+                        //               postModel: widget.postModel,
+                        //             ),
+                        //         isScrollControlled: true);
+                        //   },
+                        //   child: Column(
+                        //       mainAxisSize: MainAxisSize.max,
+                        //       crossAxisAlignment: CrossAxisAlignment.center,
+                        //       children: [widget.postModel.timelineBuilder]),
+                        // ),
                       ],
                     ),
                   ),

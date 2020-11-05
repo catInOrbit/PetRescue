@@ -126,7 +126,8 @@ class _RequestPostPageState extends State<RequestPostPage> {
           style: TextStyle(color: Colors.white),
         ),
         leading:
-        IconButton(
+
+         IconButton(
           icon: const Icon(
             Icons.add_circle_outline,
             color: Colors.white,
@@ -149,10 +150,8 @@ class _RequestPostPageState extends State<RequestPostPage> {
                   ));
             }
 
-
-
           },
-        ),
+        ) ,
         backgroundColor: appBarColor,
         actions: [
           IconButton(

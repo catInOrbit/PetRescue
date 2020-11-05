@@ -16,7 +16,7 @@ class TrackingPageImproved extends StatefulWidget {
 class _TrackingPageImprovedState extends State<TrackingPageImproved> {
   static GoogleMapController mapController;
 
-  static LatLng _center = const LatLng(37.7338, -122.4419);
+  static LatLng _center = const LatLng(10.828056, 106.703324);
 
   static void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -32,7 +32,7 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target: _center,
-              zoom: 4,
+              zoom: 16,
             ),
             mapType: MapType.normal,
             tiltGesturesEnabled: true,

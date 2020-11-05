@@ -121,17 +121,26 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                           if (myController.text == TRUNGTAMCUUHO) {
                             currentUser.isVerifyRescueCenter = true;
-                          } else {
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PostHome(
+                                        listOfPost: listOfPosts,
+                                      )),
+                            );
+                          } else if(myController.text == USER) {
                             currentUser.isVerifyRescueCenter = false;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PostHome(
+                                        listOfPost: listOfPosts,
+                                      )),
+                            );
                           }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    PostHome(
-                                      listOfPost: listOfPosts,
-                                    )),
-                          );
                       },
                       child: Container(
                         width: 300,

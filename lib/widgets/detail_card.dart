@@ -24,7 +24,7 @@ class DetailCard extends StatelessWidget {
     const double pictureContainersHeight = 272;
 
     return DefaultTabController(
-      length: 4,
+      length: 3,
       initialIndex: defaultTabIndex,
       child: SafeArea(
         child: Scaffold(
@@ -36,7 +36,6 @@ class DetailCard extends StatelessWidget {
               tabs: [
                 Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
                 Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
-                Tab(icon: Icon(Icons.check), text: "Xác nhận"),
                 Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật"),
 
               ],
@@ -329,46 +328,46 @@ class DetailCard extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    if(postModel.postType != PostType.FinishedPost)
-                                      Center(
-                                        child: InkWell(
-                                          onTap: (){
-                                            Navigator.push(context, MaterialPageRoute(
-                                              builder: (context) => ProfileTab(postModel: postModel, ),
-                                            ));
-                                          },
-                                          child: Container(
-                                            height: 53,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(26.50),
-                                              color: Color(0xffebf3fa),
-                                            ),
-                                            padding: const EdgeInsets.only(
-                                              left: 23,
-                                              right: 31,
-                                              top: 11,
-                                              bottom: 13,
-                                            ),
-                                            child: InkWell(
-                                              child: Container(
-                                                height: 53,
-                                                child: Center(
-                                                  child: Text(
-                                                    "Liên hệ",
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 24,
-                                                      fontFamily: "Lato",
-                                                      fontWeight: FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                    // if(postModel.postType != PostType.FinishedPost)
+                                      // Center(
+                                      //   child: InkWell(
+                                      //     onTap: (){
+                                      //       Navigator.push(context, MaterialPageRoute(
+                                      //         builder: (context) => ProfileTab(postModel: postModel, ),
+                                      //       ));
+                                      //     },
+                                      //     child: Container(
+                                      //       height: 53,
+                                      //       decoration: BoxDecoration(
+                                      //         borderRadius:
+                                      //         BorderRadius.circular(26.50),
+                                      //         color: Color(0xffebf3fa),
+                                      //       ),
+                                      //       padding: const EdgeInsets.only(
+                                      //         left: 23,
+                                      //         right: 31,
+                                      //         top: 11,
+                                      //         bottom: 13,
+                                      //       ),
+                                      //       child: InkWell(
+                                      //         child: Container(
+                                      //           height: 53,
+                                      //           child: Center(
+                                      //             child: Text(
+                                      //               "Liên hệ",
+                                      //               style: TextStyle(
+                                      //                 color: Colors.black,
+                                      //                 fontSize: 24,
+                                      //                 fontFamily: "Lato",
+                                      //                 fontWeight: FontWeight.w700,
+                                      //               ),
+                                      //             ),
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
                                   ],
                                 ),
                               ),
@@ -387,7 +386,6 @@ class DetailCard extends StatelessWidget {
                   ),
                 ),
               ),
-              buildConfirmationTab(),
               TimelineBottomCard(postModel: postModel,),
             ],
           )
@@ -446,7 +444,7 @@ class DetailCard extends StatelessWidget {
   {
     GoogleMapController mapController;
 
-    final LatLng _center = const LatLng(37.7338, -122.4419);
+    final LatLng _center = const LatLng(10.828056, 106.703324);
 
     void _onMapCreated(GoogleMapController controller) {
       mapController = controller;
@@ -456,7 +454,7 @@ class DetailCard extends StatelessWidget {
            onMapCreated: _onMapCreated,
            initialCameraPosition: CameraPosition(
              target: _center,
-             zoom: 4,
+             zoom: 16,
            ),
 
            mapType: MapType.normal,

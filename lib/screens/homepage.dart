@@ -31,6 +31,19 @@ class _HomePageState extends State<HomePage> {
 
         actions: [
           IconButton(
+            icon: Image.asset("lib/assets/baseline_filter_alt_white_24dp.png"),
+            onPressed: () {
+              // if (widget.s
+              //     .contains(PostType.RequestPost.toString().split('.').last)) {
+              //   DialogFilter.dialogRescue(context);
+              // } else if (widget.sortType
+              //     .contains(PostType.AdoptPost.toString().split('.').last)) {
+              //   DialogFilter.dialogAdopt(context);
+              // }
+            },
+          ),
+
+          IconButton(
             icon: const Icon(Icons.menu, color: Colors.white,),
             tooltip: "View notification",
             onPressed: (){

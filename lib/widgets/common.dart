@@ -12,6 +12,7 @@ import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/repository/data/user_list.dart';
 import 'package:petrescue/screens/TrackingPageImrpoved.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/timeline.dart';
@@ -276,11 +277,9 @@ class ActionKeyword extends StatelessWidget {
             child: InkWell(
               onTap: ()
                {
-
                  if(!isHomepagePost)
                    {
                      showAlertDialog(context);
-
 
                    }
 
@@ -534,12 +533,12 @@ class DetailCardButton extends StatelessWidget {
               bloc.inputSink.add(postEvent);
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,),));
           }
-
-        else if(postModel.postType == PostType.InRescuePost)
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage()));
-
-        else
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
+        //
+        // else if(postModel.postType == PostType.InRescuePost)
+        //   Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage()));
+        //
+        // else
+        //   Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
 
 
       },
@@ -661,6 +660,7 @@ class UserInfoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
           width: 37,
@@ -701,6 +701,42 @@ class UserInfoTile extends StatelessWidget {
             ),
           ],
         ),
+
+        InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => ProfileTab(postModel: listOfPosts[2], ),
+            ));
+          },
+          child: Container(
+            height: 53,
+            decoration: BoxDecoration(
+              borderRadius:
+              BorderRadius.circular(26.50),
+              color: Color(0xffebf3fa),
+            ),
+            padding: const EdgeInsets.only(
+              left: 23,
+              right: 31,
+            ),
+            child: InkWell(
+              child: Container(
+                height: 53,
+                child: Center(
+                  child: Text(
+                    "Liên hệ",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
       ],
     );
   }
@@ -742,7 +778,7 @@ class OngoingRescuerRibbon extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(40)),
-          color: Color(0xff4b8669),
+          color: PetRescueTheme.lime,
         ),
         padding: const EdgeInsets.only(
           left: 7,
@@ -780,7 +816,7 @@ class OngoingRescuerRibbon extends StatelessWidget {
             SizedBox(
               width: 60,
               child: Text(
-                "Rescue in progress! ",
+                "Đang giải cứu!",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 13,
@@ -857,7 +893,7 @@ class _HomePagePostState extends State<HomePagePost> {
     {
       case PostType.InRescuePost:
         colorScheme = PetRescueTheme.homePageInRescue;
-        label = "Đang giải cứu";
+        label = "Đang cứu hộ";
         break;
       case PostType.AdoptPost:
         colorScheme = PetRescueTheme.homePageAdoptPost;
@@ -869,7 +905,7 @@ class _HomePagePostState extends State<HomePagePost> {
         break;
       case PostType.FinishedPost:
         colorScheme = PetRescueTheme.rescuedPost;
-        label = "Đã giải cứu";
+        label = "Đã an toàn";
         break;
     }
 
@@ -1345,7 +1381,7 @@ class _HomePagePostState extends State<HomePagePost> {
                         Padding(
                           padding: const EdgeInsets.all(12),
                           child: Text(
-                            "Thời gian nhận: " + postModel.timeCreated.toString(),
+                            "Thời gian nhận: " + "5/11/2020 12:45PM",
                             style: TextStyle(
                               color: colorScheme[PetRescueThemeColorType
                                   .Text.index],
