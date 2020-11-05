@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/login/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -15,8 +16,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final String USER = "user@gmail.com";
+  final String TRUNGTAMCUUHO = "trungtamcuuho@gmail.com";
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   bool _showPassword = false;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor("FFB9AC"),
@@ -39,7 +52,10 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: Text(
                 'CỨU HỘ CHÓ MÈO',
-                style: TextStyle(color: Colors.indigoAccent, fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.indigoAccent,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -58,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                               child: TextFormField(
+                                controller: myController,
                                   decoration: InputDecoration(
                                       //hintText: "Input yor Email",
                                       labelText: 'Email',
@@ -102,24 +119,32 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PostHome(listOfPost: listOfPosts,)),
-                        );
+                        if(myController.text == TRUNGTAMCUUHO || myController.text== USER) {
+                          if (myController.text == TRUNGTAMCUUHO) {
+                            currentUser.isVerifyRescueCenter = true;
+                          } else {
+                            currentUser.isVerifyRescueCenter = false;
+                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PostHome(
+                                      listOfPost: listOfPosts,
+                                    )),
+                          );
+                        }
                       },
                       child: Container(
                         width: 300,
                         height: 50,
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8))),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
                         child: Center(
                           child: Text(
-                            'Đăng nhập', style: TextStyle(
-                            fontSize: 20
-                          ),
+                            'Đăng nhập',
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
                       ),
