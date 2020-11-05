@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -69,13 +70,18 @@ class _RequestPostPageState extends State<RequestPostPage> {
                       children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage: currentUser.isVerifyRescueCenter ? NetworkImage(currentUser.imageURL) : NetworkImage("https://avatars2.githubusercontent.com/u/1532252?s=400&v=4"),
+                          backgroundImage: currentUser.isVerifyRescueCenter
+                              ? NetworkImage(currentUser.imageURL)
+                              : NetworkImage(
+                                  "https://avatars2.githubusercontent.com/u/1532252?s=400&v=4"),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          currentUser.isVerifyRescueCenter ? currentUser.fullNanme : "Nguyễn Bùi Bảo Khanh",
+                          currentUser.isVerifyRescueCenter
+                              ? currentUser.fullNanme
+                              : "Nguyễn Bùi Bảo Khanh",
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )
                       ],
@@ -114,7 +120,8 @@ class _RequestPostPageState extends State<RequestPostPage> {
             CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
                 () {
               //close drawer
-              Navigator.push(context, MaterialPageRoute( builder: (context) => LoginPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             })
           ],
         ),
@@ -147,9 +154,6 @@ class _RequestPostPageState extends State<RequestPostPage> {
                     builder: (context) => EditPost(),
                   ));
             }
-
-
-
           },
         ),
         backgroundColor: appBarColor,
@@ -216,6 +220,10 @@ class DialogFilter {
 
   static dialogAdopt(context) =>
       showDialog(context: context, builder: (context) => DialogFilterAdopt());
+
+  static dialogActivities(context) {
+    showDialog(context: context, builder: (context) => DialogActivities());
+  }
 }
 
 class DialogFilterRescue extends StatefulWidget {
@@ -260,7 +268,8 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                   children: [
                     Text(
                       "Độ ưu tiên",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     Wrap(
                       direction: Axis.horizontal,
@@ -279,7 +288,8 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                         ),
                         RaisedButton(
                             textColor: priorityLow ? Colors.white : null,
-                            color: priorityLow ? PetRescueTheme.lightPink : null,
+                            color:
+                                priorityLow ? PetRescueTheme.lightPink : null,
                             onPressed: () {
                               setState(() {
                                 priorityHigh = false;
@@ -296,8 +306,8 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                       height: 15,
                     ),
                     Text('Phân loại',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20)),
                     Wrap(
                       direction: Axis.horizontal,
                       children: [
@@ -312,7 +322,8 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isKhac = false;
                             });
                           },
-                          child: Text('Tai nạn', style: TextStyle(fontWeight: FontWeight.bold)),
+                          child: Text('Tai nạn',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         RaisedButton(
                           textColor: isThatlac ? Colors.white : null,
@@ -325,7 +336,10 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isKhac = false;
                             });
                           },
-                          child: Text('Thất lạc', style: TextStyle(fontWeight: FontWeight.bold),),
+                          child: Text(
+                            'Thất lạc',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         RaisedButton(
                           textColor: isKhac ? Colors.white : null,
@@ -335,20 +349,20 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isTainan = false;
                               isThatlac = false;
                               isBoroi = false;
-                              isKhac=true;
+                              isKhac = true;
                             });
                           },
-                          child: Text('Khác', style: TextStyle(fontWeight: FontWeight.bold)),
+                          child: Text('Khác',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
-
                       ],
                     ),
                     SizedBox(
                       height: 15,
                     ),
                     Text('Khu vực tìm kiếm',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20)),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10.0, 10, 10.0, 0),
                       child: Row(
@@ -400,9 +414,8 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                 width: MediaQuery.of(context).size.width,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.pop(context,false);
+                    Navigator.pop(context, false);
                   },
-
                   child: Text(
                     'XONG',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -425,10 +438,12 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
   bool isCho = false;
   bool isMeo = false;
   bool isKhac = false;
+
   //gioi tinh
   bool isDuc = false;
   bool isCai = false;
   bool isChuaxacdinh = false;
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -508,7 +523,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                   ),
                   Text('Giới tính',
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                   Wrap(
                     direction: Axis.horizontal,
                     children: [
@@ -550,7 +565,6 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                       ),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -558,9 +572,95 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
               width: MediaQuery.of(context).size.width,
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.pop(context,false);
+                  Navigator.pop(context, false);
                 },
+                child: Text(
+                  'XONG',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 
+class DialogActivities extends StatefulWidget {
+  @override
+  _DialogActivitiesState createState() => _DialogActivitiesState();
+}
+
+class _DialogActivitiesState extends State<DialogActivities> {
+  bool isNuoiNhan=false;
+
+  bool isCuuHo=false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.15,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                //border: BorderRadius.circular(10)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "BÀI POST",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Wrap(
+                    direction: Axis.horizontal,
+                    children: [
+                      RaisedButton(
+                        textColor: isCuuHo ? Colors.white : null,
+                        color: isCuuHo ? PetRescueTheme.orange : null,
+                        onPressed: () {
+                          setState(() {
+                            isNuoiNhan = false ;
+                            isCuuHo = true;
+
+                          });
+                        },
+                        child: Text('Cứu hộ'),
+                      ),
+                      RaisedButton(
+                        textColor: isNuoiNhan ? Colors.white : null,
+                        color: isNuoiNhan ? PetRescueTheme.orange : null,
+                        onPressed: () {
+                          setState(() {
+                            isNuoiNhan = true;
+                            isCuuHo = false;
+
+                          });
+                        },
+                        child: Text('Nuôi nhận'),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
                 child: Text(
                   'XONG',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

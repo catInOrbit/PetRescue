@@ -8,6 +8,7 @@ import 'package:petrescue/profile/profile_screens/center_screen.dart';
 import 'package:petrescue/profile/profile_screens/help_screen.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/widgets/common.dart';
+import 'package:petrescue/widgets/postFeed/request_page.dart';
 
 import '../main.dart';
 
@@ -38,6 +39,12 @@ class _HomePageState extends State<HomePage> {
           ),
 
           actions: [
+            IconButton(
+              icon: Icon(Icons.filter_alt),
+              onPressed: () {
+                DialogFilter.dialogActivities(context);
+              },
+            ),
             IconButton(
               icon: const Icon(Icons.menu, color: Colors.white,),
               tooltip: "View notification",
