@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/bloc/post/post/post_state.dart';
 import 'package:petrescue/models/post_model.dart';
@@ -41,6 +42,7 @@ class PostBloc {
               {
                 element.acceptedRequest = true;
                 element.postType = PostType.InRescuePost;
+                element.currentUser = currentUser;
                 return;
               }
           });

@@ -87,7 +87,7 @@ List<Post> listOfPosts = [
       "6-8 months",
       ["Bỏ hoang", "Chấn thương", "Mất chủ"],
       <TimeLineText>[],
-      userList[1],
+      userList[2],
       <User>[],
       null,
       <String>[],

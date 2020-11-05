@@ -280,7 +280,6 @@ class ActionKeyword extends StatelessWidget {
                  if(!isHomepagePost)
                    {
                      showAlertDialog(context);
-
                    }
 
                  else
@@ -1553,14 +1552,7 @@ class _HomePagePostState extends State<HomePagePost> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // Row(
-                  //   children: [
-                  //     // CircleAvatar(
-                  //     //   backgroundImage: NetworkImage(
-                  //     //       e.currentUser.imageURL), maxRadius: 30,),
-                  //     statusTitle(e)
-                  //   ],
-                  // ),
+
                   createTimelinePost(context, e),
                 ],
               ),
