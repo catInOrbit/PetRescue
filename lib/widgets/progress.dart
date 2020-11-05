@@ -315,7 +315,7 @@ class Progress extends StatelessWidget {
                                   spacing: 2,
                                   direction: Axis.horizontal,
                                   alignment: WrapAlignment.start,
-                                  children: getAllStatuses(postModel),
+                                  children: getAllCategory(postModel),
                                 ),
                               ),
                             ],

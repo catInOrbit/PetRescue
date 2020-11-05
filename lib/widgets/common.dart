@@ -14,6 +14,7 @@ import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/repository/data/user_list.dart';
 import 'package:petrescue/screens/TrackingPageImrpoved.dart';
+import 'package:petrescue/screens/adopt_process_introduction.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/detail_card.dart';
@@ -97,7 +98,7 @@ class CategoryTag extends StatelessWidget {
   }
 }
 
-List<Widget> getAllStatuses(Post postModel) {
+List<Widget> getAllCategory(Post postModel) {
   return List<Widget>.generate(postModel.category.length, (index) {
     return CategoryTag(
       postModel: postModel,
@@ -181,8 +182,8 @@ class UserInfoRibon extends StatelessWidget {
 
 class ActionKeyword extends StatelessWidget {
   final Post postModel;
-  final bool isHomepagePost;
-  const ActionKeyword({Key key, @required this.postModel, this.isHomepagePost}) : super(key: key);
+  final bool isAdoptPost;
+  const ActionKeyword({Key key, @required this.postModel, this.isAdoptPost}) : super(key: key);
 
   showAlertDialog(BuildContext context) {
 
@@ -201,7 +202,11 @@ class ActionKeyword extends StatelessWidget {
       //
       // Scaffold.of(context).showSnackBar(snackBar);
         Navigator.of(context).pop();
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,)));
+
+        if(!isAdoptPost)
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,)));
+        else
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AdoptProcessIntroduction(postModel: postModel,)));
 
       },
     );
@@ -215,8 +220,8 @@ class ActionKeyword extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Chấp nhận giải cứu ?"),
-      content: Text("Bạn có muốn thực hiện quá trình giải cứu"),
+      title: !isAdoptPost ? Text("Chấp nhận giải cứu ?") : Text("Chấp nhận nhận nuôi ?"),
+      content: Text("Bạn có muốn thực hiện quá trình nhận nuôi"),
       actions: [
         cancelButton,
         okButton,
@@ -238,7 +243,6 @@ class ActionKeyword extends StatelessWidget {
     String text;
     Widget icon;
 
-    if(!isHomepagePost)
       switch(postModel.postType)
       {
         case PostType.AdoptPost:
@@ -259,12 +263,6 @@ class ActionKeyword extends StatelessWidget {
           break;
       }
 
-    else
-      {
-        text = "Xem diễn biến";
-        colorScheme = PetRescueTheme.actionWordViewOnlyPostTheme;
-        icon = Container();
-      }
 
     return Container(
       height: 50,
@@ -277,7 +275,7 @@ class ActionKeyword extends StatelessWidget {
             child: InkWell(
               onTap: ()
                {
-                 if(!isHomepagePost)
+                 if(!isAdoptPost)
                    {
                      showAlertDialog(context);
                    }
@@ -482,7 +480,7 @@ class DetailCardButton extends StatelessWidget {
 
       // set up the AlertDialog
       AlertDialog alert = AlertDialog(
-        title: Text("Chấp nhận giải cứu ?"),
+        title:  Text("Chấp nhận giải cứu ?"),
         content: Text("Bạn có muốn thực hiện quá trình giải cứu"),
         actions: [
           cancelButton,

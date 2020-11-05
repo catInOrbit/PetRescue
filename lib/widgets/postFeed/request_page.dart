@@ -35,6 +35,65 @@ class RequestPostPage extends StatefulWidget {
 }
 
 class _RequestPostPageState extends State<RequestPostPage> {
+
+  Widget buildAddPostIcon()
+  {
+    if(!currentUser.isVerifyRescueCenter && !widget.sortType.contains("AdoptPost"))
+      return IconButton(
+        icon: const Icon(
+          Icons.add_circle_outline,
+          color: Colors.white,
+        ),
+        tooltip: "View notification",
+        onPressed: () {
+          if (widget.sortType
+              .contains(PostType.RequestPost.toString().split('.').last)) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateEditPostCapCuu(),
+                ));
+          } else if (widget.sortType
+              .contains(PostType.AdoptPost.toString().split('.').last)) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditPost(),
+                ));
+          }
+        },
+      );
+
+    else if(currentUser.isVerifyRescueCenter)
+      return IconButton(
+        icon: const Icon(
+          Icons.add_circle_outline,
+          color: Colors.white,
+        ),
+        tooltip: "View notification",
+        onPressed: () {
+          if (widget.sortType
+              .contains(PostType.RequestPost.toString().split('.').last)) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateEditPostCapCuu(),
+                ));
+          } else if (widget.sortType
+              .contains(PostType.AdoptPost.toString().split('.').last)) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditPost(),
+                ));
+          }
+        },
+      );
+
+    return Container();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Color appBarColor;
@@ -126,32 +185,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
           style: TextStyle(color: Colors.white),
         ),
         leading:
-
-         IconButton(
-          icon: const Icon(
-            Icons.add_circle_outline,
-            color: Colors.white,
-          ),
-          tooltip: "View notification",
-          onPressed: () {
-            if (widget.sortType
-                .contains(PostType.RequestPost.toString().split('.').last)) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CreateEditPostCapCuu(),
-                  ));
-            } else if (widget.sortType
-                .contains(PostType.AdoptPost.toString().split('.').last)) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EditPost(),
-                  ));
-            }
-
-          },
-        ) ,
+        buildAddPostIcon(),
         backgroundColor: appBarColor,
         actions: [
           IconButton(
@@ -565,4 +599,6 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
       ),
     );
   }
+
+
 }

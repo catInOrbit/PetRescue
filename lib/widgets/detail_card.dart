@@ -44,7 +44,7 @@ class DetailCard extends StatelessWidget {
               icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
               onPressed: () => Navigator.pop(context, false),
             ),
-            title: Text("Chi tiết", style: TextStyle(color: Colors.black),),
+            title: Text("Tong quan", style: TextStyle(color: Colors.black),),
             backgroundColor: Colors.white,
           ),
           body:
@@ -230,7 +230,7 @@ class DetailCard extends StatelessWidget {
                                               Container(
                                                   child: Row(
                                                       children:
-                                                      getAllStatuses(postModel)
+                                                      getAllCategory(postModel)
                                                   )),
 
                                               SizedBox(height: 10,),

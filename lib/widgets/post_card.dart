@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:petrescue/EditPost/colors.dart';
 import 'package:petrescue/EditPost/edit_post.dart';
 import 'package:petrescue/Profile/UserProfile_Screen.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/constants.dart';
@@ -10,6 +12,7 @@ import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/timeline.dart';
 import 'package:petrescue/utils/flappy_search_bar.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
@@ -197,7 +200,7 @@ class _PostCardState extends State<PostCard> {
                           height: 10,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: const EdgeInsets.only(left: 12),
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Row(
@@ -212,6 +215,7 @@ class _PostCardState extends State<PostCard> {
                                     fontSize: 20,
                                     fontFamily: "Lato",
                                     fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold
                                   ),
                                 ),
                                 SizedBox(
@@ -219,7 +223,7 @@ class _PostCardState extends State<PostCard> {
                                 ),
 
                                 Wrap(
-                                  children: getAllStatuses(widget.postModel),
+                                  children: getAllCategory(widget.postModel),
                                 )
 
                               ],
@@ -242,6 +246,8 @@ class _PostCardState extends State<PostCard> {
                                         fontSize: 20,
                                         fontFamily: "Lato",
                                         fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold
+
                                       ),
                                     ),
                                     SizedBox(
@@ -255,7 +261,7 @@ class _PostCardState extends State<PostCard> {
                                                   .Text.index],
                                           fontSize: 20,
                                           fontFamily: "Lato",
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w300),
                                     ),
                                     SizedBox(
                                       width: 20,
@@ -287,6 +293,7 @@ class _PostCardState extends State<PostCard> {
                                               fontSize: 20,
                                               fontFamily: "Lato",
                                               fontStyle: FontStyle.normal,
+                                              fontWeight: FontWeight.bold
                                             ),
                                           ),
                                           SizedBox(
@@ -318,6 +325,8 @@ class _PostCardState extends State<PostCard> {
                                               fontSize: 20,
                                               fontFamily: "Lato",
                                               fontStyle: FontStyle.normal,
+                                                fontWeight: FontWeight.bold
+
                                             ),
                                           ),
                                           SizedBox(
@@ -338,6 +347,10 @@ class _PostCardState extends State<PostCard> {
                                       ),
                                     ],
                                   ),
+
+                                SizedBox(height: 10,),
+                                  
+                                //TODO:HJERE
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -347,34 +360,50 @@ class _PostCardState extends State<PostCard> {
                                           PetRescueThemeColorType.Text.index],
                                       fontSize: 20,
                                       fontFamily: "Lato",
+                                        fontWeight: FontWeight.bold
+
                                     ),
                                   ),
                                 ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Wrap(
-                                    direction: Axis.vertical,
-                                    children: widget.postModel.statuses
-                                        .map(
-                                          (text) => Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "-" + text,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                  ),
-                                )
+                                // Align(
+                                //   alignment: Alignment.centerLeft,
+                                //   child: Wrap(
+                                //     direction: Axis.vertical,
+                                //     children: widget.postModel.statuses
+                                //         .map(
+                                //           (text) => Padding(
+                                //             padding: const EdgeInsets.all(8.0),
+                                //             child: Text(
+                                //               "-" + text,
+                                //               overflow: TextOverflow.ellipsis,
+                                //               style: TextStyle(
+                                //                 fontSize: 16,
+                                //               ),
+                                //             ),
+                                //           ),
+                                //         )
+                                //         .toList(),
+                                //   ),
+                                // )
                               ],
                             ),
                           ),
                         ),
 
+                        Container(
+                          height: 200,
+                          width: 600,
+                          decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? HexColor("#FFDFDF") : HexColor("#E0F0E8")),
+                          child: TimelineBuilder(
+                            shrinkWrap: true,
+                            indicatorColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen  ,
+                            lineColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen,
+                            children: buildStatusCard(widget.postModel),
+                            indicators: buildIndicator(widget.postModel),
+                            indicatorSize: 10,
+                          ),
+                        ),
+                      if(widget.postModel.postType != PostType.AdoptPost)
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -453,15 +482,14 @@ class _PostCardState extends State<PostCard> {
                               SizedBox(width: 10),
                               if (widget.postModel.postType !=
                                       PostType.InRescuePost &&
-                                  !widget.postModel.acceptedRequest)
+                                  !widget.postModel.acceptedRequest && currentUser.isVerifyRescueCenter && widget.postModel.postType !=
+                                  PostType.AdoptPost)
                                 ActionKeyword(
                                   postModel: widget.postModel,
-                                  isHomepagePost: false,
-                                ),
-                              if (widget.postModel.postType !=
-                                      PostType.InRescuePost &&
-                                  widget.postModel.acceptedRequest)
-                                ActionKeywordAccepted(),
+                                  isAdoptPost: false,
+                                )
+
+
                             ],
                           ),
                         ),
@@ -485,72 +513,73 @@ class _PostCardState extends State<PostCard> {
                             ),
                           ),
 
-                        Divider(
-                          color:
+                        if(widget.postModel.postType != PostType.AdoptPost)
+                        Column(
+                          children: [
+                            Divider(
+                              color:
                               colorScheme[PetRescueThemeColorType.Icon.index],
-                          thickness: 0.5,
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.location_on,
-                                color: colorScheme[
+                              thickness: 0.5,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    color: colorScheme[
                                     PetRescueThemeColorType.Icon.index],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text("Cách bạn 2.7km",
-                                  style: TextStyle(
-                                      color: colorScheme[
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text("Cách bạn 2.7km",
+                                      style: TextStyle(
+                                          color: colorScheme[
                                           PetRescueThemeColorType.Text.index],
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w300)),
-                              SizedBox(
-                                width: 10,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w300)),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => MapPage(),
+                                          ));
+                                    },
+                                    child: Text("Xem bản đồ",
+                                        style: TextStyle(
+                                          color: Colors.cyan,
+                                          fontSize: 16,
+                                          decoration: TextDecoration.underline,
+                                        )),
+                                  ),
+                                ],
                               ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => MapPage(),
-                                      ));
-                                },
-                                child: Text("Xem bản đồ",
-                                    style: TextStyle(
-                                      color: Colors.cyan,
-                                      fontSize: 16,
-                                      decoration: TextDecoration.underline,
-                                    )),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: Text(
-                            widget.postModel.location,
-                            style: TextStyle(
-                                color: colorScheme[
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 10),
+                              child: Text(
+                                widget.postModel.location,
+                                style: TextStyle(
+                                    color: colorScheme[
                                     PetRescueThemeColorType.Text.index],
-                                fontSize: 18,
-                                fontStyle: FontStyle.normal),
-                          ),
-                        ),
-
-                        Divider(
-                          color:
+                                    fontSize: 18,
+                                    fontStyle: FontStyle.normal),
+                              ),
+                            ),
+                            Divider(
+                              color:
                               colorScheme[PetRescueThemeColorType.Icon.index],
-                          thickness: 0.5,
+                              thickness: 0.5,
+                            ),
+                          ],
                         ),
-
                         // Padding(
                         //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                         //   child: Row(
@@ -590,6 +619,33 @@ class _PostCardState extends State<PostCard> {
         ),
       ),
     );
+  }
+
+  List<Widget> buildIndicator(Post post)
+  {
+    List<Widget> returnList = [];
+    post.statuses.forEach((e) => returnList.add(Icon(Icons.arrow_drop_down_circle, color: PetRescueTheme.lightPink,)));
+  }
+
+  List<Widget> buildStatusCard(Post post)
+  {
+    List<Widget> returnList = [];
+       post.statuses.forEach((e) {
+         returnList. add(Row(
+           mainAxisSize: MainAxisSize.min,
+           children: [
+             Flexible(child: Container(
+                 decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen, borderRadius: BorderRadius.all(Radius.circular(12))),
+                  height: 50,
+                 child: Padding(
+                   padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
+                   child: Text(e, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 16)),
+                 )),)
+           ],
+         ));
+       });
+       
+       return returnList;
   }
 
   _showPopupMenu(context) {

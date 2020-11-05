@@ -5,7 +5,7 @@ class User
   final List<Post> timelinePosts;
   final String fullNanme, job, centerName, phoneNumber, address, gmail, website, imageURL;
   int id;
-  bool isVerifyRescueCenter, isOnline;
+  bool isVerifyRescueCenter = false, isOnline;
 
   User(
       this.timelinePosts,

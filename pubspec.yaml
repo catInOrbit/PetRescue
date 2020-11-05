@@ -107,6 +107,9 @@ flutter:
     - lib/assets/health_image.jpg
     - lib/assets/update_pic.png
     - lib/assets/doctor.jpg
+    - lib/assets/adopt_family.jpg
+    - lib/assets/contact_center.jpg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
