@@ -16,6 +16,7 @@ class Post {
   DateTime timeCreated;
   PostType postType;
   List<String> statuses = [];
+  List<String> category;
   List<TimeLineText> timelineText = [];
   Widget timelineBuilder;
   User currentUser, acceptedRequestUser;
@@ -31,7 +32,7 @@ class Post {
   }
 
   Post(id, title, description, petType, location, timeCreated, postType,
-      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed, priority, acceptedRequest) {
+      imageString, gender, ages, statuses, timeline, user, adoptUserRequests, acceptedRequestUser, imageStrings, breed, priority, acceptedRequest, category) {
     this.id = id;
     this.title = title;
     this.petType = petType;
@@ -51,7 +52,7 @@ class Post {
     this.breed = breed;
     this.priority = priority;
     this._acceptedRequest = acceptedRequest;
-
+    this.category = category;
     if(timelineText== null || timelineText.length > 0)
     timelineBuilder = new TimelineBuilder(
           children: timelineText,

@@ -119,7 +119,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        if(myController.text == TRUNGTAMCUUHO || myController.text== USER) {
                           if (myController.text == TRUNGTAMCUUHO) {
                             currentUser.isVerifyRescueCenter = true;
                           } else {
@@ -133,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
                                       listOfPost: listOfPosts,
                                     )),
                           );
-                        }
                       },
                       child: Container(
                         width: 300,

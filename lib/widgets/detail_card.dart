@@ -14,8 +14,10 @@ import 'package:flutter_icons/flutter_icons.dart';
 class DetailCard extends StatelessWidget {
   final Post postModel;
   final bool isEditing;
+  final int defaultTabIndex;
 
-  const DetailCard({Key key, @required this.postModel, this.isEditing}) : super(key: key);
+
+  const DetailCard({Key key, @required this.postModel, this.isEditing, this.defaultTabIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class DetailCard extends StatelessWidget {
 
     return DefaultTabController(
       length: 4,
-      initialIndex: 1,
+      initialIndex: defaultTabIndex,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -230,7 +232,6 @@ class DetailCard extends StatelessWidget {
                                                   child: Row(
                                                       children:
                                                       getAllStatuses(postModel)
-
                                                   )),
 
                                               SizedBox(height: 10,),

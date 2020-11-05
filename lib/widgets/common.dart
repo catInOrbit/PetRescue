@@ -79,7 +79,7 @@ class CategoryTag extends StatelessWidget {
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
       case PostType.AdoptPost:
-        colorScheme = PetRescueTheme.statusTagsRescueTheme;
+        colorScheme = PetRescueTheme.statusTagsAdoptPostTheme;
         break;
 
       default:
@@ -97,11 +97,11 @@ class CategoryTag extends StatelessWidget {
 }
 
 List<Widget> getAllStatuses(Post postModel) {
-  return List<Widget>.generate(postModel.statuses.length, (index) {
+  return List<Widget>.generate(postModel.category.length, (index) {
     return CategoryTag(
       postModel: postModel,
       // textData: postModel.statuses[index].toString().split('.').last,
-      textData: postModel.statuses[index],
+      textData: postModel.category[index],
     );
   });
 }
@@ -189,11 +189,18 @@ class ActionKeyword extends StatelessWidget {
     Widget okButton = FlatButton(
       child: Text("Có"),
       onPressed: () {
+        postModel.acceptedRequestUser = currentUser;
 
+        PostEvent postEvent = PostEvent();
+        postEvent.affectedPost =  postModel;
+        postEvent.acceptedRequest = true;
+
+        bloc.inputSink.add(postEvent);
       // SnackBar snackBar = acceptRequest(context);
       //
       // Scaffold.of(context).showSnackBar(snackBar);
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrackingPageImproved()));
+        Navigator.of(context).pop();
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,)));
 
       },
     );
@@ -274,13 +281,7 @@ class ActionKeyword extends StatelessWidget {
                    {
                      showAlertDialog(context);
 
-                     postModel.acceptedRequestUser = currentUser;
 
-                     PostEvent postEvent = PostEvent();
-                     postEvent.affectedPost =  postModel;
-                     postEvent.acceptedRequest = true;
-
-                     bloc.inputSink.add(postEvent);
                    }
 
                  else
@@ -531,7 +532,7 @@ class DetailCardButton extends StatelessWidget {
               postEvent.acceptedRequest = true;
 
               bloc.inputSink.add(postEvent);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPageImproved(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,),));
           }
 
         else if(postModel.postType == PostType.InRescuePost)
@@ -1213,6 +1214,7 @@ class _HomePagePostState extends State<HomePagePost> {
                           DetailCard(
                             postModel: postModel,
                             isEditing: false,
+                            defaultTabIndex: 1,
                           )));
             },
             child: Container(
@@ -1489,7 +1491,24 @@ class _HomePagePostState extends State<HomePagePost> {
 
     List<Widget> items = [];
 
-    listOfPosts.where((element) => element.postType != PostType.RequestPost).forEach((e) =>
+    bool getReturnListCondition(Post post)
+    {
+          if(currentUser.isVerifyRescueCenter)
+          {
+                if(post.currentUser.id == currentUser.id && post.postType != PostType.RequestPost)
+                  return true;
+                return false;
+          }
+
+          else
+            {
+                  if(post.postType != PostType.RequestPost)
+                    return true;
+                  return false;
+            }
+    }
+
+    listOfPosts.where((element) => getReturnListCondition(element)).forEach((e) =>
       items.add(
           Padding(
             padding: const EdgeInsets.all(8.0),

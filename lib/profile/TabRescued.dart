@@ -61,7 +61,7 @@ class _PageRescuedState extends State<PageRescued> {
                               Container(
                                 height: 20,
                                // width: 50,
-                                color: Colors.blueAccent,
+                                color: PetRescueTheme.lime,
                                 child: Center(
                                   child: Text("Đang cứu hộ",style: TextStyle(
                                     color: Colors.white

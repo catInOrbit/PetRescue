@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/postFeed/post_empty.dart';
@@ -37,7 +38,7 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:
                         [
-                          CircleAvatar(backgroundImage: NetworkImage(widget.postModel.currentUser.imageURL), radius: 25,),
+                          CircleAvatar(backgroundImage: NetworkImage(currentUser.imageURL), radius: 25,),
                           Text(
                             globals.currentUser.centerName,
                             style: TextStyle(

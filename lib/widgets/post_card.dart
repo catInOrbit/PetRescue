@@ -57,6 +57,7 @@ class _PostCardState extends State<PostCard> {
                       builder: (context) => DetailCard(
                             postModel: widget.postModel,
                             isEditing: false,
+                        defaultTabIndex: 1,
                           )));
             },
             child: Container(
@@ -207,10 +208,11 @@ class _PostCardState extends State<PostCard> {
                                 SizedBox(
                                   width: 15,
                                 ),
-                                StatusTag(
-                                  postModel: widget.postModel,
-                                  textData: "Template",
-                                ),
+
+                                Wrap(
+                                  children: getAllStatuses(widget.postModel),
+                                )
+
                               ],
                             ),
                           ),

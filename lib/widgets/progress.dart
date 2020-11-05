@@ -43,6 +43,7 @@ class Progress extends StatelessWidget {
                           DetailCard(
                             postModel: postModel,
                             isEditing: false,
+                            defaultTabIndex: 1,
                           )));
             },
             child: Container(

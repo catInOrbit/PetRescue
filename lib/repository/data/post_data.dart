@@ -16,7 +16,7 @@ List<Post> listOfPosts = [
       "https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-g70644hiocchitapae654vgia4-20161227061350.Medi.jpeg",
       "Male",
       "6-8 months",
-      ["Bỏ hoang", "Chấn thương", "Mất chủ"],
+      ["Thú bị bỏ hoang", " Chấn thương nặng ở mắt, chảy máu nhiều", "Mất chủ"],
       <TimeLineText>[],
       userList[0],
       <User>[],
@@ -24,7 +24,8 @@ List<Post> listOfPosts = [
       <String>[],
       "Persian",
       Priority.High,
-    false
+    false,
+     ["Tai nạn", "Thất lạc"]
   ),
 
   Post(
@@ -38,7 +39,7 @@ List<Post> listOfPosts = [
       "https://sbly-web-prod-shareably.netdna-ssl.com/wp-content/uploads/2018/08/14083438/battle_cat_recovery_featured.jpg",
     "Male",
     "6-8 months",
-      ["Bỏ hoang", "Chấn thương", "Mất chủ"],
+      ["Bỏ hoang", "Mèo bị thương chân đi cà nhắt", " Mắt trái không mở được"],
     <TimeLineText>[],
       userList[1],
     <User>[],
@@ -46,7 +47,9 @@ List<Post> listOfPosts = [
     <String>[],
     "Persian",
     Priority.Normal,
-    false
+    false,
+    ["Tai nạn", "Thất lạc"]
+
   ),
 
   Post(
@@ -60,7 +63,7 @@ List<Post> listOfPosts = [
       "https://i.pinimg.com/originals/b7/fc/8d/b7fc8df5d49d22cf5bde171e5f45df2e.jpg",
       "Male",
       "6-8 months",
-      [ "Chấn thương", "Mất chủ"],
+      [ "Chó bị thương ở bụng không đi được",],
       <TimeLineText>[],
       userList[4],
       <User>[],
@@ -68,7 +71,8 @@ List<Post> listOfPosts = [
       <String>[],
       "Persian",
       Priority.Normal,
-      false
+      false,
+    [" Tai nạn"]
   ),
   Post(
       "P00",
@@ -89,10 +93,9 @@ List<Post> listOfPosts = [
       <String>[],
       "Persian",
       Priority.Normal,
-      false
+      false,
+    ["Meo"]
   ),
-
-
 
 
   Post(
@@ -114,7 +117,8 @@ List<Post> listOfPosts = [
     <String>[],
     "COco",
       Priority.Normal,
-    false
+    false,
+    ["Chó", "Đực"]
   ),
 
   Post(
@@ -136,7 +140,8 @@ List<Post> listOfPosts = [
       <String>[],
       "COco",
       Priority.Normal,
-      false
+      false,
+      ["Mèo", "Cái"]
   ),
 
   Post(
@@ -158,6 +163,7 @@ List<Post> listOfPosts = [
       <String>[],
     "Oxloot",
       Priority.Normal,
-    true
+    true,
+      ["Mèo"]
   ),
 ];

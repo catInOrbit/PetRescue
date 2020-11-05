@@ -193,7 +193,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Icon(
-                                    Icons.warning_amber_outlined,
+                                    Icons.warning,
                                     color: Colors.red,
                                     size: 16,
                                   ),

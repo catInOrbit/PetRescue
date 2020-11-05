@@ -218,6 +218,7 @@ class _ActivityTimelineState extends State<_ActivityTimeline> {
                           DetailCard(
                             postModel: postModel,
                             isEditing: false,
+                            defaultTabIndex: 1,
                           )));
             },
             child: Container(
