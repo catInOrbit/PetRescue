@@ -8,6 +8,7 @@ import 'package:petrescue/profile/profile_screens/center_screen.dart';
 import 'package:petrescue/profile/profile_screens/help_screen.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/widgets/common.dart';
+import 'package:petrescue/widgets/postFeed/request_page.dart';
 
 import '../main.dart';
 
@@ -64,31 +65,40 @@ class _HomePageState extends State<HomePage> {
       //       return Container();
       // },),
 
-      endDrawer: Drawer(
-        child: ListView(
-          children: [
-            Container(
-              height: 120,
-              child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: HexColor('#FFB9AC'),
-                  ),
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(currentUser.imageURL),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          currentUser.fullNanme,
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        )
-                      ],
+          actions: [
+            IconButton(
+              icon: Icon(Icons.filter_alt),
+              onPressed: () {
+                DialogFilter.dialogActivities(context);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.menu, color: Colors.white,),
+              tooltip: "View notification",
+              onPressed: (){
+                _scaffoldKey.currentState.openEndDrawer();
+              },
+            ),
+          ],
+        ),
+        body: ListView.builder(
+          itemCount: listOfPosts.length,
+          itemBuilder: (context, index)
+          {
+            if(listOfPosts[index].acceptedRequestUser != null)
+              return HomePagePost(postModel: listOfPosts[index],);
+            else
+              return Container();
+        },),
+
+        endDrawer: Drawer(
+          child: ListView(
+            children: [
+              Container(
+                height: 120,
+                child: DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: HexColor('#FFB9AC'),
                     ),
                   )),
             ),
