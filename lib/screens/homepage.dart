@@ -25,25 +25,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: PetRescueTheme.orange,
-        elevation: 0,
-        title: Text("Hoạt động", style: TextStyle(color: Colors.white),),
-        leading: Container(),
-
         actions: [
           IconButton(
             icon: Image.asset("lib/assets/baseline_filter_alt_white_24dp.png"),
             onPressed: () {
-              // if (widget.s
-              //     .contains(PostType.RequestPost.toString().split('.').last)) {
-              //   DialogFilter.dialogRescue(context);
-              // } else if (widget.sortType
-              //     .contains(PostType.AdoptPost.toString().split('.').last)) {
-              //   DialogFilter.dialogAdopt(context);
-              // }
+              DialogFilter.dialogActivities(context);
             },
           ),
-
           IconButton(
             icon: const Icon(Icons.menu, color: Colors.white,),
             tooltip: "View notification",
@@ -52,6 +40,12 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
+        backgroundColor: PetRescueTheme.orange,
+        elevation: 0,
+        title: Text("Hoạt động", style: TextStyle(color: Colors.white),),
+        leading: Container(),
+
+
       ),
       body:
       HomePagePost(),
@@ -65,31 +59,6 @@ class _HomePageState extends State<HomePage> {
       //       return Container();
       // },),
 
-          actions: [
-            IconButton(
-              icon: Icon(Icons.filter_alt),
-              onPressed: () {
-                DialogFilter.dialogActivities(context);
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.menu, color: Colors.white,),
-              tooltip: "View notification",
-              onPressed: (){
-                _scaffoldKey.currentState.openEndDrawer();
-              },
-            ),
-          ],
-        ),
-        body: ListView.builder(
-          itemCount: listOfPosts.length,
-          itemBuilder: (context, index)
-          {
-            if(listOfPosts[index].acceptedRequestUser != null)
-              return HomePagePost(postModel: listOfPosts[index],);
-            else
-              return Container();
-        },),
 
         endDrawer: Drawer(
           child: ListView(
@@ -101,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                       color: HexColor('#FFB9AC'),
                     ),
                   )),
-            ),
             //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
             CustomListSideMenuBar(
                 Icons.group,
