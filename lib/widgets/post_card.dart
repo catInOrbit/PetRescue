@@ -394,15 +394,100 @@ class _PostCardState extends State<PostCard> {
                           height: 200,
                           width: 600,
                           decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? HexColor("#FFDFDF") : HexColor("#E0F0E8")),
-                          child: TimelineBuilder(
-                            shrinkWrap: true,
-                            indicatorColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen  ,
-                            lineColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen,
-                            children: buildStatusCard(widget.postModel),
-                            indicators: buildIndicator(widget.postModel),
-                            indicatorSize: 10,
+                          child: SingleChildScrollView(
+                            child: TimelineBuilder(
+                              indicatorColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen  ,
+                              lineColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen,
+                              children: buildStatusCard(widget.postModel),
+                              indicators: buildIndicator(widget.postModel),
+                              indicatorSize: 10,
+
+                            ),
                           ),
                         ),
+
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Địa chỉ",
+                            style: TextStyle(
+                                color: colorScheme[
+                                PetRescueThemeColorType.Text.index],
+                                fontSize: 20,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.bold
+
+                            ),
+                          ),
+                        ),
+                        if(widget.postModel.postType != PostType.AdoptPost)
+                          Column(
+                            children: [
+                              Divider(
+                                color:
+                                colorScheme[PetRescueThemeColorType.Icon.index],
+                                thickness: 0.5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.location_on,
+                                      color: colorScheme[
+                                      PetRescueThemeColorType.Icon.index],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("Cách bạn 2.7km",
+                                        style: TextStyle(
+                                            color: colorScheme[
+                                            PetRescueThemeColorType.Text.index],
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w300)),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => MapPage(),
+                                            ));
+                                      },
+                                      child: Text("Xem bản đồ",
+                                          style: TextStyle(
+                                            color: Colors.cyan,
+                                            fontSize: 16,
+                                            decoration: TextDecoration.underline,
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, right: 10, top: 10),
+                                child: Text(
+                                  widget.postModel.location,
+                                  style: TextStyle(
+                                      color: colorScheme[
+                                      PetRescueThemeColorType.Text.index],
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.normal),
+                                ),
+                              ),
+                              Divider(
+                                color:
+                                colorScheme[PetRescueThemeColorType.Icon.index],
+                                thickness: 0.5,
+                              ),
+                            ],
+                          ),
                       if(widget.postModel.postType != PostType.AdoptPost)
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -480,16 +565,7 @@ class _PostCardState extends State<PostCard> {
                                 ),
                               ),
                               SizedBox(width: 10),
-                              if (widget.postModel.postType !=
-                                      PostType.InRescuePost &&
-                                  !widget.postModel.acceptedRequest && currentUser.isVerifyRescueCenter && widget.postModel.postType !=
-                                  PostType.AdoptPost)
-                                ActionKeyword(
-                                  postModel: widget.postModel,
-                                  isAdoptPost: false,
-                                )
-
-
+                              buildActionKeyword(widget.postModel)
                             ],
                           ),
                         ),
@@ -513,73 +589,7 @@ class _PostCardState extends State<PostCard> {
                             ),
                           ),
 
-                        if(widget.postModel.postType != PostType.AdoptPost)
-                        Column(
-                          children: [
-                            Divider(
-                              color:
-                              colorScheme[PetRescueThemeColorType.Icon.index],
-                              thickness: 0.5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.location_on,
-                                    color: colorScheme[
-                                    PetRescueThemeColorType.Icon.index],
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text("Cách bạn 2.7km",
-                                      style: TextStyle(
-                                          color: colorScheme[
-                                          PetRescueThemeColorType.Text.index],
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w300)),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => MapPage(),
-                                          ));
-                                    },
-                                    child: Text("Xem bản đồ",
-                                        style: TextStyle(
-                                          color: Colors.cyan,
-                                          fontSize: 16,
-                                          decoration: TextDecoration.underline,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 10, top: 10),
-                              child: Text(
-                                widget.postModel.location,
-                                style: TextStyle(
-                                    color: colorScheme[
-                                    PetRescueThemeColorType.Text.index],
-                                    fontSize: 18,
-                                    fontStyle: FontStyle.normal),
-                              ),
-                            ),
-                            Divider(
-                              color:
-                              colorScheme[PetRescueThemeColorType.Icon.index],
-                              thickness: 0.5,
-                            ),
-                          ],
-                        ),
+
                         // Padding(
                         //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                         //   child: Row(
@@ -621,6 +631,31 @@ class _PostCardState extends State<PostCard> {
     );
   }
 
+  Widget buildActionKeyword(Post postModel)
+  {
+    if (postModel.postType == PostType.RequestPost &&
+        !postModel.acceptedRequest &&
+        currentUser.isVerifyRescueCenter
+    )
+      return ActionKeyword(
+        postModel: postModel,
+        isAdoptPost: false,
+      );
+
+    else if(
+        postModel.postType == PostType.AdoptPost &&
+        !postModel.acceptedRequest
+    )
+      return ActionKeyword(
+        postModel: postModel,
+        isAdoptPost: true,
+      );
+
+    else if(postModel.postType == PostType.RequestPost &&
+        !postModel.acceptedRequest && !currentUser.isVerifyRescueCenter)
+      return Container();
+  }
+
   List<Widget> buildIndicator(Post post)
   {
     List<Widget> returnList = [];
@@ -634,13 +669,17 @@ class _PostCardState extends State<PostCard> {
          returnList. add(Row(
            mainAxisSize: MainAxisSize.min,
            children: [
-             Flexible(child: Container(
+             Flexible(
+               fit: FlexFit.tight,
+               child: Container(
                  decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen, borderRadius: BorderRadius.all(Radius.circular(12))),
-                  height: 50,
-                 child: Padding(
-                   padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
-                   child: Text(e, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 16)),
-                 )),)
+                 child: Center(
+                   child: Padding(
+                     padding: const EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 10),
+                     child: Text(e, style: TextStyle(color: Colors.white, fontSize: 16)),
+                   ),
+                 )),
+             )
            ],
          ));
        });

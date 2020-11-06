@@ -16,7 +16,7 @@ List<Post> listOfPosts = [
       "https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-g70644hiocchitapae654vgia4-20161227061350.Medi.jpeg",
       "Male",
       "6-8 months",
-      ["Thú bị bỏ hoang", " Chấn thương nặng ở mắt, chảy máu nhiều", "Mất chủ"],
+      ["Tìm thấy mèo bị bỏ hoang ở góc đường", "Mèo bị chấn thương nặng ở mắt, đi cà nhắt, chảy máu nhiều ở mặt, djwa iwaj waioj waioj dwaiodj aiwo joiawdj ioajd ioawj", "Mèo có đeo vòng cổ, có thể đã có chủ"],
       <TimeLineText>[],
       userList[0],
       <User>[],
