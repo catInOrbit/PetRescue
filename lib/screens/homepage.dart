@@ -33,56 +33,48 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white,),
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
             tooltip: "View notification",
-            onPressed: (){
+            onPressed: () {
               _scaffoldKey.currentState.openEndDrawer();
             },
           ),
         ],
         backgroundColor: PetRescueTheme.orange,
         elevation: 0,
-        title: Text("Hoạt động", style: TextStyle(color: Colors.white),),
+        title: Text(
+          "Hoạt động",
+          style: TextStyle(color: Colors.white),
+        ),
         leading: Container(),
-
-
       ),
-      body:
-      HomePagePost(),
-      // ListView.builder(
-      //   itemCount: listOfPosts.length,
-      //   itemBuilder: (context, index)
-      //   {
-      //     if(listOfPosts[index].acceptedRequestUser != null)
-      //       return HomePagePost(postModel: listOfPosts[index],);
-      //     else
-      //       return Container();
-      // },),
-
-
-        endDrawer: Drawer(
-          child: ListView(
-            children: [
-              Container(
+      body: HomePagePost(),
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            Container(
                 height: 120,
                 child: DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: HexColor('#FFB9AC'),
-                    ),
-                  )),
+                  decoration: BoxDecoration(
+                    color: HexColor('#FFB9AC'),
+                  ),
+                )),
             //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
             CustomListSideMenuBar(
                 Icons.group,
                 'Danh sách trung tâm',
-                    () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => CentersScreen()))
-                }),
+                () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => CentersScreen()))
+                    }),
             CustomListSideMenuBar(Icons.settings, 'Cài đặt', () => {}),
             CustomListSideMenuBar(
               Icons.info,
               'Giới thiệu',
-                  () {
+              () {
                 //close drawer
                 Navigator.pop(context, false);
                 //open another screen
@@ -100,14 +92,13 @@ class _HomePageState extends State<HomePage> {
             }),
 
             CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
-                    () {
-                  //close drawer
-                  Navigator.pop(context, false);
-                })
+                () {
+              //close drawer
+              Navigator.pop(context, false);
+            })
           ],
         ),
       ),
-
     );
   }
 }

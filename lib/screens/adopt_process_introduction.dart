@@ -24,30 +24,13 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
 
   List<PageViewModel> listPagesViewModel = [
     PageViewModel(
-      titleWidget: SafeArea(
-        child: Container(
-          height: 350,
-          width: 400,
-          child: GoogleMap(
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 16,
-            ),
-            mapType: MapType.normal,
-            tiltGesturesEnabled: true,
-            compassEnabled: true,
-            rotateGesturesEnabled: true,
-            myLocationEnabled: true,
-          ),
-        ),
-      ),
-      // titleWidget:
-      bodyWidget:  Container(
+      image: Container(
         height: 200,
         decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/assets/contact_center.jpg"), fit: BoxFit.cover)),
-        child: Text("Liên lạc trung tâm cứu hộ để biết địa điểm cần đến", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
       ),
+
+      title: "Liên lạc trung tâm",
+      bodyWidget:  Text("Liên lạc trung tâm cứu hộ để biết địa điểm cần đến", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
 
     ),
     PageViewModel(
@@ -60,13 +43,13 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
           children:  [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(" Đăng post cập nhật trong tab cập nhật", style: TextStyle(fontSize: 18),),
+              child: Text(" Đăng post cập nhật trong tab cập nhật", style: TextStyle(fontSize: 21),),
             ),
             Container( height: 100, width: 100,
-              decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("lib/assets/contact_center.jpg"))),),
+              decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("lib/assets/update_pic.png"))),),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(" để cung cấp thêm thông tin về tình trạng của thú", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
+              child: Text(" để cung cấp thêm thông tin về tình trạng của thú", textAlign: TextAlign.center, style: TextStyle(fontSize: 21),),
             ),
           ],
         ),
@@ -75,7 +58,7 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
         child: Center(child: Container(
           height: 300,
           width: 300,
-          decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.fill,image: AssetImage("lib/assets/doctor.jpg"))),)),
+          decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("lib/assets/adopt_family.jpg"))),)),
       ),
     )
   ];

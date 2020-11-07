@@ -275,15 +275,7 @@ class ActionKeyword extends StatelessWidget {
             child: InkWell(
               onTap: ()
                {
-                 if(!isAdoptPost)
-                   {
                      showAlertDialog(context);
-                   }
-
-                 else
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
-
-
                },
               child: Container(
                 height: 45,
@@ -1382,7 +1374,7 @@ class _HomePagePostState extends State<HomePagePost> {
                             style: TextStyle(
                               color: colorScheme[PetRescueThemeColorType
                                   .Text.index],
-                              fontSize: 15,
+                              fontSize: 17,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w500,
                             ),
@@ -1397,7 +1389,7 @@ class _HomePagePostState extends State<HomePagePost> {
                               style: TextStyle(
                                 color: colorScheme[PetRescueThemeColorType
                                     .Text.index],
-                                fontSize: 15,
+                                fontSize: 17,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w500,
                               ),

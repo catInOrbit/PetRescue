@@ -23,7 +23,6 @@ import 'package:petrescue/widgets/map.dart';
 import 'card_setting_dialog.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class PostCard extends StatefulWidget {
   final Post postModel;
   final User user;
@@ -35,7 +34,8 @@ class PostCard extends StatefulWidget {
   _PostCardState createState() => _PostCardState();
 }
 
-class _PostCardState extends State<PostCard> {
+class _PostCardState extends State<PostCard>
+    with AutomaticKeepAliveClientMixin {
   GoogleMapController mapController;
 
   final LatLng _center = const LatLng(10.828056, 106.703324);
@@ -43,6 +43,7 @@ class _PostCardState extends State<PostCard> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
@@ -69,7 +70,7 @@ class _PostCardState extends State<PostCard> {
                       builder: (context) => DetailCard(
                             postModel: widget.postModel,
                             isEditing: false,
-                        defaultTabIndex: 1,
+                            defaultTabIndex: 1,
                           )));
             },
             child: Container(
@@ -209,23 +210,19 @@ class _PostCardState extends State<PostCard> {
                                 Text(
                                   "Phân loại",
                                   style: TextStyle(
-                                    color: colorScheme[
-                                    PetRescueThemeColorType
-                                        .Text.index],
-                                    fontSize: 20,
-                                    fontFamily: "Lato",
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold
-                                  ),
+                                      color: colorScheme[
+                                          PetRescueThemeColorType.Text.index],
+                                      fontSize: 20,
+                                      fontFamily: "Lato",
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
                                   width: 15,
                                 ),
-
                                 Wrap(
                                   children: getAllCategory(widget.postModel),
                                 )
-
                               ],
                             ),
                           ),
@@ -241,14 +238,13 @@ class _PostCardState extends State<PostCard> {
                                     Text(
                                       "Động vật:",
                                       style: TextStyle(
-                                        color: colorScheme[
-                                            PetRescueThemeColorType.Text.index],
-                                        fontSize: 20,
-                                        fontFamily: "Lato",
-                                        fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold
-
-                                      ),
+                                          color: colorScheme[
+                                              PetRescueThemeColorType
+                                                  .Text.index],
+                                          fontSize: 20,
+                                          fontFamily: "Lato",
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(
                                       width: 20,
@@ -271,8 +267,6 @@ class _PostCardState extends State<PostCard> {
                                       thickness: 2,
                                       color: Colors.black,
                                     ),
-
-
                                   ],
                                 ),
                                 SizedBox(
@@ -287,14 +281,13 @@ class _PostCardState extends State<PostCard> {
                                           Text(
                                             "Giống:",
                                             style: TextStyle(
-                                              color: colorScheme[
-                                                  PetRescueThemeColorType
-                                                      .Text.index],
-                                              fontSize: 20,
-                                              fontFamily: "Lato",
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.bold
-                                            ),
+                                                color: colorScheme[
+                                                    PetRescueThemeColorType
+                                                        .Text.index],
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontStyle: FontStyle.normal,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                           SizedBox(
                                             width: 20,
@@ -319,15 +312,13 @@ class _PostCardState extends State<PostCard> {
                                           Text(
                                             "Giới tính:",
                                             style: TextStyle(
-                                              color: colorScheme[
-                                                  PetRescueThemeColorType
-                                                      .Text.index],
-                                              fontSize: 20,
-                                              fontFamily: "Lato",
-                                              fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.bold
-
-                                            ),
+                                                color: colorScheme[
+                                                    PetRescueThemeColorType
+                                                        .Text.index],
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontStyle: FontStyle.normal,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                           SizedBox(
                                             width: 20,
@@ -348,21 +339,21 @@ class _PostCardState extends State<PostCard> {
                                     ],
                                   ),
 
-                                SizedBox(height: 10,),
-                                  
+                                SizedBox(
+                                  height: 10,
+                                ),
+
                                 //TODO:HJERE
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     "Tình trạng",
                                     style: TextStyle(
-                                      color: colorScheme[
-                                          PetRescueThemeColorType.Text.index],
-                                      fontSize: 20,
-                                      fontFamily: "Lato",
-                                        fontWeight: FontWeight.bold
-
-                                    ),
+                                        color: colorScheme[
+                                            PetRescueThemeColorType.Text.index],
+                                        fontSize: 20,
+                                        fontFamily: "Lato",
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 // Align(
@@ -391,21 +382,28 @@ class _PostCardState extends State<PostCard> {
                         ),
 
                         Container(
-                          height: 200,
                           width: 600,
-                          decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? HexColor("#FFDFDF") : HexColor("#E0F0E8")),
+                          decoration: BoxDecoration(
+                              color: widget.postModel.postType ==
+                                      PostType.RequestPost
+                                  ? HexColor("#FFDFDF")
+                                  : HexColor("#E0F0E8")),
                           child: SingleChildScrollView(
                             child: TimelineBuilder(
-                              indicatorColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen  ,
-                              lineColor: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen,
+                              indicatorColor: widget.postModel.postType ==
+                                      PostType.RequestPost
+                                  ? PetRescueTheme.lightPink
+                                  : PetRescueTheme.darkGreen,
+                              lineColor: widget.postModel.postType ==
+                                      PostType.RequestPost
+                                  ? PetRescueTheme.lightPink
+                                  : PetRescueTheme.darkGreen,
                               children: buildStatusCard(widget.postModel),
                               indicators: buildIndicator(widget.postModel),
                               indicatorSize: 10,
-
                             ),
                           ),
                         ),
-
 
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -413,20 +411,18 @@ class _PostCardState extends State<PostCard> {
                             "Địa chỉ",
                             style: TextStyle(
                                 color: colorScheme[
-                                PetRescueThemeColorType.Text.index],
+                                    PetRescueThemeColorType.Text.index],
                                 fontSize: 20,
                                 fontFamily: "Lato",
-                                fontWeight: FontWeight.bold
-
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                        if(widget.postModel.postType != PostType.AdoptPost)
+                        if (widget.postModel.postType != PostType.AdoptPost)
                           Column(
                             children: [
                               Divider(
-                                color:
-                                colorScheme[PetRescueThemeColorType.Icon.index],
+                                color: colorScheme[
+                                    PetRescueThemeColorType.Icon.index],
                                 thickness: 0.5,
                               ),
                               Padding(
@@ -437,7 +433,7 @@ class _PostCardState extends State<PostCard> {
                                     Icon(
                                       Icons.location_on,
                                       color: colorScheme[
-                                      PetRescueThemeColorType.Icon.index],
+                                          PetRescueThemeColorType.Icon.index],
                                     ),
                                     SizedBox(
                                       width: 20,
@@ -445,7 +441,8 @@ class _PostCardState extends State<PostCard> {
                                     Text("Cách bạn 2.7km",
                                         style: TextStyle(
                                             color: colorScheme[
-                                            PetRescueThemeColorType.Text.index],
+                                                PetRescueThemeColorType
+                                                    .Text.index],
                                             fontSize: 18,
                                             fontWeight: FontWeight.w300)),
                                     SizedBox(
@@ -463,7 +460,8 @@ class _PostCardState extends State<PostCard> {
                                           style: TextStyle(
                                             color: Colors.cyan,
                                             fontSize: 16,
-                                            decoration: TextDecoration.underline,
+                                            decoration:
+                                                TextDecoration.underline,
                                           )),
                                     ),
                                   ],
@@ -476,39 +474,41 @@ class _PostCardState extends State<PostCard> {
                                   widget.postModel.location,
                                   style: TextStyle(
                                       color: colorScheme[
-                                      PetRescueThemeColorType.Text.index],
+                                          PetRescueThemeColorType.Text.index],
                                       fontSize: 18,
                                       fontStyle: FontStyle.normal),
                                 ),
                               ),
                               Divider(
-                                color:
-                                colorScheme[PetRescueThemeColorType.Icon.index],
+                                color: colorScheme[
+                                    PetRescueThemeColorType.Icon.index],
                                 thickness: 0.5,
                               ),
                             ],
                           ),
-                      if(widget.postModel.postType != PostType.AdoptPost)
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 200,
-                            width: 400,
-                            child: GoogleMap(
-                              onMapCreated: _onMapCreated,
-                              initialCameraPosition: CameraPosition(
-                                target: _center,
-                                zoom: 16,
+                        if (widget.postModel.postType != PostType.AdoptPost)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 200,
+                              width: 400,
+                              child: GoogleMap(
+                                onMapCreated: _onMapCreated,
+                                initialCameraPosition: CameraPosition(
+                                  target: _center,
+                                  zoom: 16,
+                                ),
+                                scrollGesturesEnabled: false,
+                                zoomControlsEnabled: true,
+                                zoomGesturesEnabled: true,
+                                mapType: MapType.normal,
+                                tiltGesturesEnabled: true,
+                                compassEnabled: true,
+                                rotateGesturesEnabled: true,
+                                myLocationEnabled: true,
                               ),
-
-                              mapType: MapType.normal,
-                              tiltGesturesEnabled: true,
-                              compassEnabled: true,
-                              rotateGesturesEnabled: true,
-                              myLocationEnabled: true,
                             ),
                           ),
-                        ) ,
 
                         //Contact button and action keyword
                         Padding(
@@ -589,7 +589,6 @@ class _PostCardState extends State<PostCard> {
                             ),
                           ),
 
-
                         // Padding(
                         //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                         //   child: Row(
@@ -631,60 +630,54 @@ class _PostCardState extends State<PostCard> {
     );
   }
 
-  Widget buildActionKeyword(Post postModel)
-  {
+  Widget buildActionKeyword(Post postModel) {
     if (postModel.postType == PostType.RequestPost &&
         !postModel.acceptedRequest &&
-        currentUser.isVerifyRescueCenter
-    )
+        currentUser.isVerifyRescueCenter)
       return ActionKeyword(
         postModel: postModel,
         isAdoptPost: false,
       );
-
-    else if(
-        postModel.postType == PostType.AdoptPost &&
-        !postModel.acceptedRequest
-    )
+    else if (postModel.postType == PostType.AdoptPost &&
+        !postModel.acceptedRequest)
       return ActionKeyword(
         postModel: postModel,
         isAdoptPost: true,
       );
-
-    else if(postModel.postType == PostType.RequestPost &&
-        !postModel.acceptedRequest && !currentUser.isVerifyRescueCenter)
-      return Container();
+    else if (postModel.postType == PostType.RequestPost &&
+        !postModel.acceptedRequest &&
+        !currentUser.isVerifyRescueCenter) return Container();
   }
 
-  List<Widget> buildIndicator(Post post)
-  {
+  List<Widget> buildIndicator(Post post) {
     List<Widget> returnList = [];
-    post.statuses.forEach((e) => returnList.add(Icon(Icons.arrow_drop_down_circle, color: PetRescueTheme.lightPink,)));
+    post.statuses.forEach((e) => returnList.add(Icon(
+          Icons.arrow_drop_down_circle,
+          color: PetRescueTheme.lightPink,
+        )));
   }
 
-  List<Widget> buildStatusCard(Post post)
-  {
+  List<Widget> buildStatusCard(Post post) {
     List<Widget> returnList = [];
-       post.statuses.forEach((e) {
-         returnList. add(Row(
-           mainAxisSize: MainAxisSize.min,
-           children: [
-             Flexible(
-               fit: FlexFit.tight,
-               child: Container(
-                 decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen, borderRadius: BorderRadius.all(Radius.circular(12))),
-                 child: Center(
-                   child: Padding(
-                     padding: const EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 10),
-                     child: Text(e, style: TextStyle(color: Colors.white, fontSize: 16)),
-                   ),
-                 )),
-             )
-           ],
-         ));
-       });
-       
-       return returnList;
+    post.statuses.forEach((e) {
+      returnList.add(
+                Row(
+                  children: [
+                    Flexible(
+                      child: Container(
+                        // decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen, borderRadius: BorderRadius.all(Radius.circular(12))),
+                         child: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Text(e, style: TextStyle(color: Colors.black, fontSize: 17)),
+                         )
+                      ),
+                    ),
+                  ],
+                )
+         );
+    });
+
+    return returnList;
   }
 
   _showPopupMenu(context) {
@@ -729,4 +722,8 @@ class _PostCardState extends State<PostCard> {
       print('SignOut');
     }
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
