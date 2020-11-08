@@ -372,7 +372,6 @@ class DetailCard extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 20),
-                              TimelineDetail(postModel: postModel,),
                               SizedBox(height: 20,),
                               Flexible(
                                 child: Container(height: 30,),

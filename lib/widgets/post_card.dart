@@ -12,7 +12,8 @@ import 'package:petrescue/models/user.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
-import 'package:petrescue/screens/list_yeucaunhannuoi.dart';
+import 'package:petrescue/screens/adopt_process_introduction.dart';
+import 'package:petrescue/screens/list_adoption_request.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/utils/flappy_search_bar.dart';
 import 'package:petrescue/widgets/common.dart';
@@ -572,48 +573,6 @@ class _PostCardState extends State<PostCard>
                           ),
                         ),
 
-                        if (widget.postModel.postType == PostType.AdoptPost && currentUser.isVerifyRescueCenter)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, top: 10),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Yêu cầu nhận nuôi:",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: colorScheme[
-                                          PetRescueThemeColorType.Text.index]),
-                                ),
-                                CustomAvatars(
-                                  postModel: widget.postModel,
-                                ),
-
-                                GestureDetector(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => List_yeucaunhannuoi(),
-                                    ));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left:15.0),
-                                    child: Column(
-                                      children: [
-                                        Text("15",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w800,
-                                              color: colorScheme[
-                                              PetRescueThemeColorType.Text.index]),),
-                                        Text("Người yêu cầu",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500
-                                        ),)
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
                         if(widget.postModel.postType == PostType.AdoptPost && currentUser.isVerifyRescueCenter==true)
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 10),
@@ -633,7 +592,7 @@ class _PostCardState extends State<PostCard>
                                 GestureDetector(
                                   onTap: (){
                                     Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => List_yeucaunhannuoi(),
+                                      builder: (context) => ListAdoptionRequest(),
                                     ));
                                   },
                                   child: Padding(
@@ -702,7 +661,10 @@ class _PostCardState extends State<PostCard>
                                 ),
                                 SizedBox(width: 5,),
                                 InkWell(
-                                  onTap: (){},
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => AdoptProcessIntroduction(postModel: widget.postModel
+                                      ,),));
+                                  },
                                   child: Container(
                                     height: 35,
                                     decoration: BoxDecoration(

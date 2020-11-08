@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/petrescue_theme.dart';
 
-class List_yeucaunhannuoi extends StatefulWidget {
+class ListAdoptionRequest extends StatefulWidget {
   @override
-  _List_yeucaunhannuoiState createState() => _List_yeucaunhannuoiState();
+  _ListAdoptionRequestState createState() => _ListAdoptionRequestState();
 }
 
-class _List_yeucaunhannuoiState extends State<List_yeucaunhannuoi> {
+class _ListAdoptionRequestState extends State<ListAdoptionRequest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +59,7 @@ class _List_yeucaunhannuoiState extends State<List_yeucaunhannuoi> {
                         children: [
                           IconButton(
                             onPressed: (){},
-                            icon: Icon(Icons.message_outlined),
+                            icon: Icon(Icons.message),
                           ),
                           SizedBox(height: 3,),
                           Text("Liên lạc")
@@ -70,7 +70,7 @@ class _List_yeucaunhannuoiState extends State<List_yeucaunhannuoi> {
                         children: [
                           IconButton(
                             onPressed: (){},
-                            icon: Icon(Icons.check_circle_outline_outlined),
+                            icon: Icon(Icons.check_circle),
                           ),
                           SizedBox(height: 3,),
                           Text("Chấp thuận")
@@ -125,7 +125,7 @@ class _List_yeucaunhannuoiState extends State<List_yeucaunhannuoi> {
                         children: [
                           IconButton(
                             onPressed: (){},
-                            icon: Icon(Icons.message_outlined),
+                            icon: Icon(Icons.message),
                           ),
                           SizedBox(height: 3,),
                           Text("Liên lạc")
@@ -136,7 +136,7 @@ class _List_yeucaunhannuoiState extends State<List_yeucaunhannuoi> {
                         children: [
                           IconButton(
                             onPressed: (){},
-                            icon: Icon(Icons.check_circle_outline_outlined),
+                            icon: Icon(Icons.check_circle),
                           ),
                           SizedBox(height: 3,),
                           Text("Chấp thuận")
