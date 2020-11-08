@@ -1191,7 +1191,8 @@ class _HomePagePostState extends State<HomePagePost> {
         items: [
           PopupMenuItem<String>(child: const Text('Điều chỉnh post'), value: '1'),
           PopupMenuItem<String>(child: const Text('Ẩn Post'), value: '2'),
-          PopupMenuItem<String>(child: const Text('Follow Post'), value: '3'),
+          PopupMenuItem<String>(child: const Text('Theo dõi post'), value: '3'),
+          PopupMenuItem<String>(child: const Text('Chuyển trạng thái'), value: '4')
         ],
         elevation: 8.0,
       ).then<void>((String itemSelected) {
