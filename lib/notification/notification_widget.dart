@@ -539,9 +539,11 @@ class _NotifiSecondState extends State<NotifiSecond> {
                     ),
                     Row(
                       children: <Widget>[
+                        Icon(Icons.cancel_outlined, color: Colors.red,),
+                        SizedBox(width: 10,),
                         Text(
                           "Hủy đơn cứu hộ",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20, color: Colors.red),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         )
@@ -553,7 +555,91 @@ class _NotifiSecondState extends State<NotifiSecond> {
                     Row(
                       children: <Widget>[
                         Text(
-                          'Bạn hủy đơn cứu hộ ',
+                          'Bạn đã hủy đơn cứu hộ. ',
+                          style: TextStyle(fontSize: 15),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          actionPane: SlidableDrawerActionPane(),
+          actionExtentRatio: 0.25,
+          secondaryActions: <Widget>[
+            IconSlideAction(
+              caption: 'Xóa',
+              color: Colors.red,
+              icon: Icons.delete,
+              //onTap: () => _showSnackBar('Delete'),
+            ),
+          ],
+        ),
+        //4
+        Slidable(
+          child: GestureDetector(
+            onTap: () {
+              print("Container clicked");
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              decoration:
+              BoxDecoration(border: Border(bottom: BorderSide(width: 0.1))),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 5, 10, 0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.local_hospital,
+                          color: PetRescueTheme.lightPink,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Yêu cầu cứu hộ',
+                          style: TextStyle(
+                              fontSize: 13, color: PetRescueTheme.lightPink),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          '17/10/2020 13:05',
+                          style: TextStyle(fontSize: 12, color: Colors.black45),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.check_circle_outline_outlined, color: PetRescueTheme.darkGreen,),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Giải cứu thành công an toàn",
+                          style: TextStyle(fontSize: 20, color: PetRescueTheme.darkGreen),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          'Giải cứu thành công chú cún bạn đã đăng yêu cầu. ',
                           style: TextStyle(fontSize: 15),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
