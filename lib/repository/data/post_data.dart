@@ -124,7 +124,7 @@ List<Post> listOfPosts = [
   Post(
       "P02",
       "Lucky",
-      "Hiện được 2 năm 8 tháng tuổi. Lông xám, trắng, cái",
+      "Hiện được 5 năm tuổi, cái, lông trắng, dà",
       "Mèo",
       "200 Hoàng Văn Thụ, Phường 9, Phú Nhuận, Thành phố Hồ Chí Minh, Vietnam",
       DateTime.now(),
