@@ -84,7 +84,7 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
             onTap: (){},
             child: Row(
               children: [
-                Icon(Icons.cancel_outlined, color: Colors.black,),
+                Icon(Icons.cancel, color: Colors.black,),
                 SizedBox(width: 5,),
                 Text("Hủy", style: TextStyle(
                   color: Colors.black,

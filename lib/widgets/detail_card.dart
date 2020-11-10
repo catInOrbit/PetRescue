@@ -659,32 +659,39 @@ class DetailCard extends StatelessWidget {
 
                               SizedBox(height: 22),
 
-                              if(postModel.postType == PostType.AdoptPost && postModel.currentUser == currentUser)
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
-                                ),
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if(postModel.currentUser == currentUser)
-                                  // buildUserTiles(postModel),\
-                                  // ListAdoptionRequest(postModel: postModel,),
+                              if(postModel.postType == PostType.AdoptPost && postModel.currentUser == currentUser && postModel.currentUser.isVerifyRescueCenter)
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
+                                    ),
+
                                     Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      children: buildAdopterRow(postModel, context),
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        if(postModel.currentUser == currentUser)
+                                        // buildUserTiles(postModel),\
+                                        // ListAdoptionRequest(postModel: postModel,),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: buildAdopterRow(postModel, context),
+                                          ),
+                                        SizedBox(height: 20),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+
+
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
+                                  ],
+                                )
 
 
-                                    ],
-                                  ),
-                                ],
-                              ),
                               // if(postModel.postType != PostType.FinishedPost)
                               // Center(
                               //   child: InkWell(
