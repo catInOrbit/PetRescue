@@ -109,7 +109,7 @@ List<Post> listOfPosts = [
       "https://img.huffingtonpost.com/asset/5c3544842600003e058624ff.jpeg?ops=scalefit_630_noupscale",
     "Male",
     "6-8 months",
-    ["2kg", "Khỏe mạnh", "Đã được vaccine"],
+    ["2kg", "Khỏe mạnh", "Chưa triệt sản", "Mập mạp"],
     [TimeLineText(postTile:  "Trung tâm ABC đã đến vị trí",timePosted: "10 phút trước",), TimeLineText(postTile:  "Trung tâm ABC đang kiểm tra y tế",timePosted: "10 phút trước",)],
       userList[2],
       <User>[userList[2], userList[3]],
@@ -129,7 +129,7 @@ List<Post> listOfPosts = [
       "200 Hoàng Văn Thụ, Phường 9, Phú Nhuận, Thành phố Hồ Chí Minh, Vietnam",
       DateTime.now(),
       PostType.AdoptPost,
-      "https://img.huffingtonpost.com/asset/5c3544842600003e058624ff.jpeg?ops=scalefit_630_noupscale",
+      "https://cdn.abcotvs.com/dip/images/1552794_101216-wpvi-persian-rescue-cat-2-IMG.jpg?w=1600",
       "Female",
       "6-8 months",
       ["ăn được cơm", "Đã được vaccine"],
@@ -143,6 +143,30 @@ List<Post> listOfPosts = [
       false,
       ["Mèo", "Cái"]
   ),
+
+  Post(
+      "P02",
+      "Habadu",
+      "Hiện được 2 năm 8 tháng tuổi. Lông xám, trắng, cái",
+      "Mèo",
+      "200 Hoàng Văn Thụ, Phường 9, Phú Nhuận, Thành phố Hồ Chí Minh, Vietnam",
+      DateTime.now(),
+      PostType.AdoptPost,
+      "https://bloximages.chicago2.vip.townnews.com/macombdaily.com/content/tncms/assets/v3/editorial/9/f2/9f252942-525b-11e9-a870-3f564eec0bdd/5c9e76bfaf15b.image.jpg?resize=1200%2C966",
+      "Female",
+      "6-8 months",
+      ["Khỏe mạnh", "Được chăm kỹ", "Sức khỏe tốt", "Mập mạp", "Sạch sẽ"],
+      [TimeLineText(postTile:  "Trung tâm ABC đã đến vị trí",timePosted: "10 phút trước",), TimeLineText(postTile:  "Trung tâm ABC đang kiểm tra y tế",timePosted: "10 phút trước",)],
+      userList[2],
+      <User>[userList[3], userList[4]],
+      userList[2],
+      <String>[],
+      "Mèo tam thể",
+      Priority.Normal,
+      false,
+      ["Mèo", "Cái"]
+  ),
+
 
   Post(
       "P03",

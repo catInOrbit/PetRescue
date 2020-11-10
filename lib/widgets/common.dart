@@ -153,29 +153,24 @@ class UserInfoRibon extends StatelessWidget {
               backgroundImage: NetworkImage(postModel.currentUser.imageURL),
             ),
             SizedBox(width: 12),
-            SizedBox(
-              width: 81,
-              height: 24,
-              child: Text(
-                postModel.currentUser.fullNanme,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: colorScheme[PetRescueThemeColorType.KeyWord.index],
-                  fontSize: 16,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w900,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Text(
+                    postModel.currentUser.fullNanme,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                      fontSize: 16,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             SizedBox(width: 12),
-            Opacity(
-              opacity: 0.50,
-              child: Container(
-                width: 16.11,
-                height: 16,
-                color: colorScheme[PetRescueThemeColorType.Accent.index],
-              ),
-            ),
           ],
         ),
       ),
