@@ -182,7 +182,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.assistant_direction,
+                                Icons.directions,
                                 color: Colors.white,
                               ),
                               SizedBox(
