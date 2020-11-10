@@ -3,13 +3,20 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
+import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/timeline.dart';
 
 class PageAdoption extends StatefulWidget {
   @override
   _PageAdoptionState createState() => _PageAdoptionState();
 }
 
+
 class _PageAdoptionState extends State<PageAdoption> {
+  List<Widget> awaitConfirmationPost = [
+    PetAdoption4(), PetAdoption2(), PetAdoptionWidget()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -17,31 +24,71 @@ class _PageAdoptionState extends State<PageAdoption> {
         padding: const EdgeInsets.only(top: 10.0),
         child: Column(
           children: <Widget>[
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Bạn đang nhận nuôi 4 bạn thú cưng:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                )),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                PetAdoptionWidget(),
-                SizedBox(
-                  width: 20,
+            Column(
+              children: [
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    )),
+                SizedBox(height: 10,),
+                Container(
+                  height: 300,
+                  child: ListView.builder(
+                    itemCount: awaitConfirmationPost.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(width: 30,),
+                                awaitConfirmationPost[index]
+                              ],
+                            ),
+                          ],
+                        );
+                  },),
                 ),
-                PetAdoption4(),
+
               ],
             ),
-            SizedBox(height: 10,),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              PetAdoption2(),
-              SizedBox(
-                width: 20,
-              ),
-              PetAdoption3(),
-            ])
+
+            SizedBox(height: 30,),
+
+            Column(
+              children: [
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Bạn đang nhận nuôi 4 bạn thú cưng:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    )),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    PetAdoptionWidget(),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    PetAdoption4(),
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                  PetAdoption2(),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  PetAdoption3(),
+                ])
+              ],
+            )
+
+
           ],
         ),
       ),
@@ -53,7 +100,9 @@ class PetAdoptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+      },
       child: Container(
         //alignment: Alignment.topLeft,
         width: MediaQuery.of(context).size.width * 0.45,
@@ -150,14 +199,17 @@ class PetAdoption2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+
+      },
       child: Container(
         //alignment: Alignment.topLeft,
         width: MediaQuery.of(context).size.width * 0.45,
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage('https://www.ddfl.org/wp-content/uploads/2019/06/Remy.jpg'), fit: BoxFit.cover),
+                image: NetworkImage('https://thumbs-prod.si-cdn.com/omtxDUbVWafbhOTsDFJnOW3gFiw=/fit-in/1600x0/filters:focal(2135x711:2136x712)/https://public-media.si-cdn.com/filer/77/8b/778bb007-831c-4c81-a475-05487cd7b53b/adult-brown-labrador-retriever-1010121_3.jpg'), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -247,7 +299,9 @@ class PetAdoption3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+      },
       child: Container(
         //alignment: Alignment.topLeft,
         width: MediaQuery.of(context).size.width * 0.45,
@@ -344,14 +398,16 @@ class PetAdoption4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+      },
       child: Container(
         //alignment: Alignment.topLeft,
         width: MediaQuery.of(context).size.width * 0.45,
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage('https://lh3.googleusercontent.com/proxy/6sry914FVjugl-ZhVItwLsT2BosIS8pvduX558WXS8r9oUcmU07AjQc_SwQxWI1fkwgTDNr43_dvG9ZGtx6YNEclmca-RHsVL7YH3BSzRgXVsaIOkmurIerBsP7y9rJZ9c4eYRm6at7yaGYYtJC6Y3T4S4YH'), fit: BoxFit.cover),
+                image: NetworkImage('https://i.pinimg.com/originals/9e/e1/15/9ee1158724d8580cb47e2e9d44b96d41.jpg'), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
