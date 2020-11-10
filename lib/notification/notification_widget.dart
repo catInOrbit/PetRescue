@@ -434,7 +434,7 @@ class _NotifiSecondState extends State<NotifiSecond> {
                     Row(
                       children: <Widget>[
                         Icon(
-                          Icons.pets_outlined,
+                          Icons.pets,
                           color: PetRescueTheme.darkGreen,
                         ),
                         SizedBox(
@@ -539,7 +539,7 @@ class _NotifiSecondState extends State<NotifiSecond> {
                     ),
                     Row(
                       children: <Widget>[
-                        Icon(Icons.cancel_outlined, color: Colors.red,),
+                        Icon(Icons.cancel, color: Colors.red,),
                         SizedBox(width: 10,),
                         Text(
                           "Hủy đơn cứu hộ",
@@ -621,7 +621,7 @@ class _NotifiSecondState extends State<NotifiSecond> {
                     ),
                     Row(
                       children: <Widget>[
-                        Icon(Icons.check_circle_outline_outlined, color: PetRescueTheme.darkGreen,),
+                        Icon(Icons.check_circle, color: PetRescueTheme.darkGreen,),
                         SizedBox(
                           width: 10,
                         ),
