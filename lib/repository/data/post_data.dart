@@ -106,7 +106,7 @@ List<Post> listOfPosts = [
     "200 Hoàng Văn Thụ, Phường 9, Phú Nhuận, Thành phố Hồ Chí Minh, Vietnam",
     DateTime.now(),
     PostType.AdoptPost,
-      "https://img.huffingtonpost.com/asset/5c3544842600003e058624ff.jpeg?ops=scalefit_630_noupscale",
+      "https://www.purinaproclub.com/sites/g/files/auxxlc346/files/styles/facebook_share/public/Resources_Dog%20Articles_Health_Line%2070_Thumb.jpg?itok=nfK7yUXd",
     "Male",
     "6-8 months",
     ["2kg", "Khỏe mạnh", "Chưa triệt sản", "Mập mạp"],
