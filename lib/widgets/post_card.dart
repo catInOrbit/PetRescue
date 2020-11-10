@@ -598,7 +598,7 @@ class _PostCardState extends State<PostCard>
                                     padding: const EdgeInsets.only(left:15.0),
                                     child: Column(
                                       children: [
-                                        Text("15",
+                                        Text("2",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w800,
                                               color: colorScheme[

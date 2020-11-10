@@ -6,6 +6,7 @@ import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
+import 'package:petrescue/screens/list_adoption_request.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,12 +20,740 @@ class DetailCard extends StatelessWidget {
 
   const DetailCard({Key key, @required this.postModel, this.isEditing, this.defaultTabIndex}) : super(key: key);
 
+  List<Widget> buildTabs()
+  {
+     List<Widget> tabs = [];
+      if(postModel.postType == PostType.RequestPost)
+        {
+          tabs = [
+            Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
+            Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
+            Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật")
+          ];
+        }
+
+      else
+        {
+          tabs = [
+            Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
+            Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
+          ];
+        }
+      return tabs;
+  }
+
+  List<Widget> buildTabsContent(BuildContext context)
+  {
+    const double pictureContainersHeight = 272;
+
+    List<Widget> tabs = [];
+    if(postModel.postType == PostType.RequestPost)
+    {
+      tabs = [
+        buildMapTab(),
+        SingleChildScrollView(
+          child: IntrinsicHeight(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              // width: 230,
+                              height: pictureContainersHeight,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage("lib/assets/cat3.png"),
+                                      fit: BoxFit.cover)),
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 147,
+                                height: 132,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image:
+                                        AssetImage("lib/assets/cat4.png"),
+                                        fit: BoxFit.fill)),
+                              ),
+                              Container(
+                                width: 147,
+                                height: 140,
+                                color: Colors.blueGrey,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      left: 61,
+                                      top: 64,
+                                      child: SizedBox(
+                                        width: 21,
+                                        child: Text(
+                                          "+3 ",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontFamily: "Lato",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Opacity(
+                                      opacity: 0.50,
+                                      child: Container(
+                                        width: 147,
+                                        height: 140,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: [
+                    UserInfoRibon(postModel: postModel, isDetailRibbon: true,),
+                    showResponsibleUserRibon(postModel),
+
+                  ],
+                ),
+
+
+                Expanded(
+                  child: Container(
+                    color: Colors.white,
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Text("20 phút trước", style: TextStyle(color: Colors.black),),
+                        ),
+
+
+                        Container(
+                          width: 390.30,
+                          padding: const EdgeInsets.only(
+                            right: 9,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    padding: const EdgeInsets.only(
+                                      bottom: 4,
+                                    ),
+                                    child: Wrap(
+                                      direction: Axis.horizontal,
+                                      children: [
+                                        Text(
+                                          postModel.title,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 21,
+                                            fontFamily: "Lato",
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 20,),
+                                  IntrinsicHeight(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Động vật:",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontStyle:  FontStyle.normal,
+                                              ),
+                                            ),
+
+                                            SizedBox(width: 20,),
+
+                                            Text(
+                                              postModel.petType,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+
+                                                  fontSize: 20,
+                                                  fontFamily: "Lato",
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            ),
+                                            SizedBox(width: 20,),
+
+                                            VerticalDivider(width: 1, thickness: 2, color: Colors.black,),
+
+                                          ],
+
+                                        ),
+                                        Container(
+                                            child: Row(
+                                                children:
+                                                getAllCategory(postModel)
+                                            )),
+
+                                        SizedBox(height: 10,),
+
+                                        if(postModel.postType == PostType.AdoptPost)
+                                          Column(
+                                            children: [
+                                              Row(
+
+                                                children: [
+
+                                                  Text(
+                                                    "Giống:",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+
+                                                      fontSize: 20,
+                                                      fontFamily: "Lato",
+                                                      fontStyle:  FontStyle.normal,
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(width: 20,),
+
+                                                  Text(
+                                                    postModel.breed,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 20,
+                                                        fontFamily: "Lato",
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+
+                                                ],
+
+                                              ),
+                                              SizedBox(height: 10,),
+                                              Row(
+                                                children: [
+
+                                                  Text(
+                                                    "Giới tính:",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+
+                                                      fontSize: 20,
+                                                      fontFamily: "Lato",
+                                                      fontStyle:  FontStyle.normal,
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(width: 20,),
+
+                                                  if(postModel.gender == "Female")
+                                                    Image.asset("lib/assets/female_gender_icon.jpeg", height: 25,)
+                                                  else
+                                                    Image.asset("lib/assets/male_gender_icon.png", height: 25,)
+                                                ],
+
+                                              ),
+                                            ],
+                                          )
+
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              StoryDetail(postModel: postModel,),
+                              SizedBox(height: 10),
+
+
+                              SizedBox(height: 22),
+
+                              if(postModel.postType == PostType.AdoptPost && postModel.currentUser == currentUser)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
+                                ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if(postModel.currentUser == currentUser)
+                                  // buildUserTiles(postModel),\
+                                  // ListAdoptionRequest(postModel: postModel,),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: buildAdopterRow(postModel, context),
+                                    ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+
+
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              // if(postModel.postType != PostType.FinishedPost)
+                              // Center(
+                              //   child: InkWell(
+                              //     onTap: (){
+                              //       Navigator.push(context, MaterialPageRoute(
+                              //         builder: (context) => ProfileTab(postModel: postModel, ),
+                              //       ));
+                              //     },
+                              //     child: Container(
+                              //       height: 53,
+                              //       decoration: BoxDecoration(
+                              //         borderRadius:
+                              //         BorderRadius.circular(26.50),
+                              //         color: Color(0xffebf3fa),
+                              //       ),
+                              //       padding: const EdgeInsets.only(
+                              //         left: 23,
+                              //         right: 31,
+                              //         top: 11,
+                              //         bottom: 13,
+                              //       ),
+                              //       child: InkWell(
+                              //         child: Container(
+                              //           height: 53,
+                              //           child: Center(
+                              //             child: Text(
+                              //               "Liên hệ",
+                              //               style: TextStyle(
+                              //                 color: Colors.black,
+                              //                 fontSize: 24,
+                              //                 fontFamily: "Lato",
+                              //                 fontWeight: FontWeight.w700,
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        SizedBox(height: 20,),
+                        Flexible(
+                          child: Container(height: 30,),
+                        )
+
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        TimelineBottomCard(postModel: postModel,)
+      ];
+    }
+
+    else
+    {
+      tabs = [
+        buildMapTab(),
+        SingleChildScrollView(
+          child: IntrinsicHeight(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              // width: 230,
+                              height: pictureContainersHeight,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage("lib/assets/cat3.png"),
+                                      fit: BoxFit.cover)),
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 147,
+                                height: 132,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image:
+                                        AssetImage("lib/assets/cat4.png"),
+                                        fit: BoxFit.fill)),
+                              ),
+                              Container(
+                                width: 147,
+                                height: 140,
+                                color: Colors.blueGrey,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      left: 61,
+                                      top: 64,
+                                      child: SizedBox(
+                                        width: 24,
+                                        child: Text(
+                                          "+3 ",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 22,
+                                            fontFamily: "Lato",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Opacity(
+                                      opacity: 0.50,
+                                      child:  Container(
+                                        width: 147,
+                                        height: 132,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image:
+                                                AssetImage("lib/assets/cat4.png"),
+                                                fit: BoxFit.fill)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: [
+                    UserInfoRibon(postModel: postModel, isDetailRibbon: true,),
+                    showResponsibleUserRibon(postModel),
+
+                  ],
+                ),
+
+
+                Expanded(
+                  child: Container(
+                    color: Colors.white,
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Text("20 phút trước", style: TextStyle(color: Colors.black),),
+                        ),
+
+
+                        Container(
+                          width: 390.30,
+                          padding: const EdgeInsets.only(
+                            right: 9,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    padding: const EdgeInsets.only(
+                                      bottom: 4,
+                                    ),
+                                    child: Wrap(
+                                      direction: Axis.horizontal,
+                                      children: [
+                                        Text(
+                                          postModel.title,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 21,
+                                            fontFamily: "Lato",
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 20,),
+                                  IntrinsicHeight(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Động vật:",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontFamily: "Lato",
+                                                fontStyle:  FontStyle.normal,
+                                              ),
+                                            ),
+
+                                            SizedBox(width: 20,),
+
+                                            Text(
+                                              postModel.petType,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+
+                                                  fontSize: 20,
+                                                  fontFamily: "Lato",
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            ),
+                                            SizedBox(width: 20,),
+
+                                            VerticalDivider(width: 1, thickness: 2, color: Colors.black,),
+
+                                          ],
+
+                                        ),
+                                        Container(
+                                            child: Row(
+                                                children:
+                                                getAllCategory(postModel)
+                                            )),
+
+                                        SizedBox(height: 10,),
+
+                                        if(postModel.postType == PostType.AdoptPost)
+                                          Column(
+                                            children: [
+                                              Row(
+
+                                                children: [
+
+                                                  Text(
+                                                    "Giống:",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+
+                                                      fontSize: 20,
+                                                      fontFamily: "Lato",
+                                                      fontStyle:  FontStyle.normal,
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(width: 20,),
+
+                                                  Text(
+                                                    postModel.breed,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 20,
+                                                        fontFamily: "Lato",
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+
+                                                ],
+
+                                              ),
+                                              SizedBox(height: 10,),
+                                              Row(
+                                                children: [
+
+                                                  Text(
+                                                    "Giới tính:",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+
+                                                      fontSize: 20,
+                                                      fontFamily: "Lato",
+                                                      fontStyle:  FontStyle.normal,
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(width: 20,),
+
+                                                  if(postModel.gender == "Female")
+                                                    Image.asset("lib/assets/female_gender_icon.jpeg", height: 25,)
+                                                  else
+                                                    Image.asset("lib/assets/male_gender_icon.png", height: 25,)
+                                                ],
+
+                                              ),
+                                            ],
+                                          )
+
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              StoryDetail(postModel: postModel,),
+                              SizedBox(height: 10),
+
+
+                              SizedBox(height: 22),
+
+                              if(postModel.postType == PostType.AdoptPost && postModel.currentUser == currentUser)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
+                                ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if(postModel.currentUser == currentUser)
+                                  // buildUserTiles(postModel),\
+                                  // ListAdoptionRequest(postModel: postModel,),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: buildAdopterRow(postModel, context),
+                                    ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+
+
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              // if(postModel.postType != PostType.FinishedPost)
+                              // Center(
+                              //   child: InkWell(
+                              //     onTap: (){
+                              //       Navigator.push(context, MaterialPageRoute(
+                              //         builder: (context) => ProfileTab(postModel: postModel, ),
+                              //       ));
+                              //     },
+                              //     child: Container(
+                              //       height: 53,
+                              //       decoration: BoxDecoration(
+                              //         borderRadius:
+                              //         BorderRadius.circular(26.50),
+                              //         color: Color(0xffebf3fa),
+                              //       ),
+                              //       padding: const EdgeInsets.only(
+                              //         left: 23,
+                              //         right: 31,
+                              //         top: 11,
+                              //         bottom: 13,
+                              //       ),
+                              //       child: InkWell(
+                              //         child: Container(
+                              //           height: 53,
+                              //           child: Center(
+                              //             child: Text(
+                              //               "Liên hệ",
+                              //               style: TextStyle(
+                              //                 color: Colors.black,
+                              //                 fontSize: 24,
+                              //                 fontFamily: "Lato",
+                              //                 fontWeight: FontWeight.w700,
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        SizedBox(height: 20,),
+                        Flexible(
+                          child: Container(height: 30,),
+                        )
+
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ];
+    }
+
+    return tabs;
+
+  }
   @override
   Widget build(BuildContext context) {
     const double pictureContainersHeight = 272;
 
     return DefaultTabController(
-      length: 3,
+      length: postModel.postType == PostType.RequestPost ? 3 : 2,
       initialIndex: defaultTabIndex,
       child: SafeArea(
         child: Scaffold(
@@ -33,12 +762,7 @@ class DetailCard extends StatelessWidget {
               labelColor: PetRescueTheme.lightPink,
               indicatorColor: PetRescueTheme.lightPink,
 
-              tabs: [
-                Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
-                Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
-                Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật"),
-
-              ],
+              tabs: buildTabs()
             ),
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
@@ -49,344 +773,7 @@ class DetailCard extends StatelessWidget {
           ),
           body:
           TabBarView(
-            children: [
-              buildMapTab(),
-              SingleChildScrollView(
-                child: IntrinsicHeight(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    // width: 230,
-                                    height: pictureContainersHeight,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image:
-                                            AssetImage("lib/assets/cat3.png"),
-                                            fit: BoxFit.cover)),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 147,
-                                      height: 132,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image:
-                                              AssetImage("lib/assets/cat4.png"),
-                                              fit: BoxFit.fill)),
-                                    ),
-                                    Container(
-                                      width: 147,
-                                      height: 140,
-                                      color: Colors.blueGrey,
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                            left: 61,
-                                            top: 64,
-                                            child: SizedBox(
-                                              width: 21,
-                                              child: Text(
-                                                "+3 ",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18,
-                                                  fontFamily: "Lato",
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Opacity(
-                                            opacity: 0.50,
-                                            child: Container(
-                                              width: 147,
-                                              height: 140,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                        children: [
-                          UserInfoRibon(postModel: postModel, isDetailRibbon: true,),
-                          showResponsibleUserRibon(postModel),
-
-                        ],
-                      ),
-
-
-                      Expanded(
-                        child: Container(
-                          color: Colors.white,
-                          padding: const EdgeInsets.only(
-                            left: 20,
-                            right: 20,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                                child: Text("20 phút trước", style: TextStyle(color: Colors.black),),
-                              ),
-
-
-                              Container(
-                                width: 390.30,
-                                padding: const EdgeInsets.only(
-                                  right: 9,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: MediaQuery.of(context).size.width,
-                                          padding: const EdgeInsets.only(
-                                            bottom: 4,
-                                          ),
-                                          child: Wrap(
-                                            direction: Axis.horizontal,
-                                            children: [
-                                              Text(
-                                                postModel.title,
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 21,
-                                                  fontFamily: "Lato",
-                                                  fontWeight: FontWeight.w900,
-                                                ),
-                                              ),
-
-                                            ],
-                                          ),
-                                        ),
-
-                                        SizedBox(height: 20,),
-                                        IntrinsicHeight(
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    "Động vật:",
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 20,
-                                                      fontFamily: "Lato",
-                                                      fontStyle:  FontStyle.normal,
-                                                    ),
-                                                  ),
-
-                                                  SizedBox(width: 20,),
-
-                                                  Text(
-                                                    postModel.petType,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-
-                                                        fontSize: 20,
-                                                        fontFamily: "Lato",
-                                                        fontWeight: FontWeight.bold
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 20,),
-
-                                                  VerticalDivider(width: 1, thickness: 2, color: Colors.black,),
-
-                                                ],
-
-                                              ),
-                                              Container(
-                                                  child: Row(
-                                                      children:
-                                                      getAllCategory(postModel)
-                                                  )),
-
-                                              SizedBox(height: 10,),
-
-                                              if(postModel.postType == PostType.AdoptPost)
-                                                Column(
-                                                  children: [
-                                                    Row(
-
-                                                      children: [
-
-                                                        Text(
-                                                          "Giống:",
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-
-                                                            fontSize: 20,
-                                                            fontFamily: "Lato",
-                                                            fontStyle:  FontStyle.normal,
-                                                          ),
-                                                        ),
-
-                                                        SizedBox(width: 20,),
-
-                                                        Text(
-                                                          postModel.breed,
-                                                          style: TextStyle(
-                                                              color: Colors.black,
-                                                              fontSize: 20,
-                                                              fontFamily: "Lato",
-                                                              fontWeight: FontWeight.bold
-                                                          ),
-                                                        ),
-
-                                                      ],
-
-                                                    ),
-                                                    SizedBox(height: 10,),
-                                                    Row(
-                                                      children: [
-
-                                                        Text(
-                                                          "Giới tính:",
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-
-                                                            fontSize: 20,
-                                                            fontFamily: "Lato",
-                                                            fontStyle:  FontStyle.normal,
-                                                          ),
-                                                        ),
-
-                                                        SizedBox(width: 20,),
-
-                                                        if(postModel.gender == "Female")
-                                                          Image.asset("lib/assets/female_gender_icon.jpeg", height: 25,)
-                                                        else
-                                                          Image.asset("lib/assets/male_gender_icon.png", height: 25,)
-                                                      ],
-
-                                                    ),
-                                                  ],
-                                                )
-
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 10),
-                                    StoryDetail(postModel: postModel,),
-                                    SizedBox(height: 10),
-
-
-                                    SizedBox(height: 22),
-
-                                    if(postModel.postType == PostType.AdoptPost && postModel.currentUser == currentUser)
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text("Người dùng muốn nhận nuôi:", style: TextStyle(fontSize: 18), ),
-                                      ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        if(postModel.currentUser == currentUser)
-                                          buildUserTiles(postModel),
-                                        SizedBox(height: 20),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-
-
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    // if(postModel.postType != PostType.FinishedPost)
-                                      // Center(
-                                      //   child: InkWell(
-                                      //     onTap: (){
-                                      //       Navigator.push(context, MaterialPageRoute(
-                                      //         builder: (context) => ProfileTab(postModel: postModel, ),
-                                      //       ));
-                                      //     },
-                                      //     child: Container(
-                                      //       height: 53,
-                                      //       decoration: BoxDecoration(
-                                      //         borderRadius:
-                                      //         BorderRadius.circular(26.50),
-                                      //         color: Color(0xffebf3fa),
-                                      //       ),
-                                      //       padding: const EdgeInsets.only(
-                                      //         left: 23,
-                                      //         right: 31,
-                                      //         top: 11,
-                                      //         bottom: 13,
-                                      //       ),
-                                      //       child: InkWell(
-                                      //         child: Container(
-                                      //           height: 53,
-                                      //           child: Center(
-                                      //             child: Text(
-                                      //               "Liên hệ",
-                                      //               style: TextStyle(
-                                      //                 color: Colors.black,
-                                      //                 fontSize: 24,
-                                      //                 fontFamily: "Lato",
-                                      //                 fontWeight: FontWeight.w700,
-                                      //               ),
-                                      //             ),
-                                      //           ),
-                                      //         ),
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 20),
-                              SizedBox(height: 20,),
-                              Flexible(
-                                child: Container(height: 30,),
-                              )
-
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              TimelineBottomCard(postModel: postModel,),
-            ],
+            children: buildTabsContent(context)
           )
         ),
       ),
