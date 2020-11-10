@@ -26,7 +26,7 @@ class DetailCard extends StatelessWidget {
       if(postModel.postType == PostType.RequestPost)
         {
           tabs = [
-            Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
+            Tab(icon: Icon(Icons.directions), text: "Chỉ đường đến trạm",),
             Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
             Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật")
           ];
@@ -768,7 +768,7 @@ class DetailCard extends StatelessWidget {
               icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
               onPressed: () => Navigator.pop(context, false),
             ),
-            title: Text("Tong quan", style: TextStyle(color: Colors.black),),
+            title: Text("Chi tiết", style: TextStyle(color: Colors.black),),
             backgroundColor: Colors.white,
           ),
           body:

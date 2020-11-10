@@ -21,12 +21,14 @@ import 'package:petrescue/widgets/detail_card.dart';
 import 'package:petrescue/widgets/process_page.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'detail_model_bottom.dart';
 
 class StatusTag extends StatelessWidget {
   final textData;
   final Post postModel;
+
   const StatusTag({Key key, @required this.textData, @required this.postModel})
       : super(key: key);
 
@@ -34,8 +36,7 @@ class StatusTag extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Color> colorScheme;
     String textData;
-    switch(postModel.postType)
-    {
+    switch (postModel.postType) {
       case PostType.InRescuePost:
         colorScheme = PetRescueTheme.statusTagsInRescuePostTheme;
         textData = "Tai nạn";
@@ -52,13 +53,17 @@ class StatusTag extends StatelessWidget {
       default:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
-
     }
 
     return Chip(
       backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
-      label: Text(textData, style: TextStyle(fontSize: 16),),
-      labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 13),
+      label: Text(
+        textData,
+        style: TextStyle(fontSize: 16),
+      ),
+      labelStyle: TextStyle(
+          color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+          fontSize: 13),
     );
   }
 }
@@ -66,14 +71,15 @@ class StatusTag extends StatelessWidget {
 class CategoryTag extends StatelessWidget {
   final textData;
   final Post postModel;
-  const CategoryTag({Key key, @required this.textData, @required this.postModel})
+
+  const CategoryTag(
+      {Key key, @required this.textData, @required this.postModel})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
-    switch(postModel.postType)
-    {
+    switch (postModel.postType) {
       case PostType.InRescuePost:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
@@ -87,13 +93,17 @@ class CategoryTag extends StatelessWidget {
       default:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
         break;
-
     }
 
     return Chip(
       backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
-      label: Text(textData, style: TextStyle(fontSize: 16),),
-      labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 13),
+      label: Text(
+        textData,
+        style: TextStyle(fontSize: 16),
+      ),
+      labelStyle: TextStyle(
+          color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+          fontSize: 13),
     );
   }
 }
@@ -111,31 +121,31 @@ List<Widget> getAllCategory(Post postModel) {
 class UserInfoRibon extends StatelessWidget {
   final Post postModel;
   final bool isDetailRibbon;
-  const UserInfoRibon({Key key, @required this.postModel, this.isDetailRibbon}) : super(key: key);
+
+  const UserInfoRibon({Key key, @required this.postModel, this.isDetailRibbon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Color> colorScheme;
-    if(!isDetailRibbon)
-      {
-        if (postModel.postType == PostType.AdoptPost)
-           colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
-        else
-          colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
-      }
-
-    else
-      {
-
-        if (postModel.postType == PostType.AdoptPost)
-          colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
-        else
-          colorScheme = PetRescueTheme.userRibbonDetailRescuePostTheme;
-
-      }
+    if (!isDetailRibbon) {
+      if (postModel.postType == PostType.AdoptPost)
+        colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
+      else
+        colorScheme = PetRescueTheme.userRibbonRescuePostTheme;
+    } else {
+      if (postModel.postType == PostType.AdoptPost)
+        colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
+      else
+        colorScheme = PetRescueTheme.userRibbonDetailRescuePostTheme;
+    }
 
     return InkWell(
-      onTap: () =>Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileTab(postModel: postModel,),)),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ProfileTab(
+          postModel: postModel,
+        ),
+      )),
       child: Container(
         // margin: const EdgeInsets.only(left: 16.9),
         decoration: BoxDecoration(
@@ -181,10 +191,11 @@ class UserInfoRibon extends StatelessWidget {
 class ActionKeyword extends StatelessWidget {
   final Post postModel;
   final bool isAdoptPost;
-  const ActionKeyword({Key key, @required this.postModel, this.isAdoptPost}) : super(key: key);
+
+  const ActionKeyword({Key key, @required this.postModel, this.isAdoptPost})
+      : super(key: key);
 
   showAlertDialog(BuildContext context) {
-
     // set up the button
     Widget okButton = FlatButton(
       child: Text("Có"),
@@ -192,20 +203,25 @@ class ActionKeyword extends StatelessWidget {
         postModel.acceptedRequestUser = currentUser;
 
         PostEvent postEvent = PostEvent();
-        postEvent.affectedPost =  postModel;
+        postEvent.affectedPost = postModel;
         postEvent.acceptedRequest = true;
 
         bloc.inputSink.add(postEvent);
-      // SnackBar snackBar = acceptRequest(context);
-      //
-      // Scaffold.of(context).showSnackBar(snackBar);
+        // SnackBar snackBar = acceptRequest(context);
+        //
+        // Scaffold.of(context).showSnackBar(snackBar);
         Navigator.of(context).pop();
 
-        if(!isAdoptPost)
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,)));
+        if (!isAdoptPost)
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => TrackingPageImproved(
+                    postModel: postModel,
+                  )));
         else
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AdoptProcessIntroduction(postModel: postModel,)));
-
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AdoptProcessIntroduction(
+                    postModel: postModel,
+                  )));
       },
     );
 
@@ -218,7 +234,9 @@ class ActionKeyword extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: !isAdoptPost ? Text("Chấp nhận giải cứu ?") : Text("Chấp nhận nhận nuôi ?"),
+      title: !isAdoptPost
+          ? Text("Chấp nhận giải cứu ?")
+          : Text("Chấp nhận nhận nuôi ?"),
       content: Text("Bạn có muốn thực hiện quá trình nhận nuôi"),
       actions: [
         cancelButton,
@@ -241,26 +259,32 @@ class ActionKeyword extends StatelessWidget {
     String text;
     Widget icon;
 
-      switch(postModel.postType)
-      {
-        case PostType.AdoptPost:
-          text = "Tiếp nhận";
-          colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
-          icon = Icon(Icons.home, color: Colors.white,);
-          break;
-        case PostType.RequestPost:
-          text = "Tiếp nhận";
-          postModel.priority == Priority.High ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
-          icon = Icon(Icons.local_hospital, color: Colors.white,);
+    switch (postModel.postType) {
+      case PostType.AdoptPost:
+        text = "Tiếp nhận";
+        colorScheme = PetRescueTheme.actionWordAdoptPostTheme;
+        icon = Icon(
+          Icons.home,
+          color: Colors.white,
+        );
+        break;
+      case PostType.RequestPost:
+        text = "Tiếp nhận";
+        postModel.priority == Priority.High
+            ? colorScheme = PetRescueTheme.actionWordRescuePostHighPriorityTheme
+            : colorScheme = PetRescueTheme.actionWordRescuePostTheme;
+        icon = Icon(
+          Icons.local_hospital,
+          color: Colors.white,
+        );
 
-          break;
-        case PostType.InRescuePost:
-          text = "Đang giải cứu";
-          colorScheme = PetRescueTheme.actionWordInRescuePostTheme;
-          icon = Container();
-          break;
-      }
-
+        break;
+      case PostType.InRescuePost:
+        text = "Đang giải cứu";
+        colorScheme = PetRescueTheme.actionWordInRescuePostTheme;
+        icon = Container();
+        break;
+    }
 
     return Container(
       height: 50,
@@ -271,30 +295,28 @@ class ActionKeyword extends StatelessWidget {
           SizedBox(
             width: 130,
             child: InkWell(
-              onTap: ()
-               {
-                     showAlertDialog(context);
-               },
+              onTap: () {
+                showAlertDialog(context);
+              },
               child: Container(
                 height: 45,
                 width: 60,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: colorScheme[PetRescueThemeColorType.Accent.index]
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: colorScheme[PetRescueThemeColorType.Accent.index]),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       text,
                       style: TextStyle(
-                        color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                        color:
+                            colorScheme[PetRescueThemeColorType.KeyWord.index],
                         fontSize: 20,
                         fontFamily: "Lato",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-
                     icon
                   ],
                 ),
@@ -308,18 +330,22 @@ class ActionKeyword extends StatelessWidget {
   }
 
   SnackBar acceptRequest(BuildContext context) {
-      PostEvent postEvent = PostEvent();
-    postEvent.affectedPost =  postModel;
+    PostEvent postEvent = PostEvent();
+    postEvent.affectedPost = postModel;
     postEvent.acceptedRequest = true;
-    
+
     bloc.inputSink.add(postEvent);
-    
+
     final snackBar = SnackBar(
       content: Text('Yêu cầu của bạn đã được chấp nhận'),
       action: SnackBarAction(
         label: 'Theo dõi',
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TrackingPage(),
+              ));
           // Some code to undo the change.
         },
       ),
@@ -327,8 +353,8 @@ class ActionKeyword extends StatelessWidget {
     return snackBar;
   }
 }
-class ActionKeywordAccepted extends StatelessWidget {
 
+class ActionKeywordAccepted extends StatelessWidget {
   const ActionKeywordAccepted({Key key}) : super(key: key);
 
   @override
@@ -346,17 +372,17 @@ class ActionKeywordAccepted extends StatelessWidget {
             width: 100,
             child: InkWell(
               onTap: () {
-
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => TrackingPage(),
-                ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TrackingPage(),
+                    ));
               },
               child: Container(
                 height: 45,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: colorScheme[PetRescueThemeColorType.Accent.index]
-                ),
+                    color: colorScheme[PetRescueThemeColorType.Accent.index]),
                 child: Center(
                   child: Text(
                     text,
@@ -382,11 +408,11 @@ class ActionKeywordAccepted extends StatelessWidget {
   }
 }
 
-
 class UserInfo extends StatelessWidget {
   final Post postModel;
 
   const UserInfo({Key key, this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -442,12 +468,10 @@ class DetailCardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     showAlertDialog(BuildContext context) {
-
       // set up the button
       Widget okButton = FlatButton(
         child: Text("Có"),
         onPressed: () {
-
           SnackBar snackBar = acceptRequest(context);
 
           Scaffold.of(context).showSnackBar(snackBar);
@@ -456,8 +480,6 @@ class DetailCardButton extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return TrackingPage();
           }));
-
-
         },
       );
 
@@ -470,7 +492,7 @@ class DetailCardButton extends StatelessWidget {
 
       // set up the AlertDialog
       AlertDialog alert = AlertDialog(
-        title:  Text("Chấp nhận giải cứu ?"),
+        title: Text("Chấp nhận giải cứu ?"),
         content: Text("Bạn có muốn thực hiện quá trình giải cứu"),
         actions: [
           cancelButton,
@@ -499,44 +521,43 @@ class DetailCardButton extends StatelessWidget {
     } else if (postModel.postType == PostType.RequestPost) {
       text = "Giải cứu";
       colorScheme = PetRescueTheme.revertRescuePostTheme;
-    }
-    else if (postModel.postType == PostType.InRescuePost) {
+    } else if (postModel.postType == PostType.InRescuePost) {
       text = "Hủy yêu cầu";
       colorScheme = [Colors.grey, Colors.white];
     }
 
     return InkWell(
       onTap: () {
+        if (!isTimeline && postModel.postType != PostType.InRescuePost) {
+          showAlertDialog(context);
+          postModel.acceptedRequestUser = currentUser;
 
-        if (!isTimeline && postModel.postType != PostType.InRescuePost)
-          {
-              showAlertDialog(context);
-              postModel.acceptedRequestUser = currentUser;
+          PostEvent postEvent = PostEvent();
+          postEvent.affectedPost = postModel;
+          postEvent.acceptedRequest = true;
 
-              PostEvent postEvent = PostEvent();
-              postEvent.affectedPost =  postModel;
-              postEvent.acceptedRequest = true;
-
-              bloc.inputSink.add(postEvent);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPageImproved(postModel: postModel,),));
-          }
+          bloc.inputSink.add(postEvent);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TrackingPageImproved(
+                  postModel: postModel,
+                ),
+              ));
+        }
         //
         // else if(postModel.postType == PostType.InRescuePost)
         //   Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage()));
         //
         // else
         //   Navigator.push(context, MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: postModel,),));
-
-
       },
       child: Container(
         height: 53,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26.50),
           color: colorScheme[PetRescueThemeColorType.Accent.index],
-
         ),
-
         child: Center(
           child: Text(
             text,
@@ -553,20 +574,24 @@ class DetailCardButton extends StatelessWidget {
   }
 
   SnackBar acceptRequest(BuildContext context) {
-     postModel.acceptedRequestUser = currentUser;
-    
+    postModel.acceptedRequestUser = currentUser;
+
     PostEvent postEvent = PostEvent();
-    postEvent.affectedPost =  postModel;
+    postEvent.affectedPost = postModel;
     postEvent.acceptedRequest = true;
-    
+
     bloc.inputSink.add(postEvent);
-    
+
     final snackBar = SnackBar(
       content: Text('Yêu cầu của bạn đã được chấp nhận'),
       action: SnackBarAction(
         label: 'Theo dõi',
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TrackingPage(),));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TrackingPage(),
+              ));
           // Some code to undo the change.
         },
       ),
@@ -688,18 +713,20 @@ class UserInfoTile extends StatelessWidget {
             ),
           ],
         ),
-
         InkWell(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => ProfileTab(postModel: listOfPosts[2], ),
-            ));
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileTab(
+                    postModel: listOfPosts[2],
+                  ),
+                ));
           },
           child: Container(
             height: 53,
             decoration: BoxDecoration(
-              borderRadius:
-              BorderRadius.circular(26.50),
+              borderRadius: BorderRadius.circular(26.50),
               color: Color(0xffebf3fa),
             ),
             padding: const EdgeInsets.only(
@@ -733,31 +760,39 @@ class PriorityRibbon extends StatelessWidget {
   final Post postModel;
 
   const PriorityRibbon({Key key, this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     String text;
     Color backgroundColor;
     Color textColor;
-    postModel.priority == Priority.Normal ? text = "Thấp" : text = "Cao" ;
-    postModel.priority == Priority.Normal ? textColor = Colors.black : textColor = Colors.white ;
-    postModel.priority == Priority.Normal ? backgroundColor = Colors.white : backgroundColor = HexColor("#ffb196");
+    postModel.priority == Priority.Normal ? text = "Thấp" : text = "Cao";
+    postModel.priority == Priority.Normal
+        ? textColor = Colors.black
+        : textColor = Colors.white;
+    postModel.priority == Priority.Normal
+        ? backgroundColor = Colors.white
+        : backgroundColor = HexColor("#ffb196");
     return Padding(
       padding: const EdgeInsets.only(right: 20),
       child: Chip(
-        label: Text("Ưu tiên: " + text, style: TextStyle(color: textColor, fontSize: 20, fontWeight: FontWeight.bold),) ,
+        label: Text(
+          "Ưu tiên: " + text,
+          style: TextStyle(
+              color: textColor, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: backgroundColor,
         padding: EdgeInsets.all(8),
       ),
     );
-
   }
 }
-
 
 class OngoingRescuerRibbon extends StatelessWidget {
   final Post postModel;
 
   const OngoingRescuerRibbon({Key key, this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -789,13 +824,14 @@ class OngoingRescuerRibbon extends StatelessWidget {
                         height: 50,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image:
-                          DecorationImage(image: NetworkImage(postModel.acceptedRequestUser.imageURL,)),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                            postModel.acceptedRequestUser.imageURL,
+                          )),
                         ),
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -820,24 +856,21 @@ class OngoingRescuerRibbon extends StatelessWidget {
 }
 
 class HomePagePost extends StatefulWidget {
-
   HomePagePost({Key key}) : super(key: key);
 
   @override
   _HomePagePostState createState() => _HomePagePostState();
 }
 
-
 class PostHeaderRibbon extends StatelessWidget {
   final Post postModel;
 
   const PostHeaderRibbon({Key key, this.postModel}) : super(key: key);
+
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     Color ribbonColor;
-    switch(postModel.postType)
-    {
+    switch (postModel.postType) {
       case PostType.RequestPost:
         ribbonColor = PetRescueTheme.lightPink;
         break;
@@ -856,28 +889,23 @@ class PostHeaderRibbon extends StatelessWidget {
       width: 500,
       height: 60,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-        color: ribbonColor
-      ),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+          color: ribbonColor),
     );
   }
 }
-
-
-
 
 class _HomePagePostState extends State<HomePagePost> {
   List<Color> colorScheme;
 
   List<Widget> postList = [];
 
-  Widget statusTitle(Post postModel)
-  {
+  Widget statusTitle(Post postModel) {
     List<Color> colorScheme;
     String label = "";
 
-    switch(postModel.postType)
-    {
+    switch (postModel.postType) {
       case PostType.InRescuePost:
         colorScheme = PetRescueTheme.homePageInRescue;
         label = "Đang cứu hộ";
@@ -901,11 +929,16 @@ class _HomePagePostState extends State<HomePagePost> {
         Chip(
           label: Text(label),
           backgroundColor: colorScheme[PetRescueThemeColorType.Accent.index],
-          labelStyle: TextStyle(color: colorScheme[PetRescueThemeColorType.KeyWord.index], fontSize: 18),
+          labelStyle: TextStyle(
+              color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+              fontSize: 18),
         ),
-
-        if(postModel.postType == PostType.FinishedPost)
-          Icon(Icons.verified_user, size: 30, color: Colors.green,)
+        if (postModel.postType == PostType.FinishedPost)
+          Icon(
+            Icons.verified_user,
+            size: 30,
+            color: Colors.green,
+          )
       ],
     );
   }
@@ -1178,19 +1211,19 @@ class _HomePagePostState extends State<HomePagePost> {
   //
   // }
 
-
   Widget createTimelinePost(BuildContext context, Post postModel) {
-
     _showPopupMenu(context) {
       showMenu<String>(
         context: context,
         position: RelativeRect.fromLTRB(25.0, 25.0, 0.0,
             0.0), //position where you want to show the menu on screen
         items: [
-          PopupMenuItem<String>(child: const Text('Điều chỉnh post'), value: '1'),
+          PopupMenuItem<String>(
+              child: const Text('Điều chỉnh post'), value: '1'),
           PopupMenuItem<String>(child: const Text('Ẩn Post'), value: '2'),
           PopupMenuItem<String>(child: const Text('Theo dõi post'), value: '3'),
-          PopupMenuItem<String>(child: const Text('Chuyển trạng thái'), value: '4')
+          PopupMenuItem<String>(
+              child: const Text('Chuyển trạng thái'), value: '4')
         ],
         elevation: 8.0,
       ).then<void>((String itemSelected) {
@@ -1215,12 +1248,12 @@ class _HomePagePostState extends State<HomePagePost> {
       });
     }
 
-
     if (postModel.postType == PostType.AdoptPost)
       colorScheme = PetRescueTheme.adoptPostTheme;
     else if (postModel.postType == PostType.RequestPost)
       postModel.priority == Priority.Normal
-          ? colorScheme = PetRescueTheme.rescuePostTheme : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme ;
+          ? colorScheme = PetRescueTheme.rescuePostTheme
+          : colorScheme = PetRescueTheme.rescuePostPrioritizedTheme;
     else if (postModel.postType == PostType.InRescuePost)
       colorScheme = PetRescueTheme.inRescuePostTheme;
     else if (postModel.postType == PostType.FinishedPost)
@@ -1234,8 +1267,7 @@ class _HomePagePostState extends State<HomePagePost> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          DetailCard(
+                      builder: (context) => DetailCard(
                             postModel: postModel,
                             isEditing: false,
                             defaultTabIndex: 1,
@@ -1291,8 +1323,7 @@ class _HomePagePostState extends State<HomePagePost> {
                   // ),
                   Container(
                     decoration: BoxDecoration(
-                      color:
-                      colorScheme[PetRescueThemeColorType.Accent.index],
+                      color: colorScheme[PetRescueThemeColorType.Accent.index],
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
@@ -1307,46 +1338,44 @@ class _HomePagePostState extends State<HomePagePost> {
                         ),
                       ],
                     ),
-
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Stack(
+                        Stack(children: [
+                          PostHeaderRibbon(
+                            postModel: postModel,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-
-                              PostHeaderRibbon(postModel: postModel,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: UserInfoRibon(
-                                      isDetailRibbon: false,
-                                      postModel: postModel,
-                                    ),
-                                  ),
-                                      InkWell(
-                                        onTap: () {
-                                          print("Tap");
-                                          _showPopupMenu(context);
-                                        },
-                                        child: Ink(
-                                          width: 30,
-                                          height: 30,
-                                          color: Colors.blue,
-                                          child: Container(
-                                              height: 50,
-                                              width: 50,
-                                              child: Image.asset(
-                                                  "lib/assets/setting_icon.png")),
-                                        ),
-                                      )
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: UserInfoRibon(
+                                  isDetailRibbon: false,
+                                  postModel: postModel,
+                                ),
                               ),
-                            ]
-                        ),
+                              InkWell(
+                                onTap: () {
+                                  print("Tap");
+                                  _showPopupMenu(context);
+                                },
+                                child: Ink(
+                                  width: 30,
+                                  height: 30,
+                                  color: Colors.blue,
+                                  child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      child: Image.asset(
+                                          "lib/assets/setting_icon.png")),
+                                ),
+                              )
+                            ],
+                          ),
+                        ]),
 
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -1358,8 +1387,8 @@ class _HomePagePostState extends State<HomePagePost> {
                           child: Text(
                             postModel.title,
                             style: TextStyle(
-                              color: colorScheme[PetRescueThemeColorType
-                                  .Text.index],
+                              color: colorScheme[
+                                  PetRescueThemeColorType.Text.index],
                               fontSize: 20,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w900,
@@ -1371,8 +1400,8 @@ class _HomePagePostState extends State<HomePagePost> {
                           child: Text(
                             "Thời gian nhận: " + "5/11/2020 12:45PM",
                             style: TextStyle(
-                              color: colorScheme[PetRescueThemeColorType
-                                  .Text.index],
+                              color: colorScheme[
+                                  PetRescueThemeColorType.Text.index],
                               fontSize: 17,
                               fontFamily: "Lato",
                               fontWeight: FontWeight.w500,
@@ -1380,14 +1409,14 @@ class _HomePagePostState extends State<HomePagePost> {
                           ),
                         ),
 
-                        if(postModel.postType == PostType.FinishedPost)
+                        if (postModel.postType == PostType.FinishedPost)
                           Padding(
                             padding: const EdgeInsets.all(12),
                             child: Text(
                               "Thời gian xử lí thành công: 6/10/2020",
                               style: TextStyle(
-                                color: colorScheme[PetRescueThemeColorType
-                                    .Text.index],
+                                color: colorScheme[
+                                    PetRescueThemeColorType.Text.index],
                                 fontSize: 17,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w500,
@@ -1395,19 +1424,25 @@ class _HomePagePostState extends State<HomePagePost> {
                             ),
                           ),
 
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
 
-                        if(postModel.postType == PostType.AdoptPost )
+                        if (postModel.postType == PostType.AdoptPost)
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 10),
                             child: Row(
                               children: [
-                                Text("Yêu cầu nhận nuôi:", style: TextStyle(
-                                    fontWeight: FontWeight.w800,
-                                    color: colorScheme[PetRescueThemeColorType.Text.index]
-
-                                ),),
-                                CustomAvatars(postModel: postModel,),
+                                Text(
+                                  "Yêu cầu nhận nuôi:",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      color: colorScheme[
+                                          PetRescueThemeColorType.Text.index]),
+                                ),
+                                CustomAvatars(
+                                  postModel: postModel,
+                                ),
                               ],
                             ),
                           ),
@@ -1472,7 +1507,6 @@ class _HomePagePostState extends State<HomePagePost> {
                         //   ),
                         // ),
 
-
                         // Padding(
                         //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                         //   child: Wrap(
@@ -1498,73 +1532,60 @@ class _HomePagePostState extends State<HomePagePost> {
         ),
       ),
     );
-
   }
 
-  bool getIsActive(int currentIndex, int index){
-    if(currentIndex<=index){
+  bool getIsActive(int currentIndex, int index) {
+    if (currentIndex <= index) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     List<Widget> items = [];
 
-    bool getReturnListCondition(Post post)
-    {
-          if(currentUser.isVerifyRescueCenter)
-          {
-                if(post.currentUser.id == currentUser.id && post.postType != PostType.RequestPost)
-                  return true;
-                return false;
-          }
-
-          else
-            {
-                  if(post.postType != PostType.RequestPost)
-                    return true;
-                  return false;
-            }
+    bool getReturnListCondition(Post post) {
+      if (currentUser.isVerifyRescueCenter) {
+        if (post.currentUser.id == currentUser.id &&
+            post.postType != PostType.RequestPost) return true;
+        return false;
+      } else {
+        if (post.postType != PostType.RequestPost) return true;
+        return false;
+      }
     }
 
-    listOfPosts.where((element) => getReturnListCondition(element)).forEach((e) =>
-      items.add(
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-
-                  createTimelinePost(context, e),
-                ],
+    listOfPosts.where((element) => getReturnListCondition(element)).forEach(
+          (e) => items.add(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    createTimelinePost(context, e),
+                  ],
+                ),
               ),
             ),
           ),
-      ),
-      );
+        );
 
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-              decoration:
-              BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("lib/assets/tracking_page.png"),
-                ),
-              ),
-              child:
-          ListView.builder(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("lib/assets/tracking_page.png"),
+            ),
+          ),
+          child: ListView.builder(
             itemCount: items.length,
             itemBuilder: (context, index) {
-                return items[index];
+              return items[index];
             },
           )
           // Timeline(children: items, position: TimelinePosition.Left)
@@ -1619,10 +1640,8 @@ class _HomePagePostState extends State<HomePagePost> {
           //             ],
           //           ),
           //     )
-      ),
+          ),
     );
-
-
   }
 }
 
@@ -1630,164 +1649,205 @@ class CustomAvatars extends StatelessWidget {
   final Post postModel;
 
   const CustomAvatars({Key key, this.postModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
-
     List<Widget> list = [
-      if(postModel.adoptUserRequests.length >= 1)
-      Align(
-        alignment: Alignment.centerRight,
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
-          child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.red,
-            backgroundImage:
-            NetworkImage(postModel.adoptUserRequests[postModel.adoptUserRequests.length-1].imageURL)
-
-            // Image.network(postModel.adoptUserRequests[0].imageURL), // Provide your custom image
-          ),
-        ),
-      ),
-
-      if(postModel.adoptUserRequests.length >= 2)
+      if (postModel.adoptUserRequests.length >= 1)
         Align(
-        alignment: Alignment.center,
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
+          alignment: Alignment.centerRight,
           child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.red,
-            backgroundImage: NetworkImage(postModel.adoptUserRequests[postModel.adoptUserRequests.length-2].imageURL)
-          ),
-        ),
-      ),
-      if(postModel.adoptUserRequests.length >= 3)
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.red,
+                backgroundImage: NetworkImage(postModel
+                    .adoptUserRequests[postModel.adoptUserRequests.length - 1]
+                    .imageURL)
 
-        Align(
-        alignment: Alignment.centerLeft,
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
-          child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.red,
-              backgroundImage: NetworkImage(postModel.adoptUserRequests[postModel.adoptUserRequests.length-3].imageURL)
+                // Image.network(postModel.adoptUserRequests[0].imageURL), // Provide your custom image
+                ),
           ),
         ),
-      ),
+      if (postModel.adoptUserRequests.length >= 2)
+        Align(
+          alignment: Alignment.center,
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.red,
+                backgroundImage: NetworkImage(postModel
+                    .adoptUserRequests[postModel.adoptUserRequests.length - 2]
+                    .imageURL)),
+          ),
+        ),
+      if (postModel.adoptUserRequests.length >= 3)
+        Align(
+          alignment: Alignment.centerLeft,
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.red,
+                backgroundImage: NetworkImage(postModel
+                    .adoptUserRequests[postModel.adoptUserRequests.length - 3]
+                    .imageURL)),
+          ),
+        ),
     ];
     return Container(
       width: 80,
       height: 40,
-      child: Stack(
-        children: list
-      ),
+      child: Stack(children: list),
     );
   }
 }
 
-Widget showResponsibleUserRibon(Post postModel)
-{
-  if(postModel.postType == PostType.AdoptPost)
+Widget showResponsibleUserRibon(Post postModel) {
+  if (postModel.postType == PostType.AdoptPost)
     return Padding(
       padding: const EdgeInsets.only(right: 10),
-      child: CircleAvatar(backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),maxRadius: 25,),
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),
+        maxRadius: 25,
+      ),
     );
-  else if((postModel.postType == PostType.InRescuePost && postModel.acceptedRequestUser != null))
-    return OngoingRescuerRibbon(postModel: postModel,);
+  else if ((postModel.postType == PostType.InRescuePost &&
+      postModel.acceptedRequestUser != null))
+    return OngoingRescuerRibbon(
+      postModel: postModel,
+    );
   else
-    return PriorityRibbon(postModel: postModel,);
+    return PriorityRibbon(
+      postModel: postModel,
+    );
 }
+
 List<Widget> buildAdopterRow(Post postModel, BuildContext context) {
-  return postModel.adoptUserRequests.map(
-        (e) => Container(
-      width: MediaQuery.of(context).size.width,
-      height: 80,
-      //color: Colors.black26,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(e.imageURL),
-              radius: 25,
-            ),
-          ),
-          Expanded(
+  return postModel.adoptUserRequests
+      .map(
+        (e) => Slidable(
             child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      e.fullNanme,
-                      style: TextStyle(
-                        color: Color(0xff4b8669),
-                        fontSize: 17,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w900,
-                      ),
-                      maxLines: 1,
+              width: MediaQuery.of(context).size.width,
+              height: 80,
+              //color: Colors.black26,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(e.imageURL),
+                      radius: 30,
                     ),
                   ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              e.fullNanme,
+                              style: TextStyle(
+                                color: Color(0xff4b8669),
+                                fontSize: 20,
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.w900,
+                              ),
+                              maxLines: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // Container(
+                  //   child: Row(
+                  //     children: [
+                  //       Column(
+                  //         children: [
+                  //           IconButton(
+                  //             onPressed: () {},
+                  //             icon: Icon(
+                  //               Icons.check_circle,
+                  //               size: 13,
+                  //             ),
+                  //           ),
+                  //           SizedBox(
+                  //             height: 3,
+                  //           ),
+                  //           Text(
+                  //             "Chấp thuận",
+                  //             style: TextStyle(fontSize: 13),
+                  //           )
+                  //         ],
+                  //       ),
+                  //       Column(
+                  //         children: [
+                  //           IconButton(
+                  //             onPressed: () {},
+                  //             icon: Icon(
+                  //               Icons.cancel,
+                  //               size: 13,
+                  //             ),
+                  //           ),
+                  //           SizedBox(
+                  //             height: 3,
+                  //           ),
+                  //           Text("Từ chối", style: TextStyle(fontSize: 13))
+                  //         ],
+                  //       ),
+                  //       SizedBox(
+                  //         width: 8,
+                  //       ),
+                  //       Column(
+                  //         children: [
+                  //           IconButton(
+                  //             onPressed: () {},
+                  //             icon: Icon(Icons.message),
+                  //           ),
+                  //           SizedBox(
+                  //             height: 3,
+                  //           ),
+                  //           Text("Liên lạc")
+                  //         ],
+                  //       ),
+                  //       SizedBox(
+                  //         width: 8,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                 ],
               ),
             ),
-          ),
-          Container(
-            child: Row(
-              children: [
-                Column(
-                  children: [
-
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.cancel),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Từ chối")
-                  ],
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  children: [
-
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.message),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Liên lạc")
-                  ],
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.check_circle),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Chấp thuận")
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    ),
-  ).toList();
+            actionPane: SlidableDrawerActionPane(),
+            actionExtentRatio: 0.2,
+            secondaryActions: <Widget>[
+              IconSlideAction(
+                caption: 'Chấp thuận',
+                color: PetRescueTheme.darkGreen,
+                icon: Icons.check_circle,
+                //onTap: () => _showSnackBar('Delete'),
+              ),
+              IconSlideAction(
+                caption: 'Từ chối',
+                color: Colors.red,
+                icon: Icons.delete,
+                //onTap: () => _showSnackBar('Delete'),
+              ),
+              IconSlideAction(
+                caption: 'Liên hệ',
+                color: Colors.black26,
+                icon: Icons.message,
+                //onTap: () => _showSnackBar('Delete'),
+              ),
+            ]),
+      )
+      .toList();
 }

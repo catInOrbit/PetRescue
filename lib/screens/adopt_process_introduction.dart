@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 
 class AdoptProcessIntroduction extends StatefulWidget {
@@ -23,18 +24,18 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
   }
 
   List<PageViewModel> listPagesViewModel = [
+    // PageViewModel(
+    //   image: Container(
+    //     height: 200,
+    //     decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/assets/contact_center.jpg"), fit: BoxFit.cover)),
+    //   ),
+    //
+    //   title: "Liên lạc trung tâm",
+    //   bodyWidget:  Text("Liên lạc trung tâm cứu hộ để biết địa điểm cần đến", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
+    //
+    // ),
     PageViewModel(
-      image: Container(
-        height: 200,
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/assets/contact_center.jpg"), fit: BoxFit.cover)),
-      ),
-
-      title: "Liên lạc trung tâm",
-      bodyWidget:  Text("Liên lạc trung tâm cứu hộ để biết địa điểm cần đến", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
-
-    ),
-    PageViewModel(
-      title: " Cập nhật quá trình của bạn",
+      title: " Bạn đã gửi yêu cầu nhận nuôi bé",
       bodyWidget: SizedBox(
         width: 400,
         child: Wrap(
@@ -43,47 +44,79 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
           children:  [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(" Đăng post cập nhật trong tab cập nhật", style: TextStyle(fontSize: 21),),
+              child: Text("Bạn hãy chờ nhân viên cứu hộ liên lạc để biết thêm chi tiết nhé! ", style: TextStyle(fontSize: 21),),
             ),
-            Container( height: 100, width: 100,
-              decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("lib/assets/update_pic.png"))),),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(" để cung cấp thêm thông tin về tình trạng của thú", textAlign: TextAlign.center, style: TextStyle(fontSize: 21),),
-            ),
+            // Container( height: 100, width: 100,
+            // child: Icon(Icons.check_circle_outline_outlined, size: 50,),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Text(" để cung cấp thêm thông tin về tình trạng của thú", textAlign: TextAlign.center, style: TextStyle(fontSize: 21),),
+            // ),
           ],
         ),
       ),
       image:  SafeArea(
         child: Center(child: Container(
           height: 300,
-          width: 300,
+          width: 400,
           decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("lib/assets/adopt_family.jpg"))),)),
       ),
     )
   ];
   @override
   Widget build(BuildContext context) {
-    return IntroductionScreen(
-      pages: listPagesViewModel,
-      onDone: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, defaultTabIndex: widget.postModel.postType == PostType.RequestPost ? 2 : 1, isEditing: false,),));
-      },
-      onSkip: () {
-        // You can also override onSkip callback
-      },
-      showSkipButton: true,
-      skip: const Icon(Icons.skip_next),
-      next: const Icon(Icons.arrow_forward_ios),
-      done: const Text("Xong", style: TextStyle(fontWeight: FontWeight.w600)),
-      dotsDecorator: DotsDecorator(
-          size: const Size.square(10.0),
-          activeSize: const Size(20.0, 10.0),
-          activeColor: Colors.deepOrangeAccent,
-          color: Colors.black26,
-          spacing: const EdgeInsets.symmetric(horizontal: 3.0),
-          activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0))),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black,),
+          onPressed: () => Navigator.pop(context, false),
+        ),
+        actions: [
+          // IconButton(
+          //     onPressed: () {},
+          //   icon: Icon(Icons.cancel_outlined, color: Colors.black),
+          //
+          // ),
+          InkWell(
+            onTap: (){},
+            child: Row(
+              children: [
+                Icon(Icons.cancel_outlined, color: Colors.black,),
+                SizedBox(width: 5,),
+                Text("Hủy", style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+
+                ),)
+              ],
+            )
+          ),
+        ],
+      ),
+      body: IntroductionScreen(
+        pages: listPagesViewModel,
+        onDone: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, defaultTabIndex: widget.postModel.postType == PostType.RequestPost ? 2 : 1, isEditing: false,),));
+        },
+        onSkip: () {
+          // You can also override onSkip callback
+        },
+        showSkipButton: true,
+        skip: const Icon(Icons.skip_next),
+        next: const Icon(Icons.arrow_forward_ios),
+        done: const Text("Thông tin bé", style: TextStyle(fontWeight: FontWeight.w600)),
+        dotsDecorator: DotsDecorator(
+            size: const Size.square(10.0),
+            activeSize: const Size(20.0, 10.0),
+            activeColor: Colors.deepOrangeAccent,
+            color: Colors.black26,
+            spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0))),
+      ),
     );
   }
 }
