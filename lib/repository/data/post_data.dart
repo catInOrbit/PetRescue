@@ -134,7 +134,7 @@ List<Post> listOfPosts = [
       "6-8 months",
       ["ăn được cơm", "Đã được vaccine"],
       [TimeLineText(postTile:  "Trung tâm ABC đã đến vị trí",timePosted: "10 phút trước",), TimeLineText(postTile:  "Trung tâm ABC đang kiểm tra y tế",timePosted: "10 phút trước",)],
-      userList[0],
+      userList[2],
       <User>[userList[3], userList[4]],
       userList[2],
       <String>[],

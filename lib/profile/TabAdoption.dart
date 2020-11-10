@@ -157,7 +157,7 @@ class PetAdoption2 extends StatelessWidget {
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('lib/assets/Cat2.png'), fit: BoxFit.cover),
+                image: NetworkImage('https://www.ddfl.org/wp-content/uploads/2019/06/Remy.jpg'), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -254,7 +254,7 @@ class PetAdoption3 extends StatelessWidget {
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('lib/assets/Cat2.png'), fit: BoxFit.cover),
+                image: NetworkImage('https://cdn.kinsights.com/cache/9f/52/9f52c9c87d064eefaa07cead85eb82fe.jpg'), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -351,7 +351,7 @@ class PetAdoption4 extends StatelessWidget {
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('lib/assets/Cat2.png'), fit: BoxFit.cover),
+                image: NetworkImage('https://lh3.googleusercontent.com/proxy/6sry914FVjugl-ZhVItwLsT2BosIS8pvduX558WXS8r9oUcmU07AjQc_SwQxWI1fkwgTDNr43_dvG9ZGtx6YNEclmca-RHsVL7YH3BSzRgXVsaIOkmurIerBsP7y9rJZ9c4eYRm6at7yaGYYtJC6Y3T4S4YH'), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),

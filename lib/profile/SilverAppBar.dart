@@ -460,7 +460,7 @@ class _ProfileTabState extends State<ProfileTab>
                   children: <Widget>[
                     PageRescued(),
                     PageAdoption(),
-                    PageTimelines()
+                    PageTimelines(postModel: widget.postModel,)
                   ],
                   controller: tabController,
                 )

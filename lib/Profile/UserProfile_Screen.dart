@@ -332,7 +332,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>
               ),
               PageRescued(),
               PageAdoption(),
-              PageTimelines(),
+              PageTimelines(postModel: widget.postModel,),
             ],
             controller: tabController,
           ),

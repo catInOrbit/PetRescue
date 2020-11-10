@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/timeline.dart';
 
 class PageTimelines extends StatefulWidget {
+  final Post postModel;
+
+  const PageTimelines({Key key, this.postModel}) : super(key: key);
   @override
   _PageTimelinesState createState() => _PageTimelinesState();
 }
@@ -38,6 +42,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
                         child: CircleAvatar(
+                          backgroundImage: NetworkImage(widget.postModel.adoptUserRequests[0].imageURL),
                           radius: 30,
                         ),
                       ),
@@ -130,6 +135,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
                         child: CircleAvatar(
+                          backgroundImage: NetworkImage(widget.postModel.adoptUserRequests[1].imageURL),
                           radius: 30,
                         ),
                       ),
