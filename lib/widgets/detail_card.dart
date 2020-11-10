@@ -532,7 +532,7 @@ class StoryDetail extends StatelessWidget {
         SizedBox(
           width: 352,
           child: Text(
-            "Tìm thấy mèo con bị thất lạc gần đường XYZ, mèo bị thương ở chân và cần cấp cứu gắp, nhờ trung tâm gần nhất mau đến cứu",
+            postModel.description,
             style: TextStyle(
               color: Color(0xff555555),
               fontSize: 16,

@@ -134,47 +134,50 @@ class UserInfoRibon extends StatelessWidget {
 
       }
 
-    return Container(
-      // margin: const EdgeInsets.only(left: 16.9),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(27.50),
-            bottomRight: Radius.circular(27.50)),
-        color: colorScheme[PetRescueThemeColorType.Accent.index],
-      ),
-      padding: const EdgeInsets.all(4),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CircleAvatar(
-            radius: 20,
-            backgroundImage: NetworkImage(postModel.currentUser.imageURL),
-          ),
-          SizedBox(width: 12),
-          SizedBox(
-            width: 81,
-            height: 24,
-            child: Text(
-              postModel.currentUser.fullNanme,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: colorScheme[PetRescueThemeColorType.KeyWord.index],
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w900,
+    return InkWell(
+      onTap: () =>Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileTab(postModel: postModel,),)),
+      child: Container(
+        // margin: const EdgeInsets.only(left: 16.9),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(27.50),
+              bottomRight: Radius.circular(27.50)),
+          color: colorScheme[PetRescueThemeColorType.Accent.index],
+        ),
+        padding: const EdgeInsets.all(4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: NetworkImage(postModel.currentUser.imageURL),
+            ),
+            SizedBox(width: 12),
+            SizedBox(
+              width: 81,
+              height: 24,
+              child: Text(
+                postModel.currentUser.fullNanme,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 12),
-          Opacity(
-            opacity: 0.50,
-            child: Container(
-              width: 16.11,
-              height: 16,
-              color: colorScheme[PetRescueThemeColorType.Accent.index],
+            SizedBox(width: 12),
+            Opacity(
+              opacity: 0.50,
+              child: Container(
+                width: 16.11,
+                height: 16,
+                color: colorScheme[PetRescueThemeColorType.Accent.index],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

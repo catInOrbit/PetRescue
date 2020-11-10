@@ -73,7 +73,7 @@ class _PageRescuedState extends State<PageRescued> {
                                 alignment: Alignment.topLeft,
                                 child: Text(
                                   "Giải cứu 1 chú chó gần bệnh viện Quận 2",
-                                  style: TextStyle(
+                                  style: TextStyle  (
                                     color: Color(0xff4b8669),
                                     fontSize: 20,
                                     fontFamily: "Roboto",
@@ -176,7 +176,7 @@ class _PageRescuedState extends State<PageRescued> {
                               Container(
                                 height: 20,
                                 // width: 50,
-                                color:PetRescueTheme.darkGreen,
+                                color:Colors.grey,
                                 child: Center(
                                   child: Text("Đã an toàn",style: TextStyle(
                                       color: Colors.white

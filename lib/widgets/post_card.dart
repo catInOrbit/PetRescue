@@ -180,7 +180,6 @@ class _PostCardState extends State<PostCard>
                                   postModel: widget.postModel,
                                 ),
                               ),
-                              showResponsibleUserRibon(widget.postModel),
                             ],
                           ),
                         ]),
@@ -302,7 +301,7 @@ class _PostCardState extends State<PostCard>
                                                         .Text.index],
                                                 fontSize: 20,
                                                 fontFamily: "Lato",
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.w300),
                                           ),
                                         ],
                                       ),
@@ -592,7 +591,7 @@ class _PostCardState extends State<PostCard>
                                 GestureDetector(
                                   onTap: (){
                                     Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => ListAdoptionRequest(),
+                                      builder: (context) => ListAdoptionRequest(postModel: widget.postModel,),
                                     ));
                                   },
                                   child: Padding(
@@ -617,7 +616,7 @@ class _PostCardState extends State<PostCard>
                           ),
                         if(widget.postModel.postType == PostType.AdoptPost && currentUser.isVerifyRescueCenter==false)
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),  
                             child: Row(
                               children: [
                                 InkWell(
