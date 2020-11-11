@@ -35,9 +35,9 @@ class PostEmpty extends StatelessWidget
                           image:
     (!currentUser.isVerifyRescueCenter && postModel.postType != PostType.RequestPost)
                               ?
-                          NetworkImage("https://www.trendingbreeds.com/wp-content/uploads/2019/06/How-Much-Exercise-Does-a-Shiba-Inu-Puppy-Need-large.jpg")
+                          NetworkImage("https://www.advantagepetcare.com.au/sites/g/files/adhwdz311/files/styles/paragraph_image/public/2020-07/istock-802799294_unrestricted_1110x800.jpg?itok=R51kcQGy")
                               :
-                          NetworkImage("https://lh3.googleusercontent.com/proxy/aH9fL0EKpzFLwDnUVDm9C_JYCzUwO-XYbNguJP8zvN2h2MHTg4D-6EyYlfgXJFIC15TFGS8C5LslVE-vKhXfr83Z_-tV")
+                          NetworkImage("https://i.ytimg.com/vi/qwQ55-suLik/maxresdefault.jpg")
                           ,
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.only(
