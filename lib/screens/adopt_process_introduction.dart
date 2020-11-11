@@ -75,13 +75,10 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
           onPressed: () => Navigator.pop(context, false),
         ),
         actions: [
-          // IconButton(
-          //     onPressed: () {},
-          //   icon: Icon(Icons.cancel_outlined, color: Colors.black),
-          //
-          // ),
           InkWell(
-            onTap: (){},
+            onTap: (){
+
+            },
             child: Row(
               children: [
                 Icon(Icons.cancel, color: Colors.black,),

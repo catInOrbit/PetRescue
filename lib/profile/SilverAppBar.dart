@@ -67,13 +67,13 @@ class _ProfileTabState extends State<ProfileTab>
                       children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage(currentUser.imageURL),
+                          backgroundImage: NetworkImage( currentUser.isVerifyRescueCenter ? currentUser.imageURL : "https://avatars2.githubusercontent.com/u/1532252?s=400&v=4"),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          currentUser.fullNanme,
+                          currentUser.isVerifyRescueCenter ?  currentUser.fullNanme : "Nguyễn Bùi Bảo Khanh",
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )
                       ],
