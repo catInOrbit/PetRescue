@@ -396,7 +396,7 @@ class DetailCard extends StatelessWidget {
             ),
           ),
         ),
-        TimelineBottomCard(postModel: postModel,)
+        TimelineUpdatePage(postModel: postModel,)
       ];
     }
 

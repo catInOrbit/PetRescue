@@ -213,7 +213,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                                 ),
                                 InkWell(
                                   onTap: (){
-                                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: widget.postModel,),));
+                                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: widget.postModel,),));
                                   },
                                   child: Text(
                                     "Xem cập nhật",

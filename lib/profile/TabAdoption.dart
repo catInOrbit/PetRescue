@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
+import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/timeline.dart';
@@ -143,11 +144,17 @@ class _PageAdoptionState extends State<PageAdoption> {
 }
 
 class PetAdoptionWidget extends StatelessWidget {
+
+  const PetAdoptionWidget({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+        if(currentUser.isVerifyRescueCenter)
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[3],),));
+        else
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[0],),));
+
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -346,7 +353,7 @@ class PetAdoption3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2],),));
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -445,7 +452,7 @@ class PetAdoption4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[2],),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2],),));
       },
       child:
           Container(
@@ -548,7 +555,7 @@ class PetAdoptionPending extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineBottomCard(postModel: listOfPosts[4],),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[4],),));
       },
       child:
           Stack(

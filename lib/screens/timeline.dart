@@ -5,15 +5,15 @@ import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/widgets/postFeed/post_empty.dart';
 import 'package:petrescue/bloc/app_general/global.dart' as globals;
 
-class TimelineBottomCard extends StatefulWidget {
+class TimelineUpdatePage extends StatefulWidget {
   final Post postModel;
 
-  const TimelineBottomCard({Key key, this.postModel}) : super(key: key);
+  const TimelineUpdatePage({Key key, this.postModel}) : super(key: key);
   @override
-  _TimelineBottomCardState createState() => _TimelineBottomCardState();
+  _TimelineUpdatePageState createState() => _TimelineUpdatePageState();
 }
 
-class _TimelineBottomCardState extends State<TimelineBottomCard> {
+class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +38,9 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:
                         [
-                          CircleAvatar(backgroundImage: NetworkImage(currentUser.imageURL), radius: 25,),
+                          CircleAvatar(backgroundImage: NetworkImage(widget.postModel.currentUser.imageURL), radius: 25,),
                           Text(
-                            globals.currentUser.centerName,
+                            widget.postModel.currentUser.fullName,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -75,10 +75,10 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                       bottom: 217,
                     ),
                     child: Text(
-                      "Moo Cat",
+                      "Chó bun",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: 16,
                         fontFamily: "Lato",
                         fontWeight: FontWeight.w700,
                       ),
@@ -106,7 +106,7 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                           offset: Offset(0, 4),
                         ),
                       ],
-                      color: Color(0xffff8068),
+                      color: currentUser.isVerifyRescueCenter ? Color(0xffff8068) : PetRescueTheme.darkGreen,
                     ),
                     padding: const EdgeInsets.only(
                       left: 19,
@@ -167,55 +167,63 @@ class _TimelineBottomCardState extends State<TimelineBottomCard> {
                           ],
                         ),
                         SizedBox(height: 11.17),
-                        Text(
-                          " Địa điểm giải cứu",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        SizedBox(height: 11.17),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
+
+                        if(currentUser.isVerifyRescueCenter)
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 2,
-                                bottom: 3,
-                              ),
-                              child: Opacity(
-                                opacity: 0.50,
-                                child: Container(
-                                  width: 12.50,
-                                  height: 12,
-                                  color: Colors.white,
-                                ),
+                            Text(
+                              " Địa điểm giải cứu",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
-                            SizedBox(width: 5),
-                            SizedBox(
-                              width: 250,
-                              child: Text(
-                                widget.postModel.location,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: "Lato",
-                                  fontWeight: FontWeight.w400,
+                            SizedBox(height: 11.17),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 2,
+                                    bottom: 3,
+                                  ),
+                                  child: Opacity(
+                                    opacity: 0.50,
+                                    child: Container(
+                                      width: 12.50,
+                                      height: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                SizedBox(width: 5),
+                                SizedBox(
+                                  width: 250,
+                                  child: Text(
+                                    widget.postModel.location,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontFamily: "Lato",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
+                        )
+
                       ],
                     ),
                   ),
                   SizedBox(height: 19.50),
-                  PostEmpty(postModel: widget.postModel),
+                  PostEmpty(),
                   SizedBox(height: 19.50),
-                  PostEmpty(postModel: widget.postModel,),
 
                 ],
               ),
