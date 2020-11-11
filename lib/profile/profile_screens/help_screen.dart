@@ -15,12 +15,14 @@ class _HelpScreenState extends State<HelpScreen> {
 
     return showDialog(context: context, builder: (context){
       return AlertDialog(
-        title: Text('Thank you for contacting us!'),
+        title: Text('Chúng tôi đã nhận được tin của bạn!'),
         content: Text(
-            "Your inquiry has been successfully sent to our support"
+            "Chúng tôi sẽ gửi phản hồi cho bạn sớm nhất có thể."
         ),
         actions: [
-          MaterialButton(onPressed: (){},elevation: 5,
+          MaterialButton(onPressed: (){
+            Navigator.pop(context,false);
+          },elevation: 5,
             child: Text('OK'),)
         ],
       );
