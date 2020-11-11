@@ -40,6 +40,56 @@ class _PostCardState extends State<PostCard>
     with AutomaticKeepAliveClientMixin {
   GoogleMapController mapController;
 
+  showConfirmationDialog(BuildContext context, Post post){
+    Widget cancelButton = FlatButton(
+      child: Text("Hủy"),
+      onPressed:  () {
+        Navigator.pop(context, false);
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Đồng ý"),
+      onPressed:  () {
+
+        var postEvent = PostEvent();
+        postEvent.adopted = true;
+        postEvent.affectedPost = post;
+        bloc.inputSink.add(postEvent);
+
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  AdoptProcessIntroduction(
+                    postModel: post,
+                  ),
+            )
+        ).then((result) {
+          Navigator.of(context).pop();
+        });
+
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Gửi yêu cầu nhận nuôi"),
+      content: Text("Bạn có đồng ý gửi yêu cầu nhận nuôi không ? "),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   final LatLng _center = const LatLng(10.828056, 106.703324);
 
   void _onMapCreated(GoogleMapController controller) {
@@ -857,52 +907,3 @@ class _PostCardState extends State<PostCard>
 }
 
 
-showConfirmationDialog(BuildContext context, Post post){
-  Widget cancelButton = FlatButton(
-    child: Text("Hủy"),
-    onPressed:  () {
-      Navigator.pop(context, false);
-    },
-  );
-  Widget continueButton = FlatButton(
-    child: Text("Đồng ý"),
-    onPressed:  () {
-
-      // var postEvent = PostEvent();
-      // postEvent.acceptedRequest = true;
-      // postEvent.affectedPost = post;
-      // bloc.inputSink.add(postEvent);
-
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                AdoptProcessIntroduction(
-                  postModel: post,
-                ),
-          )
-      ).then((result) {
-        Navigator.of(context).pop();
-      });
-
-    },
-  );
-
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Gửi yêu cầu nhận nuôi"),
-    content: Text("Bạn có đồng ý gửi yêu cầu nhận nuôi không ? "),
-    actions: [
-      cancelButton,
-      continueButton,
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}

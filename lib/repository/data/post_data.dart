@@ -29,7 +29,7 @@ List<Post> listOfPosts = [
   ),
 
   Post(
-    "P00",
+    "P02",
     "Cần giải cứu mèo bị thương chân",
       "Tìm thấy mèo con bị thất lạc gần đường XYZ, mèo bị thương ở chân và cần cấp cứu gắp, nhờ trung tâm gần nhất mau đến cứu",
     "Mèo nhà",
@@ -53,7 +53,7 @@ List<Post> listOfPosts = [
   ),
 
   Post(
-      "P00",
+      "P03",
       "Chó bị thương ở quận 2 cần cứu gấp",
       "Tìm thấy mèo con bị thất lạc gần đường XYZ, mèo bị thương ở chân và cần cấp cứu gắp, nhờ trung tâm gần nhất mau đến cứu",
       "Chó",
@@ -75,7 +75,7 @@ List<Post> listOfPosts = [
     [" Tai nạn"]
   ),
   Post(
-      "P00",
+      "P04",
       "Cần giải cứu mèo bị thương chân",
       "Đã giải cứu mèo và chăm sóc y tế",
       "Mèo nhà",
@@ -99,7 +99,7 @@ List<Post> listOfPosts = [
 
 
   Post(
-      "P02",
+      "P05",
       "Hãy nhận nuôi em Xù",
     "Hiện được 3 năm 3 tháng tuổi, Cái, Lông trắng",
     "Chó",
@@ -122,7 +122,7 @@ List<Post> listOfPosts = [
   ),
 
   Post(
-      "P02",
+      "P06",
       "Lucky",
       "Hiện được 5 năm tuổi, cái, lông trắng, dà",
       "Mèo",
@@ -145,7 +145,7 @@ List<Post> listOfPosts = [
   ),
 
   Post(
-      "P02",
+      "P07",
       "Habadu",
       "Hiện được 2 năm 8 tháng tuổi. Lông xám, trắng, cái",
       "Mèo",
@@ -169,7 +169,7 @@ List<Post> listOfPosts = [
 
 
   Post(
-      "P03",
+      "P08",
       "Mèo nhà bị lạc, lông vàng nhạt, xin gọi nếu tìm thấy",
       "Mèo",
       "House cat",
