@@ -253,7 +253,9 @@ class _PostCardState extends State<PostCard>
                         SizedBox(
                           height: 10,
                         ),
-                        Padding(
+
+                        if(widget.postModel.postType != PostType.AdoptPost)
+                          Padding(
                           padding: const EdgeInsets.only(left: 12),
                           child: Align(
                             alignment: Alignment.centerRight,
@@ -279,7 +281,7 @@ class _PostCardState extends State<PostCard>
                               ],
                             ),
                           ),
-                        ),
+                        ) ,
 
                         Padding(
                           padding: const EdgeInsets.all(12),

@@ -38,13 +38,13 @@ class _PageAdoptionState extends State<PageAdoption> {
           children: <Widget>[
             Column(
               children: [
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text( currentUser.isVerifyRescueCenter == true ? "Danh sách chờ xác nhận nhận nuôi" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                    )),
-                SizedBox(height: 10,),
+                // Align(
+                //     alignment: Alignment.centerLeft,
+                //     child: Padding(
+                //       padding: const EdgeInsets.only(left: 8.0),
+                //       child: Text( currentUser.isVerifyRescueCenter == true ? "Danh sách chờ xác nhận nhận nuôi" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                //     )),
+                // SizedBox(height: 10,),
           currentUser.isVerifyRescueCenter
               ?
                 Container(

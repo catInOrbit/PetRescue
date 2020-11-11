@@ -123,13 +123,16 @@ showAlertDialog(BuildContext context, Post postModel) {
   Widget cancelButton = FlatButton(
     child: Text("Hủy"),
     onPressed:  () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: postModel, defaultTabIndex: 1,),));
+      //Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: postModel, defaultTabIndex: 1,),));
+      Navigator.pop(context, false);
     },
   );
   Widget continueButton = FlatButton(
     child: Text("Tiếp tục gửi yêu cầu"),
     onPressed:  () {
-      Navigator.pop(context, false);
+      Navigator.pop(context, false)
+
+      ;
     },
   );
 

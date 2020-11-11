@@ -18,7 +18,8 @@ class ProfileTab extends StatefulWidget {
   final Post postModel;
   final bool isViewMode;
 
-  const ProfileTab({Key key, this.postModel, this.isViewMode}) : super(key: key);
+
+  const ProfileTab({Key key, this.postModel, this.isViewMode, }) : super(key: key);
 
   @override
   _ProfileTabState createState() => _ProfileTabState();
@@ -28,7 +29,6 @@ class _ProfileTabState extends State<ProfileTab>
     with SingleTickerProviderStateMixin {
   //test data input
   final Message chat = chats[0];
-
   TabController tabController;
 
   @override
@@ -55,6 +55,7 @@ class _ProfileTabState extends State<ProfileTab>
        return 4;
      return 2;
   }
+
 
   List<Widget> buildTabBars()
   {
@@ -176,13 +177,14 @@ class _ProfileTabState extends State<ProfileTab>
             CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
                     () {
                   //close drawer
-                  Navigator.pop(context, false);
+                  Navigator.push(context, MaterialPageRoute(builder: null));
                 })
           ],
         ),
       ),
       key: _scaffoldKey,
       body: DefaultTabController(
+        //initialIndex: selectedPage,
         length: getNumberOfTab(),
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

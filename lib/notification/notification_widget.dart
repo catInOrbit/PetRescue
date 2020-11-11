@@ -626,7 +626,7 @@ class _NotifiSecondState extends State<NotifiSecond> {
                           width: 10,
                         ),
                         Text(
-                          "Giải cứu thành công an toàn",
+                          "Giải cứu thành công ",
                           style: TextStyle(fontSize: 20, color: PetRescueTheme.darkGreen),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,

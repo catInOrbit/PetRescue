@@ -75,8 +75,8 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
       ),
       image:  SafeArea(
         child: Center(child: Container(
-          height: 300,
-          width: 300,
+          height: 330,
+          width: 400,
           decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.fill,image: AssetImage("lib/assets/doctor.jpg"))),)),
       ),
     )
