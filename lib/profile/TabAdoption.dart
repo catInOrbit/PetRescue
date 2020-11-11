@@ -59,6 +59,8 @@ class _PageAdoptionState extends State<PageAdoption> {
                               ],
                             ),
                             SizedBox(height: 10,),
+
+                            if(currentUser.isVerifyRescueCenter)
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
                               child: Row(

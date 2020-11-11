@@ -1428,7 +1428,7 @@ class _HomePagePostState extends State<HomePagePost> {
                           height: 10,
                         ),
 
-                        if (postModel.postType == PostType.AdoptPost)
+                        if (postModel.postType == PostType.AdoptPost && currentUser.isVerifyRescueCenter && postModel.currentUser == currentUser)
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 10),
                             child: Row(

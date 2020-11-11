@@ -118,7 +118,7 @@ List<Post> listOfPosts = [
     "Chó Alaska",
       Priority.Normal,
     false,
-    ["Chó", "Đực"]
+    ["Chó"]
   ),
 
   Post(
@@ -141,7 +141,7 @@ List<Post> listOfPosts = [
       "Mèo ba tư",
       Priority.Normal,
       false,
-      ["Mèo", "Cái"]
+      ["Mèo"]
   ),
 
   Post(
@@ -164,7 +164,7 @@ List<Post> listOfPosts = [
       "Mèo tam thể",
       Priority.Normal,
       false,
-      ["Mèo", "Cái"]
+      ["Mèo"]
   ),
 
 

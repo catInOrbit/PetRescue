@@ -251,6 +251,121 @@ class _PageRescuedState extends State<PageRescued> {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: (){
+
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 190,
+              padding: EdgeInsets.fromLTRB(10.0,10,10,5),
+              // decoration: BoxDecoration(
+              //   border: Border(
+              //     bottom: BorderSide(
+              //       width: 0.5
+              //     )
+              //   )
+              // ),
+              child: Material(
+                elevation: 4.0,
+                borderRadius: BorderRadius.circular(5.0),
+
+                child:Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      // Padding(
+                      //   padding: const EdgeInsets.fromLTRB(5,0,10,0),
+                      //   child: CircleAvatar(
+                      //     radius: 50,
+                      //   ),
+                      // ),
+                      Expanded(
+                        child: Container(
+                          // height: 100,
+                          // width: 245,
+                          // color: Colors.red,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                height: 20,
+                                // width: 50,
+                                color:Colors.grey,
+                                child: Center(
+                                  child: Text("Đã an toàn",style: TextStyle(
+                                      color: Colors.white
+                                  ),),
+                                ),
+                              ),
+                              SizedBox(height: 5,),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Mèo con bị bỏ rơi gần cầu Sài Gòn ",
+                                  style: TextStyle(
+                                    color: Color(0xff4b8669),
+                                    fontSize: 20,
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+                              SizedBox(height: 5,),
+                              Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text("Tình trạng: suy dinh dưỡng")),
+                              SizedBox(height: 5,),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Ngày nhận đơn: 14/10/2020 5:30 PM",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+
+                              SizedBox(height: 5,),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Ngày cứu: 15/10/2020 5:30PM",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+
+                              SizedBox(height: 5,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Icon(Icons.location_on),
+                                  Text("TP.HCM"),
+
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
