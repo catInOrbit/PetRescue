@@ -59,6 +59,8 @@ class _PostCardState extends State<PostCard>
     else if (widget.postModel.postType == PostType.InRescuePost)
       colorScheme = PetRescueTheme.inRescuePostTheme;
 
+
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -258,7 +260,7 @@ class _PostCardState extends State<PostCard>
                                                   .Text.index],
                                           fontSize: 20,
                                           fontFamily: "Lato",
-                                          fontWeight: FontWeight.w300),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(
                                       width: 20,
@@ -301,7 +303,7 @@ class _PostCardState extends State<PostCard>
                                                         .Text.index],
                                                 fontSize: 20,
                                                 fontFamily: "Lato",
-                                                fontWeight: FontWeight.w300),
+                                                fontWeight: FontWeight.w500),
                                           ),
                                         ],
                                       ),
@@ -406,18 +408,18 @@ class _PostCardState extends State<PostCard>
                           ),
                         ),
                         if (widget.postModel.postType != PostType.AdoptPost)
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Địa chỉ",
-                            style: TextStyle(
-                                color: colorScheme[
-                                    PetRescueThemeColorType.Text.index],
-                                fontSize: 20,
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.bold),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Địa chỉ",
+                              style: TextStyle(
+                                  color: colorScheme[
+                                      PetRescueThemeColorType.Text.index],
+                                  fontSize: 20,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
                         if (widget.postModel.postType != PostType.AdoptPost)
                           Column(
                             children: [
@@ -512,126 +514,24 @@ class _PostCardState extends State<PostCard>
                           ),
 
                         //Contact button and action keyword
-                        if (widget.postModel.postType != PostType.AdoptPost)
-                        Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => UserProfileScreen(
-                                          postModel: listOfPosts[0],
-                                        ),
-                                      ));
-                                },
-                                child: Container(
-                                  height: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Color(0xffebf3fa),
-                                  ),
-                                  padding: const EdgeInsets.only(
-                                    left: 8,
-                                    right: 14,
-                                    top: 9,
-                                    bottom: 4,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 70,
-                                        child: Text(
-                                          "Liên hệ",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontFamily: "Lato",
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 4),
-                                      Container(
-                                        width: 22,
-                                        height: 20,
-                                        child: Icon(Icons.call),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 0),
-                              buildActionKeyword(widget.postModel)
-                            ],
-                          ),
-                        ),
-
-                        if(widget.postModel.postType == PostType.AdoptPost && currentUser.isVerifyRescueCenter==true)
+                        if (widget.postModel.postType != PostType.AdoptPost && currentUser.isVerifyRescueCenter)
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, top: 10),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Yêu cầu nhận nuôi:",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: colorScheme[
-                                      PetRescueThemeColorType.Text.index]),
-                                ),
-                                CustomAvatars(
-                                  postModel: widget.postModel,
-                                ),
-
-                                GestureDetector(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => ListAdoptionRequest(postModel: widget.postModel,),
-                                    ));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left:15.0),
-                                    child: Column(
-                                      children: [
-                                        Text("2",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w800,
-                                              color: colorScheme[
-                                              PetRescueThemeColorType.Text.index]),),
-                                        Text("Người yêu cầu",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500
-                                          ),)
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        if(widget.postModel.postType == PostType.AdoptPost && currentUser.isVerifyRescueCenter==false)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),  
+                            padding: const EdgeInsets.all(12),
                             child: Row(
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //       builder: (context) =>
-                                    //           UserProfileScreen(
-                                    //         postModel: listOfPosts[0],
-                                    //       ),
-                                    //     ));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              UserProfileScreen(
+                                            postModel: listOfPosts[0],
+                                          ),
+                                        ));
                                   },
                                   child: Container(
-                                    height: 35,
+                                    height: 45,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: Color(0xffebf3fa),
@@ -642,27 +542,149 @@ class _PostCardState extends State<PostCard>
                                       top: 9,
                                       bottom: 4,
                                     ),
-                                    child: SizedBox(
-                                      width: 60,
-                                      child: Center(
-                                        child: Text(
-                                          "Chi tiết",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontFamily: "Lato",
-                                            fontWeight: FontWeight.w700,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 70,
+                                          child: Text(
+                                            "Liên hệ",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 18,
+                                              fontFamily: "Lato",
+                                              fontWeight: FontWeight.w700,
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                        SizedBox(width: 4),
+                                        Container(
+                                          width: 22,
+                                          height: 20,
+                                          child: Icon(Icons.call),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 5,),
+                                SizedBox(width: 0),
+                                buildActionKeyword(widget.postModel)
+                              ],
+                            ),
+                          ),
+
+                        if (widget.postModel.postType == PostType.AdoptPost &&
+                            currentUser.isVerifyRescueCenter == true)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Yêu cầu nhận nuôi:",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      color: colorScheme[
+                                          PetRescueThemeColorType.Text.index]),
+                                ),
+                                CustomAvatars(
+                                  postModel: widget.postModel,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              ListAdoptionRequest(
+                                            postModel: widget.postModel,
+                                          ),
+                                        ));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 15.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "2",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              color: colorScheme[
+                                                  PetRescueThemeColorType
+                                                      .Text.index]),
+                                        ),
+                                        Text(
+                                          "Người yêu cầu",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        if (widget.postModel.postType == PostType.AdoptPost &&
+                            currentUser.isVerifyRescueCenter == false)
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, top: 10, bottom: 10),
+                            child: Row(
+                              children: [
+                                // InkWell(
+                                //   onTap: () {
+                                //     // Navigator.push(
+                                //     //     context,
+                                //     //     MaterialPageRoute(
+                                //     //       builder: (context) =>
+                                //     //           UserProfileScreen(
+                                //     //         postModel: listOfPosts[0],
+                                //     //       ),
+                                //     //     ));
+                                //   },
+                                //   child: Container(
+                                //     height: 35,
+                                //     decoration: BoxDecoration(
+                                //       borderRadius: BorderRadius.circular(20),
+                                //       color: Color(0xffebf3fa),
+                                //     ),
+                                //     padding: const EdgeInsets.only(
+                                //       left: 8,
+                                //       right: 14,
+                                //       top: 9,
+                                //       bottom: 4,
+                                //     ),
+                                //     child: SizedBox(
+                                //       width: 60,
+                                //       child: Center(
+                                //         child: Text(
+                                //           "Chi tiết",
+                                //           style: TextStyle(
+                                //             color: Colors.black,
+                                //             fontSize: 18,
+                                //             fontFamily: "Lato",
+                                //             fontWeight: FontWeight.w700,
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                // SizedBox(width: 5,),
                                 InkWell(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => AdoptProcessIntroduction(postModel: widget.postModel
-                                      ,),));
+                                  onTap: () {
+                                    showGuiYeuCauDialog(context, widget.postModel);
+
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //       builder: (context) =>
+                                    //           AdoptProcessIntroduction(
+                                    //         postModel: widget.postModel,
+                                    //       ),
+                                    //     ));
                                   },
                                   child: Container(
                                     height: 35,
@@ -696,7 +718,7 @@ class _PostCardState extends State<PostCard>
                             ),
                           ),
 
-                          // Padding(
+                        // Padding(
                         //   padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                         //   child: Row(
                         //     children: [
@@ -767,21 +789,19 @@ class _PostCardState extends State<PostCard>
   List<Widget> buildStatusCard(Post post) {
     List<Widget> returnList = [];
     post.statuses.forEach((e) {
-      returnList.add(
-                Row(
-                  children: [
-                    Flexible(
-                      child: Container(
-                        // decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen, borderRadius: BorderRadius.all(Radius.circular(12))),
-                         child: Padding(
-                           padding: const EdgeInsets.all(8.0),
-                           child: Text(e, style: TextStyle(color: Colors.black, fontSize: 17)),
-                         )
-                      ),
-                    ),
-                  ],
-                )
-         );
+      returnList.add(Row(
+        children: [
+          Flexible(
+            child: Container(
+                // decoration: BoxDecoration(color: widget.postModel.postType== PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen, borderRadius: BorderRadius.all(Radius.circular(12))),
+                child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:
+                  Text(e, style: TextStyle(color: Colors.black, fontSize: 17)),
+            )),
+          ),
+        ],
+      ));
     });
 
     return returnList;
@@ -793,7 +813,8 @@ class _PostCardState extends State<PostCard>
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0,
           0.0), //position where you want to show the menu on screen
       items: [
-        PopupMenuItem<String>(child: const Text('Điều chỉnh post'), value: '1'),
+         PopupMenuItem<String>(
+                child: const Text('Điều chỉnh post'), value: '1'),
         PopupMenuItem<String>(child: const Text('Ẩn Post'), value: '2'),
         PopupMenuItem<String>(child: const Text('Theo dõi post'), value: '3'),
       ],
@@ -833,4 +854,48 @@ class _PostCardState extends State<PostCard>
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+}
+
+
+showGuiYeuCauDialog(BuildContext context, Post post){
+  Widget cancelButton = FlatButton(
+    child: Text("Hủy"),
+    onPressed:  () {
+      Navigator.pop(context, false);
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Đồng ý"),
+    onPressed:  () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                AdoptProcessIntroduction(
+                  postModel: post,
+                ),
+          )
+      ).then((result) {
+        Navigator.of(context).pop();
+      });
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Gửi yêu cầu nhận nuôi"),
+    content: Text("Bạn có đồng ý gửi yêu cầu nhận nuôi không ? "),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

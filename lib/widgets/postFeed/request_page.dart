@@ -41,7 +41,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
         !widget.sortType.contains("AdoptPost"))
       return IconButton(
         icon: const Icon(
-          Icons.add_circle_outline,
+          Icons.add,
           color: Colors.white,
         ),
         tooltip: "View notification",
@@ -66,7 +66,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
     else if (currentUser.isVerifyRescueCenter)
       return IconButton(
         icon: const Icon(
-          Icons.add_circle_outline,
+          Icons.add,
           color: Colors.white,
         ),
         tooltip: "View notification",
