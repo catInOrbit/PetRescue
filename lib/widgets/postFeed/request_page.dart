@@ -136,7 +136,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
                         ),
                         Text(
                           currentUser.isVerifyRescueCenter
-                              ? currentUser.fullNanme
+                              ? currentUser.fullName
                               : "Nguyễn Bùi Bảo Khanh",
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )

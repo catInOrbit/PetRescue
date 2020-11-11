@@ -199,7 +199,7 @@ class _ChatScreenState extends State<ChatScreen> {
           text: TextSpan(
             children: [
               TextSpan(
-                  text: widget.user.fullNanme,
+                  text: widget.user.fullName,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,

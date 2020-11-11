@@ -60,7 +60,7 @@ class _NotiScreenState extends State<NotiScreen> {
                             height: 10,
                           ),
                           Text(
-                            currentUser.fullNanme,
+                            currentUser.fullName,
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           )
                         ],

@@ -80,7 +80,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                   Row(
                                     children: <Widget>[
                                       Text(
-                                        chat.sender.fullNanme,
+                                        chat.sender.fullName,
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),

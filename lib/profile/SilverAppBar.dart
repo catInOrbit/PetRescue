@@ -16,8 +16,9 @@ import 'package:petrescue/widgets/progress.dart';
 
 class ProfileTab extends StatefulWidget {
   final Post postModel;
+  final bool isViewMode;
 
-  const ProfileTab({Key key, this.postModel}) : super(key: key);
+  const ProfileTab({Key key, this.postModel, this.isViewMode}) : super(key: key);
 
   @override
   _ProfileTabState createState() => _ProfileTabState();
@@ -33,7 +34,7 @@ class _ProfileTabState extends State<ProfileTab>
   @override
   void initState() {
     super.initState();
-    if (currentUser.isVerifyRescueCenter == true)
+    if (currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
       tabController = TabController(vsync: this, length: 3);
     else
       tabController = TabController(vsync: this, length: 2);
@@ -47,6 +48,69 @@ class _ProfileTabState extends State<ProfileTab>
     super.dispose();
   }
 
+
+  int getNumberOfTab()
+  {
+     if(currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
+       return 3;
+     return 2;
+  }
+
+  List<Widget> buildTabBars()
+  {
+      List<Widget> lists;
+      if(currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
+        lists = [   Tab(
+          text: "Cứu hộ",
+          //   icon: Icon(Icons.help,size: 20,),
+        ),
+          Tab(
+            text: "Nuôi nhận",
+            //   icon: Icon(Icons.home),
+          ),
+          Tab(
+            child: Column(
+              children: [
+                Text("D.sách"),
+                Text("nhận nuôi")
+              ],
+            ),
+            //  icon: Icon(Icons.home),
+          ),];
+
+      else
+        lists = [Tab(
+          text: "Cứu hộ",
+          //   icon: Icon(Icons.help,size: 20,),
+        ),
+          Tab(
+            text: "Nuôi nhận",
+            //   icon: Icon(Icons.home),
+          ),];
+      return lists;
+  }
+
+  TabBarView buildTabBarViews()
+  {
+    if(currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
+      return TabBarView(
+        children: <Widget>[
+          PageRescued(postModel: widget.postModel, isViewMode: true,),
+          PageAdoption(),
+          PageTimelines(postModel: widget.postModel,)
+        ],
+        controller: tabController,
+      );
+
+    else
+      return TabBarView(
+        children: <Widget>[
+          PageRescued(postModel: widget.postModel, isViewMode: true,),
+          PageAdoption(),
+        ],
+        controller: tabController,
+      );
+  }
   @override
   Widget build(BuildContext context) {
     final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -73,7 +137,7 @@ class _ProfileTabState extends State<ProfileTab>
                           height: 10,
                         ),
                         Text(
-                          currentUser.isVerifyRescueCenter ?  currentUser.fullNanme : "Nguyễn Bùi Bảo Khanh",
+                          currentUser.isVerifyRescueCenter ?  currentUser.fullName : "Nguyễn Bùi Bảo Khanh",
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )
                       ],
@@ -119,7 +183,7 @@ class _ProfileTabState extends State<ProfileTab>
       ),
       key: _scaffoldKey,
       body: DefaultTabController(
-        length: currentUser.isVerifyRescueCenter == true ? 3 : 2,
+        length: getNumberOfTab(),
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -297,14 +361,14 @@ class _ProfileTabState extends State<ProfileTab>
                               children: [
                                 CircleAvatar(
                                   backgroundImage: NetworkImage(
-                                      "https://avatars2.githubusercontent.com/u/1532252?s=400&v=4"),
+                                      widget.postModel.imageThumbnail),
                                   radius: 40,
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Nguyễn Bùi Bảo Khanh",
+                                  widget.postModel.currentUser.fullName,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
@@ -389,57 +453,13 @@ class _ProfileTabState extends State<ProfileTab>
                 ),
                 bottom: TabBar(
                   //isScrollable: true,
-                  tabs: currentUser.isVerifyRescueCenter == true
-                      ? <Widget>[
-                          Tab(
-                            text: "Cứu hộ",
-                            //   icon: Icon(Icons.help,size: 20,),
-                          ),
-                          Tab(
-                            text: "Nuôi nhận",
-                            //   icon: Icon(Icons.home),
-                          ),
-                          Tab(
-                            child: Column(
-                              children: [
-                                Text("D.sách"),
-                                Text("người nhận nuôi")
-                              ],
-                            ),
-                            //  icon: Icon(Icons.home),
-                          ),
-                        ]
-                      : <Widget>[
-                          Tab(
-                            text: "Cứu hộ",
-                            //   icon: Icon(Icons.help,size: 20,),
-                          ),
-                          Tab(
-                            text: "Nuôi nhận",
-                            //   icon: Icon(Icons.home),
-                          ),
-                        ],
+                  tabs: buildTabBars(),
                   controller: tabController,
                 ),
               ),
             ];
           },
-          body: currentUser.isVerifyRescueCenter == true
-              ? TabBarView(
-                  children: <Widget>[
-                    PageRescued(),
-                    PageAdoption(),
-                    PageTimelines(postModel: widget.postModel,)
-                  ],
-                  controller: tabController,
-                )
-              : TabBarView(
-                  children: <Widget>[
-                    PageRescued(),
-                    PageAdoption(),
-                  ],
-                  controller: tabController,
-                ),
+          body: buildTabBarViews()
         ),
       ),
     );

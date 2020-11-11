@@ -43,7 +43,7 @@ class ActivityTimelineApp extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          currentUser.fullNanme,
+                          currentUser.fullName,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )
                       ],

@@ -80,7 +80,7 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
             child: Center(
               child: InkWell(
                 onTap: (){
-                  showAlertDialog(context);
+                  showAlertDialog(context, widget.postModel);
                 },
                 child: Text("Hủy", style: TextStyle(
                   color: Colors.black,
@@ -117,13 +117,13 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
   }
 }
 
-showAlertDialog(BuildContext context) {
+showAlertDialog(BuildContext context, Post postModel) {
 
   // set up the buttons
   Widget cancelButton = FlatButton(
     child: Text("Hủy"),
     onPressed:  () {
-
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: postModel, defaultTabIndex: 1,),));
     },
   );
   Widget continueButton = FlatButton(

@@ -143,7 +143,8 @@ class UserInfoRibon extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ProfileTab(
-          postModel: postModel,
+          postModel: listOfPosts[4],
+          isViewMode: true,
         ),
       )),
       child: Container(
@@ -168,7 +169,7 @@ class UserInfoRibon extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    postModel.currentUser.fullNanme,
+                    postModel.currentUser.fullName,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: colorScheme[PetRescueThemeColorType.KeyWord.index],
@@ -182,6 +183,68 @@ class UserInfoRibon extends StatelessWidget {
             ),
             SizedBox(width: 12),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class UserInfoRibonSmall extends StatelessWidget {
+  final Post postModel;
+
+  const UserInfoRibonSmall({Key key, @required this.postModel})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Color> colorScheme;
+    if(currentUser.isVerifyRescueCenter)
+      colorScheme = [PetRescueTheme.lightPink, Colors.white];
+    else
+      colorScheme = [PetRescueTheme.lightPink, Colors.white];
+
+    return InkWell(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ProfileTab(
+          postModel: postModel,
+          isViewMode: true,
+        ),
+      )),
+      child: SizedBox(
+        width: 150,
+        child: Container(
+          // margin: const EdgeInsets.only(left: 16.9),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(27.50),
+                bottomRight: Radius.circular(27.50)),
+            color: colorScheme[PetRescueThemeColorType.Accent.index],
+          ),
+          padding: const EdgeInsets.all(4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircleAvatar(
+                radius: 20,
+                backgroundImage: NetworkImage(postModel.currentUser.imageURL),
+              ),
+              SizedBox(width: 12),
+              Flexible(
+                child: Text(
+                  postModel.currentUser.fullName,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: colorScheme[PetRescueThemeColorType.KeyWord.index],
+                    fontSize: 16,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              SizedBox(width: 12),
+            ],
+          ),
         ),
       ),
     );
@@ -688,7 +751,7 @@ class UserInfoTile extends StatelessWidget {
               height: 24,
               width: 100,
               child: Text(
-                user.fullNanme,
+                user.fullName,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -804,7 +867,7 @@ class OngoingRescuerRibbon extends StatelessWidget {
         ),
         padding: const EdgeInsets.only(
           left: 7,
-          right: 28,
+          right: 20,
           top: 6,
           bottom: 8,
         ),
@@ -1752,7 +1815,7 @@ List<Widget> buildAdopterRow(Post postModel, BuildContext context) {
                           Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              e.fullNanme,
+                              e.fullName,
                               style: TextStyle(
                                 color: Color(0xff4b8669),
                                 fontSize: 20,

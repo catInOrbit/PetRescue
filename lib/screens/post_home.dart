@@ -40,6 +40,7 @@ class _PostHomeState extends State<PostHome> {
     NotiScreen(),
     ProfileTab(
       postModel: listOfPosts[4],
+      isViewMode: false,
     ),
   ];
 

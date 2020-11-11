@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
+import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/chat_screen.dart';
 
 class PageRescued extends StatefulWidget {
+  final Post postModel;
+  final bool isViewMode;
+
+  const PageRescued({Key key, this.isViewMode, this.postModel}) : super(key: key);
   @override
   _PageRescuedState createState() => _PageRescuedState();
 }
@@ -18,7 +23,11 @@ class _PageRescuedState extends State<PageRescued> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text( currentUser.isVerifyRescueCenter == true ? "Tin cứu hộ tiếp nhận:"  :   "Bạn đã đăng 3 tin cần cứu hộ:" , style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                child:
+                !widget.isViewMode ?
+                Text( currentUser.isVerifyRescueCenter == true ? "Tin cứu hộ tiếp nhận:"  :   "Bạn đã đăng 3 tin cần cứu hộ:" , style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
+                :
+                  Text("Hoạt động cứu hộ của " + widget.postModel.currentUser.fullName , style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
               )),
           SizedBox(height: 10,),
           GestureDetector(
