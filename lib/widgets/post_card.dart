@@ -675,7 +675,7 @@ class _PostCardState extends State<PostCard>
                                 // SizedBox(width: 5,),
                                 InkWell(
                                   onTap: () {
-                                    showGuiYeuCauDialog(context, widget.postModel);
+                                    showConfirmationDialog(context, widget.postModel);
 
                                     // Navigator.push(
                                     //     context,
@@ -857,7 +857,7 @@ class _PostCardState extends State<PostCard>
 }
 
 
-showGuiYeuCauDialog(BuildContext context, Post post){
+showConfirmationDialog(BuildContext context, Post post){
   Widget cancelButton = FlatButton(
     child: Text("Hủy"),
     onPressed:  () {
@@ -867,6 +867,12 @@ showGuiYeuCauDialog(BuildContext context, Post post){
   Widget continueButton = FlatButton(
     child: Text("Đồng ý"),
     onPressed:  () {
+
+      // var postEvent = PostEvent();
+      // postEvent.acceptedRequest = true;
+      // postEvent.affectedPost = post;
+      // bloc.inputSink.add(postEvent);
+
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -878,6 +884,7 @@ showGuiYeuCauDialog(BuildContext context, Post post){
       ).then((result) {
         Navigator.of(context).pop();
       });
+
     },
   );
 

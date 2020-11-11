@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petrescue/EditPost/edit_post.dart';
+import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/models/post_model.dart';
@@ -39,7 +40,7 @@ class _PostHomeState extends State<PostHome> {
     HomePage(),
     NotiScreen(),
     ProfileTab(
-      postModel: listOfPosts[4],
+      postModel: currentUser.isVerifyRescueCenter ? listOfPosts[4] : listOfPosts[1] ,
       isViewMode: false,
     ),
   ];

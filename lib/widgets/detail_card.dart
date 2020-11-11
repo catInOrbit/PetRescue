@@ -20,10 +20,16 @@ class DetailCard extends StatelessWidget {
 
   const DetailCard({Key key, @required this.postModel, this.isEditing, this.defaultTabIndex}) : super(key: key);
 
+  int getTabLength()
+  {
+     if(postModel.postType == PostType.RequestPost || postModel.postType == PostType.InRescuePost)
+       return 3;
+     return 2;
+  }
   List<Widget> buildTabs()
   {
      List<Widget> tabs = [];
-      if(postModel.postType == PostType.RequestPost)
+      if(postModel.postType == PostType.RequestPost || postModel.postType == PostType.InRescuePost)
         {
           tabs = [
             Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
@@ -47,7 +53,7 @@ class DetailCard extends StatelessWidget {
     const double pictureContainersHeight = 272;
 
     List<Widget> tabs = [];
-    if(postModel.postType == PostType.RequestPost)
+    if(postModel.postType == PostType.RequestPost || postModel.postType == PostType.InRescuePost)
     {
       tabs = [
         buildMapTab(),
@@ -753,21 +759,27 @@ class DetailCard extends StatelessWidget {
     }
 
     return tabs;
-
   }
   @override
   Widget build(BuildContext context) {
     const double pictureContainersHeight = 272;
 
     return DefaultTabController(
-      length: postModel.postType == PostType.RequestPost ? 3 : 2,
+      length: getTabLength(),
       initialIndex: defaultTabIndex,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
-              labelColor: postModel.postType == PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen ,
-              indicatorColor: postModel.postType == PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen,
+              labelColor: (postModel.postType == PostType.RequestPost || postModel.postType == PostType.InRescuePost)
+                  ? PetRescueTheme.lightPink
+                  : PetRescueTheme.darkGreen ,
+              indicatorColor:
+              (postModel.postType == PostType.RequestPost || postModel.postType == PostType.InRescuePost)
+                  ?
+              PetRescueTheme.lightPink
+                  :
+              PetRescueTheme.darkGreen,
 
               tabs: buildTabs()
             ),

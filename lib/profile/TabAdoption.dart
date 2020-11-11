@@ -648,7 +648,7 @@ class PetAdoptionPending extends StatelessWidget {
                 ],
               ),
               if(currentUser.isVerifyRescueCenter)
-              UserInfoRibonSmall(postModel: listOfPosts[0])
+              UserInfoRibonSmall(postModel: listOfPosts[5])
             ],
           )
 

@@ -1771,10 +1771,12 @@ Widget showResponsibleUserRibon(Post postModel) {
   if (postModel.postType == PostType.AdoptPost)
     return Padding(
       padding: const EdgeInsets.only(right: 10),
-      child: CircleAvatar(
-        backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),
-        maxRadius: 25,
-      ),
+      // child: CircleAvatar(
+      //   backgroundImage: NetworkImage(postModel.acceptedRequestUser.imageURL),
+      //   maxRadius: 25,
+      // ),
+
+      child: Container(),
     );
   else if ((postModel.postType == PostType.InRescuePost &&
       postModel.acceptedRequestUser != null))

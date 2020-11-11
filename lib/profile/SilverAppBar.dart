@@ -361,7 +361,7 @@ class _ProfileTabState extends State<ProfileTab>
                               children: [
                                 CircleAvatar(
                                   backgroundImage: NetworkImage(
-                                      widget.postModel.imageThumbnail),
+                                      widget.postModel.currentUser.imageURL),
                                   radius: 40,
                                 ),
                                 SizedBox(
