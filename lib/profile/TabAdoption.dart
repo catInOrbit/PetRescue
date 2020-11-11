@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +14,15 @@ class PageAdoption extends StatefulWidget {
   _PageAdoptionState createState() => _PageAdoptionState();
 }
 
-
 class _PageAdoptionState extends State<PageAdoption> {
   List<Widget> awaitConfirmationPost = [
     new PetAdoptionPending(
-      urlImage: "https://www.arlboston.org/wp-content/uploads/2013/02/adopted-dog-puppy-header.jpg",
+      urlImage:
+          "https://www.arlboston.org/wp-content/uploads/2013/02/adopted-dog-puppy-header.jpg",
     ),
-
     new PetAdoptionPending(
-      urlImage: "https://www.theherald-news.com/_internal/cimg!0/t2gk1330qdvizfedugx1bopwkoq934b",
+      urlImage:
+          "https://www.theherald-news.com/_internal/cimg!0/t2gk1330qdvizfedugx1bopwkoq934b",
     ),
   ];
 
@@ -36,80 +34,76 @@ class _PageAdoptionState extends State<PageAdoption> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Column(
-              children: [
-                // Align(
-                //     alignment: Alignment.centerLeft,
-                //     child: Padding(
-                //       padding: const EdgeInsets.only(left: 8.0),
-                //       child: Text( currentUser.isVerifyRescueCenter == true ? "Danh sách chờ xác nhận nhận nuôi" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                //     )),
-                // SizedBox(height: 10,),
-          currentUser.isVerifyRescueCenter
-              ?
-                Container(
-                  height: 300,
-
-                  child:
-                  ListView.builder(
-                    itemCount: awaitConfirmationPost.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SizedBox(width: 30,),
-                                awaitConfirmationPost[index]
-                              ],
-                            ),
-                            // SizedBox(height: 10,),
-
-                            // if(currentUser.isVerifyRescueCenter)
-                            // Padding(
-                            //   padding: const EdgeInsets.only(left: 20),
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //     children: [
-                            //       Container(
-                            //         width: 60,
-                            //         height: 40,
-                            //         decoration: BoxDecoration(
-                            //             borderRadius: BorderRadius.circular(20),
-                            //             color: Colors.red
-                            //         ),
-                            //
-                            //         child: Center(child:
-                            //         Text("Hủy", style: TextStyle(color: Colors.white, fontSize: 18),)
-                            //         ),
-                            //       ),
-                            //       SizedBox(width: 10,),
-                            //       Container(
-                            //         width: 115,
-                            //         height: 40,
-                            //         decoration: BoxDecoration(
-                            //             borderRadius: BorderRadius.circular(20),
-                            //             color: PetRescueTheme.darkGreen
-                            //         ),
-                            //
-                            //         child: Center(child:
-                            //         Text("Chấp nhận", style: TextStyle(color: Colors.white, fontSize: 18),)
-                            //         ),
-                            //       )
-                            //     ],
-                            //   ),
-                            // )
-                          ],
-                        );
-                  },)
-
-                )
-
-              :
-          Container()
-              ],
-            ),
+            // Column(
+            //   children: [
+            //     // Align(
+            //     //     alignment: Alignment.centerLeft,
+            //     //     child: Padding(
+            //     //       padding: const EdgeInsets.only(left: 8.0),
+            //     //       child: Text( currentUser.isVerifyRescueCenter == true ? "Danh sách chờ xác nhận nhận nuôi" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            //     //     )),
+            //     // SizedBox(height: 10,),
+            //     currentUser.isVerifyRescueCenter
+            //         ? Container(
+            //             height: 300,
+            //             child: ListView.builder(
+            //               itemCount: awaitConfirmationPost.length,
+            //               scrollDirection: Axis.horizontal,
+            //               itemBuilder: (context, index) {
+            //                 return Column(
+            //                   children: [
+            //                     Row(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: <Widget>[
+            //                         SizedBox(
+            //                           width: 30,
+            //                         ),
+            //                         awaitConfirmationPost[index]
+            //                       ],
+            //                     ),
+            //                     // SizedBox(height: 10,),
+            //
+            //                     // if(currentUser.isVerifyRescueCenter)
+            //                     // Padding(
+            //                     //   padding: const EdgeInsets.only(left: 20),
+            //                     //   child: Row(
+            //                     //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                     //     children: [
+            //                     //       Container(
+            //                     //         width: 60,
+            //                     //         height: 40,
+            //                     //         decoration: BoxDecoration(
+            //                     //             borderRadius: BorderRadius.circular(20),
+            //                     //             color: Colors.red
+            //                     //         ),
+            //                     //
+            //                     //         child: Center(child:
+            //                     //         Text("Hủy", style: TextStyle(color: Colors.white, fontSize: 18),)
+            //                     //         ),
+            //                     //       ),
+            //                     //       SizedBox(width: 10,),
+            //                     //       Container(
+            //                     //         width: 115,
+            //                     //         height: 40,
+            //                     //         decoration: BoxDecoration(
+            //                     //             borderRadius: BorderRadius.circular(20),
+            //                     //             color: PetRescueTheme.darkGreen
+            //                     //         ),
+            //                     //
+            //                     //         child: Center(child:
+            //                     //         Text("Chấp nhận", style: TextStyle(color: Colors.white, fontSize: 18),)
+            //                     //         ),
+            //                     //       )
+            //                     //     ],
+            //                     //   ),
+            //                     // )
+            //                   ],
+            //                 );
+            //               },
+            //             ))
+            //         : Container()
+            //   ],
+            // ),
 
             // SizedBox(height: 30,),
 
@@ -119,9 +113,17 @@ class _PageAdoptionState extends State<PageAdoption> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Thú đang nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                      child: Text(
+                        currentUser.isVerifyRescueCenter == true
+                            ? "Tìm nhà cho các bé:"
+                            : "Thú đang nuôi",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     )),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -132,18 +134,20 @@ class _PageAdoptionState extends State<PageAdoption> {
                     PetAdoption4(),
                   ],
                 ),
-                SizedBox(height: 10,),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-                  PetAdoption2(),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  PetAdoption3(),
-                ])
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      PetAdoption2(),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      PetAdoption3(),
+                    ])
               ],
             )
-
-
           ],
         ),
       ),
@@ -152,17 +156,24 @@ class _PageAdoptionState extends State<PageAdoption> {
 }
 
 class PetAdoptionWidget extends StatelessWidget {
-
   const PetAdoptionWidget({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(currentUser.isVerifyRescueCenter)
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[3],),));
+        if (currentUser.isVerifyRescueCenter)
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TimelineUpdatePage(
+              postModel: listOfPosts[3],
+            ),
+          ));
         else
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[0],),));
-
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TimelineUpdatePage(
+              postModel: listOfPosts[0],
+            ),
+          ));
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -261,7 +272,11 @@ class PetAdoption2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2], hasNotBeenRescued: false,) ));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TimelineUpdatePage(
+                  postModel: listOfPosts[2],
+                  hasNotBeenRescued: false,
+                )));
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -269,7 +284,9 @@ class PetAdoption2 extends StatelessWidget {
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage('https://thumbs-prod.si-cdn.com/omtxDUbVWafbhOTsDFJnOW3gFiw=/fit-in/1600x0/filters:focal(2135x711:2136x712)/https://public-media.si-cdn.com/filer/77/8b/778bb007-831c-4c81-a475-05487cd7b53b/adult-brown-labrador-retriever-1010121_3.jpg'), fit: BoxFit.cover),
+                image: NetworkImage(
+                    'https://thumbs-prod.si-cdn.com/omtxDUbVWafbhOTsDFJnOW3gFiw=/fit-in/1600x0/filters:focal(2135x711:2136x712)/https://public-media.si-cdn.com/filer/77/8b/778bb007-831c-4c81-a475-05487cd7b53b/adult-brown-labrador-retriever-1010121_3.jpg'),
+                fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -360,7 +377,12 @@ class PetAdoption3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2], hasNotBeenRescued: false,),));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => TimelineUpdatePage(
+            postModel: listOfPosts[2],
+            hasNotBeenRescued: false,
+          ),
+        ));
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -368,7 +390,9 @@ class PetAdoption3 extends StatelessWidget {
         height: 280,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage('https://cdn.kinsights.com/cache/9f/52/9f52c9c87d064eefaa07cead85eb82fe.jpg'), fit: BoxFit.cover),
+                image: NetworkImage(
+                    'https://cdn.kinsights.com/cache/9f/52/9f52c9c87d064eefaa07cead85eb82fe.jpg'),
+                fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -459,97 +483,102 @@ class PetAdoption4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2], hasNotBeenRescued: false,) ));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TimelineUpdatePage(
+                  postModel: listOfPosts[2],
+                  hasNotBeenRescued: false,
+                )));
       },
-      child:
-          Container(
-            //alignment: Alignment.topLeft,
-            width: MediaQuery.of(context).size.width * 0.45,
-            height: 280,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage('https://i.pinimg.com/originals/9e/e1/15/9ee1158724d8580cb47e2e9d44b96d41.jpg'), fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+      child: Container(
+        //alignment: Alignment.topLeft,
+        width: MediaQuery.of(context).size.width * 0.45,
+        height: 280,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                    'https://i.pinimg.com/originals/9e/e1/15/9ee1158724d8580cb47e2e9d44b96d41.jpg'),
+                fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(10.0)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Bun",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Cái",
-                        style: TextStyle(color: Colors.white, fontSize: 13),
-                      )
-                    ],
+                  Text(
+                    "Bun",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
-
                   SizedBox(
-                    height: 5,
+                    width: 10,
                   ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Giống mèo Anh lông ngắn",
-                      style: TextStyle(fontSize: 12, color: Colors.white),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "1 năm 5 tháng tuổi",
-                      style: TextStyle(fontSize: 12, color: Colors.white),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ),
-                  // SizedBox(height: 5,),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Được trung tâm nuôi 7 tháng.",
-                      style: TextStyle(fontSize: 12, color: Colors.white),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          "TP.HCM",
-                          style: TextStyle(fontSize: 12, color: Colors.white),
-                        ),
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                          size: 12,
-                        )
-                      ],
-                    ),
+                  Text(
+                    "Cái",
+                    style: TextStyle(color: Colors.white, fontSize: 13),
                   )
                 ],
               ),
-            ),
+
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Giống mèo Anh lông ngắn",
+                  style: TextStyle(fontSize: 12, color: Colors.white),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "1 năm 5 tháng tuổi",
+                  style: TextStyle(fontSize: 12, color: Colors.white),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ),
+              // SizedBox(height: 5,),
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Được trung tâm nuôi 7 tháng.",
+                  style: TextStyle(fontSize: 12, color: Colors.white),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      "TP.HCM",
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.white,
+                      size: 12,
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
+        ),
+      ),
     );
   }
 }
@@ -558,116 +587,115 @@ class PetAdoptionPending extends StatelessWidget {
   final String urlImage;
 
   const PetAdoptionPending({Key key, this.urlImage}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: listOfPosts[4], defaultTabIndex: 1,),));
-      },
-      child:
-          Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    //alignment: Alignment.topLeft,
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    height: 280,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(urlImage), fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetailCard(
+              postModel: listOfPosts[4],
+              defaultTabIndex: 1,
+            ),
+          ));
+        },
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  //alignment: Alignment.topLeft,
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  height: 280,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(urlImage), fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Bun",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Cái",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 13),
+                            )
+                          ],
+                        ),
+
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Giống mèo Anh lông ngắn",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "1 năm 5 tháng tuổi",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+                        // SizedBox(height: 5,),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Được trung tâm nuôi 7 tháng.",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Text(
-                                "Bun",
+                                "TP.HCM",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
+                                    fontSize: 12, color: Colors.white),
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Cái",
-                                style: TextStyle(color: Colors.white, fontSize: 13),
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.white,
+                                size: 12,
                               )
                             ],
                           ),
-
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Giống mèo Anh lông ngắn",
-                              style: TextStyle(fontSize: 12, color: Colors.white),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "1 năm 5 tháng tuổi",
-                              style: TextStyle(fontSize: 12, color: Colors.white),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                          ),
-                          // SizedBox(height: 5,),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Được trung tâm nuôi 7 tháng.",
-                              style: TextStyle(fontSize: 12, color: Colors.white),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                          ),
-
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Text(
-                                  "TP.HCM",
-                                  style: TextStyle(fontSize: 12, color: Colors.white),
-                                ),
-                                Icon(
-                                  Icons.location_on,
-                                  color: Colors.white,
-                                  size: 12,
-                                )
-                              ],
-                            ),
-                          ),
-
-
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ],
-          )
-
-
-    );
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }
-
-
-

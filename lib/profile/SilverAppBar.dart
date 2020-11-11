@@ -17,9 +17,9 @@ import 'package:petrescue/widgets/progress.dart';
 class ProfileTab extends StatefulWidget {
   final Post postModel;
   final bool isViewMode;
+  final int defaultIndex;
 
-
-  const ProfileTab({Key key, this.postModel, this.isViewMode, }) : super(key: key);
+  const ProfileTab({Key key, this.postModel, this.isViewMode, this.defaultIndex,  }) : super(key: key);
 
   @override
   _ProfileTabState createState() => _ProfileTabState();
@@ -184,7 +184,7 @@ class _ProfileTabState extends State<ProfileTab>
       ),
       key: _scaffoldKey,
       body: DefaultTabController(
-        //initialIndex: selectedPage,
+        initialIndex: widget.defaultIndex,
         length: getNumberOfTab(),
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

@@ -89,7 +89,7 @@ class _CentersScreenState extends State<CentersScreen> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'FPT Pet Center details sfsfsfsdfsdfdsfsdfsdfsdf',
+                                userList[5].phoneNumber   ,
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class _CentersScreenState extends State<CentersScreen> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'FPT Pet Center details sfsfsfsdfsdfdsfsdfsdfsdf',
+                                userList[4].phoneNumber,
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
@@ -206,7 +206,7 @@ class _CentersScreenState extends State<CentersScreen> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'FPT Pet Center details sfsfsfsdfsdfdsfsdfsdfsdf',
+                                userList[3].phoneNumber ,
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,

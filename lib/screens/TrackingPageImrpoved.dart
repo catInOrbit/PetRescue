@@ -85,7 +85,7 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Yêu cầu đã được chấp nhận"),
+        title: Text("Bạn đã chấp nhận yêu cầu giải cứu"),
         backgroundColor: PetRescueTheme.lightPink,
       ),
       body: IntroductionScreen(
@@ -94,7 +94,7 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, defaultTabIndex: widget.postModel.postType == PostType.RequestPost ? 2 : 1, isEditing: false,),));
         },
         onSkip: () {
-          Navigator.of(context).pop();
+          showAlertDialog(context);
         },
         showSkipButton: true,
         skip:  Text("Hủy", style: TextStyle(color: Colors.black, fontSize: 20),),
@@ -111,4 +111,39 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("Thoát"),
+    onPressed:  () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Hủy việc cứu hộ"),
+    onPressed:  () {
+      Navigator.popUntil(context, ModalRoute.withName('/RequestPostPage'));
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Hủy chấp nhận cứu hộ"),
+    content: Text("Bạn muốn hủy việc cứu hộ cho đơn này ? "),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

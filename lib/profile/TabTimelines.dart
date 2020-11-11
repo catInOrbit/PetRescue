@@ -280,7 +280,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Cam",
+                          "Nâu",
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: "Roboto",
@@ -295,7 +295,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "Giống chó Lạp xưởng - Xúc xích",
+                            "Chó tha mồi Labrador",
                             style: TextStyle(
                               fontSize: 15,
                               fontFamily: "Roboto",
@@ -306,7 +306,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                             width: 5,
                           ),
                           Image.asset(
-                            "lib/assets/female_gender_icon.jpeg",
+                            "lib/assets/male_gender_icon.jpeg",
                             height: 15,
                           )
                         ],
@@ -340,16 +340,13 @@ class _PageTimelinesState extends State<PageTimelines> {
                           ),
                           Expanded(
                             child: Container(
-                              // height: 100,
-                              // width: 245,
-                              // color: Colors.red,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      "Nguyễn  Van X",
+                                      widget.postModel.adoptUserRequests[1].fullName,
                                       style: TextStyle(
                                         color: Color(0xff4b8669),
                                         fontSize: 18,

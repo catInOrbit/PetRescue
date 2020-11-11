@@ -48,6 +48,7 @@ class _PostHomeState extends State<PostHome> {
     ProfileTab(
       postModel: currentUser.isVerifyRescueCenter ? listOfPosts[4] : listOfPosts[1] ,
       isViewMode: false,
+      defaultIndex: 1,
     ),
   ];
 

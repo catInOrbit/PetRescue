@@ -145,6 +145,7 @@ class UserInfoRibon extends StatelessWidget {
         builder: (context) => ProfileTab(
           postModel: listOfPosts[4],
           isViewMode: true,
+
         ),
       )),
       child: Container(
@@ -1932,7 +1933,7 @@ List<Widget> buildAdopterRow(Post postModel, BuildContext context) {
                 caption: 'Từ chối',
                 color: Colors.red,
                 icon: Icons.delete,
-                //onTap: () => _showSnackBar('Delete'),
+                onTap: () => showTuChoiDialog(context),
               ),
               IconSlideAction(
                 caption: 'Liên hệ',
@@ -1954,20 +1955,26 @@ showAlertDialog(BuildContext context, Post postModel) {
     },
   );
   Widget continueButton = FlatButton(
-    child: Text("Có"),
+    child: Text("Chấp nhận"),
     onPressed:  () {
-      var postEvent = PostEvent();
-      postEvent.adopted = true;
-      postEvent.affectedPost = postModel;
-      bloc.inputSink.add(postEvent);
-      Navigator.of(context).pop();
+      // var postEvent = PostEvent();
+      // postEvent.adopted = true;
+      // postEvent.affectedPost = postModel;
+      // bloc.inputSink.add(postEvent);
+      // Navigator.of(context).pop();
+
+      Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileTab(
+        postModel: currentUser.isVerifyRescueCenter ? listOfPosts[4] : listOfPosts[1] ,
+        isViewMode: false,
+        defaultIndex: 3 ,
+      )),);
     },
   );
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Chấp nhận yêu cầu"),
-    content: Text("Bạn có muốn chấp nhận yêu cầu nhận nuôi "),
+    content: Text("Chấp nhận yêu cầu nhận nuôi của người này "),
     actions: [
       cancelButton,
       continueButton,
@@ -1975,6 +1982,41 @@ showAlertDialog(BuildContext context, Post postModel) {
   );
 
   // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+showTuChoiDialog(BuildContext context){
+
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("Hủy"),
+    onPressed:  () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Từ chối"),
+    onPressed:  () {
+
+      Navigator.of(context).pop();
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Từ chối yêu cầu"),
+    content: Text("Từ chối yêu cầu nhận nuôi của người này?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
   showDialog(
     context: context,
     builder: (BuildContext context) {
