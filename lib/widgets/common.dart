@@ -226,12 +226,12 @@ class UserInfoRibonSmall extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundImage: NetworkImage(postModel.currentUser.imageURL),
+                backgroundImage: NetworkImage(listOfPosts[0].currentUser.imageURL),
               ),
               SizedBox(width: 12),
               Flexible(
                 child: Text(
-                  postModel.currentUser.fullName,
+                  listOfPosts[0].currentUser.fullName,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -359,7 +359,29 @@ class ActionKeyword extends StatelessWidget {
             width: 130,
             child: InkWell(
               onTap: () {
-                showAlertDialog(context);
+                postModel.acceptedRequestUser = currentUser;
+
+                PostEvent postEvent = PostEvent();
+                postEvent.affectedPost = postModel;
+                postEvent.acceptedRequest = true;
+
+                bloc.inputSink.add(postEvent);
+                // SnackBar snackBar = acceptRequest(context);
+                //
+                // Scaffold.of(context).showSnackBar(snackBar);
+                Navigator.of(context).pop();
+
+                if (!isAdoptPost)
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TrackingPageImproved(
+                        postModel: postModel,
+                      )));
+                else
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AdoptProcessIntroduction(
+                        postModel: postModel,
+                      )));
+                // showAlertDialog(context);
               },
               child: Container(
                 height: 45,
@@ -985,6 +1007,10 @@ class _HomePagePostState extends State<HomePagePost> {
         colorScheme = PetRescueTheme.rescuedPost;
         label = "Đã an toàn";
         break;
+      case PostType.Adopted:
+        colorScheme = PetRescueTheme.rescuedPost;
+        label = "Đã cho nhận nuôi";
+        break;
     }
 
     return Row(
@@ -996,7 +1022,7 @@ class _HomePagePostState extends State<HomePagePost> {
               color: colorScheme[PetRescueThemeColorType.KeyWord.index],
               fontSize: 18),
         ),
-        if (postModel.postType == PostType.FinishedPost)
+        if (postModel.postType == PostType.FinishedPost )
           Icon(
             Icons.verified_user,
             size: 30,
@@ -1898,7 +1924,9 @@ List<Widget> buildAdopterRow(Post postModel, BuildContext context) {
                 caption: 'Chấp thuận',
                 color: PetRescueTheme.darkGreen,
                 icon: Icons.check_circle,
-                //onTap: () => _showSnackBar('Delete'),
+                onTap: () {
+                    showAlertDialog(context, postModel);
+                },
               ),
               IconSlideAction(
                 caption: 'Từ chối',
@@ -1915,4 +1943,42 @@ List<Widget> buildAdopterRow(Post postModel, BuildContext context) {
             ]),
       )
       .toList();
+}
+showAlertDialog(BuildContext context, Post postModel) {
+
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("Không"),
+    onPressed:  () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Có"),
+    onPressed:  () {
+      var postEvent = PostEvent();
+      postEvent.adopted = true;
+      postEvent.affectedPost = postModel;
+      bloc.inputSink.add(postEvent);
+      Navigator.of(context).pop();
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Chấp nhận yêu cầu"),
+    content: Text("Bạn có muốn chấp nhận yêu cầu nhận nuôi "),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

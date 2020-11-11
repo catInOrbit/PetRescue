@@ -5,6 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 
+import '../petrescue_theme.dart';
+
 class TrackingPageImproved extends StatefulWidget {
   final Post postModel;
 
@@ -46,7 +48,7 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
       bodyWidget:  Container(
         height: 200,
         decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/assets/tracking_page.png"), fit: BoxFit.cover)),
-         child: Text("Di chuyển đến địa điểm của thú", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
+         child: Text("Đường đi đến địa điểm cần cứu hộ", style: TextStyle(fontSize: 24, fontFamily: "Lato"), ),
       ),
 
     ),
@@ -81,26 +83,32 @@ class _TrackingPageImprovedState extends State<TrackingPageImproved> {
   ];
   @override
   Widget build(BuildContext context) {
-    return IntroductionScreen(
-      pages: listPagesViewModel,
-      onDone: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, defaultTabIndex: widget.postModel.postType == PostType.RequestPost ? 2 : 1, isEditing: false,),));
-      },
-      onSkip: () {
-        // You can also override onSkip callback
-      },
-      showSkipButton: true,
-      skip: const Icon(Icons.skip_next),
-      next: const Icon(Icons.arrow_forward_ios),
-      done: const Text("Xong", style: TextStyle(fontWeight: FontWeight.w600)),
-      dotsDecorator: DotsDecorator(
-          size: const Size.square(10.0),
-          activeSize: const Size(20.0, 10.0),
-          activeColor: Colors.deepOrangeAccent,
-          color: Colors.black26,
-          spacing: const EdgeInsets.symmetric(horizontal: 3.0),
-          activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0))),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Yêu cầu đã được chấp nhận"),
+        backgroundColor: PetRescueTheme.lightPink,
+      ),
+      body: IntroductionScreen(
+        pages: listPagesViewModel,
+        onDone: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, defaultTabIndex: widget.postModel.postType == PostType.RequestPost ? 2 : 1, isEditing: false,),));
+        },
+        onSkip: () {
+          Navigator.of(context).pop();
+        },
+        showSkipButton: true,
+        skip:  Text("Hủy", style: TextStyle(color: Colors.black, fontSize: 20),),
+        next: const Icon(Icons.arrow_forward_ios),
+        done: const Text("Đi đến chi tiết", style: TextStyle(fontWeight: FontWeight.w600)),
+        dotsDecorator: DotsDecorator(
+            size: const Size.square(10.0),
+            activeSize: const Size(20.0, 10.0),
+            activeColor: Colors.deepOrangeAccent,
+            color: Colors.black26,
+            spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0))),
+      ),
     );
   }
 }

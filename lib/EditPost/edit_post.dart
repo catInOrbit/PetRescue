@@ -80,11 +80,7 @@ class _EditPostState extends State<EditPost> {
               child: GestureDetector(
                 child: globals.PostButton(),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PostSecond(),
-                      ));
+                  Navigator.pop(context);
                 },
               ),
             ),

@@ -36,7 +36,6 @@ class PostBloc {
 
       else if(_event.acceptedRequest)
         {
-          print("why the fuck are you null: " + _event.affectedPost.toString());
           listOfPosts.forEach((element) {
             if(element.id == _event.affectedPost.id)
               {
@@ -45,6 +44,18 @@ class PostBloc {
                 element.currentUser = currentUser;
                 return;
               }
+          });
+        }
+
+      else if(_event.adopted)
+        {
+          listOfPosts.forEach((element) {
+            if(element.id == _event.affectedPost.id)
+            {
+              element.postType = PostType.Adopted;
+              element.currentUser = currentUser;
+              return;
+            }
           });
         }
 

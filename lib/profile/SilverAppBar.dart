@@ -52,7 +52,7 @@ class _ProfileTabState extends State<ProfileTab>
   int getNumberOfTab()
   {
      if(currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
-       return 3;
+       return 4;
      return 2;
   }
 

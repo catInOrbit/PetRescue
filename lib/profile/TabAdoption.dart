@@ -45,9 +45,13 @@ class _PageAdoptionState extends State<PageAdoption> {
                       child: Text( currentUser.isVerifyRescueCenter == true ? "Danh sách chờ xác nhận nhận nuôi" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                     )),
                 SizedBox(height: 10,),
+          currentUser.isVerifyRescueCenter
+              ?
                 Container(
-                  height: 350,
-                  child: ListView.builder(
+                  height: 300,
+
+                  child:
+                  ListView.builder(
                     itemCount: awaitConfirmationPost.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -60,50 +64,54 @@ class _PageAdoptionState extends State<PageAdoption> {
                                 awaitConfirmationPost[index]
                               ],
                             ),
-                            SizedBox(height: 10,),
+                            // SizedBox(height: 10,),
 
-                            if(currentUser.isVerifyRescueCenter)
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.red
-                                    ),
-
-                                    child: Center(child:
-                                    Text("Hủy", style: TextStyle(color: Colors.white, fontSize: 18),)
-                                    ),
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Container(
-                                    width: 115,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: PetRescueTheme.darkGreen
-                                    ),
-
-                                    child: Center(child:
-                                    Text("Chấp nhận", style: TextStyle(color: Colors.white, fontSize: 18),)
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
+                            // if(currentUser.isVerifyRescueCenter)
+                            // Padding(
+                            //   padding: const EdgeInsets.only(left: 20),
+                            //   child: Row(
+                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       Container(
+                            //         width: 60,
+                            //         height: 40,
+                            //         decoration: BoxDecoration(
+                            //             borderRadius: BorderRadius.circular(20),
+                            //             color: Colors.red
+                            //         ),
+                            //
+                            //         child: Center(child:
+                            //         Text("Hủy", style: TextStyle(color: Colors.white, fontSize: 18),)
+                            //         ),
+                            //       ),
+                            //       SizedBox(width: 10,),
+                            //       Container(
+                            //         width: 115,
+                            //         height: 40,
+                            //         decoration: BoxDecoration(
+                            //             borderRadius: BorderRadius.circular(20),
+                            //             color: PetRescueTheme.darkGreen
+                            //         ),
+                            //
+                            //         child: Center(child:
+                            //         Text("Chấp nhận", style: TextStyle(color: Colors.white, fontSize: 18),)
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // )
                           ],
                         );
-                  },),
-                ),
+                  },)
+
+                )
+
+              :
+          Container()
               ],
             ),
 
-            SizedBox(height: 30,),
+            // SizedBox(height: 30,),
 
             Column(
               children: [
@@ -111,7 +119,7 @@ class _PageAdoptionState extends State<PageAdoption> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Thú bạn đang nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Thú đang nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                     )),
                 SizedBox(height: 10,),
                 Row(
@@ -253,8 +261,7 @@ class PetAdoption2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: listOfPosts[2], defaultTabIndex: 1,),));
-
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2], hasNotBeenRescued: false,) ));
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -353,7 +360,7 @@ class PetAdoption3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2],),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2], hasNotBeenRescued: false,),));
       },
       child: Container(
         //alignment: Alignment.topLeft,
@@ -452,7 +459,7 @@ class PetAdoption4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2],),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[2], hasNotBeenRescued: false,) ));
       },
       child:
           Container(
@@ -555,7 +562,7 @@ class PetAdoptionPending extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: listOfPosts[4],),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: listOfPosts[4], defaultTabIndex: 1,),));
       },
       child:
           Stack(
@@ -654,8 +661,6 @@ class PetAdoptionPending extends StatelessWidget {
                   ),
                 ],
               ),
-              if(currentUser.isVerifyRescueCenter)
-              UserInfoRibonSmall(postModel: listOfPosts[5])
             ],
           )
 

@@ -19,8 +19,9 @@ import 'package:petrescue/widgets/postFeed/request_page.dart';
 
 class PostHome extends StatefulWidget {
   final List<Post> listOfPost;
+  final int defaultIndex;
 
-  const PostHome({Key key, this.listOfPost}) : super(key: key);
+  const PostHome({Key key, this.listOfPost, this.defaultIndex}) : super(key: key);
   @override
   _PostHomeState createState() => _PostHomeState();
 }
@@ -28,6 +29,11 @@ class PostHome extends StatefulWidget {
 class _PostHomeState extends State<PostHome> {
   int _currentIndex = 0;
 
+  @override
+  void initState() {
+    _currentIndex = widget.defaultIndex;
+    super.initState();
+  }
   final List<Widget> _pages = [
     RequestPostPage(
       listOfPost: listOfPosts,

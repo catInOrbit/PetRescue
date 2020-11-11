@@ -6,7 +6,9 @@ import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
+import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/list_adoption_request.dart';
+import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -33,7 +35,7 @@ class DetailCard extends StatelessWidget {
         {
           tabs = [
             Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
-            Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
+            Tab(icon: Icon(Icons.settings_overscan), text: "Tổng quan"),
             Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật")
           ];
         }
@@ -396,7 +398,7 @@ class DetailCard extends StatelessWidget {
             ),
           ),
         ),
-        TimelineUpdatePage(postModel: postModel,)
+        TimelineUpdatePage(postModel: postModel, hasNotBeenRescued: true,)
       ];
     }
 
@@ -789,6 +791,17 @@ class DetailCard extends StatelessWidget {
             ),
             title: Text("Chi tiết", style: TextStyle(color: Colors.black),),
             backgroundColor: Colors.white,
+            actions: [
+               InkWell(
+                 onTap: (){
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostHome(listOfPost: listOfPosts, defaultIndex: 2 ,),));
+                 },
+                 child: Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Center(child: Text("Đóng", style: TextStyle(color: Colors.black, fontSize: 20),)),
+                 ),
+               )
+            ],
           ),
           body:
           TabBarView(

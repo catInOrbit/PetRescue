@@ -7,7 +7,7 @@ import 'package:petrescue/screens/timeline.dart';
 import 'package:petrescue/timeline.dart';
 import 'package:petrescue/widgets/timeline_text.dart';
 
-enum PostType { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost, InRescuePost, FinishedPost}
+enum PostType { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost, InRescuePost, FinishedPost, Adopted}
 enum Category { InfoPost, UpdatedPost, CriticalPost, RequestPost, AdoptPost, InRescuePost, FinishedPost}
 
 class Post {

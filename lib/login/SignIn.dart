@@ -128,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                                   builder: (context) =>
                                       PostHome(
                                         listOfPost: listOfPosts,
+                                        defaultIndex: 0,
                                       )),
                             );
                           } else if(myController.text == USER) {
@@ -138,6 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                                   builder: (context) =>
                                       PostHome(
                                         listOfPost: listOfPosts,
+                                        defaultIndex: 0,
                                       )),
                             );
                           }

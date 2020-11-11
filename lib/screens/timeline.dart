@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/widgets/postFeed/post_empty.dart';
 import 'package:petrescue/bloc/app_general/global.dart' as globals;
 
 class TimelineUpdatePage extends StatefulWidget {
   final Post postModel;
+  final bool hasNotBeenRescued;
 
-  const TimelineUpdatePage({Key key, this.postModel}) : super(key: key);
+  const TimelineUpdatePage({Key key, this.postModel, this.hasNotBeenRescued}) : super(key: key);
   @override
   _TimelineUpdatePageState createState() => _TimelineUpdatePageState();
 }
@@ -38,9 +40,19 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:
                         [
-                          CircleAvatar(backgroundImage: NetworkImage(widget.postModel.currentUser.imageURL), radius: 25,),
+                          CircleAvatar(backgroundImage:
+                          (currentUser.isVerifyRescueCenter) ?
+                          NetworkImage(listOfPosts[3].currentUser.imageURL)
+                                :
+                          NetworkImage(widget.postModel.currentUser.imageURL)
+                            ,
+                            radius: 25,),
                           Text(
-                            widget.postModel.currentUser.fullName,
+                            currentUser.isVerifyRescueCenter && widget.postModel.postType == PostType.RequestPost
+                                ?
+                            "Trung tâm cứu hộ SAR":
+                            widget.postModel.currentUser.fullName
+                            ,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -106,7 +118,7 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                           offset: Offset(0, 4),
                         ),
                       ],
-                      color: currentUser.isVerifyRescueCenter ? Color(0xffff8068) : PetRescueTheme.darkGreen,
+                      color: widget.postModel.postType == PostType.RequestPost && widget.hasNotBeenRescued ? Color(0xffff8068) : PetRescueTheme.darkGreen,
                     ),
                     padding: const EdgeInsets.only(
                       left: 19,
@@ -168,7 +180,7 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                         ),
                         SizedBox(height: 11.17),
 
-                        if(currentUser.isVerifyRescueCenter)
+                        if(currentUser.isVerifyRescueCenter || widget.postModel.postType == PostType.RequestPost)
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,7 +234,7 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                     ),
                   ),
                   SizedBox(height: 19.50),
-                  PostEmpty(),
+                  PostEmpty(postModel: widget.postModel,),
                   SizedBox(height: 19.50),
 
                 ],
