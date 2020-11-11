@@ -75,21 +75,20 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
           onPressed: () => Navigator.pop(context, false),
         ),
         actions: [
-          InkWell(
-            onTap: (){
-
-            },
-            child: Row(
-              children: [
-                Icon(Icons.cancel, color: Colors.black,),
-                SizedBox(width: 5,),
-                Text("Hủy", style: TextStyle(
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Center(
+              child: InkWell(
+                onTap: (){
+                  showAlertDialog(context);
+                },
+                child: Text("Hủy", style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
 
                 ),)
-              ],
-            )
+              ),
+            ),
           ),
         ],
       ),
@@ -116,4 +115,39 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("Hủy"),
+    onPressed:  () {
+
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Tiếp tục gửi yêu cầu"),
+    onPressed:  () {
+      Navigator.pop(context, false);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Hủy yêu cầu"),
+    content: Text("Bạn có đồng ý hủy yêu cầu nhận nuôi chó mèo không ? "),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

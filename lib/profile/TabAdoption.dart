@@ -107,7 +107,7 @@ class _PageAdoptionState extends State<PageAdoption> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Thú bạn đã nhận", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                      child: Text( currentUser.isVerifyRescueCenter == true ? "Tìm nhà cho các bé:" :  "Thú bạn đang nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                     )),
                 SizedBox(height: 10,),
                 Row(

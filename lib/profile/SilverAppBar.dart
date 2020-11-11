@@ -326,25 +326,7 @@ class _ProfileTabState extends State<ProfileTab>
                                 SizedBox(
                                   height: 5,
                                 ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.center,
-                                //   children: <Widget>[
-                                //     Icon(
-                                //       Icons.location_on,
-                                //       size: 13,
-                                //     ),
-                                //     Text("123 Đường D1 Khu Công nghệ cao,",
-                                //         style: TextStyle(fontSize: 13)),
-                                //   ],
-                                // ),
-                                // SizedBox(
-                                //   height: 5,
-                                // ),
-                                // Text(" P.Long Thạnh Mỹ, Q. 9, TP.HCM ",
-                                //     style: TextStyle(fontSize: 13)),
-                                // SizedBox(
-                                //   height: 5,
-                                // ),
+
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
@@ -359,20 +341,7 @@ class _ProfileTabState extends State<ProfileTab>
                                 SizedBox(
                                   height: 5,
                                 ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.center,
-                                //   children: [
-                                //     Icon(
-                                //       Icons.public,
-                                //       size: 13,
-                                //     ),
-                                //     Text("trungtamcuuhochomeo.com.vn",
-                                //         style: TextStyle(fontSize: 13)),
-                                //   ],
-                                // ),
-                                // SizedBox(
-                                //   height: 5,
-                                // ),
+
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.push(

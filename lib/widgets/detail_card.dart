@@ -26,7 +26,7 @@ class DetailCard extends StatelessWidget {
       if(postModel.postType == PostType.RequestPost)
         {
           tabs = [
-            Tab(icon: Icon(Icons.directions), text: "Chỉ đường đến trạm",),
+            Tab(icon: Icon(Icons.directions), text: "Chỉ đường",),
             Tab(icon: Icon(Icons.settings_overscan), text: "Chi tiết"),
             Tab(icon: Icon(MaterialIcons.timeline), text: "Cập nhật")
           ];
@@ -766,8 +766,8 @@ class DetailCard extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
-              labelColor: PetRescueTheme.lightPink,
-              indicatorColor: PetRescueTheme.lightPink,
+              labelColor: postModel.postType == PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen ,
+              indicatorColor: postModel.postType == PostType.RequestPost ? PetRescueTheme.lightPink : PetRescueTheme.darkGreen,
 
               tabs: buildTabs()
             ),
@@ -939,7 +939,7 @@ class StoryDetail extends StatelessWidget {
         SizedBox(height: 20),
 
         Text(
-          "Tinh trang",
+          "Tinh trạng",
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -1165,3 +1165,4 @@ class TimelineDetail extends StatelessWidget {
     );
   }
 }
+
