@@ -573,14 +573,13 @@ class _PostCardState extends State<PostCard>
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              UserProfileScreen(
-                                            postModel: listOfPosts[0],
-                                          ),
-                                        ));
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => ProfileTab(
+                                        postModel: listOfPosts[1],
+                                        isViewMode: true,
+                                        defaultIndex: 1,
+                                      ),
+                                    ));
                                   },
                                   child: Container(
                                     height: 45,
