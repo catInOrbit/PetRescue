@@ -4,6 +4,8 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
+import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 
 class AdoptProcessIntroduction extends StatefulWidget {
@@ -124,7 +126,8 @@ showAlertDialog(BuildContext context, Post postModel) {
     child: Text("Hủy"),
     onPressed:  () {
       //Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: postModel, defaultTabIndex: 1,),));
-      Navigator.pop(context, false);
+      //Navigator.pop(context, false);
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostHome(listOfPost: listOfPosts, defaultIndex: 1 ,),));
     },
   );
   Widget continueButton = FlatButton(

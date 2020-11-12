@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:petrescue/models/post_model.dart';
+import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/screens/post_home.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 
 import '../petrescue_theme.dart';
@@ -125,7 +127,8 @@ showAlertDialog(BuildContext context) {
   Widget continueButton = FlatButton(
     child: Text("Hủy việc cứu hộ"),
     onPressed:  () {
-      Navigator.popUntil(context, ModalRoute.withName('/RequestPostPage'));
+     //
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostHome(listOfPost: listOfPosts, defaultIndex: 0 ,),));
     },
   );
 

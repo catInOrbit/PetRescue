@@ -1967,7 +1967,9 @@ showAlertDialog(BuildContext context, Post postModel) {
         postModel: currentUser.isVerifyRescueCenter ? listOfPosts[4] : listOfPosts[1] ,
         isViewMode: false,
         defaultIndex: 3 ,
-      )),);
+      )),).then((result) {
+        Navigator.of(context).pop();
+      });
     },
   );
 
