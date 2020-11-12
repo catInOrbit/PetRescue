@@ -7,8 +7,10 @@ import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/bloc/post/post/post_bloc.dart';
 import 'package:petrescue/bloc/post/post/post_event.dart';
 import 'package:petrescue/main.dart';
+import 'package:petrescue/models/message_model.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/models/user.dart';
+import 'package:petrescue/notification/chat_screen.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/SilverAppBar.dart';
 import 'package:petrescue/repository/data/post_data.dart';
@@ -89,6 +91,9 @@ class CategoryTag extends StatelessWidget {
       case PostType.AdoptPost:
         colorScheme = PetRescueTheme.statusTagsAdoptPostTheme;
         break;
+      case PostType.Adopted:
+        colorScheme = PetRescueTheme.statusTagsAdoptPostTheme;
+        break;
 
       default:
         colorScheme = PetRescueTheme.statusTagsRescueTheme;
@@ -137,7 +142,7 @@ class UserInfoRibon extends StatelessWidget {
       if (postModel.postType == PostType.AdoptPost)
         colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
       else
-        colorScheme = PetRescueTheme.userRibbonDetailRescuePostTheme;
+        colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
     }
 
     return InkWell(
@@ -1795,7 +1800,7 @@ class CustomAvatars extends StatelessWidget {
 }
 
 Widget showResponsibleUserRibon(Post postModel) {
-  if (postModel.postType == PostType.AdoptPost)
+  if (postModel.postType == PostType.AdoptPost || postModel.postType == PostType.Adopted)
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       // child: CircleAvatar(
@@ -1939,7 +1944,12 @@ List<Widget> buildAdopterRow(Post postModel, BuildContext context) {
                 caption: 'Liên hệ',
                 color: Colors.black26,
                 icon: Icons.message,
-                //onTap: () => _showSnackBar('Delete'),
+                // onTap: () =>     Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (_) => ChatScreen(
+                //           user: chats[0].sender,
+                //         )))
               ),
             ]),
       )
@@ -1966,7 +1976,7 @@ showAlertDialog(BuildContext context, Post postModel) {
       Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileTab(
         postModel: currentUser.isVerifyRescueCenter ? listOfPosts[4] : listOfPosts[1] ,
         isViewMode: false,
-        defaultIndex: 3 ,
+        defaultIndex: 2 ,
       )),).then((result) {
         Navigator.of(context).pop();
       });

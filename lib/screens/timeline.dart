@@ -41,17 +41,11 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                         children:
                         [
                           CircleAvatar(backgroundImage:
-                          (currentUser.isVerifyRescueCenter) ?
                           NetworkImage(listOfPosts[3].currentUser.imageURL)
-                                :
-                          NetworkImage(widget.postModel.currentUser.imageURL)
                             ,
                             radius: 25,),
                           Text(
-                            currentUser.isVerifyRescueCenter
-                                ?
-                            "Trung tâm cứu hộ SAR":
-                            widget.postModel.currentUser.fullName
+                            "Trung tâm cứu hộ SAR"
                             ,
                             style: TextStyle(
                               color: Colors.black,

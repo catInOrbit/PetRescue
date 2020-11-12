@@ -33,7 +33,7 @@ class PostEmpty extends StatelessWidget
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image:
-                          NetworkImage("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cravenherald.co.uk%2Fnews%2F10757397.injured-dog-rescued-from-buckden-pike-showing-signs-of-recovery%2F&psig=AOvVaw31VJt-aoNSGQKwpxXsjrD8&ust=1605238058942000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjRxv2H_OwCFQAAAAAdAAAAABB8")
+                          AssetImage("lib/assets/injured_pet.jpg")
                           ,
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.only(

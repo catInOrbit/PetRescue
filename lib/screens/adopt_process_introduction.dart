@@ -97,7 +97,7 @@ class _AdoptProcessIntroductionState extends State<AdoptProcessIntroduction> {
       body: IntroductionScreen(
         pages: listPagesViewModel,
         onDone: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: widget.postModel, defaultTabIndex: widget.postModel.postType == PostType.RequestPost ? 2 : 1, isEditing: false,),));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCard(postModel: listOfPosts[4], defaultTabIndex: 1, isEditing: false,),));
         },
         onSkip: () {
           // You can also override onSkip callback

@@ -60,7 +60,7 @@ class _TimelineUpdatePageState extends State<TimelineUpdateUserPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                          image: AssetImage("lib/assets/Cat3.png"),
+                          image: AssetImage("lib/assets/dog.jpg"),
                           fit: BoxFit.cover
                       ),
                       boxShadow: [

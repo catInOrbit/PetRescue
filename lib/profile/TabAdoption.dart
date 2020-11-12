@@ -95,16 +95,10 @@ class PetAdoptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (currentUser.isVerifyRescueCenter)
+
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => TimelineUpdateUserPage(
               postModel: listOfPosts[3],
-            ),
-          ));
-        else
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TimelineUpdatePage(
-              postModel: listOfPosts[0],
             ),
           ));
       },

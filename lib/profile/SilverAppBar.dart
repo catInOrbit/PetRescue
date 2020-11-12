@@ -372,7 +372,7 @@ class _ProfileTabState extends State<ProfileTab>
                                 Text(
                                   widget.postModel.currentUser.fullName,
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
