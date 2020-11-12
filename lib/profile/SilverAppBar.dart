@@ -52,7 +52,7 @@ class _ProfileTabState extends State<ProfileTab>
   int getNumberOfTab()
   {
      if(currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
-       return 4;
+       return 3;
      return 2;
   }
 
@@ -91,13 +91,13 @@ class _ProfileTabState extends State<ProfileTab>
       return lists;
   }
 
-  TabBarView buildTabBarViews()
+  TabBarView buildTabBarViews(bool isViewMode)
   {
     if(currentUser.isVerifyRescueCenter == true && !widget.isViewMode)
       return TabBarView(
         children: <Widget>[
           PageRescued(postModel: widget.postModel, isViewMode: true,),
-          PageAdoption(),
+          PageAdoption(isViewMode: widget.isViewMode,),
           PageTimelines(postModel: widget.postModel,)
         ],
         controller: tabController,
@@ -240,14 +240,14 @@ class _ProfileTabState extends State<ProfileTab>
                               children: <Widget>[
                                 CircleAvatar(
                                   backgroundImage:
-                                      NetworkImage(currentUser.imageURL),
+                                      NetworkImage(widget.postModel.currentUser.imageURL),
                                   radius: 40,
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Trung tâm cứu hộ chó mèo",
+                                  widget.postModel.currentUser.fullName,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
@@ -461,7 +461,7 @@ class _ProfileTabState extends State<ProfileTab>
               ),
             ];
           },
-          body: buildTabBarViews()
+          body: buildTabBarViews(widget.isViewMode)
         ),
       ),
     );

@@ -6,10 +6,14 @@ import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/timeline.dart';
+import 'package:petrescue/screens/timeline_user_tobe_removed.dart';
 import 'package:petrescue/widgets/common.dart';
 import 'package:petrescue/widgets/detail_card.dart';
 
 class PageAdoption extends StatefulWidget {
+  final bool isViewMode;
+
+  const PageAdoption({Key key, this.isViewMode}) : super(key: key);
   @override
   _PageAdoptionState createState() => _PageAdoptionState();
 }
@@ -34,78 +38,7 @@ class _PageAdoptionState extends State<PageAdoption> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            // Column(
-            //   children: [
-            //     // Align(
-            //     //     alignment: Alignment.centerLeft,
-            //     //     child: Padding(
-            //     //       padding: const EdgeInsets.only(left: 8.0),
-            //     //       child: Text( currentUser.isVerifyRescueCenter == true ? "Danh sách chờ xác nhận nhận nuôi" :  "Danh sách chờ xác nhận nhận nuôi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-            //     //     )),
-            //     // SizedBox(height: 10,),
-            //     currentUser.isVerifyRescueCenter
-            //         ? Container(
-            //             height: 300,
-            //             child: ListView.builder(
-            //               itemCount: awaitConfirmationPost.length,
-            //               scrollDirection: Axis.horizontal,
-            //               itemBuilder: (context, index) {
-            //                 return Column(
-            //                   children: [
-            //                     Row(
-            //                       mainAxisAlignment: MainAxisAlignment.center,
-            //                       children: <Widget>[
-            //                         SizedBox(
-            //                           width: 30,
-            //                         ),
-            //                         awaitConfirmationPost[index]
-            //                       ],
-            //                     ),
-            //                     // SizedBox(height: 10,),
-            //
-            //                     // if(currentUser.isVerifyRescueCenter)
-            //                     // Padding(
-            //                     //   padding: const EdgeInsets.only(left: 20),
-            //                     //   child: Row(
-            //                     //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                     //     children: [
-            //                     //       Container(
-            //                     //         width: 60,
-            //                     //         height: 40,
-            //                     //         decoration: BoxDecoration(
-            //                     //             borderRadius: BorderRadius.circular(20),
-            //                     //             color: Colors.red
-            //                     //         ),
-            //                     //
-            //                     //         child: Center(child:
-            //                     //         Text("Hủy", style: TextStyle(color: Colors.white, fontSize: 18),)
-            //                     //         ),
-            //                     //       ),
-            //                     //       SizedBox(width: 10,),
-            //                     //       Container(
-            //                     //         width: 115,
-            //                     //         height: 40,
-            //                     //         decoration: BoxDecoration(
-            //                     //             borderRadius: BorderRadius.circular(20),
-            //                     //             color: PetRescueTheme.darkGreen
-            //                     //         ),
-            //                     //
-            //                     //         child: Center(child:
-            //                     //         Text("Chấp nhận", style: TextStyle(color: Colors.white, fontSize: 18),)
-            //                     //         ),
-            //                     //       )
-            //                     //     ],
-            //                     //   ),
-            //                     // )
-            //                   ],
-            //                 );
-            //               },
-            //             ))
-            //         : Container()
-            //   ],
-            // ),
 
-            // SizedBox(height: 30,),
 
             Column(
               children: [
@@ -114,7 +47,7 @@ class _PageAdoptionState extends State<PageAdoption> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                        currentUser.isVerifyRescueCenter == true
+                        currentUser.isVerifyRescueCenter == true && !widget.isViewMode
                             ? "Tìm nhà cho các bé:"
                             : "Thú đang nuôi",
                         style: TextStyle(
@@ -164,7 +97,7 @@ class PetAdoptionWidget extends StatelessWidget {
       onTap: () {
         if (currentUser.isVerifyRescueCenter)
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TimelineUpdatePage(
+            builder: (context) => TimelineUpdateUserPage(
               postModel: listOfPosts[3],
             ),
           ));
@@ -273,7 +206,7 @@ class PetAdoption2 extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TimelineUpdatePage(
+            builder: (context) => TimelineUpdateUserPage(
                   postModel: listOfPosts[2],
                   hasNotBeenRescued: false,
                 )));
@@ -378,7 +311,7 @@ class PetAdoption3 extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => TimelineUpdatePage(
+          builder: (context) => TimelineUpdateUserPage(
             postModel: listOfPosts[2],
             hasNotBeenRescued: false,
           ),
@@ -484,7 +417,7 @@ class PetAdoption4 extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TimelineUpdatePage(
+            builder: (context) => TimelineUpdateUserPage(
                   postModel: listOfPosts[2],
                   hasNotBeenRescued: false,
                 )));

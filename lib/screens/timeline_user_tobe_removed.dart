@@ -3,26 +3,23 @@ import 'package:petrescue/bloc/app_general/global.dart';
 import 'package:petrescue/models/post_model.dart';
 import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/repository/data/post_data.dart';
+import 'package:petrescue/repository/data/user_list.dart';
 import 'package:petrescue/widgets/postFeed/post_empty.dart';
 import 'package:petrescue/bloc/app_general/global.dart' as globals;
 
-class TimelineUpdatePage extends StatefulWidget {
+class TimelineUpdateUserPage extends StatefulWidget {
   final Post postModel;
   final bool hasNotBeenRescued;
 
-  const TimelineUpdatePage({Key key, this.postModel, this.hasNotBeenRescued}) : super(key: key);
+  const TimelineUpdateUserPage({Key key, this.postModel, this.hasNotBeenRescued}) : super(key: key);
   @override
   _TimelineUpdatePageState createState() => _TimelineUpdatePageState();
 }
 
-class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
+class _TimelineUpdatePageState extends State<TimelineUpdateUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.edit),
-        backgroundColor: PetRescueTheme.lightPink,
-      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -41,17 +38,11 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                         children:
                         [
                           CircleAvatar(backgroundImage:
-                          (currentUser.isVerifyRescueCenter) ?
-                          NetworkImage(listOfPosts[3].currentUser.imageURL)
-                                :
-                          NetworkImage(widget.postModel.currentUser.imageURL)
+                          NetworkImage(userList[1].imageURL)
                             ,
                             radius: 25,),
                           Text(
-                            currentUser.isVerifyRescueCenter
-                                ?
-                            "Trung tâm cứu hộ SAR":
-                            widget.postModel.currentUser.fullName
+                            userList[1].fullName
                             ,
                             style: TextStyle(
                               color: Colors.black,
@@ -69,8 +60,8 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        image: NetworkImage(widget.postModel.imageThumbnail),
-                        fit: BoxFit.cover
+                          image: AssetImage("lib/assets/Cat3.png"),
+                          fit: BoxFit.cover
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -118,7 +109,7 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                           offset: Offset(0, 4),
                         ),
                       ],
-                      color:Color(0xffff8068),
+                      color: widget.postModel.postType == PostType.RequestPost && widget.hasNotBeenRescued ? Color(0xffff8068) : PetRescueTheme.darkGreen,
                     ),
                     padding: const EdgeInsets.only(
                       left: 19,
@@ -131,17 +122,17 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Wrap(
-                          children: [
-                            Text(
-                              "Cập nhật mới nhất vào",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.w700,
+                            children: [
+                              Text(
+                                "Cập nhật mới nhất vào",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                            ),
-                          ]
+                            ]
                         ),
                         SizedBox(height: 11.17),
                         Row(
@@ -181,62 +172,18 @@ class _TimelineUpdatePageState extends State<TimelineUpdatePage> {
                         SizedBox(height: 11.17),
 
                         if(currentUser.isVerifyRescueCenter || widget.postModel.postType == PostType.RequestPost)
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              " Địa điểm giải cứu",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            SizedBox(height: 11.17),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 2,
-                                    bottom: 3,
-                                  ),
-                                  child: Opacity(
-                                    opacity: 0.50,
-                                    child: Container(
-                                      width: 12.50,
-                                      height: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 5),
-                                SizedBox(
-                                  width: 250,
-                                  child: Text(
-                                    widget.postModel.location,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontFamily: "Lato",
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            ],
+                          )
                       ],
                     ),
                   ),
                   SizedBox(height: 19.50),
-                  PostEmpty(postModel: widget.postModel,),
+                  PostEmptyUpdateRescued(postModel: widget.postModel,),
                   SizedBox(height: 19.50),
-
                 ],
               ),
             ),

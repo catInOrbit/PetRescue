@@ -5,6 +5,7 @@ import 'package:petrescue/petrescue_theme.dart';
 import 'package:petrescue/profile/Colors.dart';
 import 'package:petrescue/repository/data/post_data.dart';
 import 'package:petrescue/screens/timeline.dart';
+import 'package:petrescue/screens/timeline_user_tobe_removed.dart';
 
 class PageTimelines extends StatefulWidget {
   final Post postModel;
@@ -193,7 +194,9 @@ class _PageTimelinesState extends State<PageTimelines> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdateUserPage(postModel: widget.postModel,),));
+                          },
                           child: Container(
                             width: 130,
                             height: 40,
@@ -211,16 +214,11 @@ class _PageTimelinesState extends State<PageTimelines> {
                                 SizedBox(
                                   width: 5,
                                 ),
-                                InkWell(
-                                  onTap: (){
-                                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdatePage(postModel: widget.postModel,),));
-                                  },
-                                  child: Text(
-                                    "Xem cập nhật",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                Text(
+                                  "Xem cập nhật",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
                                 )
                               ],
                             ),
@@ -306,7 +304,7 @@ class _PageTimelinesState extends State<PageTimelines> {
                             width: 5,
                           ),
                           Image.asset(
-                            "lib/assets/male_gender_icon.jpeg",
+                            "lib/assets/male_gender_icon.png",
                             height: 15,
                           )
                         ],
@@ -403,7 +401,9 @@ class _PageTimelinesState extends State<PageTimelines> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelineUpdateUserPage(postModel: widget.postModel,),));
+                          },
                           child: Container(
                             width: 130,
                             height: 40,

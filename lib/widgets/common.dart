@@ -143,9 +143,9 @@ class UserInfoRibon extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ProfileTab(
-          postModel: listOfPosts[4],
+          postModel: postModel,
           isViewMode: true,
-
+          defaultIndex: 1,
         ),
       )),
       child: Container(
