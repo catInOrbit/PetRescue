@@ -97,8 +97,8 @@ class _ProfileTabState extends State<ProfileTab>
       return TabBarView(
         children: <Widget>[
           PageRescued(postModel: widget.postModel, isViewMode: true,),
-          PageAdoption(isViewMode: widget.isViewMode,),
-          PageTimelines(postModel: widget.postModel,)
+          PageAdoption(isViewMode: widget.isViewMode, ),
+          PageTimelines(postModel: widget.postModel, )
         ],
         controller: tabController,
       );
@@ -107,7 +107,7 @@ class _ProfileTabState extends State<ProfileTab>
       return TabBarView(
         children: <Widget>[
           PageRescued(postModel: widget.postModel, isViewMode: true,),
-          PageAdoption(),
+          PageAdoption(isViewMode: true,),
         ],
         controller: tabController,
       );
