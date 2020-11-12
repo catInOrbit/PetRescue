@@ -107,12 +107,12 @@ class DetailCard extends StatelessWidget {
                                       left: 61,
                                       top: 64,
                                       child: SizedBox(
-                                        width: 21,
+                                        width: 50,
                                         child: Text(
                                           "+3 ",
                                           style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontSize: 22,
                                             fontFamily: "Lato",
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -121,14 +121,20 @@ class DetailCard extends StatelessWidget {
                                     ),
                                     Opacity(
                                       opacity: 0.50,
-                                      child: Container(
+                                      child:  Container(
                                         width: 147,
-                                        height: 140,
+                                        height: 132,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image:
+                                                AssetImage("lib/assets/cat4.png"),
+                                                fit: BoxFit.fill)),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
+
                             ],
                           ),
                         ],
@@ -454,7 +460,7 @@ class DetailCard extends StatelessWidget {
                                       left: 61,
                                       top: 64,
                                       child: SizedBox(
-                                        width: 24,
+                                        width: 50,
                                         child: Text(
                                           "+3 ",
                                           style: TextStyle(

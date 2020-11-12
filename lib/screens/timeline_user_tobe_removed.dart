@@ -20,6 +20,11 @@ class _TimelineUpdatePageState extends State<TimelineUpdateUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){} ,
+        child: Icon(Icons.edit),
+        backgroundColor: PetRescueTheme.darkGreen,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
