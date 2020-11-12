@@ -656,25 +656,23 @@ class _PostCardState extends State<PostCard>
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 15.0),
-                                    child: Expanded(
-                                      child: Container(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              "2",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  color: colorScheme[
-                                                      PetRescueThemeColorType
-                                                          .Text.index]),
-                                            ),
-                                            Text(
-                                              "Người yêu cầu",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w500),
-                                            )
-                                          ],
-                                        ),
+                                    child: Container(
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            "2",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w800,
+                                                color: colorScheme[
+                                                    PetRescueThemeColorType
+                                                        .Text.index]),
+                                          ),
+                                          Text(
+                                            "Người yêu cầu",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ),
