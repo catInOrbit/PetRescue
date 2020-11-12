@@ -231,7 +231,10 @@ class _PostCardState extends State<PostCard>
                                   isDetailRibbon: false,
                                   postModel: widget.postModel,
                                 ),
+
                               ),
+                              if(widget.postModel.postType == PostType.RequestPost)
+                                   PriorityRibbon(postModel: widget.postModel,)
                             ],
                           ),
                         ]),

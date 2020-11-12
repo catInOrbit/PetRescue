@@ -142,7 +142,7 @@ class UserInfoRibon extends StatelessWidget {
       if (postModel.postType == PostType.AdoptPost)
         colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
       else
-        colorScheme = PetRescueTheme.userRibbonDetailAdoptPostTheme;
+        colorScheme = PetRescueTheme.userRibbonDetailRescuePostTheme;
     }
 
     return InkWell(
