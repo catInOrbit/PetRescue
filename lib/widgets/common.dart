@@ -857,7 +857,7 @@ class PriorityRibbon extends StatelessWidget {
     String text;
     Color backgroundColor;
     Color textColor;
-    postModel.priority == Priority.Normal ? text = "Thấp" : text = "Cao";
+    postModel.priority == Priority.Normal ? text = "Low" : text = "High";
     postModel.priority == Priority.Normal
         ? textColor = Colors.black
         : textColor = Colors.white;
@@ -868,7 +868,7 @@ class PriorityRibbon extends StatelessWidget {
       padding: const EdgeInsets.only(right: 20),
       child: Chip(
         label: Text(
-          "Ưu tiên: " + text,
+          "Priority: " + text,
           style: TextStyle(
               color: textColor, fontSize: 20, fontWeight: FontWeight.bold),
         ),

@@ -98,11 +98,11 @@ class _RequestPostPageState extends State<RequestPostPage> {
     String appbarText;
     if (widget.sortType
         .contains(PostType.RequestPost.toString().split('.').last)) {
-      appbarText = "Cứu hộ";
+      appbarText = "Rescue";
       appBarColor = Colors.redAccent;
     } else if (widget.sortType
         .contains(PostType.AdoptPost.toString().split('.').last)) {
-      appbarText = "Nuôi nhận";
+      appbarText = "Adopt";
       appBarColor = PetRescueTheme.darkGreen;
     }
     final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -147,15 +147,15 @@ class _RequestPostPageState extends State<RequestPostPage> {
             //CustomListSideMenuBar(Icons.logout, 'Sign out', widget()),
             CustomListSideMenuBar(
                 Icons.group,
-                'Danh sách trung tâm',
+                'List of centers:',
                 () => {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => CentersScreen()))
                     }),
-            CustomListSideMenuBar(Icons.settings, 'Cài đặt', () => {}),
+            CustomListSideMenuBar(Icons.settings, 'Settings', () => {}),
             CustomListSideMenuBar(
               Icons.info,
-              'Giới thiệu',
+              'About',
               () {
                 //close drawer
                 Navigator.pop(context, false);
@@ -164,8 +164,8 @@ class _RequestPostPageState extends State<RequestPostPage> {
                     context, MaterialPageRoute(builder: (_) => AboutScreen()));
               },
             ),
-            CustomListSideMenuBar(Icons.phone_android, 'Đánh giá', () => {}),
-            CustomListSideMenuBar(Icons.help_outline, 'Trợ giúp', () {
+            CustomListSideMenuBar(Icons.phone_android, 'Review', () => {}),
+            CustomListSideMenuBar(Icons.help_outline, 'Help', () {
               //close drawer
               Navigator.pop(context, false);
 
@@ -173,7 +173,7 @@ class _RequestPostPageState extends State<RequestPostPage> {
                   context, MaterialPageRoute(builder: (_) => HelpScreen()));
             }),
 
-            CustomListSideMenuBar(Icons.remove_circle_outline, 'Đăng xuất ',
+            CustomListSideMenuBar(Icons.remove_circle_outline, 'Logout ',
                 () {
               //close drawer
               Navigator.push(context,
@@ -294,7 +294,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                   //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Độ ưu tiên",
+                      "Priority level",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
@@ -310,7 +310,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               priorityLow = false;
                             });
                           },
-                          child: Text('Cao',
+                          child: Text('High',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         RaisedButton(
@@ -324,7 +324,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               });
                             },
                             child: Text(
-                              'Thấp',
+                              'Low',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )),
                       ],
@@ -332,7 +332,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text('Phân loại',
+                    Text('Category',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20)),
                     Wrap(
@@ -349,7 +349,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isKhac = false;
                             });
                           },
-                          child: Text('Tai nạn',
+                          child: Text('Accident',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         RaisedButton(
@@ -364,7 +364,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                             });
                           },
                           child: Text(
-                            'Thất lạc',
+                            'Lost owner',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -379,7 +379,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               isKhac = true;
                             });
                           },
-                          child: Text('Khác',
+                          child: Text('Others',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                       ],
@@ -387,7 +387,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text('Khu vực tìm kiếm',
+                    Text('Search area',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20)),
                     Padding(
@@ -412,7 +412,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
-                                  'CÔNG TY PHÁT TRIỂN CÔNG NGHỆ PHẦN MỀM QUANG TRUNG',
+                                  'Location XYZ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 17,
@@ -425,7 +425,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                           InkWell(
                             onTap: () {},
                             child: Text(
-                              'Thay đổi',
+                              'Change',
                               style: TextStyle(
                                   color: PetRescueTheme.lightPink,
                                   fontWeight: FontWeight.bold),
@@ -444,7 +444,7 @@ class _DialogFilterRescueState extends State<DialogFilterRescue> {
                     Navigator.pop(context, false);
                   },
                   child: Text(
-                    'XONG',
+                    'Done',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
@@ -509,10 +509,9 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                             isCho = true;
                             isMeo = false;
                             isKhac = false;
-                            print('la cho');
                           });
                         },
-                        child: Text('Chó',
+                        child: Text('Dog',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       RaisedButton(
@@ -526,7 +525,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                             });
                           },
                           child: Text(
-                            'Mèo',
+                            'Cat',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )),
                       RaisedButton(
@@ -540,7 +539,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                             });
                           },
                           child: Text(
-                            'Khác',
+                            'Others',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )),
                     ],
@@ -548,7 +547,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                   SizedBox(
                     height: 15,
                   ),
-                  Text('Giới tính',
+                  Text('Gender',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                   Wrap(
@@ -564,7 +563,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                             isChuaxacdinh = false;
                           });
                         },
-                        child: Text('Đực'),
+                        child: Text('Male'),
                       ),
                       RaisedButton(
                         textColor: isCai ? Colors.white : null,
@@ -576,7 +575,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                             isChuaxacdinh = false;
                           });
                         },
-                        child: Text('Cái'),
+                        child: Text('Female'),
                       ),
                       RaisedButton(
                         textColor: isChuaxacdinh ? Colors.white : null,
@@ -588,7 +587,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                             isChuaxacdinh = true;
                           });
                         },
-                        child: Text('Chưa xác định'),
+                        child: Text('Undefined'),
                       ),
                     ],
                   ),
@@ -602,7 +601,7 @@ class _DialogFilterAdoptState extends State<DialogFilterAdopt> {
                   Navigator.pop(context, false);
                 },
                 child: Text(
-                  'XONG',
+                  'Done',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
@@ -647,7 +646,7 @@ class _DialogActivitiesState extends State<DialogActivities> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "BÀI POST",
+                    "Post",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Wrap(
@@ -662,7 +661,7 @@ class _DialogActivitiesState extends State<DialogActivities> {
                             isCuuHo = true;
                           });
                         },
-                        child: Text('Cứu hộ'),
+                        child: Text('Rescue'),
                       ),
                       RaisedButton(
                         textColor: isNuoiNhan ? Colors.white : null,
@@ -673,7 +672,7 @@ class _DialogActivitiesState extends State<DialogActivities> {
                             isCuuHo = false;
                           });
                         },
-                        child: Text('Nuôi nhận'),
+                        child: Text('Adopt'),
                       ),
                     ],
                   )
@@ -687,7 +686,7 @@ class _DialogActivitiesState extends State<DialogActivities> {
                   Navigator.pop(context, false);
                 },
                 child: Text(
-                  'XONG',
+                  'Done',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),

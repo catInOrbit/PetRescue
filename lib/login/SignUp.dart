@@ -2,7 +2,6 @@
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:petrescue/login/Colors.dart';
 import 'package:petrescue/login/SignIn.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:petrescue/bloc/app_general/global.dart' as globals;
 class SignUpScreen extends StatefulWidget {
   @override
@@ -32,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'ĐĂNG KÍ TÀI KHOẢN',
+                  'Register a new account',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -54,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Tên',
+                        labelText: 'Name',
                       ),
                     ),
                   ),
@@ -79,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: !this._showPassword,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Mật khẩu',
+                          labelText: 'Password',
                           prefixIcon: Icon(Icons.security),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -111,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   SignUpComplete()),
                         );
                       },
-                      child: Text('Đăng kí!'),
+                      child: Text('Register'),
                       color: Colors.red,
                     ),
                   ),
@@ -156,7 +155,7 @@ class _SignUpCompleteState extends State<SignUpComplete> {
             child: Center(
               child: Column(
                   children: <Widget>[
-                    Text('XÁC NHẬN TÀI KHOẢN',
+                    Text('Verify your account',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
@@ -168,25 +167,22 @@ class _SignUpCompleteState extends State<SignUpComplete> {
                             border: OutlineInputBorder(),
 
                           ),
-                            controller: TextEditingController()..text = 'Email của bạn...'
+                            controller: TextEditingController()..text = 'Your email.'
                         ),
                       ),
                     ),
                     Text(
-                      "Chúng tôi sẽ gửi cho bạn đường liên kết xác nhận. "
+                      "We will send you a verification email"
                     ),
                     Text(
-                        "Khi bạn click vào đường link sẽ gửi trả lại đến app để "
-                    ),
-                    Text(
-                        "xác nhận tài khoản."
+                        "Click on the link to verify your account "
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Bạn có thể bấm gửi lại nếu không nhận được mail."),
+                      child: Text("Select resend if you haven't received an email"),
                     ),
                     RaisedButton(
-                      child: Text('Gửi lại liên kết'),
+                      child: Text('Resend verification email'),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
@@ -199,7 +195,7 @@ class _SignUpCompleteState extends State<SignUpComplete> {
                                     LoginPage()),
                           );
                         },
-                        child: Text('Trở về Đăng nhập!'),color: Colors.indigoAccent,
+                        child: Text('Back to login'),color: Colors.indigoAccent,
                       ),
                     ),
 

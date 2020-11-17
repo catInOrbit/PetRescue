@@ -184,7 +184,7 @@ class _PostCardState extends State<PostCard>
                                   Positioned(
                                       left: 20,
                                       child: Text(
-                                        "20 phút trước",
+                                        "20 minutes ago",
                                         style: TextStyle(color: Colors.white),
                                       )),
                                 ],
@@ -266,7 +266,7 @@ class _PostCardState extends State<PostCard>
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Phân loại",
+                                  "Category",
                                   style: TextStyle(
                                       color: colorScheme[
                                           PetRescueThemeColorType.Text.index],
@@ -294,7 +294,7 @@ class _PostCardState extends State<PostCard>
                                 Row(
                                   children: [
                                     Text(
-                                      "Động vật:",
+                                      "Animal:",
                                       style: TextStyle(
                                           color: colorScheme[
                                               PetRescueThemeColorType
@@ -405,7 +405,7 @@ class _PostCardState extends State<PostCard>
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "Tình trạng",
+                                    "Statuses",
                                     style: TextStyle(
                                         color: colorScheme[
                                             PetRescueThemeColorType.Text.index],
@@ -466,7 +466,7 @@ class _PostCardState extends State<PostCard>
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Địa chỉ",
+                              "Address",
                               style: TextStyle(
                                   color: colorScheme[
                                       PetRescueThemeColorType.Text.index],
@@ -496,7 +496,7 @@ class _PostCardState extends State<PostCard>
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    Text("Cách bạn 2.7km",
+                                    Text("2.7km from you",
                                         style: TextStyle(
                                             color: colorScheme[
                                                 PetRescueThemeColorType
@@ -514,7 +514,7 @@ class _PostCardState extends State<PostCard>
                                               builder: (context) => MapPage(),
                                             ));
                                       },
-                                      child: Text("Xem bản đồ",
+                                      child: Text("View map",
                                           style: TextStyle(
                                             color: Colors.cyan,
                                             fontSize: 16,

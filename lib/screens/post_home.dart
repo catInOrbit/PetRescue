@@ -72,7 +72,7 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: Colors.redAccent,
           icon: Icon(Icons.local_hospital),
           title: Text(
-            'Cứu hộ',
+            'Rescue',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -80,7 +80,7 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: PetRescueTheme.darkGreen,
           icon: Icon(Icons.pets),
           title: Text(
-            'Nuôi nhận',
+            'Adopt',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -88,7 +88,7 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: PetRescueTheme.orange,
           icon: Icon(Icons.local_activity),
           title: Text(
-            'Hoạt động',
+            'Activity',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -96,7 +96,7 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: PetRescueTheme.darkGreen,
           icon: Icon(Icons.message),
           title: Text(
-            'Tin nhắn',
+            'Message',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -104,7 +104,7 @@ class _PostHomeState extends State<PostHome> {
           backgroundColor: HexColor('#FFB9AC'),
           icon: Icon(Icons.account_circle),
           title: Text(
-            'Tài khoản',
+            'Account',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         )

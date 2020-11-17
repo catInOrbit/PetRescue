@@ -34,7 +34,7 @@ class _EditScreenState extends State<EditScreen> {
             onPressed: (){},
           )
         ],
-        title:Text(" Chính sửa tài khoản"),
+        title:Text("Edit account"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -85,7 +85,7 @@ class _EditScreenState extends State<EditScreen> {
                 padding: const EdgeInsets.fromLTRB(30,0,0,0),
                 child: Column(
                   children: <Widget>[
-                    Text("THÔNG TIN CÁ NHÂN", style: TextStyle(
+                    Text("Profile page", style: TextStyle(
                       fontSize: 15, fontWeight: FontWeight.bold
                     ),),
                     SizedBox(height: 5,),
