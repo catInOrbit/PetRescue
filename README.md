@@ -1,16 +1,24 @@
 # petrescue
 
-A new Flutter application.
+## Overview:
+This app is designed for users to create a post that contains details of an animal, dog or cat…, which is currently being abandoned, injured, or lost and in need of a safe shelter. After a post is submitted the system will notify other users, preferably a verified rescue center or organization, and the rescue center can choose to rescue the animal and submit updated post. User can also rescue the pet themselves and provide update posts on pet conditions and submit a post looking for adoption for the pet
 
-## Getting Started
+## Current state
+This app is intended as a UI demo application for the PetRescue idea, no database functions or authentication features have been implemented so far.
 
-This project is a starting point for a Flutter application.
+App is written in Dart using Flutter Framework
+ 
+## Authors:
 
-A few resources to get you started if this is your first Flutter project:
+Nguyen Hoang Quang Huy
+email: haccoco99999@gmail.com 
+github: https://github.com/haccoco99999
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Mao Nguyen Minh Tam:
+email: thmmao2017@gmail.com
+github: https://github.com/catInOrbit
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots:
+![pic1](https://i.imgur.com/9YSTsZ6.png)
+![pic2](https://i.imgur.com/cnSIZRO.png)
+
