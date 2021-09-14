@@ -8,6 +8,10 @@ This app is intended as a UI demo application for the PetRescue idea, no databas
 
 App is written in Dart using Flutter Framework
 
+# Technologies used
+Flutter version 1.22.3
+Kotlin
+
 ## Demo:
 For demo purposes, login can be performed using these 2 username:
 
