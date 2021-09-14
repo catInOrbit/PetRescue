@@ -7,6 +7,13 @@ This app is designed for users to create a post that contains details of an anim
 This app is intended as a UI demo application for the PetRescue idea, no database functions or authentication features have been implemented so far.
 
 App is written in Dart using Flutter Framework
+
+## Demo:
+For demo purposes, login can be performed using these 2 username:
+user@gmail.com --> For role user
+rescue@gmail.com --> For role rescue center
+
+No password is required
  
 ## Authors:
 
