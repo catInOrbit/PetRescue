@@ -10,7 +10,9 @@ App is written in Dart using Flutter Framework
 
 ## Demo:
 For demo purposes, login can be performed using these 2 username:
+
 user@gmail.com --> For role user
+
 rescue@gmail.com --> For role rescue center
 
 No password is required
